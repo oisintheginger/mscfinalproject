@@ -1,0 +1,9 @@
+.callout[data-callout="source"] {
+    --callout-color: 255, 43, 135;
+    --callout-icon: lucide-newspaper;
+}
+
+.callout[data-callout="tools"] {
+    --callout-color: 245, 120, 47;
+    --callout-icon: lucide-wrench;
+}
