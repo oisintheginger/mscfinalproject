@@ -1,0 +1,53 @@
+The MVP will include the following:
+•	Basic CRUD operations and endpoints for property listening, users, authentication and authorization
+•	Basic incorporation of external data
+•	Incorporation of the recommendation system.
+
+The following technical components and structures will be used:
+•	Spring boot
+•	Apache Maven for dependency management, testing and compiling, packaging and deploying source code
+•	Implement authentication and authorisation using Spring Security and JWT
+•	Deployed on AWS Lambda
+        Including AWS Serverless Application Model (SAM) to build, package and deploy the application from the terminal.
+•	Potentially AWS secrets manager and parameter store for …
+•	Potentially RDS proxy for API-database connection performance improvement
+•	Indicative list API endpoints
+
+Property Listings
+GET 	/property 	                Property details
+GET 	/images 	                Property images and videos
+GET 	/propertyExtendedSearch 	Extended Search
+GET 	/searchByUrl 	            Property search by Url
+GET 	/searchById 	            Property search by property id
+GET 	/searchByCoordinates 	    Property search by coordinates
+GET 	/rentEstimate 	            Based on property type (+ other optional parameters), it returns rent estimates
+GET 	/building  	                Building details
+GET 	/locationSuggestions 	    Input neighborhood, street or name
+
+Users (creation, authentication,  authorization)
+/api/users	                GET 	Body: user id 	                Get user
+                            POST 		                            Register new user
+                            PUT 	Body: user id                   Edit user
+                                    Optional parameters:
+                                    name, email, phone number,
+                                    password, profile picture
+                            DELETE 	Body: user id	                Delete user
+/api/account/favourites	    GET	    Body: user id	                Retrieve user favourite listings
+	                        POST	Body: user id, listing id 	    Add new user favourite
+	                        DELETE	Body: user id, listing id 	    Remove user favourite
+/api/account/savedSearches	GET	    Body: user id
+                                    Optional: search id	            Retrieve saved searches
+	                        POST	Body: user id, search id	    Add new saved search
+	                        DELETE	Body: user id, search id	    Remove saved search
+/api/login 	                PUT     Body: email, password	        User login, returns JWT
+/api/logout	                PUT 	Body: JWT	                    User logout, Invalidate JWT
+/api/currentUser	        GET 	Body: JWT	                    Returns details of currently authenticated user
+/api/account/password	    PUT	    Body: email	                    Request user password reset
+	                        PUT	    Body: token, new password	    Change user password from reset request
+
+Recommendation System
+/api/recommendation	        GET 	Retrieves recommendations from recommendation system
+/api/userFeedback	        POST	Sends user feedback on recommendations (back to recommendation system)
+
+External APIs
+o	Google Maps
