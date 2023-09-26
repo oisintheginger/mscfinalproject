@@ -1,0 +1,25 @@
+TUTORIAL SPRING BOOT AWS LAMBDA
+Where to deploy those Spring Boot Personal Projects:
+https://www.youtube.com/watch?v=GGPPkUcHleQ
+
+Using AWS Serverless Application Model (SAM)
+	So you can build, package and deploy your serverless application from the terminal
+
+Deploy a SpringBoot API on AWS Lambda in 10 minutes (min 4:50):
+https://www.youtube.com/watch?v=A1rYiHTy9Lg
+
+Application Configuration with SpringBoot on AWS Lambda:
+https://www.youtube.com/watch?v=eierYzOAyg8
+    Application configuration using AWS secretsmanager and parameter store
+
+RDS Proxy with SpringBoot on AWS Lambda:
+https://www.youtube.com/watch?v=ZQOqmMn_8jw&list=PLCOG9xkUD90IDm9tcY-5nMK6X6g8SD-Sz&index=3
+    Potential improvement in api-db connection performance
+    Connecting relational db to AWS lambda
+	- rds proxy solves the issue of having a separate db connection for each aws lambda running env
+	- Because aws lamdba creates a new running environment for each separate request that comes in
+	- Supports MySQL, PostgreSQL, SQL Server
+	- potentially use IAM authentication into the db instead of credentials
+
+the whole playlist: https://www.youtube.com/playlist?list=PLCOG9xkUD90IDm9tcY-5nMK6X6g8SD-Sz
+    the last 2 videos on lambda snapstart to potentially improve cold starts
