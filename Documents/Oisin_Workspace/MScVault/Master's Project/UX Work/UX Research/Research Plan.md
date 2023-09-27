@@ -1,4 +1,4 @@
-![[UXAssignmentBrief.pdf]]
+
 ## Methodology
 The chosen methodology for our project is the [[Design Thinking Framework]]
 ### Empathy:
