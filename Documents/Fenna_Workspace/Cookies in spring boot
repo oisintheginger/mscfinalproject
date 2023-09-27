@@ -1,0 +1,17 @@
+How to (httpOnly) cookie in spring boot
+https://reflectoring.io/spring-boot-cookies/
+
+An HttpOnly Cookie is not accessible by the JavaScript. Only the browser knows about it, and it doesn’t give it to the JavaScript code in the page. At first, it might sound like a limitation, and it is. However, the goal of that is that we cannot trust the JavaScript code. An attacker may use JavaScript to steal our authentication token stored in a cookie, and then access the website with our account. With HttpOnly cookies, this is not possible. This makes XSS attacks (the one we just described) harder to perform.
+It is a recognized best practice to share any authentication data only with HttpOnly cookies. Using a standard cookie for authentication is a known vulnerability we should avoid in any case.
+
+Diving deeper
+In the end, cookies are a property of HTTP. HTTP is a standard protocol that defines how to send and receive cookies. Luckily, the instructions of HTTP are in plain text. To set a cookie as HttpOnly, the instruction to use in the header is the following.
+Set-Cookie: =[; =][; expires=][; domain=][; path=][; secure][; HttpOnly]
+If you are not familiar with this syntax, it provides several options. One of them is HttpOnly, and we should add in our case. The simplest way to make an HttpOnly Cookie is thus the following.
+Set-Cookie: cookie_name="cookie_value"; HttpOnly
+Of course, creating cookies from a programming language you will not have to write HTTP headers manually. You will have a dedicated function to create cookies, check the documentation of your programming language.
+
+HttpOnly Cookies are a matter of trust
+As we said in the beginning, cookies are suggestions the website tells to your browser. In the end, is the browser to decide whether to accept a cookie or not. Like so, it is also the browser to decide to provide the cookie to JavaScript or not. To put it simply, when you make an HttpOnly Cookie, you are telling the browser “Please, don’t show that to JavaScript”. Thus, trust HttpOnly cookies blindly. Most importantly, don’t use to store sensitive data like credentials or passwords: use only tokens
+
+From <https://www.ictshore.com/ict-basics/httponly-cookie/>
