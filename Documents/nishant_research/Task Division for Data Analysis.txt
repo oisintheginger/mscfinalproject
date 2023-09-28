@@ -1,0 +1,19 @@
+Task Division for Data Analysis:
+a) Data Cleaning and Preprocessing:
+DSMember 1: Handle missing values, outliers, and data transformation for Dataset1.
+DS Member 2: Perform the same for Dataset2.
+DS Member 3: Focus on Dataset3 and the Rental Houses dataset once available.
+b) Exploratory Data Analysis (EDA):
+DS Member 1: Conduct EDA on cleaned Dataset1 to identify trends, patterns, and anomalies.
+DS Member 2: Perform EDA on cleaned Dataset2.
+DS Member 3: Explore Dataset3 and the Rental Houses dataset.
+c) Feature Engineering and Model Development:
+DS Member 1: Develop features and build models for predicting or classifying variables in Dataset1.
+DS Member 2: Focus on feature engineering and model development for Dataset2.
+DS Member 3: Work on Dataset3 and the Rental Houses dataset.
+d) Model Evaluation and Interpretation:
+All Members: Evaluate the performance of developed models, interpret results, and draw conclusions collaboratively.
+e) Reporting and Documentation:
+All Members: Contribute to preparing reports and documentation, summarizing the methodology, findings, and insights.
+
+(Provisional)
