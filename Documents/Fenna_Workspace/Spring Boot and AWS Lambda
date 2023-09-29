@@ -1,4 +1,7 @@
 TUTORIAL SPRING BOOT AWS LAMBDA
+Full spring boot tutorial for backend:
+https://www.youtube.com/watch?v=9SGDpanrc8U&t=228s
+
 Where to deploy those Spring Boot Personal Projects:
 https://www.youtube.com/watch?v=GGPPkUcHleQ
 
@@ -17,7 +20,7 @@ https://www.youtube.com/watch?v=ZQOqmMn_8jw&list=PLCOG9xkUD90IDm9tcY-5nMK6X6g8SD
     Potential improvement in api-db connection performance
     Connecting relational db to AWS lambda
 	- rds proxy solves the issue of having a separate db connection for each aws lambda running env
-	- Because aws lamdba creates a new running environment for each separate request that comes in
+	- Because AWS lamdba creates a new running environment for each separate request that comes in
 	- Supports MySQL, PostgreSQL, SQL Server
 	- potentially use IAM authentication into the db instead of credentials
 
