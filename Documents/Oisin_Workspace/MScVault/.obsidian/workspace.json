@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps.md",
-                "mode": "source",
+                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps.md",
+                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps.md",
+                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps.md"
+                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md"
               }
             }
           }
@@ -148,12 +148,24 @@
   },
   "active": "d90bb3e7a2533c61",
   "lastOpenFiles": [
-    "Master's Project/UX Work/UX Research/Research Plan.md",
-    "Master's Project/UX Work/UX Research/Existing Apps.md",
     "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/User Research Survey.md",
+    "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
+    "Master's Project/UX Work/UX Research/Research Plan.md",
+    "Master's Project/UX Work/UX Week 1 Work.md",
+    "Pasted image 20230929215823.png",
     "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.excalidraw.md",
+    "Master's Project/UX Work/Week 1",
+    "Pasted image 20230929200041.png",
+    "Pasted image 20230929200010.png",
+    "Pasted image 20230929200007.png",
+    "Master's Project/UX Work/UX Mockups/Create Account Layout.png",
+    "Master's Project/UX Work/UX Mockups/UX Design File.png",
+    "Master's Project/UX Work/UX Mockups/Special Document Layout.png",
+    "Master's Project/UX Work/UX Mockups/Landing Page Layout.png",
+    "Master's Project/UX Work/UX Mockups/Browsing Page.png",
+    "Pasted image 20230929163021.png",
     "WeeklyDiaries/Week 1 Diary.md",
+    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.excalidraw.md",
     "Templates/Daily Diary Template.md",
     "UXAssignmentBrief.pdf.md",
     "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
@@ -166,11 +178,9 @@
     "Master's Project/Weekly Schedule.md",
     "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase",
     "Master's Project/UX Work/UX Research/Design Thinking Workflow",
-    "Master's Project/UX Work/Wireframes/Wireframe.svg",
     "Master's Project/UX Work/Wireframes",
     "Master's Project/UX Work/UX Frameworks",
     "Master's Project/UX Work/UX Research",
-    "Master's Project/UX Work/User Stories",
-    "Master's Project/UX Work/UseCaseDiagram"
+    "Master's Project/UX Work/User Stories"
   ]
 }
