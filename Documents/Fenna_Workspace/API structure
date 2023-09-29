@@ -1,3 +1,5 @@
+BACKEND STRUCTURE
+
 The MVP will include the following:
 •	Basic CRUD operations and endpoints for property listening, users, authentication and authorization
 •	Basic incorporation of external data
@@ -51,3 +53,17 @@ Recommendation System
 
 External APIs
 o	Google Maps
+
+EVALUATION
+continuous evaluation
+•	Unit testing (Junit)
+•	Performance testing and metrics
+    Using metrics such as: response time, throughput/RPS, latency, error rate.
+•	REST Api benchmark testing
+    Simulate calls to the endpoint through a tool (such as JMeter or Apache Bench) and monitor response time, CPU usage, memory usage and database connections.
+•	Specific External Api evaluation
+    Using latency, availability, and rate limits.
+•	Monitor System Resources
+    Such as memory usage, CPU utilization, I/O operations and database execution times.
+
+
