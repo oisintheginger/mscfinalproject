@@ -42,12 +42,51 @@ It may be a useful feature to be able to toggle the map on/off or at least expan
 
 I believe option 2 would be the superior choice, as it would require less movement of the page than option 3. Excessive page movement can often be disorienting to inexperienced/motion sensitive users, so muted and less intense motion/page layout shifts are beneficial. An A/B test with wireframes might be beneficial.
 
-Another pain point is the listings themselves actually differ in their content. Some listings in the result actually represent apartment blocks, with multiple floor plans for different types of apartments. However, there is no icon to indicate whether a listing is a apartment complex with multiple vacancies or a singular listing, bar a small '+' symbol that is appended to the prices. 
+Another pain point is the listings themselves actually differ in their content. Some listings in the result actually represent apartment blocks, with multiple floor plans for different types of apartments. However, there is no icon to indicate whether a listing is a apartment complex with multiple vacancies or a singular listing, bar a small '+' symbol that is appended to the prices.
 
 This is not to say that being able to see apartment complexes and their available units is a bad feature, it's actually quite useful. However, it should be clear to the user what it is that they are about to view, as it can significantly impact the format of the details modal, as discussed in the next section.
+
+> [!tip] Possible Solution - Use Card Icon to indicate single or complex listing
+> Use an icon on the list cards to indicate single or multiple listings per card. This would be much clearer to the user.
 ### Details Modal
 
 ![[Pasted image 20230929215823.png]]
-The details modal for Zillow is somewhat crowded, this could be an issue of using a modal that only partially covers the screen. This compresses the content into a smaller area. Additionally, the format of the modals text content can vary significantly between different listings (i.e. is actually a apartment complex with different units available, or does not have specific details available). Personally speaking, this causes a sense of claustrophobia/uncertainty when viewing different listings. This variability in the so called 'schema' of the modal could impede the development of familiarity with the system, as users will have to grow accustomed to the changing formats. With a single standard format, enforced globally across all listings, with null values still represented, 
+The details modal for Zillow is somewhat crowded, this could be an issue of using a modal that only partially covers the screen. This compresses the content into a smaller area. Additionally, the format of the modals text content can vary significantly between different listings (i.e. is actually a apartment complex with different units available, or does not have specific details available). Personally speaking, this causes a sense of claustrophobia/uncertainty when viewing different listings. This variability in the so called 'schema' of the modal could impede the development of familiarity with the system, as users will have to grow accustomed to the changing formats. 
 
-One way to solve this (at least for the )
+> [!tip] Possible Solutions
+> - With a single standard format, enforced globally across all listings, with null values still represented, this uncertainty could be mitigated
+> - Additionally a restructuring of the modal itself could alleviate some of the 'pressure' within the single details column.
+
+
+Another issue can be found again with apartment listings with multiple available units. One can view the different floorplans/images of each by selecting it, however, it opens up a second modal with a small 'back' button in the top left to return to the original modal. Nested modals could be considered a design sin.
+
+
+> [!quote] The Problem with Nested Modals
+> *Nested modals make users feel uncertain about their actions, and the achieved result. With two or more modals stacked upon each other, users might have no clue about what happens after they press the back button. Too many if-then steps may confuse to the point that one will lose track of one’s location within the app.*
+
+> [!source] Kostia Varhatiuk
+> https://fireart.studio/blog/learn-why-you-should-exclude-nested-models-from-your-design-and-how-to-replace-them/#:~:text=The%20most%20obvious%20issue%20with,them%20in%20the%20first%20place.
+
+Problems with Nested Modals
+- Add complexity, and make the user unsure about the system state and their actions.
+- Poor use of space.
+The Zillow modals are technically not 'nested' modals, insofar that the unit modal is not contained within the bounds of the original modal, however, it is similar enough to add complexity to the interaction and poor use of space.
+
+**A more radical solution would be to ditch the modal entirely and dedicate an entirely new page to contain the property details.**
+
+#### Page Solution
+##### Pro's
+- More freedom to determine new page layout
+- Removes the distraction of listings and info in the background of the modal, allowing for more focused, streamlined view. Will encourage focus & concentration on the current listing.
+##### Con's
+- Requires an additional page to develop
+- Possible latency and performance drop by requiring the user to route to another page on slower machines.
+- The minor increase in time it takes to open up the details may frustrate the user slightly, as they now cannot quickly get 'snapshot' perception of the listings details.
+
+> [!tip] Possible Solution - Expand Cards on Hover
+> To mitigate the loss in speed to 'snapshot' the details of a property, perhaps it might be a good idea to provide a 'hover' effect to cards within the results list on desktop. 
+> 
+> When the user hovers over the listing card, it expands slightly to include slightly more information, including 'chip' components to represent the available amenities or perhaps a snippet of the overview text.
+> 
+> This expanded card would act much like a popover. The base card will still keep its original position within the list, however the child elements will expand beyond this bound with a z-index set higher than the other listings.
+
