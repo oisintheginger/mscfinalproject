@@ -11,7 +11,7 @@
 > [!tip] Demo Video
 > <iframe width="560" height="315" src="https://www.youtube.com/embed/Hof2qcAWqi4?si=REJesSF5yGyJ52F7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Zillow Analysis and Critique
+## Zillow UX Analysis and Critique
 Generally speaking, the site makes use of many traditional UX techniques such as chunking, gestalt laws of common region, similarity, proximity, continuity, figure ground. Shadows are used to provide light borders and distinctiveness between foreground objects and background, while also providing indications of depth.
 
 The website features minimalist "clean" aesthetic elements, similar to flat 2.0, however this is not consistent throughout.
@@ -90,3 +90,6 @@ The Zillow modals are technically not 'nested' modals, insofar that the unit mod
 > 
 > This expanded card would act much like a popover. The base card will still keep its original position within the list, however the child elements will expand beyond this bound with a z-index set higher than the other listings.
 
+## Zillow Recommendation System
+> [!source] Zillow Recommendation System
+> https://www.zillow.com/tech/introduction-recommendations-zillow/

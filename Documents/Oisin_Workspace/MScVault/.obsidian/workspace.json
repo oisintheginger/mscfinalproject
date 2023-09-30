@@ -4,22 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "244955e9da19e779",
+        "id": "e90ccd6311c7e51d",
         "type": "tabs",
         "children": [
           {
-            "id": "d90bb3e7a2533c61",
+            "id": "23e70c66b7886714",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
-                "mode": "preview",
+                "file": "Daily Diary/Friday 29th September.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6dd3e027f5346af8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/Friday 29th September.md",
+                "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
+                "file": "Daily Diary/Friday 29th September.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
+                "file": "Daily Diary/Friday 29th September.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md"
+                "file": "Daily Diary/Friday 29th September.md"
               }
             }
           }
@@ -146,27 +159,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d90bb3e7a2533c61",
+  "active": "6dd3e027f5346af8",
   "lastOpenFiles": [
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/User Research Survey.md",
+    "Daily Diary/Saturday 30th September.md",
+    "Tag Based Collaborative Filtering for Recommender Systems.pdf",
+    "Daily Diary/Friday 29th September.md",
+    "Templates/Daily Work Diary.md",
     "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
-    "Master's Project/UX Work/UX Research/Research Plan.md",
+    "Templates/Weekly Diary Template.md",
+    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929095129.png",
+    "Master's Project/UX Work/UX Research/Screenshots",
     "Master's Project/UX Work/UX Week 1 Work.md",
-    "Pasted image 20230929215823.png",
+    "Master's Project/Untitled",
+    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929215823.png",
+    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929163021.png",
+    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929200007.png",
+    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929200010.png",
+    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929200041.png",
+    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929162946.png",
+    "Daily Diary",
+    "WeeklyDiaries/Week 1 Diary.md",
+    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/User Research Survey.md",
+    "Master's Project/UX Work/UX Research/Research Plan.md",
     "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.md",
     "Master's Project/UX Work/Week 1",
-    "Pasted image 20230929200041.png",
-    "Pasted image 20230929200010.png",
-    "Pasted image 20230929200007.png",
     "Master's Project/UX Work/UX Mockups/Create Account Layout.png",
     "Master's Project/UX Work/UX Mockups/UX Design File.png",
     "Master's Project/UX Work/UX Mockups/Special Document Layout.png",
-    "Master's Project/UX Work/UX Mockups/Landing Page Layout.png",
-    "Master's Project/UX Work/UX Mockups/Browsing Page.png",
-    "Pasted image 20230929163021.png",
-    "WeeklyDiaries/Week 1 Diary.md",
     "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.excalidraw.md",
-    "Templates/Daily Diary Template.md",
     "UXAssignmentBrief.pdf.md",
     "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
     "Master's Project/UX Work/UXAssignmentBrief.pdf",
@@ -177,10 +197,6 @@
     "Master's Project/Friday Class/Week 1.md",
     "Master's Project/Weekly Schedule.md",
     "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow",
-    "Master's Project/UX Work/Wireframes",
-    "Master's Project/UX Work/UX Frameworks",
-    "Master's Project/UX Work/UX Research",
-    "Master's Project/UX Work/User Stories"
+    "Master's Project/UX Work/UX Research/Design Thinking Workflow"
   ]
 }
