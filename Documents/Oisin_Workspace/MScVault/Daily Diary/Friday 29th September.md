@@ -16,7 +16,7 @@
 >> - [ ] define/draft user profile questions for recommendation system
 >> - [ ] detail and describe how I think the recommendation system could work
 >> - [ ] Help Sean pick fields from Zillow API
->> - [ ] Create Trello Cards
+>> - [x] Create Trello Cards
 >> - [ ] Begin the Coding of the website structure
 >> - [ ] Conduct user test
 >> - [ ] talk to Fenna about email verification for accounts
