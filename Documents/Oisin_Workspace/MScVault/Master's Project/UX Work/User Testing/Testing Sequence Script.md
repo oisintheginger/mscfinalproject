@@ -21,7 +21,7 @@
 
 > [!example] Favoriting Sequence
 > - Select Property to View
-> - Save the item for later viewing
+> - Save the property for later viewing
 > - Open Site Menu
 > - Select Browsing
 > - Open site menu
@@ -32,7 +32,17 @@
 > [!Example] Applying Sequence
 > - Select Property To View
 > - Select Apply
-> - Fill select 'Complete Later'
+> - Select 'Complete Later'
 > - Open the site menu
 > - Select 'My Applications'
+> - Edit an application
 
+
+> [!example] Saving Search Sequence
+> - Search a location using the search bar
+> - Edit the filters
+> - Select some filters
+> - Save the search 
+> - Open the main navigation
+> - Select My Searches
+> - Select The search again
