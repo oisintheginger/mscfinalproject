@@ -11,3 +11,5 @@
 > > 6. Select Drafts
 > > 7. Select Application
 > > 8. Complete + Send
+> 6. Return to My Applications Page
+> 7. Check status of application
