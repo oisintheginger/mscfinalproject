@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/assembly/bin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/StreamLambdaHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/test/java/msc/HME/StreamLambdaHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/template.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +83,7 @@
       <workItem from="1695980409688" duration="53000" />
       <workItem from="1695980489193" duration="2538000" />
       <workItem from="1696234116672" duration="1254000" />
-      <workItem from="1696239581781" duration="762000" />
+      <workItem from="1696239581781" duration="1284000" />
     </task>
     <servers />
   </component>
