@@ -1,3 +1,7 @@
+
+> [!todo] Tasks to Complete this Week
+> - [ ] Task 1
+
 > [!example] My Activities
 > - Activity 1 + time spent in hours
 

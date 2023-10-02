@@ -25,14 +25,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Diary/Monday 2nd October.md",
+                "file": "WeeklyDiaries/Week 1 + 2 Diary.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4c0aec5755c2ad59",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "72e0a044e4467a17",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Master's Project/UX Work/Core User Flows/Favoriting/Favoriting.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/Monday 2nd October.md",
+                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/Monday 2nd October.md",
+                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/Monday 2nd October.md"
+                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md"
               }
             }
           }
@@ -159,52 +183,52 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "98345034d6c76ec0",
+  "active": "4c0aec5755c2ad59",
   "lastOpenFiles": [
-    "Daily Diary/Sunday 1st October.md",
-    "Master's Project/UX Work/User Testing/Questions to Answer.md",
-    "Master's Project/UX Work/User Testing/Participants.md",
-    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md",
+    "Master's Project/UX Work/User Testing/pptF38E.tmp",
+    "Master's Project/UX Work/User Testing/ppt93D9.tmp",
     "Master's Project/UX Work/Core User Flows/Applying/Applying.md",
+    "Master's Project/UX Work/User Testing/pptDED3.tmp",
+    "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
+    "Master's Project/UX Work/User Testing/ppt14AD.tmp",
+    "Master's Project/UX Work/User Testing/pptFA7D.tmp",
+    "Master's Project/UX Work/Core User Flows/Favoriting/Favoriting.md",
+    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md",
+    "Master's Project/UX Work/User Testing/ppt8397.tmp",
+    "Master's Project/UX Work/User Testing/Questions to Answer.md",
+    "Master's Project/UX Work/User Testing/pptFAC1.tmp",
+    "Master's Project/UX Work/User Testing/Participants.md",
+    "WeeklyDiaries/Week 3 Diary.md",
+    "WeeklyDiaries/Week 1 + 2 Diary.md",
+    "Tag Based Collaborative Filtering for Recommender Systems.pdf",
+    "UXAssignmentBrief.pdf.md",
+    "Templates/Weekly Diary Template.md",
+    "WeeklyDiaries/Week 2 Diary.md",
+    "Master's Project/UX Work/UX Week 1 Work.md",
+    "Daily Diary/Monday 2nd October.md",
+    "Master's Project/UX Work/User Testing/UserTestingSlides_HME.pptx",
+    "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
+    "Daily Diary/Sunday 1st October.md",
     "Master's Project/UX Work/User Testing",
     "Master's Project/UX Work/Core User Flows/Browsing/landingpage.png",
     "Master's Project/UX Work/Core User Flows/Browsing/Default Browsing Results Page.png",
     "Master's Project/UX Work/Core User Flows/Browsing/browsingfiltersandactive.png",
     "Master's Project/UX Work/Core User Flows/Browsing/browsingfilters.png",
     "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (Map View).md",
-    "Master's Project/UX Work/Core User Flows/Favoriting/Favoriting.md",
     "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
-    "Daily Diary/Monday 2nd October.md",
     "Daily Diary/Friday 29th September.md",
     "Daily Diary/Saturday 30th September.md",
     "Master's Project/UX Work/UX Research/Research Plan.md",
     "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
-    "Master's Project/UX Work/Core User Flows/Saving Searches",
-    "Master's Project/UX Work/Core User Flows/Applying",
-    "Master's Project/UX Work/Core User Flows/Favoriting",
-    "Templates/Weekly Diary Template.md",
-    "Master's Project/UX Work/Core User Flows/Browsing",
     "Master's Project/UX Work/Core User Flows/Untitled.md",
     "Untitled.md",
-    "Master's Project/UX Work/UX Week 1 Work.md",
     "Master's Project/UX Work/Untitled.md",
-    "Master's Project/UX Work/Core User Flows",
-    "Tag Based Collaborative Filtering for Recommender Systems.pdf",
     "Templates/Daily Work Diary.md",
     "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929095129.png",
-    "Master's Project/UX Work/UX Research/Screenshots",
-    "Master's Project/Untitled",
     "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929215823.png",
     "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929163021.png",
     "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929200007.png",
     "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929200010.png",
-    "Daily Diary",
-    "WeeklyDiaries/Week 1 Diary.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/User Research Survey.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.excalidraw.md",
-    "UXAssignmentBrief.pdf.md",
-    "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
-    "Master's Project/UX Work/Functional Specification.md"
+    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/User Research Survey.md"
   ]
 }

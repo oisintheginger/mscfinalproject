@@ -6,4 +6,8 @@
 6. What would users prefer the recommendations to be delivered?:
 	- Carousel?
 	- Dedicated Page?
-7. 
+
+
+
+
+

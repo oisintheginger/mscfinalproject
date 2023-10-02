@@ -8,8 +8,7 @@
 > > [!alt] Alternate
 > > 4. Select Complete Later
 > > 5. Navigate to My Applications Page
-> > 6. Select Drafts
-> > 7. Select Application
+> > 6. Select Edit
 > > 8. Complete + Send
 > 6. Return to My Applications Page
 > 7. Check status of application
