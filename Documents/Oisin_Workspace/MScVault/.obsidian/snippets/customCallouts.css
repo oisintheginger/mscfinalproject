@@ -7,3 +7,26 @@
     --callout-color: 245, 120, 47;
     --callout-icon: lucide-wrench;
 }
+
+.callout[data-callout="morning"]{
+    --callout-color: 222, 170, 0;
+    --callout-icon: lucide-sunrise;
+}
+
+.callout[data-callout="afternoon"]{
+    --callout-color: 0, 131, 148;
+    --callout-icon: lucide-sunset;
+}
+
+.callout[data-callout="alt"]{
+    --callout-color: 247, 111, 0;
+    --callout-icon: lucide-option;
+}
+
+.callout[data-callout="alt"] .callout-content{
+    font-weight: bold;
+}
+.callout[data-callout="alt"] .callout-content ul {
+    font-weight: bold;
+    color: white;
+}
