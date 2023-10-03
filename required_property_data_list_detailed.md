@@ -22,7 +22,7 @@ This document lists the fields that will be pulled from the Zillow API.
 - last updated -  GET/propertyDetails
 - date posted - GET/propertyDetails
 - walk scores - GET/walkAndTransitScore (Walk, Bike and Transit scores)
-
+- transit scores
 
 ## Stuff We are Adding
 We are adding fields from different sources, e.g. the crime data and google maps API
