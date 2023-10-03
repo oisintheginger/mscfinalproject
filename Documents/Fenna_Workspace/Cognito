@@ -14,6 +14,26 @@ https://www.youtube.com/watch?v=Su1w1uZg1z0
     more detailed explanation of cognito authentication and authorisation + demo
 
 After discussion with oisin, nishant and char, the following questions need to be answered:
+	- How to use the generated login/register stuff?
+		○ Specify callback url
+		○ The generated UI can be integrated into your app or it will open a specific
+		○ Once the person logs in you go to the specified callback url
+		○ Cognito adds the JWT to the url so you can retrieve it and save it to local storage
+		○ Use that in all your subsequent calls to the api gateway to authorise
 	- How customisable is the login/register pages
+		○ You can completely customise the login page however you want through the UI customisation tab
+		○ Or you can do everything through the aws cognito sdk, and interact with the api endpoints directly
 	- How to use user pool id (?) in our own db for extra functionality (personal qs, fave properties and saved searches)?
+		○ We can use the id_token or cognito-username/email to match the data
 
+notes:
+	- You can use your own website domain for amazon cognito (more complicated with certificates and such)
+	Isnt needed if don’t use the generated UI
+
+
+Information retrieved from:
+https://saturncloud.io/blog/how-to-access-user-pools-using-the-amazon-cognito-identity-sdk-for-java/
+https://www.youtube.com/watch?v=oFSU6rhFETk
+
+Conclusions/ documentation after experimenting:
+TBC
