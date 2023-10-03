@@ -1,0 +1,19 @@
+Possible easy implementation of authentication and authorisation with amazon cognito
+
+Cognito free tier: 50.000 monthly active users!
+    https://aws.amazon.com/cognito/pricing/
+    additional pricing for:
+    - advanced security features
+    - sms for MFA (just do email only instead)
+    - amazon cognito sync store (and the number of sync operations)
+
+https://www.youtube.com/watch?v=g4qKydnd0vU
+    tutorial that implements cognito authentication on react app with aws amplify
+
+https://www.youtube.com/watch?v=Su1w1uZg1z0
+    more detailed explanation of cognito authentication and authorisation + demo
+
+After discussion with oisin, nishant and char, the following questions need to be answered:
+	- How customisable is the login/register pages
+	- How to use user pool id (?) in our own db for extra functionality (personal qs, fave properties and saved searches)?
+
