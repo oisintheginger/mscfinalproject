@@ -29,11 +29,22 @@ After discussion with oisin, nishant and char, the following questions need to b
 notes:
 	- You can use your own website domain for amazon cognito (more complicated with certificates and such)
 	Isnt needed if don’t use the generated UI
+	- triggers can be used to run custom code (through lambda functions) in response to cognito events such as pre- and post- authentication and signup.
 
 
 Information retrieved from:
 https://saturncloud.io/blog/how-to-access-user-pools-using-the-amazon-cognito-identity-sdk-for-java/
 https://www.youtube.com/watch?v=oFSU6rhFETk
 
-Conclusions/ documentation after experimenting:
-TBC
+set up with api:
+https://www.youtube.com/watch?v=QEGo6ZoN-ao
+    13:30 application integration
+    basically use API gateway to check authorisation for your lambda function (done in this and above videos by Be a Better Dev (YT)
+
+Experiment notes:
+	- Possibly use custom attributes to create the personal questions however need to make sure they are not required but optional
+
+Summary/plan:
+- use cognito to create user pool
+- interact with aws java sdk to implement authentication
+- possibly use triggers
