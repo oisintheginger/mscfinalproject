@@ -3,5 +3,6 @@
   "enabledCssSnippets": [
     "customCallouts",
     "tagHighlights"
-  ]
+  ],
+  "baseFontSize": 19
 }
