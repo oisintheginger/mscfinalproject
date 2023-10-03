@@ -26,7 +26,8 @@ function NavLayout() {
           <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
             <div className="drawer-content" >
 
-              {/* an alternative to the "activeClassName" would be much appreciated */}
+              {/* an alternative to the "activeClassName" would be much appreciated - I don't want to 
+              do this for every NavLink if I can avoid it */}
 
               <NavLink to="/" activeClassName='active'>Home</NavLink>
               <NavLink to="/browse" activeClassName='active'>Browse</NavLink>
