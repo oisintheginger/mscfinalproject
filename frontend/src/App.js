@@ -31,7 +31,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-//make this more secure using aws secretsmanager!! 
+//make this more secure using aws secretsmanager!!
 // needs to be without client secret because the javascript sdk doesnt support client secret
 const poolData = {
     UserPoolId: 'eu-north-1_ItPdvWwXq',
@@ -71,6 +71,7 @@ export default function App() {
             }
         );
 
+        //for error checking
         console.log({
             email: data.get('email'),
             password: data.get('password'),
