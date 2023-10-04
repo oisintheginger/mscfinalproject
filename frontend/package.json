@@ -11,6 +11,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.11",
     "@reduxjs/toolkit": "^1.9.6",
+    "amazon-cognito-identity-js": "^6.3.6",
     "npm": "^10.1.0",
     "react": "^18.2.0",
     "react-leaflet": "^4.2.1",
