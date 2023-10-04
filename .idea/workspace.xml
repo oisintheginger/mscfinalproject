@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/React &amp; Cognito Manual.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/images/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/images/img_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/Cognito Setup Manual.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/Cognito Setup Manual.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -41,7 +51,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;setup-springboot&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Fenna-research&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/fenna/OneDrive - Technological University Dublin/GP/mscfinalproject&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -51,6 +61,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fenna\OneDrive - Technological University Dublin\GP\mscfinalproject\Documents\Fenna_Workspace\" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="mscfinalproject" />
@@ -84,6 +99,8 @@
       <workItem from="1695980489193" duration="2538000" />
       <workItem from="1696234116672" duration="1254000" />
       <workItem from="1696239581781" duration="1284000" />
+      <workItem from="1696435311332" duration="732000" />
+      <workItem from="1696436199206" duration="32000" />
     </task>
     <servers />
   </component>

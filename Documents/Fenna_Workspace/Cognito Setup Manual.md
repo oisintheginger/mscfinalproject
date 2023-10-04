@@ -39,7 +39,7 @@ Step 4 <br>
 
 Step 5 <br>
 Uncheck 'use the cognito hosted UI' 
-Check 'generate a client secret'
+Uncheck 'generate a client secret' !! At the moment this not supported using the javascript SDK 
 - Advanced authentication settings
 ![img_9.png](images/img_9.png)
 - attribute read and write permissions
