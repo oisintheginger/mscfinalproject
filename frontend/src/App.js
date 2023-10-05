@@ -4,8 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -31,6 +29,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 //make this more secure using aws secretsmanager!!
 // needs to be without client secret because the javascript sdk doesnt support client secret
 const poolData = {
@@ -46,18 +45,21 @@ export default function App() {
         event.preventDefault();
 
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-            Name: data.get('firstName') + data.get('lastName'),
-        });
+
+        const attributeList = [];
+
+        const dataUsername = {
+            Name: 'preferred_username',
+            Value: data.get('firstName') + data.get('lastName'),
+        };
+        const attributeUsername = new AmazonCognitoIdentity.CognitoUserAttribute(dataUsername);
+
+        attributeList.push(attributeUsername);
 
         userPool.signUp(
             data.get('email'),
             data.get('password'),
-            [
-                { Name: 'name', Value: data.get('firstName') + data.get('lastName') },
-            ],
+            attributeList,
             null,
             (err, result) => {
                 // Unsuccesfull signup
@@ -65,18 +67,30 @@ export default function App() {
                     setError(err.message);
                     return;
                 }
-            // Successful signup
-            console.log('Signup result:', result);
-            alert('Signup successful!');
+                // Successful signup
+                const cognitoUser = result.user;
+                alert('Signup successful!');
             }
         );
-
-        //for error checking
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
     };
+
+    //SKELETON CODE THAT HAS NOT BEEN TESTED FOR IMPLEMENTING THE MFA
+    // we have implemented MFA only with email, so amazon cognito will send
+    // a code to the user's email and then we need to prompt the user to enter that
+    // code and verify it using the confirmRegistration method:
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Email: 'email@example.com',
+        Pool: userPool
+    });
+
+    cognitoUser.confirmRegistration('<CODE-FROM-EMAIL>', true, function(err, result) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log('Code verification result:', result);
+    });
+
 
     return (
         <ThemeProvider theme={defaultTheme}>
