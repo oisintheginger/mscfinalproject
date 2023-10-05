@@ -37,8 +37,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Survey Results.md",
-                "mode": "preview",
+                "file": "Daily Diary/Thursday 5th October.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -94,7 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 388.5
   },
   "right": {
     "id": "12ad3551ae72289f",
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Survey Results.md",
+                "file": "Daily Diary/Thursday 5th October.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Survey Results.md",
+                "file": "Daily Diary/Thursday 5th October.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Master's Project/UX Work/UX Research/Survey Results.md"
+                "file": "Daily Diary/Thursday 5th October.md"
               }
             }
           }
@@ -173,6 +173,13 @@
   },
   "active": "719d7bcf6b49ba51",
   "lastOpenFiles": [
+    "Master's Project/Market Analysis/Existing Apps & Zillow Analysis.md",
+    "Master's Project/Market Analysis/Zillow Demo Presentation Plan.md",
+    "Master's Project/UX Work/UX Mockups/Browsing Page.png",
+    "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
+    "Master's Project/UX Work/UX Week 1 Work.md",
+    "Master's Project/UX Work/UX Research/Survey Results.md",
+    "Master's Project/Market Analysis",
     "Master's Project/UX Work/UX Research/Pasted image 20231005170954.png",
     "Master's Project/UX Work/UX Research/Pasted image 20231005170656.png",
     "Master's Project/UX Work/UX Research/Pasted image 20231005170309.png",
@@ -182,7 +189,6 @@
     "Master's Project/UX Work/UX Research/Graphs/Pasted image 20231005140513.png",
     "Master's Project/UX Work/UX Research/Graphs/Pasted image 20231004190829.png",
     "Master's Project/UX Work/UX Research/Graphs",
-    "Master's Project/UX Work/UX Research/Survey Results.md",
     "Daily Diary/Wednesday 4th October.md",
     "Daily Diary/Tuesday 3rd October.md",
     "Daily Diary/Thursday 5th October.md",
@@ -196,11 +202,8 @@
     "Master's Project/UX Work/UX Research/Research Plan.md",
     "Master's Project/UX Work/UX Research/Untitled.md",
     "Master's Project/UX Work/UX Research/Graphs/Pasted image 20231005131825.png",
-    "Master's Project/UX Work/UX Research/Graphs/Pasted image 20231005113601.png",
-    "Master's Project/UX Work/UX Research/Graphs/Pasted image 20231005113558.png",
     "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
     "Templates/Daily Work Diary.md",
-    "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
     "Templates/Weekly Diary Template.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Questionnaire Strategies.md",
     "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
@@ -208,16 +211,12 @@
     "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (Map View).md",
     "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md",
     "Master's Project/UX Work/Core User Flows/Applying/Applying.md",
-    "Master's Project/UX Work/UX Research/Survey Results Insights.md",
     "Tag Based Collaborative Filtering for Recommender Systems.pdf",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
-    "Master's Project/UX Work/UX Week 1 Work.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.md",
     "Master's Project/UX Work/User Testing/UserTestingSlides_Zillow.pptx",
     "Master's Project/UX Work/UX Research/Screenshots",
-    "Master's Project/UX Work/Core User Flows/Saving Searches",
-    "Master's Project/UX Work/Core User Flows/Favoriting"
+    "Master's Project/UX Work/Core User Flows/Saving Searches"
   ]
 }
