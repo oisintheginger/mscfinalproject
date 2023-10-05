@@ -35,6 +35,7 @@ function NavLayout() {
               <NavLink to="/favourites" activeClassName='active'>My favourites</NavLink>
               <NavLink to="/login" activeClassName='active'>Login</NavLink>
               <NavLink to="/search" activeClassName='active'>Search</NavLink>
+              <NavLink to="/property" activeClassName='active'>Property</NavLink>
             </div>
           </Drawer>
         </nav>

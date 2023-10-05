@@ -11,6 +11,7 @@ import Login from './components/Login';
 
 //layout
 import NavLayout from './layouts/NavLayout';
+import PropertyCard from './components/PropertyCard';
 
 // browser router i.e. route tree
 const router = createBrowserRouter(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
         <Route path='/favourites' element={<Favourites/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/search' element={<Search/>}/>
+        <Route path='/property' element={<PropertyCard/>}/>
       </Route>
   )
 )
