@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/React &amp; Cognito Manual.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/images/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/images/img_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/Cognito Setup Manual.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/Cognito Setup Manual.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/React &amp; Cognito Manual.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/React &amp; Cognito Manual.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +103,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
