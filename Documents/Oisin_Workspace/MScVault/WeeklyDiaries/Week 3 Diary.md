@@ -33,7 +33,8 @@
 >> 5. The user cannot proceed to the next slide until they highlight the correct element.
 >> 6. The procedure is conducted for each of the core user flows.
 >- User Survey Data Analysis + Visualization in Tableau, and results report document (~12 hours):
->	I started working on tableau to visualize some of the data of our demographics and interest survey. The survey outcomes can be found in the  [[Survey Results]] document. 
+>	I started working on tableau to visualize some of the data of our demographics and interest survey. The survey outcomes can be found in the  [[Survey Results]] document. I also have a small demo on YouTube: 
+>	<iframe width="560" height="315" src="https://www.youtube.com/embed/WIS1J4r8D4U?si=cJqnQ1s-4qanYHZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 >- Team Meetings (~2.5 hours):
 >	Just regular standup meeting with the team throughout the week.
 
