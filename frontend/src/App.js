@@ -1,37 +1,39 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import './App.css';
+
+//pages
 import Browse from './components/Browse'
 import Favourites from './components/Favourites'
 import Homepage from './components/Homepage'
 import Profile from './components/Profile'
 import Search from './components/Search'
+import Login from './components/Login';
 
+//layout
+import NavLayout from './layouts/NavLayout';
+import PropertyCard from './components/PropertyCard';
+
+// browser router i.e. route tree
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path= '/' element={<NavLayout/>}>
+        <Route index element={<Homepage/>}/>
+        <Route path='/browse' element={<Browse/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/favourites' element={<Favourites/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/search' element={<Search/>}/>
+        <Route path='/property' element={<PropertyCard/>}/>
+      </Route>
+  )
+)
 
 function App(){
   return (
-    <div className="App">
-      <h1>Welcome Nerds</h1>
-      <nav>
-        <ul>
-          <li><a href='/'>Home</a></li>
-          <li><a href='/browse'>Browse</a></li>
-          <li><a href='/favourites'>My Favourites</a></li>
-          <li><a href='/profile'>My Profile</a></li>
-          <li><a href='/search'>Search</a></li>
-        </ul>
-      </nav>
-      <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Homepage/>}/>
-        <Route path='/browse' element={<Browse/>}/>
-        <Route path='/favourites'element={<Favourites/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/search' element={<Search/>}/>
-        </Routes>
-      </BrowserRouter>
 
-      
-    </div>
+
+    <RouterProvider router={router}/>
+
   );
 }
 
