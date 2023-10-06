@@ -14,6 +14,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import crime from './cyber_crime.jpg'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -46,13 +47,13 @@ export default function PropertyCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="THIS IS A TEMPORARY AGE - I NEEDED TO SEE IF STUFF WORKED"
-        subheader="September 14, 2016"
+        title="THIS IS A TEMPORARY PAGE - I NEEDED TO SEE IF STUFF WORKED"
+        subheader="Crime pays but it's bad"
       />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        image={crime}
         alt="Paella dish"
       />
       <CardContent>

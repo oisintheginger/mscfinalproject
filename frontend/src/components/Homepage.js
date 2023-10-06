@@ -1,11 +1,14 @@
+import MapComponent from "./MapComponent";
 
 
 
 function Homepage(){
+    
     return(
         <div>
             <h3>Home Page</h3>
 
+            <MapComponent/>
 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
