@@ -19,7 +19,6 @@
 3. Saving searches can be used again
 4. Can manage applications from renter hub
 5. Recommendations, doesn't work for me on the landing page, but Zillow has been sending me recommendation emails.
-
 ## UX Criticisms Summary:
 - Nested Modal for applying, bit cluttered and clunky
 - Cramped Details Modal, can be very overwhelming

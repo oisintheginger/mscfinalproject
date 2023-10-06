@@ -1,19 +1,19 @@
 ## Key Findings
 The key findings from our survey are as follows:
 ### Most Useful Features
-1. For tenants, the most useful rated features are, obviously, the features that allow the users to view property details. The key details for people are overview, images, amenities, contact details for the agent/landlord, and being able to save a property to look at later. ![[Pasted image 20231005164929.png]]
+1. For tenants, the most useful rated features are, obviously, the features that allow the users to view property details. The key details for people are overview, images, amenities, contact details for the agent/landlord, and being able to save a property to look at later. ![[MostUsefulFeatures.png]]
 ### Mobile and Desktop are King
-Unsurprisingly, mobile and desktop are the most frequently used devices for using property listing services. ![[Pasted image 20231005165216.png]]
+Unsurprisingly, mobile and desktop are the most frequently used devices for using property listing services. ![[DeviceBreakdown.png]]
 
 ### Knowing Crime Rates Can Influence Decisions
 Across all age groups, tenants agree that knowing the crime rate of an area would affect their decision to apply. ![[Pasted image 20231005170309.png]]
 
 ### Previous Knowledge is the primary strategy for safety assessment
-For those that have assessed the safety of an area while looking for houses, previous knowledge about an area is the primary strategy. Prospective tenants without this knowledge would not necessarily have all the information to make an informed decision. People also rely on online search mechanisms to find information about an area. Our solution could improve this process by generating safety reports/ratings. ![[Pasted image 20231005170656.png]]
+For those that have assessed the safety of an area while looking for houses, previous knowledge about an area is the primary strategy. Prospective tenants without this knowledge would not necessarily have all the information to make an informed decision. People also rely on online search mechanisms to find information about an area. Our solution could improve this process by generating safety reports/ratings. ![[PreviousKnowledge.png]]
 
 ### Tenants would be interested in recommendation systems
 Finally, tenants generally agree that they would be interested in a recommendation feature.
-![[Pasted image 20231005170954.png]]
+![[InterestInRecommendationSystem.png]]
 	
 > [!tip] Reasons for Interest in Recommendation
 > - more personalised

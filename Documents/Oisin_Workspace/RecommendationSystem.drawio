@@ -1,103 +1,103 @@
-<mxfile host="Electron" modified="2023-10-03T18:16:51.260Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="EV70wCuG2GSVnvh_6l9D" version="21.7.5" type="device">
+<mxfile host="Electron" modified="2023-10-06T18:19:24.177Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.1 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="AKPoXTqy-jzR9NyvFgi7" version="22.0.1" type="device">
   <diagram name="Page-1" id="NXUNWtOR2wKpyXzK-RRg">
-    <mxGraphModel dx="5797" dy="2389" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5751" dy="2343" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-35" target="jBjacFKrmZsPI1BXVBEI-44">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="jBjacFKrmZsPI1BXVBEI-35" target="jBjacFKrmZsPI1BXVBEI-44" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-35" value="Pre-Processing Property DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-35" value="Pre-Processing Property DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="125" y="790" width="160" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-36" target="jBjacFKrmZsPI1BXVBEI-35">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-36" target="jBjacFKrmZsPI1BXVBEI-35" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-38" value="Unprocessed Property Data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-37">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-38" value="Unprocessed Property Data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-37" vertex="1" connectable="0">
           <mxGeometry x="-0.1725" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-36" value="Zillow API" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-36" value="Zillow API" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="100" y="580" width="210" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-39" target="jBjacFKrmZsPI1BXVBEI-40">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-39" target="jBjacFKrmZsPI1BXVBEI-40" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-39" value="Google Maps API" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-39" value="Google Maps API" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="460" y="430" width="210" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-40" target="jBjacFKrmZsPI1BXVBEI-44">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="jBjacFKrmZsPI1BXVBEI-40" target="jBjacFKrmZsPI1BXVBEI-44" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-51" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-40" target="jBjacFKrmZsPI1BXVBEI-50">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-51" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;dashPattern=8 8;" parent="1" source="jBjacFKrmZsPI1BXVBEI-40" target="jBjacFKrmZsPI1BXVBEI-50" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-40" value="Temporary Places DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-40" value="Temporary Places DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="485" y="790" width="160" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-42" value="&lt;div&gt;Baltimore:&lt;/div&gt;&lt;ul&gt;&lt;li&gt;Restaurants&lt;/li&gt;&lt;li&gt;schools&amp;nbsp;&lt;/li&gt;&lt;li&gt;cafes etc&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-42" value="&lt;div&gt;Baltimore:&lt;/div&gt;&lt;ul&gt;&lt;li&gt;Restaurants&lt;/li&gt;&lt;li&gt;schools&amp;nbsp;&lt;/li&gt;&lt;li&gt;cafes etc&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="430" y="590" width="130" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-43" value="Place Schema:&lt;br&gt;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;longitude,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;latitude,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;placeID&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;type&lt;br&gt;}" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-43" value="Place Schema:&lt;br&gt;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;longitude,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;latitude,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;placeID&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;type&lt;br&gt;}" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="610" y="590" width="100" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-44" target="jBjacFKrmZsPI1BXVBEI-55">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-44" target="jBjacFKrmZsPI1BXVBEI-55" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-44" value="SCORING + CATEGORIZATION + FEATURE GENERATION" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-44" value="SCORING + CATEGORIZATION + FEATURE GENERATION" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="26.67" y="990" width="746.67" height="400" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-45" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.gear_load" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-45" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.gear_load" parent="1" vertex="1">
           <mxGeometry x="140" y="1060" width="100" height="92" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-49" value="- Combines the data and gives various scores to each property, adding them to the property data&lt;br&gt;&lt;br&gt;&lt;br&gt;- modifies property data to contain new keys for placeIds for variouse types of places:&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;- e.g. property 1: {&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;.&lt;/span&gt;...&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;restaurants: {&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;0&lt;/span&gt;: &#39;fnsgjkfnsfjngbnobksf&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1: &#39;sfnsignfgkmsfhbkdnfig&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;...&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;},&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;cafes: {&lt;br&gt;&#x9;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;0&lt;/span&gt;: &#39;dsfbdfbsds&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1: &#39;ggnfsfsdf&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;}&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;}&lt;br&gt;&lt;br&gt;&lt;br&gt;- tags properties based on features" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-49" value="- Combines the data and gives various scores to each property, adding them to the property data&lt;br&gt;&lt;br&gt;&lt;br&gt;- modifies property data to contain new keys for placeIds for variouse types of places:&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;- e.g. property 1: {&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;.&lt;/span&gt;...&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;restaurants: {&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;0&lt;/span&gt;: &#39;fnsgjkfnsfjngbnobksf&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1: &#39;sfnsignfgkmsfhbkdnfig&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;...&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;},&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;cafes: {&lt;br&gt;&#x9;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;0&lt;/span&gt;: &#39;dsfbdfbsds&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1: &#39;ggnfsfsdf&#39;,&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;}&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;}&lt;br&gt;&lt;br&gt;&lt;br&gt;- tags properties based on features" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="255" y="1030" width="540" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-50" value="We need to delete all the data from the temp DB within 30 days,&lt;br&gt;the only data we can store is the PlaceId" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-50" value="We need to delete all the data from the temp DB within 30 days,&lt;br&gt;the only data we can store is the PlaceId" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="690" y="850" width="360" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-55" target="jBjacFKrmZsPI1BXVBEI-88">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-55" target="jBjacFKrmZsPI1BXVBEI-88" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="20" y="1520" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-55" value="Processed Property Data" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-55" value="Processed Property Data" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="320.01" y="1470" width="160" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-57" value="New Property Schema should include:&lt;br&gt;- All keys from zillow that we have chosen previously&lt;br&gt;- New places fields, e.g. restaurants field which stores up to 10 restaurant placeIDs&lt;br&gt;- Ratings scores&lt;br&gt;- feature tags for recommendation system" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-57" value="New Property Schema should include:&lt;br&gt;- All keys from zillow that we have chosen previously&lt;br&gt;- New places fields, e.g. restaurants field which stores up to 10 restaurant placeIDs&lt;br&gt;- Ratings scores&lt;br&gt;- feature tags for recommendation system" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="485" y="1470" width="460" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-58" value="We should store different types of places in different tables:&lt;br&gt;e.g. restaurant places should be stored in restaurants table" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-58" value="We should store different types of places in different tables:&lt;br&gt;e.g. restaurant places should be stored in restaurants table" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="700" y="790" width="340" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-59" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-40" target="jBjacFKrmZsPI1BXVBEI-58">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-59" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;dashPattern=8 8;" parent="1" source="jBjacFKrmZsPI1BXVBEI-40" target="jBjacFKrmZsPI1BXVBEI-58" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="655" y="868" as="sourcePoint" />
             <mxPoint x="793" y="900" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-60" value="&lt;h1&gt;Recommendation System: Feature Tags&amp;nbsp;&lt;/h1&gt;&lt;p&gt;To create a recommendation system using the Content-Based approach, we need to apply metadata tags to the property data and perform some classification system to it.&lt;/p&gt;&lt;p&gt;Example tags could include: &#39;low-budget&#39; &#39;near-university&#39; or something (idk im not a data scientist lol)&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-60" value="&lt;h1&gt;Recommendation System: Feature Tags&amp;nbsp;&lt;/h1&gt;&lt;p&gt;To create a recommendation system using the Content-Based approach, we need to apply metadata tags to the property data and perform some classification system to it.&lt;/p&gt;&lt;p&gt;Example tags could include: &#39;low-budget&#39; &#39;near-university&#39; or something (idk im not a data scientist lol)&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="785" y="1000" width="490" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-62" target="jBjacFKrmZsPI1BXVBEI-88">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-62" target="jBjacFKrmZsPI1BXVBEI-88" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-10" y="1520" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-98" value="PULL DATA FROM PROPERTY DATABASE + USER DATABASE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-96">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-98" value="PULL DATA FROM PROPERTY DATABASE + USER DATABASE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-96" vertex="1" connectable="0">
           <mxGeometry x="0.6814" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-62" value="User Data" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-62" value="User Data" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="-520" y="1470" width="160" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-63" target="jBjacFKrmZsPI1BXVBEI-65">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-63" target="jBjacFKrmZsPI1BXVBEI-65" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-440" y="2400" />
@@ -105,12 +105,12 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-89" value="CREATE ACCOUNT/ EDIT ACCOUNT DETAILS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-66">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-89" value="CREATE ACCOUNT/ EDIT ACCOUNT DETAILS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-66" vertex="1" connectable="0">
           <mxGeometry x="-0.0384" y="-2" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-63" target="jBjacFKrmZsPI1BXVBEI-65">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-63" target="jBjacFKrmZsPI1BXVBEI-65" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="260" y="2416" />
@@ -118,23 +118,23 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-92" value="REQUEST RECOMMENDED PROPERTIES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-91">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-92" value="REQUEST RECOMMENDED PROPERTIES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-91" vertex="1" connectable="0">
           <mxGeometry x="-0.0084" relative="1" as="geometry">
             <mxPoint x="-1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-63" value="FRONTEND UI" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.website_generic;pointerEvents=1;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-63" value="FRONTEND UI" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.website_generic;pointerEvents=1;" parent="1" vertex="1">
           <mxGeometry x="-61.88" y="2360" width="131.76" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-65" target="jBjacFKrmZsPI1BXVBEI-62">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-65" target="jBjacFKrmZsPI1BXVBEI-62" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-90" value="CREATE / MODIFY ACCOUNT ON DB" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-67">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-90" value="CREATE / MODIFY ACCOUNT ON DB" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-67" vertex="1" connectable="0">
           <mxGeometry x="-0.0692" relative="1" as="geometry">
             <mxPoint x="-1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="jBjacFKrmZsPI1BXVBEI-88">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" target="jBjacFKrmZsPI1BXVBEI-88" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="14" y="2011.2284999999997" as="sourcePoint" />
             <mxPoint x="10" y="1860" as="targetPoint" />
@@ -143,35 +143,35 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-95" value="TRIGGER RECOMMENDATION CONSTRUCTION" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-94">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-95" value="TRIGGER RECOMMENDATION CONSTRUCTION" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-94" vertex="1" connectable="0">
           <mxGeometry x="-0.1916" y="-2" relative="1" as="geometry">
             <mxPoint x="-132" y="-62" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-65" target="jBjacFKrmZsPI1BXVBEI-63">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-65" target="jBjacFKrmZsPI1BXVBEI-63" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-105" value="RETURN RECOMMENDATION DATA TO FRONTEND" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-104">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-105" value="RETURN RECOMMENDATION DATA TO FRONTEND" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-104" vertex="1" connectable="0">
           <mxGeometry x="-0.0657" y="6" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-65" value="&lt;font color=&quot;#d4d4d4&quot;&gt;BACKEND SERVER&lt;/font&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#00bef2;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.servers;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-65" value="&lt;font color=&quot;#d4d4d4&quot;&gt;BACKEND SERVER&lt;/font&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#00bef2;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.servers;" parent="1" vertex="1">
           <mxGeometry x="-50" y="2010" width="108" height="108" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-68" value="&lt;h1&gt;User Profile Information&lt;/h1&gt;&lt;p&gt;We need to construct user profiles that can be used in the recommendation system which will allow us to recommend different properties to the user based on the tags of the properties and how well they correspond to the user&#39;s profile information.&lt;/p&gt;&lt;p&gt;The questions should determine the weighting of different property tags when we are determining whether to recommend the property to a user.&amp;nbsp;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-870" y="910" width="300" height="180" as="geometry" />
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-68" value="&lt;h1&gt;User Profile Information&lt;/h1&gt;&lt;p&gt;We need to construct user profiles that can be used in the recommendation system which will allow us to recommend different properties to the user based on the tags of the properties and how well they correspond to the user&#39;s profile information.&lt;/p&gt;&lt;p&gt;The questions should determine the weighting of different property tags when we are determining whether to recommend the property to a user.&amp;nbsp;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="-680" y="1200" width="300" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-106" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-69" target="jBjacFKrmZsPI1BXVBEI-88">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-106" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="jBjacFKrmZsPI1BXVBEI-69" target="jBjacFKrmZsPI1BXVBEI-88" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-69" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://miro.medium.com/v2/resize:fit:875/1*dI1jryOEcHNWKImG__55CQ.png;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-69" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://miro.medium.com/v2/resize:fit:875/1*dI1jryOEcHNWKImG__55CQ.png;" parent="1" vertex="1">
           <mxGeometry x="-1580" y="1560" width="875" height="490" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-70" value="https://medium.com/@toprak.mhmt/content-based-recommender-system-bdfc60b1bee8" style="text;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-70" value="https://medium.com/@toprak.mhmt/content-based-recommender-system-bdfc60b1bee8" style="text;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-1580" y="1520" width="500" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-88" target="jBjacFKrmZsPI1BXVBEI-65">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="jBjacFKrmZsPI1BXVBEI-88" target="jBjacFKrmZsPI1BXVBEI-65" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="20" y="1980" />
@@ -179,33 +179,33 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-100" value="RETURN RECOMMENDATIONS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-99">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-100" value="RETURN RECOMMENDATIONS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-99" vertex="1" connectable="0">
           <mxGeometry x="-0.0506" relative="1" as="geometry">
             <mxPoint x="90" y="-12" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-88" target="jBjacFKrmZsPI1BXVBEI-62">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" parent="1" source="jBjacFKrmZsPI1BXVBEI-88" target="jBjacFKrmZsPI1BXVBEI-62" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-130" y="1550" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-102" value="STORE RECOMMENDATIONS IN DB (1 week duration)&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jBjacFKrmZsPI1BXVBEI-101">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-102" value="STORE RECOMMENDATIONS IN DB (1 week duration)&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="jBjacFKrmZsPI1BXVBEI-101" vertex="1" connectable="0">
           <mxGeometry x="0.4472" y="-1" relative="1" as="geometry">
             <mxPoint x="51" y="-9" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-88" value="RECOMMENDATION SYSTEM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-88" value="RECOMMENDATION SYSTEM" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-279.99" y="1680" width="600" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-107" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="jBjacFKrmZsPI1BXVBEI-69" target="jBjacFKrmZsPI1BXVBEI-88">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-107" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="jBjacFKrmZsPI1BXVBEI-69" target="jBjacFKrmZsPI1BXVBEI-88" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-695" y="1570" as="sourcePoint" />
             <mxPoint x="-270" y="1690" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jBjacFKrmZsPI1BXVBEI-108" value="SIMILAR PROCESS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=40;" vertex="1" parent="1">
+        <mxCell id="jBjacFKrmZsPI1BXVBEI-108" value="SIMILAR PROCESS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=40;" parent="1" vertex="1">
           <mxGeometry x="-690" y="1730" width="390" height="60" as="geometry" />
         </mxCell>
       </root>
