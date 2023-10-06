@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/secure credentials.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/React &amp; Cognito Manual.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/React &amp; Cognito Manual.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +98,7 @@
       <workItem from="1696239581781" duration="1284000" />
       <workItem from="1696435311332" duration="732000" />
       <workItem from="1696436199206" duration="32000" />
+      <workItem from="1696586575326" duration="1123000" />
     </task>
     <servers />
   </component>
