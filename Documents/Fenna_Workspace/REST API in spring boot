@@ -1,0 +1,13 @@
+Guide:
+https://spring.io/guides/tutorials/rest/
+
+Questions to be answered:
+	- What database are we using?
+	- How am I going to access it?
+	- What is the restcontroller annotation in spring boot?
+	RestController: RestController is used for making restful web services with the help of the @RestController annotation. This annotation is used at the class level and allows the class to handle the requests made by the client. Let’s understand @RestController annotation using an example. The RestController allows to handle all REST APIs.
+	From <https://www.geeksforgeeks.org/spring-rest-controller/>
+
+Other Resources:
+https://spring.io/guides/gs/rest-service/
++ Spring Boot REST Service: How to build a REST API in Java (goes through the above guide)
