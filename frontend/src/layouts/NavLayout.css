@@ -1,0 +1,21 @@
+:root{
+    --primary:lightblue;
+    --secondary:red;
+}
+
+.drawer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    padding: 20px; 
+  }
+
+  
+  .menu-icon {
+    cursor: pointer;
+  }
+
+  .active{
+    color: rgb(72, 209, 72);
+  }
+  

@@ -46,7 +46,17 @@ A non-linear iterative design process broken up into 5 stages.
 > The design team will now produce a number of inexpensive, scaled down versions of the product (or specific features found within the product) to investigate the key solutions generated in the ideation phase. These prototypes can be shared and tested within the team itself, in other departments or on a small group of people outside the design team.
 
 
+> [!tools] Prototyping Tools
+> - LFP
+> - MFP
+
+
 ## Test
 
 > [!quote] 
 > Designers or evaluators rigorously test the complete product using the best solutions identified in the Prototype stage. This is the final stage of the five-stage model; however, in an iterative process such as design thinking, the results generated are often used to redefine one or more further problems. This increased level of understanding may help you investigate the conditions of use and how people think, behave and feel towards the product, and even lead you to loop back to a previous stage in the design thinking process. You can then proceed with further iterations and make alterations and refinements to rule out alternative solutions. **The ultimate goal is to get as deep an understanding of the product and its users as possible.**
+
+> [!tools] UX Testing Tools
+> - Task Analysis
+> - NASA-TLX
+> - System Usability Scale

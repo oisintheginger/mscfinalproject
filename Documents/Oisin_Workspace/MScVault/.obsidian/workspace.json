@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "244955e9da19e779",
+        "id": "e90ccd6311c7e51d",
         "type": "tabs",
         "children": [
           {
-            "id": "d90bb3e7a2533c61",
+            "id": "719d7bcf6b49ba51",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
-                "mode": "source",
+                "file": "WeeklyDiaries/Week 3 Diary.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 388.5
   },
   "right": {
     "id": "12ad3551ae72289f",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
+                "file": "WeeklyDiaries/Week 3 Diary.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
+                "file": "WeeklyDiaries/Week 3 Diary.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md"
+                "file": "WeeklyDiaries/Week 3 Diary.md"
               }
             }
           }
@@ -146,28 +146,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d90bb3e7a2533c61",
+  "active": "719d7bcf6b49ba51",
   "lastOpenFiles": [
-    "Master's Project/Friday Class/Week 1.md",
-    "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
-    "Master's Project/Weekly Schedule.md",
+    "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
+    "Master's Project/UX Work/UX Mockups/Tablet Layout.png",
+    "WeeklyDiaries/Week 1 + 2 Diary.md",
+    "Master's Project/UX Work/UX Research/Graphs/PreviousKnowledge.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal/Tablet.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal/Desktop.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal/Mobile.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal",
+    "Master's Project/UX Work/UX Mockups/New folder",
+    "Master's Project/UX Work/UX Mockups/OpenMenu/Desktop.png",
+    "Master's Project/UX Work/UX Mockups/OpenMenu/Mobile.png",
+    "Master's Project/UX Work/UX Mockups/OpenMenu",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Tablet.png",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Desktop.png",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Mobile.png",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage",
+    "Master's Project/UX Work/UX Mockups/SavedSearchesPage",
+    "Master's Project/UX Work/UX Mockups/MyApplicationsPage",
+    "Master's Project/UX Work/UX Mockups/CreateAccountModal",
+    "Master's Project/UX Work/UX Mockups/PropertyDetailspage",
+    "Master's Project/UX Work/UX Mockups/BrowsingPage",
+    "Master's Project/UX Work/UX Mockups/LandingPage",
+    "WeeklyDiaries/Week 3 Diary.md",
+    "Master's Project/UX Work/UX Research/Survey Results.md",
+    "Templates/Daily Work Diary.md",
     "Master's Project/UX Work/UX Research/Research Plan.md",
-    "Master's Project/UX Work/UX Research/Existing Apps.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/User Research Survey.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/Primary Users.excalidraw.md",
-    "Master's Project/UX Work/User Stories/Creating Account.md",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow",
-    "Master's Project/UX Work/Wireframes/Wireframe.svg",
-    "Master's Project/UX Work/UXAssignmentBrief.pdf",
-    "Master's Project/UX Work/Wireframes",
-    "Master's Project/UX Work/UX Frameworks",
-    "Master's Project/UX Work/UX Research",
-    "Master's Project/UX Work/User Stories",
-    "Master's Project/UX Work/UseCaseDiagram",
-    "Master's Project/UX Work/Functional Specification.md",
-    "Master's Project/Friday Class",
-    "Master's Project/UX Work"
+    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md",
+    "Daily Diary/Friday 29th September.md",
+    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (Map View).md",
+    "Master's Project/UX Work/Core User Flows/Applying/Applying.md",
+    "Daily Diary/Wednesday 4th October.md",
+    "Master's Project/Market Analysis/Zillow Demo Presentation Plan.md",
+    "Master's Project/Market Analysis/Existing Apps & Zillow Analysis.md",
+    "Daily Diary/Thursday 5th October.md",
+    "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
+    "Master's Project/UX Work/UX Week 1 Work.md",
+    "Daily Diary/Tuesday 3rd October.md",
+    "Daily Diary/Sunday 1st October.md",
+    "Daily Diary/Saturday 30th September.md",
+    "Daily Diary/Monday 2nd October.md",
+    "Master's Project/UX Work/User Testing/Questions to Answer.md",
+    "Master's Project/UX Work/User Testing/Participants.md",
+    "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
+    "Master's Project/UX Work/UX Research/Untitled.md",
+    "Templates/Weekly Diary Template.md",
+    "Master's Project/UX Work/UX Research/UserTestingMethodologies/Questionnaire Strategies.md"
   ]
 }
