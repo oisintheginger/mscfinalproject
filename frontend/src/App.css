@@ -1,34 +1,22 @@
 :root{
-    --primary:lightblue;
+    --primary:#F3FCFF;
     --secondary:red;
+    
 }
 
-header nav{
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
+#root{
+    height: 100vh;
+    width: 100vw;
 }
 
-header nav h1{
-    margin: auto;
-    border-bottom: 3px solid var(--primary);
-    color:lightgreen;
+html{
+    height: 100%;
+    width: 100%;
 }
-
-header nav div{
-    text-decoration: none;
-    padding: 6px;
-    border-radius: 4px;
-}
-
-header nav div.active{
-    background: var(--primary);
-}
-
-main{
-    max-width: 1200px;
-    margin: 40px auto;
+body{
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    
+    width: 100%;
 }

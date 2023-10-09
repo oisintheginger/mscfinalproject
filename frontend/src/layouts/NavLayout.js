@@ -1,50 +1,212 @@
-// // Add NavLinks here.
-
 import { useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
-import MenuIcon from '@mui/icons-material/Menu';
-import Drawer from '@mui/material/Drawer';
-import './NavLayout.css'
-
+import {
+	AppBar,
+	Box,
+	Toolbar,
+	Typography,
+	IconButton,
+	List,
+	Stack,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText,
+	Divider,
+	Container,
+	SvgIcon,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "@mui/material/Drawer";
+import { useLocation, Link as RRDLink } from "react-router-dom";
+import "./NavLayout.css";
+import {
+	ApplicationIcon,
+	BookmarkIcon,
+	CloseIcon,
+	FavoriteIcon,
+	HomeIcon,
+	SearchIcon,
+	UserIcon,
+} from "../Icons/HMEIcons";
+import { fontDark } from "../Styling/styleConstants";
+import HMELogo from "./../Icons/HME.png";
 
 function NavLayout() {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setDrawerOpen(open);
-  };
+	const toggleDrawer = (open) => (event) => {
+		if (
+			event.type === "keydown" &&
+			(event.key === "Tab" || event.key === "Shift")
+		) {
+			return;
+		}
+		setDrawerOpen(open);
+	};
 
-  return (
-    <div>
-      <header>
-        <nav>
-          <h1>HME</h1>
-          <MenuIcon onClick={toggleDrawer(true)} className="menu-icon" />
-          <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
-            <div className="drawer-content" >
+	const navIconStyle = {
+		width: {
+			xs: "16px",
+			sm: "24px",
+		},
+		height: {
+			xs: "16px",
+			sm: "24px",
+		},
+	};
 
-              {/* an alternative to the "activeClassName" would be much appreciated - I don't want to 
-              do this for every NavLink if I can avoid it */}
+	return (
+		<Box sx={{ flexGrow: 1, width: "100vw" }}>
+			<AppBar position="static" sx={{ width: "100vw" }}>
+				<Toolbar disableGutters variant="dense" sx={{ width: "100vw" }}>
+					<IconButton
+						size="large"
+						aria-label="menu"
+						onClick={toggleDrawer(true)}
+					>
+						<MenuIcon sx={{ color: fontDark }} />
+					</IconButton>
+					<Container sx={{ paddingLeft: 0 }}>
+						<Stack
+							justifyContent="center"
+							alignItems="center"
+							alignContent="center"
+						>
+							<ListItemButton to="/" sx={{ transform: "translate(-3vw,0px)" }}>
+								<Box
+									component={"img"}
+									src={HMELogo}
+									sx={{ width: "100px", height: "100%" }}
+									alt="Housing Made Easy Logo"
+								/>
+							</ListItemButton>
+						</Stack>
+					</Container>
+				</Toolbar>
+			</AppBar>
+			<Drawer
+				anchor="left"
+				open={drawerOpen}
+				onClose={toggleDrawer(false)}
+				PaperProps={{
+					sx: {
+						width: { xs: "100vw", sm: "16vw" },
+						pt: { xs: "2px", sm: "20px" },
+						minWidth: { xs: "100vw", sm: "300px" },
+					},
+				}}
+			>
+				<Stack
+					direction={"row"}
+					alignItems={"center"}
+					justifyContent={"flex-end"}
+					sx={{ display: { sm: "none" }, m: 1, height: "24px" }}
+				>
+					<IconButton
+						onClick={toggleDrawer(false)}
+						sx={{ color: fontDark, height: "100%" }}
+					>
+						<CloseIcon sx={{ height: "100%", m: 0 }} />
+					</IconButton>
+				</Stack>
+				<Box id="DrawerMenu" sx={{ ml: 2, mr: 2, mt: 0 }}>
+					<Typography variant="h6">MAIN MENU</Typography>
+				</Box>
+				<List sx={{ m: 2, mt: 0 }}>
+					<ListItemButton
+						to="/"
+						component={RRDLink}
+						onClick={toggleDrawer(false)}
+					>
+						<ListItemText primary="HOME" secondary="Landing Page" />
+						<ListItemIcon sx={{ color: fontDark }}>
+							<HomeIcon color="black" sx={navIconStyle} />
+						</ListItemIcon>
+					</ListItemButton>
+					<Divider />
 
-              <NavLink to="/" activeClassName='active'>Home</NavLink>
-              <NavLink to="/browse" activeClassName='active'>Browse</NavLink>
-              <NavLink to="/profile" activeClassName='active'>My Profile</NavLink>
-              <NavLink to="/favourites" activeClassName='active'>My favourites</NavLink>
-              <NavLink to="/login" activeClassName='active'>Login</NavLink>
-              <NavLink to="/search" activeClassName='active'>Search</NavLink>
-              <NavLink to="/property" activeClassName='active'>Property</NavLink>
-            </div>
-          </Drawer>
-        </nav>
-      </header>
-      <main>
-        <Outlet />
-      </main>
-    </div>
-  );
+					<ListItemButton
+						to="/browse"
+						component={RRDLink}
+						onClick={toggleDrawer(false)}
+					>
+						<ListItemText
+							primary="BROWSE"
+							secondary="Search for your new home"
+						/>
+						<ListItemIcon sx={{ color: fontDark }}>
+							<SearchIcon sx={navIconStyle} />
+						</ListItemIcon>
+					</ListItemButton>
+					<Divider />
+
+					<ListItemButton
+						to="/favorites"
+						component={RRDLink}
+						onClick={toggleDrawer(false)}
+					>
+						<ListItemText
+							primary="MY FAVORITES"
+							secondary="View Saved Listings Here"
+						/>
+						<ListItemIcon sx={{ color: fontDark }}>
+							<FavoriteIcon color="black" sx={navIconStyle} />
+						</ListItemIcon>
+					</ListItemButton>
+					<Divider />
+
+					<ListItemButton
+						to="/savedsearches"
+						component={RRDLink}
+						onClick={toggleDrawer(false)}
+					>
+						<ListItemText
+							primary="MY SAVED SEARCHES"
+							secondary="View Saved Listings Here"
+						/>
+						<ListItemIcon sx={{ color: fontDark }}>
+							<BookmarkIcon color="black" sx={navIconStyle} />
+						</ListItemIcon>
+					</ListItemButton>
+					<Divider />
+
+					<ListItemButton
+						to="/applications"
+						component={RRDLink}
+						onClick={toggleDrawer(false)}
+					>
+						<ListItemText
+							primary="MY APPLICATIONS"
+							secondary="View and Edit your Applications"
+						/>
+						<ListItemIcon sx={{ color: fontDark }}>
+							<ApplicationIcon color="black" sx={navIconStyle} />
+						</ListItemIcon>
+					</ListItemButton>
+					<Divider />
+					<ListItemButton
+						to="/profile"
+						component={RRDLink}
+						onClick={toggleDrawer(false)}
+					>
+						<ListItemText
+							primary="MY PROFILE"
+							secondary="View and Edit your Profile"
+						/>
+						<ListItemIcon sx={{ color: fontDark }}>
+							<UserIcon color="black" sx={navIconStyle} />
+						</ListItemIcon>
+					</ListItemButton>
+				</List>
+			</Drawer>
+			<Container
+				component="main"
+				sx={{ width: { xs: "98vw", sm: "1150px" }, maxWidth: { sm: "90vw" } }}
+			>
+				<Outlet />
+			</Container>
+		</Box>
+	);
 }
 
 export default NavLayout;
