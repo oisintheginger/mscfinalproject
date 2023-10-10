@@ -1,11 +1,12 @@
 import PropertyCard from "./PropertyCard";
+import { Container } from "@mui/material";
 function Homepage(){
     
     return(
         <div>
             <h3>Home Page</h3>
 
-            <PropertyCard/>
+            <Container><PropertyCard/></Container>
         </div>
     )
 
