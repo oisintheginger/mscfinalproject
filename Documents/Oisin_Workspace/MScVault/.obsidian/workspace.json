@@ -8,55 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "23e70c66b7886714",
+            "id": "719d7bcf6b49ba51",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "98345034d6c76ec0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "WeeklyDiaries/Week 1 + 2 Diary.md",
+                "file": "WeeklyDiaries/Week 3 Diary.md",
                 "mode": "preview",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4c0aec5755c2ad59",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
-                "mode": "preview",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "72e0a044e4467a17",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Master's Project/UX Work/Core User Flows/Favoriting/Favoriting.md",
-                "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 388.5
   },
   "right": {
     "id": "12ad3551ae72289f",
@@ -122,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
+                "file": "WeeklyDiaries/Week 3 Diary.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
+                "file": "WeeklyDiaries/Week 3 Diary.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Master's Project/UX Work/User Testing/Testing Sequence Script.md"
+                "file": "WeeklyDiaries/Week 3 Diary.md"
               }
             }
           }
@@ -183,52 +146,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4c0aec5755c2ad59",
+  "active": "719d7bcf6b49ba51",
   "lastOpenFiles": [
-    "Master's Project/UX Work/User Testing/A32BCE20",
-    "Master's Project/UX Work/User Testing/230BCE20",
-    "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
-    "Master's Project/UX Work/User Testing/UserTestingSpreadsheet.xlsx",
-    "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
-    "Master's Project/UX Work/User Testing/ppt77E2.tmp",
-    "Master's Project/UX Work/User Testing/ppt7244.tmp",
-    "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
-    "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
-    "Master's Project/UX Work/User Testing/pptF38E.tmp",
-    "Master's Project/UX Work/User Testing/ppt93D9.tmp",
-    "Master's Project/UX Work/Core User Flows/Applying/Applying.md",
-    "Master's Project/UX Work/User Testing/pptDED3.tmp",
-    "Master's Project/UX Work/User Testing/ppt14AD.tmp",
-    "Master's Project/UX Work/Core User Flows/Favoriting/Favoriting.md",
+    "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
+    "Master's Project/UX Work/UX Mockups/Tablet Layout.png",
+    "WeeklyDiaries/Week 1 + 2 Diary.md",
+    "Master's Project/UX Work/UX Research/Graphs/PreviousKnowledge.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal/Tablet.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal/Desktop.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal/Mobile.png",
+    "Master's Project/UX Work/UX Mockups/ApplyModal",
+    "Master's Project/UX Work/UX Mockups/New folder",
+    "Master's Project/UX Work/UX Mockups/OpenMenu/Desktop.png",
+    "Master's Project/UX Work/UX Mockups/OpenMenu/Mobile.png",
+    "Master's Project/UX Work/UX Mockups/OpenMenu",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Tablet.png",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Desktop.png",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Mobile.png",
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage",
+    "Master's Project/UX Work/UX Mockups/SavedSearchesPage",
+    "Master's Project/UX Work/UX Mockups/MyApplicationsPage",
+    "Master's Project/UX Work/UX Mockups/CreateAccountModal",
+    "Master's Project/UX Work/UX Mockups/PropertyDetailspage",
+    "Master's Project/UX Work/UX Mockups/BrowsingPage",
+    "Master's Project/UX Work/UX Mockups/LandingPage",
+    "WeeklyDiaries/Week 3 Diary.md",
+    "Master's Project/UX Work/UX Research/Survey Results.md",
+    "Templates/Daily Work Diary.md",
+    "Master's Project/UX Work/UX Research/Research Plan.md",
     "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md",
+    "Daily Diary/Friday 29th September.md",
+    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (Map View).md",
+    "Master's Project/UX Work/Core User Flows/Applying/Applying.md",
+    "Daily Diary/Wednesday 4th October.md",
+    "Master's Project/Market Analysis/Zillow Demo Presentation Plan.md",
+    "Master's Project/Market Analysis/Existing Apps & Zillow Analysis.md",
+    "Daily Diary/Thursday 5th October.md",
+    "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
+    "Master's Project/UX Work/UX Week 1 Work.md",
+    "Daily Diary/Tuesday 3rd October.md",
+    "Daily Diary/Sunday 1st October.md",
+    "Daily Diary/Saturday 30th September.md",
+    "Daily Diary/Monday 2nd October.md",
     "Master's Project/UX Work/User Testing/Questions to Answer.md",
     "Master's Project/UX Work/User Testing/Participants.md",
-    "WeeklyDiaries/Week 3 Diary.md",
-    "WeeklyDiaries/Week 1 + 2 Diary.md",
-    "UXAssignmentBrief.pdf.md",
+    "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
+    "Master's Project/UX Work/UX Research/Untitled.md",
     "Templates/Weekly Diary Template.md",
-    "WeeklyDiaries/Week 2 Diary.md",
-    "Master's Project/UX Work/UX Week 1 Work.md",
-    "Daily Diary/Monday 2nd October.md",
-    "Daily Diary/Sunday 1st October.md",
-    "Master's Project/UX Work/Core User Flows/Browsing/landingpage.png",
-    "Master's Project/UX Work/Core User Flows/Browsing/Default Browsing Results Page.png",
-    "Master's Project/UX Work/Core User Flows/Browsing/browsingfiltersandactive.png",
-    "Master's Project/UX Work/Core User Flows/Browsing/browsingfilters.png",
-    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (Map View).md",
-    "Daily Diary/Friday 29th September.md",
-    "Daily Diary/Saturday 30th September.md",
-    "Master's Project/UX Work/UX Research/Research Plan.md",
-    "Master's Project/UX Work/UX Research/Existing Apps & Zillow Analysis.md",
-    "Master's Project/UX Work/Core User Flows/Untitled.md",
-    "Untitled.md",
-    "Master's Project/UX Work/Untitled.md",
-    "Templates/Daily Work Diary.md",
-    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929095129.png",
-    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929215823.png",
-    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929163021.png",
-    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929200007.png",
-    "Master's Project/UX Work/UX Research/Screenshots/Pasted image 20230929200010.png",
-    "Master's Project/UX Work/UX Research/Design Thinking Workflow/Empathy Phase/User Research Survey.md"
+    "Master's Project/UX Work/UX Research/UserTestingMethodologies/Questionnaire Strategies.md"
   ]
 }

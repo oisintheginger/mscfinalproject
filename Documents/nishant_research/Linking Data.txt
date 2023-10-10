@@ -1,0 +1,36 @@
+Linking Data
+Objective:
+To create a unified database by linking multiple datasets so that our front end can seamlessly access the required data.
+
+Datasets to be Integrated:
+
+Zyllow API
+
+Description: Property Details and locations
+Status: Currently being analyzed by Sean.
+
+Crime Dataset
+
+Description: Crime in different locations, will be used to get crime rate
+Status: Currently being analyzed by Steven.
+
+Google API Dataset
+
+Description: [Brief description of the Google API data]
+Status: Also being analyzed by Steven.
+
+Data Cleaning: Before integrating, ensure that the datasets are cleaned and standardized.
+Schema Design: Design a schema that can accommodate all datasets without redundancy.
+Data Transformation: Convert data from the analyzed format to a format suitable for the database.
+Integration: Use ETL (Extract, Transform, Load) processes to integrate datasets into the Amazon Aurora database.
+Testing: After integration, run tests to ensure data integrity and accessibility.
+Database Details:
+
+Hosting: Amazon Aurora
+Tasks:
+
+Data cleaning and standardization.
+Schema design for the unified database.
+Data transformation for database compatibility.
+ETL processes for data integration.
+Testing and validation.
