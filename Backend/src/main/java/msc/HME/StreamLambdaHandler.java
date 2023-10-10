@@ -12,9 +12,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 
 public class StreamLambdaHandler implements RequestStreamHandler {
     private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
+    static final Logger logger = LogManager.getLogger(StreamLambdaHandler.class);
     static {
         try {
             handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(Application.class);
@@ -28,6 +33,9 @@ public class StreamLambdaHandler implements RequestStreamHandler {
             // if we fail here. We re-throw the exception to force another cold start
             e.printStackTrace();
             throw new RuntimeException("Could not initialize Spring Boot application", e);
+        } catch (ExceptionInInitializerError e) {
+            logger.error("An error occurred during initialization: ", e);
+            logger.error("Cause of the error: ", e.getCause());
         }
     }
 
