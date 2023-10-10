@@ -51,7 +51,7 @@ function ListMapToggle({ children }) {
 					</ToggleStyled>
 				</ToggleButtonGroup>
 			</Stack>
-			{children}
+			{selected && children}
 		</>
 	);
 }
