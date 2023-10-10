@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import {useState} from 'react';
+>>>>>>> e5d52e91caacb9cb1363ce63b38a31c59b2186b8
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -6,6 +10,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
+<<<<<<< HEAD
 //import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -15,6 +20,17 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { propertyData } from './PropertyDataSample';
+=======
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import crime from './cyber_crime.jpg'
+>>>>>>> e5d52e91caacb9cb1363ce63b38a31c59b2186b8
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,6 +51,7 @@ export default function PropertyCard() {
   };
 
   return (
+<<<<<<< HEAD
     <>
       {propertyData.map((data, key) => (
         <Card sx={{ maxWidth: 345 }} key={key}>
@@ -97,3 +114,75 @@ export default function PropertyCard() {
 }
 
 
+=======
+    <Card sx={{ maxWidth: 345 }}>
+      <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            R
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="THIS IS A TEMPORARY PAGE - I NEEDED TO SEE IF STUFF WORKED"
+        subheader="Crime pays but it's bad"
+      />
+      <CardMedia
+        component="img"
+        height="194"
+        image={crime}
+        alt="Paella dish"
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          SUMMARY/ BLURB
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            1. Find a randomer.
+          </Typography>
+          <Typography paragraph>
+            2. Say nothing to the randomer.
+          </Typography>
+          <Typography paragraph>
+            3. Stare directly into the randomers eyes.
+          </Typography>
+          <Typography paragraph>
+            4. State random gruesome crime fact.
+          </Typography>
+          <Typography paragraph>
+            5. Promote our website.
+          </Typography>
+          <Typography paragraph>
+            6. Run before the randomer calls police.
+          </Typography>
+          
+        </CardContent>
+      </Collapse>
+    </Card>
+  );
+}
+
+>>>>>>> e5d52e91caacb9cb1363ce63b38a31c59b2186b8
