@@ -3,11 +3,11 @@ import { Container } from "@mui/material";
 function Homepage(){
     
     return(
-        <div>
+        <Container>
             <h3>Home Page</h3>
 
-            <Container><PropertyCard/></Container>
-        </div>
+            <PropertyCard/>
+        </Container>
     )
 
 }
