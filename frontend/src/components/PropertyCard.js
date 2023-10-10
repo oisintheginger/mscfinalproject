@@ -15,7 +15,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { propertyData } from './PropertyDataSample';
-import { Grid, Stack, Chip } from '@mui/material';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -36,16 +35,9 @@ export default function PropertyCard() {
   };
 
   return (
-    <Grid container spacing={2}>
+    <>
       {propertyData.map((data, key) => (
-        <Grid item xs={12} md={4} key={key}>
-        <Card sx={{ maxWidth: 345, margin:'0 auto' }} >
-        <CardMedia
-            component="img"
-            height="194"
-            image={data.imgSrc}
-            alt="Property Image"
-          />
+        <Card sx={{ maxWidth: 345 }} key={key}>
           <CardHeader
             // avatar={
             //   <Avatar sx={{ bgcolor: red[500] }} aria-label="Property">
@@ -57,21 +49,21 @@ export default function PropertyCard() {
             //     <MoreVertIcon />
             //   </IconButton>
             // }
-            title={data.price}
+            title={data.buildingName}
             subheader={data.address}
           />
-          
+          <CardMedia
+            component="img"
+            height="194"
+            image={data.imgSrc}
+            alt="Property Image"
+          />
           <CardContent>
-
-            <Stack direction="row" spacing={1} sx={{overflowX: 'auto', whiteSpace:'nowrap'}}>
-              <Chip label={data.listingStatus} color='warning' />
-              <Chip color="success" label="Other1" />
-              <Chip color="primary" label="Other2" />
-              <Chip color="secondary" label="Other3" />
-            </Stack>
-            
+            <Typography variant="body2" color="text.secondary">
+              {data.listingStatus}
+            </Typography>
           </CardContent>
-          {/* <CardActions disableSpacing>
+          <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
               <FavoriteIcon />
             </IconButton>
@@ -97,11 +89,10 @@ export default function PropertyCard() {
               <Typography paragraph>5. Promote our website.</Typography>
               <Typography paragraph>6. Run before the randomer calls the police.</Typography>
             </CardContent>
-          </Collapse> */}
+          </Collapse>
         </Card>
-        </Grid>
       ))}
-    </Grid>
+    </>
   );
 }
 
