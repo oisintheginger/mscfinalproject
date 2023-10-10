@@ -19,6 +19,12 @@ const theme = createTheme({
 				sm: 48,
 			},
 		},
+		h2: {
+			fontSize: {
+				xs: 48,
+				sm: 42,
+			},
+		},
 	},
 	// components: {
 	// 	MuiTypography: {

@@ -13,7 +13,7 @@ import {
 	ListItemText,
 	Divider,
 	Container,
-	SvgIcon,
+	Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
@@ -28,7 +28,7 @@ import {
 	SearchIcon,
 	UserIcon,
 } from "../Icons/HMEIcons";
-import { fontDark } from "../Styling/styleConstants";
+import { darkTeal, fontDark } from "../Styling/styleConstants";
 import HMELogo from "./../Icons/HME.png";
 
 function NavLayout() {
@@ -56,16 +56,24 @@ function NavLayout() {
 	};
 
 	return (
-		<Box sx={{ flexGrow: 1, width: "100vw" }}>
-			<AppBar position="static" sx={{ width: "100vw" }}>
-				<Toolbar disableGutters variant="dense" sx={{ width: "100vw" }}>
-					<IconButton
+		<Box sx={{ flexGrow: 1, width: "100%" }}>
+			<AppBar position="static" sx={{ width: "100%" }}>
+				<Toolbar disableGutters variant="dense" sx={{ width: "100%" }}>
+					<Button
 						size="large"
 						aria-label="menu"
 						onClick={toggleDrawer(true)}
+						sx={{ color: fontDark }}
 					>
 						<MenuIcon sx={{ color: fontDark }} />
-					</IconButton>
+						<Typography
+							variant="button"
+							display={{ xs: "none", lg: "block" }}
+							marginLeft={2}
+						>
+							MAIN MENU
+						</Typography>
+					</Button>
 					<Container sx={{ paddingLeft: 0 }}>
 						<Stack
 							justifyContent="center"
@@ -201,7 +209,10 @@ function NavLayout() {
 			</Drawer>
 			<Container
 				component="main"
-				sx={{ width: { xs: "98vw", sm: "1150px" }, maxWidth: { sm: "90vw" } }}
+				sx={{
+					width: { xs: "98vw", sm: "1150px" },
+					maxWidth: { sm: "98vw" },
+				}}
 			>
 				<Outlet />
 			</Container>

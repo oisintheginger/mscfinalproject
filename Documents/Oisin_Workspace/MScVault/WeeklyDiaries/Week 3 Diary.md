@@ -1,10 +1,10 @@
 
 > [!todo] Tasks to Complete this Week
-> - [ ] User Testing
+> - [x] User Testing
 > 	- [x] Create Mockups
 > 	- [x] Gather Participants
 > 	- [x] Create PPT slides
-> 	- [ ] Administer Test + Record + Transcribe Results
+> 	- [x] Administer Test + Record + Transcribe Results
 > - [x] Create Tableau Dashboard of Survey Results
 > - [x] Define how recommendation system will work
 > - [x] List out property fields for Sean

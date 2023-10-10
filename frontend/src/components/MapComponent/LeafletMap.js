@@ -1,18 +1,10 @@
 import { MapContainer, TileLayer, useMap, useMapEvent } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { Box } from "@mui/material";
+import { Box, Button, Container, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
+import { darkTeal } from "../../Styling/styleConstants";
 
 function HMEMap({}) {
-	// const map = useMap();
-	// map.setView([51.505, -0.09], map.getZoom());
-	// console.log(map.getBounds());
-
-	// // Can Change the center using the hooks
-	// map.setView([53.345, -6.29], map.getZoom());
-	// console.log(map.getBounds());
-	// map.addEventListener();
-
 	const map2 = useMapEvent("zoom", () => {
 		console.log(map2.getBounds());
 	});
@@ -22,6 +14,7 @@ function HMEMap({}) {
 			<TileLayer
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				zIndex={1}
 			/>
 		</>
 	);
@@ -29,8 +22,25 @@ function HMEMap({}) {
 
 function LeafletMap() {
 	return (
-		<Box sx={{ height: "500px", width: "100%" }}>
+		<Box
+			sx={{
+				height: "500px",
+				width: "100%",
+				flexGrow: 1,
+			}}
+		>
 			<MapContainer center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
+				<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
+					<Button
+						sx={{
+							backgroundColor: darkTeal,
+							transform: "translate(-10px, 10px)",
+							zIndex: 50000,
+						}}
+					>
+						JUMP TO RESULTS
+					</Button>
+				</Stack>
 				<HMEMap />
 			</MapContainer>
 		</Box>
