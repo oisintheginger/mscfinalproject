@@ -1,11 +1,49 @@
 import Grid from "@mui/material/Grid";
 import PropertyCard from "../../components/PropertyCard";
-import { Box, Stack, Typography, Divider } from "@mui/material";
+import {
+	Box,
+	Stack,
+	Typography,
+	Divider,
+	Button,
+	useTheme,
+} from "@mui/material";
+import { SortIcon } from "../../Icons/HMEIcons";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function ResultGrid() {
+	const theme = useTheme();
+
+	const above = useMediaQuery(theme.breakpoints.up("sm"));
+
 	return (
 		<Box m={0}>
-			<Typography variant="h2">Results in this area</Typography>
+			<Stack
+				direction={"row"}
+				alignItems={"flex-end"}
+				justifyContent={"space-between"}
+				mb={1}
+				pl={0}
+				pr={1}
+			>
+				<Typography variant="h3">
+					{above ? "RESULTS IN THIS AREA" : "RESULTS"}
+				</Typography>
+				<Button
+					variant="outlined"
+					color="darkTeal"
+					sx={{
+						justifyContent: { xs: "center", sm: "start" },
+					}}
+					startIcon={<SortIcon />}
+				>
+					{above && (
+						<Typography variant="button" display={"block"}>
+							Sort
+						</Typography>
+					)}
+				</Button>
+			</Stack>
 
 			<Divider />
 			<Grid container spacing={0} width={"100%"} padding={0} m={0}>

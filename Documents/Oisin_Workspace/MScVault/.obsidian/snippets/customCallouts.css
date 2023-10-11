@@ -3,6 +3,16 @@
     --callout-icon: lucide-newspaper;
 }
 
+.callout[data-callout="feedback"] {
+    --callout-color: 48, 199, 14;
+    --callout-icon: lucide-messages-square;
+}
+
+.callout[data-callout="participant"] {
+    --callout-color: 252, 127, 3;
+    --callout-icon: lucide-user-circle;
+}
+
 .callout[data-callout="tools"] {
     --callout-color: 245, 120, 47;
     --callout-icon: lucide-wrench;
@@ -30,3 +40,4 @@
     font-weight: bold;
     color: white;
 }
+

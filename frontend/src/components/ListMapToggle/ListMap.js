@@ -31,13 +31,9 @@ function ListMap({ children }) {
 		}
 	};
 	return (
-		<Box maxHeight={"fit-content"} width={"96%"}>
-			<Container>
-				<Stack
-					direction={"row"}
-					width={"96%"}
-					justifyContent={{ xs: "center", sm: "flex-start" }}
-				>
+		<Box maxHeight={"fit-content"} width={"100%"} justifyContent={"center"}>
+			<Stack direction={"column"} justifyContent={"center"}>
+				<Stack direction={"row"} width={"100%"} justifyContent={"flex-start"}>
 					<ToggleButtonGroup
 						value={selected}
 						exclusive
@@ -58,8 +54,8 @@ function ListMap({ children }) {
 						</ToggleStyled>
 					</ToggleButtonGroup>
 				</Stack>
-				<Box maxWidth={{ xs: "80vw" }}>{selected && children}</Box>
-			</Container>
+				<Box maxWidth={{ xs: "90vw" }}>{selected && children}</Box>
+			</Stack>
 		</Box>
 	);
 }

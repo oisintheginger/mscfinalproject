@@ -1,4 +1,4 @@
-import { Container, Divider, Stack } from "@mui/material";
+import { Container, Divider, Stack, Typography } from "@mui/material";
 import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
 import ListMap from "../components/ListMapToggle/ListMap";
@@ -13,9 +13,17 @@ function Browse() {
 			<ListMap>
 				<LeafletMap />
 			</ListMap>
-
-			<ResultGrid></ResultGrid>
-			<Pagination count={10} variant="outlined" sx={{ alignSelf: "center" }} />
+			<ResultGrid />
+			<Pagination
+				count={10}
+				boundaryCount={0}
+				siblingCount={1}
+				variant="outlined"
+				sx={{ alignSelf: "center" }}
+			/>
+			<Typography width={"100%"} textAlign={"center"}>
+				PAGE X of Y
+			</Typography>
 		</PageTemplate>
 	);
 }

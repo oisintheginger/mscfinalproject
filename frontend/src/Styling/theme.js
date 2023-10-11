@@ -14,16 +14,13 @@ const theme = createTheme({
 	},
 	typography: {
 		h1: {
-			fontSize: {
-				xs: 32,
-				sm: 48,
-			},
+			fontSize: 44,
 		},
 		h2: {
-			fontSize: {
-				xs: 48,
-				sm: 42,
-			},
+			fontSize: 30,
+		},
+		h3: {
+			fontSize: 24,
 		},
 	},
 	// components: {

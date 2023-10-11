@@ -1,2 +1,4 @@
-- Lia
-- Victor 1pm 3rd October 
+- Victor
+- Grainne 
+- Cormac
+- Damian
