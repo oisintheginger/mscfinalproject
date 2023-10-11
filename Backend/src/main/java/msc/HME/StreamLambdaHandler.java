@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 
+
 public class StreamLambdaHandler implements RequestStreamHandler {
     private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
     static {
@@ -26,8 +27,10 @@ public class StreamLambdaHandler implements RequestStreamHandler {
             //                    .buildAndInitialize();
         } catch (ContainerInitializationException e) {
             // if we fail here. We re-throw the exception to force another cold start
-            e.printStackTrace();
+            e.printStackTrace();    // refactoring? logger.error("An error occurred during initialization: ", e);
             throw new RuntimeException("Could not initialize Spring Boot application", e);
+        } catch (ExceptionInInitializerError e) {
+            e.printStackTrace();
         }
     }
 
