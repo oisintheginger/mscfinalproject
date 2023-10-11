@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/manual spring boot deployment.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +98,7 @@
       <workItem from="1696436199206" duration="32000" />
       <workItem from="1696586575326" duration="1123000" />
       <workItem from="1696970184018" duration="350000" />
-      <workItem from="1697014645045" duration="280000" />
+      <workItem from="1697014645045" duration="1086000" />
     </task>
     <servers />
   </component>
