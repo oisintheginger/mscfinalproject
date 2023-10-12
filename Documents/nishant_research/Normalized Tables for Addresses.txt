@@ -1,0 +1,35 @@
+Normalized Tables for Addresses:
+
+Country Table
+CountryID (PK) - Number
+countryName - string
+
+State Table
+StateID (PK) - Number
+stateName - string
+CountryID (FK) - Number (References Country)
+
+
+City Table
+CityID (PK) - Number
+cityName - string
+StateID (FK) - Number (References State)
+
+Neighborhood Table
+NeighborhoodID (PK) - Number
+neighborhoodName - string
+CityID (FK) - Number (References City)
+
+ZipCode Table
+ZipCodeID (PK) - Number
+zipCode - string
+CityID (FK) - Number (References City) (Optional, if you want to associate zip codes with cities)
+
+Address Table
+AddressID (PK) - Number
+streetAddress - string
+ZipCodeID (FK) - Number (References ZipCode)
+NeighborhoodID (FK) - Number (References Neighborhood)
+CityID (FK) - Number (References City)
+StateID (FK) - Number (References State)
+CountryID (FK) - Number (References Country)
