@@ -156,7 +156,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: object
     delete:
       summary: delete favourite property for user
       parameters:
@@ -176,32 +176,96 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: object
 
   /api/user/searches:
     get:
-      summary: retrieve user's saved searches
+      summary: retrieve user's saved search(es)
       parameters:
         - in: query
           name: userId
           required: true
           schema:
             type: string
+        - in: query
+          name: searchId
+          required: false
+          schema:
+            type: string
       responses:
         '200':
-          description: returns a JSON
-  #  post:
-  #    summary:
-  #    parameters:
-  #    responses:
-#  put:
-#    summary:
-#    parameters:
-#    responses:
-#  delete:
-#    summary:
-#    parameters:
-#    responses:
+          description: returns a JSON array of saved searches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SavedSearch'
+    post:
+      summary: creates a new saved search to a user's profile
+      parameters:
+        - in: query
+          name: userId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: much_more
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: returns confirmation message
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: update a user's saved search
+      parameters:
+        - in: query
+          name: userId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: searchId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: updatedSearch
+          required: true
+          schema:
+            $ref: '#/components/schemas/SavedSearch'
+      responses:
+        '200':
+          description: returns confirmation message
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: deletes a user's search
+      parameters:
+        - in: query
+          name: userId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: searchId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: returns confirmation message
+          content:
+            application/json:
+              schema:
+                type: object
 
 components:
   schemas:
@@ -232,6 +296,18 @@ components:
           type: string
     DetailedProperty:
       description: Basically everything present in the database, more details will follow.
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123456
+        much_more:
+          type: string
+    SavedSearch:
+      description: a user can save a search, in order to return to it later
       type: object
       required:
         - id
