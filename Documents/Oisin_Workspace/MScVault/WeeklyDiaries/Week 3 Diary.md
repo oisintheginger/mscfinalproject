@@ -1,10 +1,10 @@
 
 > [!todo] Tasks to Complete this Week
-> - [ ] User Testing
+> - [x] User Testing
 > 	- [x] Create Mockups
 > 	- [x] Gather Participants
 > 	- [x] Create PPT slides
-> 	- [ ] Administer Test + Record + Transcribe Results
+> 	- [x] Administer Test + Record + Transcribe Results
 > - [x] Create Tableau Dashboard of Survey Results
 > - [x] Define how recommendation system will work
 > - [x] List out property fields for Sean
@@ -37,6 +37,7 @@
 >	<iframe width="560" height="315" src="https://www.youtube.com/embed/WIS1J4r8D4U?si=cJqnQ1s-4qanYHZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 >- Team Meetings (~2.5 hours):
 >	Just regular standup meeting with the team throughout the week.
+> ## SUM = ~41.5 hours
 
 > [!note] Collaboration and Learning
 > The data team needed more clarity on the Google Maps API, so I created that legal outline doc to explain to them. This helped them in their work. Stephen was able to continue his work in I also created the recommendation system diagram to keep the whole team on track with how it (should) work.
