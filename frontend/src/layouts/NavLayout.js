@@ -120,93 +120,101 @@ function NavLayout() {
 				<Box id="DrawerMenu" sx={{ ml: 2, mr: 2, mt: 0 }}>
 					<Typography variant="h6">MAIN MENU</Typography>
 				</Box>
-				<List sx={{ m: 2, mt: 0 }}>
-					<ListItemButton
-						to="/"
-						component={RRDLink}
-						onClick={toggleDrawer(false)}
-					>
-						<ListItemText primary="HOME" secondary="Landing Page" />
-						<ListItemIcon sx={{ color: fontDark }}>
-							<HomeIcon color="black" sx={navIconStyle} />
-						</ListItemIcon>
-					</ListItemButton>
-					<Divider />
+				<Box>
+					<List sx={{ m: 2, mt: 0 }}>
+						<ListItemButton
+							to="/"
+							component={RRDLink}
+							onClick={toggleDrawer(false)}
+						>
+							<ListItemText primary="HOME" secondary="Landing Page" />
+							<ListItemIcon sx={{ color: fontDark }}>
+								<HomeIcon color="black" sx={navIconStyle} />
+							</ListItemIcon>
+						</ListItemButton>
+						<Divider />
 
-					<ListItemButton
-						to="/browse"
-						component={RRDLink}
-						onClick={toggleDrawer(false)}
-					>
-						<ListItemText
-							primary="BROWSE"
-							secondary="Search for your new home"
-						/>
-						<ListItemIcon sx={{ color: fontDark }}>
-							<SearchIcon sx={navIconStyle} />
-						</ListItemIcon>
-					</ListItemButton>
+						<ListItemButton
+							to="/browse"
+							component={RRDLink}
+							onClick={toggleDrawer(false)}
+						>
+							<ListItemText
+								primary="BROWSE"
+								secondary="Search for your new home"
+							/>
+							<ListItemIcon sx={{ color: fontDark }}>
+								<SearchIcon sx={navIconStyle} />
+							</ListItemIcon>
+						</ListItemButton>
+						<Divider />
+					</List>
+				</Box>
+				<Box id="DrawerMenu" sx={{ ml: 2, mr: 2, mt: 3 }}>
+					<Typography variant="h6">My Stuff</Typography>
 					<Divider />
+					<List sx={{ m: 2, mt: 0 }}>
+						<ListItemButton
+							to="/favorites"
+							component={RRDLink}
+							onClick={toggleDrawer(false)}
+						>
+							<ListItemText
+								primary="MY FAVORITES"
+								secondary="View Saved Listings Here"
+							/>
+							<ListItemIcon sx={{ color: fontDark }}>
+								<FavoriteIcon color="black" sx={navIconStyle} />
+							</ListItemIcon>
+						</ListItemButton>
+						<Divider />
 
-					<ListItemButton
-						to="/favorites"
-						component={RRDLink}
-						onClick={toggleDrawer(false)}
-					>
-						<ListItemText
-							primary="MY FAVORITES"
-							secondary="View Saved Listings Here"
-						/>
-						<ListItemIcon sx={{ color: fontDark }}>
-							<FavoriteIcon color="black" sx={navIconStyle} />
-						</ListItemIcon>
-					</ListItemButton>
-					<Divider />
+						<ListItemButton
+							to="/savedsearches"
+							component={RRDLink}
+							onClick={toggleDrawer(false)}
+						>
+							<ListItemText
+								primary="MY SAVED SEARCHES"
+								secondary="View Saved Searches Here"
+							/>
+							<ListItemIcon sx={{ color: fontDark }}>
+								<BookmarkIcon color="black" sx={navIconStyle} />
+							</ListItemIcon>
+						</ListItemButton>
+						<Divider />
 
-					<ListItemButton
-						to="/savedsearches"
-						component={RRDLink}
-						onClick={toggleDrawer(false)}
-					>
-						<ListItemText
-							primary="MY SAVED SEARCHES"
-							secondary="View Saved Listings Here"
-						/>
-						<ListItemIcon sx={{ color: fontDark }}>
-							<BookmarkIcon color="black" sx={navIconStyle} />
-						</ListItemIcon>
-					</ListItemButton>
-					<Divider />
-
-					<ListItemButton
-						to="/applications"
-						component={RRDLink}
-						onClick={toggleDrawer(false)}
-					>
-						<ListItemText
-							primary="MY APPLICATIONS"
-							secondary="View and Edit your Applications"
-						/>
-						<ListItemIcon sx={{ color: fontDark }}>
-							<ApplicationIcon color="black" sx={navIconStyle} />
-						</ListItemIcon>
-					</ListItemButton>
-					<Divider />
-					<ListItemButton
-						to="/profile"
-						component={RRDLink}
-						onClick={toggleDrawer(false)}
-					>
-						<ListItemText
-							primary="MY PROFILE"
-							secondary="View and Edit your Profile"
-						/>
-						<ListItemIcon sx={{ color: fontDark }}>
-							<UserIcon color="black" sx={navIconStyle} />
-						</ListItemIcon>
-					</ListItemButton>
-				</List>
+						<ListItemButton
+							to="/applications"
+							component={RRDLink}
+							onClick={toggleDrawer(false)}
+						>
+							<ListItemText
+								primary="MY APPLICATIONS"
+								secondary="View and Edit your Applications"
+							/>
+							<ListItemIcon sx={{ color: fontDark }}>
+								<ApplicationIcon color="black" sx={navIconStyle} />
+							</ListItemIcon>
+						</ListItemButton>
+						<Divider />
+						<ListItemButton
+							to="/profile"
+							component={RRDLink}
+							onClick={toggleDrawer(false)}
+						>
+							<ListItemText
+								primary="MY PROFILE"
+								secondary="View and Edit your Profile"
+							/>
+							<ListItemIcon sx={{ color: fontDark }}>
+								<UserIcon color="black" sx={navIconStyle} />
+							</ListItemIcon>
+						</ListItemButton>
+					</List>
+				</Box>
 			</Drawer>
+			{/* MAIN CONTENT OUTLET GOES HERE */}
 			<Container
 				component="main"
 				sx={{
