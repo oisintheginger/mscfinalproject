@@ -11,7 +11,7 @@ import {
 import { SortIcon } from "../../Icons/HMEIcons";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-function ResultGrid() {
+function ResultGrid({ propertyData }) {
 	const theme = useTheme();
 
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
@@ -47,33 +47,13 @@ function ResultGrid() {
 
 			<Divider />
 			<Grid container spacing={0} width={"100%"} padding={0} m={0}>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
-					<PropertyCard />
-				</Grid>
+				{propertyData.map((data, key) => {
+					return (
+						<Grid item xs={12} sm={6} md={4}>
+							<PropertyCard data={data} key={key} />
+						</Grid>
+					);
+				})}
 			</Grid>
 		</Box>
 	);

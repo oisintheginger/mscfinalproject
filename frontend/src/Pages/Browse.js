@@ -5,6 +5,9 @@ import ListMap from "../components/ListMapToggle/ListMap";
 import LeafletMap from "../components/MapComponent/LeafletMap";
 import ResultGrid from "../components/ResultsGrid/ResultsGrid";
 import Pagination from "@mui/material/Pagination";
+
+import { propertyData } from "../MockData/PropertyDataSample";
+
 function Browse() {
 	return (
 		<PageTemplate pageTitle="Browse">
@@ -13,7 +16,7 @@ function Browse() {
 			<ListMap>
 				<LeafletMap />
 			</ListMap>
-			<ResultGrid />
+			<ResultGrid propertyData={propertyData} />
 			<Pagination
 				count={10}
 				boundaryCount={0}
