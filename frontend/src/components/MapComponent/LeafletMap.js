@@ -4,6 +4,7 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { darkTeal } from "../../Styling/styleConstants";
 import GoogleLogo from "./../../Icons/google_on_white.png";
+import ButtonStyled from "../CommonComp/Button/ButtonStyle";
 
 function HMEMap({}) {
 	const map2 = useMapEvent("zoom", () => {
@@ -34,15 +35,14 @@ function LeafletMap() {
 			>
 				<MapContainer center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
 					<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
-						<Button
+						<ButtonStyled
 							sx={{
-								backgroundColor: darkTeal,
 								transform: "translate(-10px, 10px)",
 								zIndex: 50000,
 							}}
 						>
 							JUMP TO RESULTS
-						</Button>
+						</ButtonStyled>
 					</Stack>
 					<HMEMap />
 				</MapContainer>

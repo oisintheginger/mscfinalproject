@@ -1,4 +1,11 @@
-import { Container, Divider, Stack, Typography } from "@mui/material";
+import {
+	Container,
+	Divider,
+	Stack,
+	Typography,
+	Button,
+	styled,
+} from "@mui/material";
 import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
 import ListMap from "../components/ListMapToggle/ListMap";
@@ -10,7 +17,7 @@ import { propertyData } from "../MockData/PropertyDataSample";
 
 function Browse() {
 	return (
-		<PageTemplate pageTitle="Browse">
+		<PageTemplate pageTitle="Browse" currPageBreadcrumb={"Browse"}>
 			<SearchAndFilters />
 			<Divider />
 			<ListMap>
