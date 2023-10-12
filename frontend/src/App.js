@@ -10,8 +10,8 @@ import "./App.css";
 
 //pages
 import Browse from "./Pages/Browse";
-import Homepage from "./components/Homepage";
-import Profile from "./components/Profile";
+import Homepage from "./Pages/Homepage";
+import Profile from "./Pages/Profile";
 
 //layout
 import NavLayout from "./layouts/NavLayout";

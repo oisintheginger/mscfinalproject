@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import PropertyCard from "../../components/PropertyCard";
+import PropertyCard from "../PropertyCard/PropertyCard";
 import {
 	Box,
 	Stack,
