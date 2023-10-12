@@ -53,9 +53,9 @@ I created an example for a signup form. There are similar other functions availa
     };
 
 And Voila these are the results: 
-![img.png](images/img.png)
+![img.png](../Fenna_Workspace/images/img.png)
 and in the cognito aws console:
-![img_1.png](images/img_1.png)
+![img_1.png](../Fenna_Workspace/images/img_1.png)
 
 Amazon-cognito-identity react package has the following possible exports:
 - AuthenticationDetails, 
