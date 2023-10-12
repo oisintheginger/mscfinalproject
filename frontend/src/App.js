@@ -11,6 +11,10 @@ import "./App.css";
 //pages
 import Browse from "./Pages/Browse";
 import Homepage from "./Pages/Homepage";
+import Favorites from "./Pages/Favorites";
+import Applications from "./Pages/Applications";
+import SavedSearches from "./Pages/SavedSearches";
+
 import Profile from "./Pages/Profile";
 
 //layout
@@ -23,10 +27,10 @@ const router = createBrowserRouter(
 		<Route path="/" element={<NavLayout />}>
 			<Route index element={<Homepage />} />
 			<Route path="/browse" element={<Browse />} />
+			<Route path="/favorites" element={<Favorites />} />
+			<Route path="/applications" element={<Applications />} />
+			<Route path="/savedsearches" element={<SavedSearches />} />
 			<Route path="/profile" element={<Profile />} />
-			<Route path="/favorites" element={<Browse />} />
-			<Route path="/savedsearches" element={<Browse />} />
-			<Route path="/applications" element={<Browse />} />
 		</Route>
 	)
 );

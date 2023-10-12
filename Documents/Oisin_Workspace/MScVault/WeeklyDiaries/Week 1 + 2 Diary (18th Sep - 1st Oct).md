@@ -1,4 +1,10 @@
-> [!example] My Activities
+
+> [!example] My Activities (Week 1 Pre-Class)
+> - Finding datasets
+> - brainstorming ideas
+> - preparatory work.
+
+> [!example] My Activities (Week 2)
 > - Setup Up GitHub Repo (~ 2 hours)
 > 	- Setting up initial React Project
 > 	- Setting up collaborators
