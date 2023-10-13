@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/QuickViewProperty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/QuickViewProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/QuickViewProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +111,7 @@
       <workItem from="1696436199206" duration="32000" />
       <workItem from="1696586575326" duration="1123000" />
       <workItem from="1697126241518" duration="96000" />
-      <workItem from="1697126669930" duration="5463000" />
+      <workItem from="1697126669930" duration="6745000" />
     </task>
     <servers />
   </component>

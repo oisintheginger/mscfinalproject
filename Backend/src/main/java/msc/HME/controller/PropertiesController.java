@@ -1,6 +1,7 @@
 package msc.HME.controller;
 
-@RestController
-public class PropertiesController {
+import msc.HME.QuickViewProperty;
+import org.springframework.web.bind.annotation.*;
 
-}
+@RestController
+public class PropertiesController {}
