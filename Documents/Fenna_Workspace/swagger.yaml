@@ -66,7 +66,7 @@ paths:
           schema:
             type: array
             items:
-              type: string
+              type: number
         - in: query
           name: type
           required: false
@@ -287,7 +287,7 @@ components:
           items:
             type: string
         price:
-          type: integer
+          type: number
         address:
           type: string
         img:

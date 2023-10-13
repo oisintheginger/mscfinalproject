@@ -1,0 +1,7 @@
+GET https://virtserver.swaggerhub.com/fkadir/HMEApi/1.0.0/users
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
