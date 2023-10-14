@@ -19,7 +19,7 @@ import PropertyPage from "./Pages/PropertyPage";
 import Profile from "./Pages/Profile";
 
 //layout
-import NavLayout from "./layouts/NavLayout";
+import NavLayout from "./Layouts/NavLayout";
 import theme from "./Styling/theme";
 
 // browser router i.e. route tree
@@ -27,7 +27,7 @@ const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<NavLayout />}>
 			<Route index element={<Homepage />} />
-			<Route path="/browse" element={<Browse />} />
+			<Route path="browse" element={<Browse />} />
 			<Route path="/favorites" element={<Favorites />} />
 			<Route path="/applications" element={<Applications />} />
 			<Route path="/savedsearches" element={<SavedSearches />} />

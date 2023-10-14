@@ -26,7 +26,7 @@ function ResultGrid({ propertyData }) {
 				pl={0}
 				pr={1}
 			>
-				<Typography variant="h3">
+				<Typography variant="h2">
 					{above ? "RESULTS IN THIS AREA" : "RESULTS"}
 				</Typography>
 				<Button

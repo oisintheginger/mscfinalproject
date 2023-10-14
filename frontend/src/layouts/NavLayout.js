@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import {
 	AppBar,
 	Box,
@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
-import { useLocation, Link as RRDLink } from "react-router-dom";
+import { useNavigate, Link as RRDLink } from "react-router-dom";
 import "./NavLayout.css";
 import {
 	ApplicationIcon,
@@ -28,10 +28,16 @@ import {
 	SearchIcon,
 	UserIcon,
 } from "../Icons/HMEIcons";
-import { darkTeal, fontDark } from "../Styling/styleConstants";
-import HMELogo from "./../Icons/HME.png";
+import { fontDark } from "../Styling/styleConstants";
+import { useMediaQuery, useTheme } from "@mui/material";
+
+import HMELogo from "./../Icons/NewLogo.png";
+import HMELogoCompact from "./../Icons/NewLogoCompact.png";
 
 function NavLayout() {
+	const theme = useTheme();
+	const above = useMediaQuery(theme.breakpoints.up("sm"));
+
 	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	const toggleDrawer = (open) => (event) => {
@@ -55,41 +61,48 @@ function NavLayout() {
 		},
 	};
 
+	const navigate = useNavigate();
 	return (
-		<Box sx={{ flexGrow: 1, width: "100%" }}>
-			<AppBar position="static" sx={{ width: "100%" }}>
-				<Toolbar disableGutters variant="dense" sx={{ width: "100%" }}>
+		<Box sx={{ flexGrow: 1, width: "100%", backgroundColor: "primary.main" }}>
+			<AppBar position="sticky" sx={{ width: "100%" }}>
+				<Toolbar
+					disableGutters
+					variant="dense"
+					sx={{
+						width: "100%",
+						justifyContent: "space-between",
+						height: "48px",
+					}}
+				>
 					<Button
 						size="large"
 						aria-label="menu"
 						onClick={toggleDrawer(true)}
-						sx={{ color: fontDark }}
+						sx={{ color: fontDark, height: "100%" }}
+						startIcon={<MenuIcon sx={{ color: fontDark }} />}
 					>
-						<MenuIcon sx={{ color: fontDark }} />
 						<Typography
 							variant="button"
-							display={{ xs: "none", lg: "block" }}
-							marginLeft={2}
+							display={{ xs: "none", md: "block" }}
+							fontSize={16}
 						>
 							MAIN MENU
 						</Typography>
 					</Button>
-					<Container sx={{ paddingLeft: 0 }}>
-						<Stack
-							justifyContent="center"
-							alignItems="center"
-							alignContent="center"
-						>
-							<ListItemButton to="/" sx={{ transform: "translate(-3vw,0px)" }}>
-								<Box
-									component={"img"}
-									src={HMELogo}
-									sx={{ width: "100px", height: "100%" }}
-									alt="Housing Made Easy Logo"
-								/>
-							</ListItemButton>
-						</Stack>
-					</Container>
+					<Box
+						component={"img"}
+						src={above ? HMELogo : HMELogoCompact}
+						sx={{
+							cursor: "pointer",
+							height: "36px",
+							position: "relative",
+							top: "0%",
+							right: "50%",
+							transform: "translate(50%, 0%)",
+						}}
+						alt="Housing Made Easy Logo"
+						onClick={() => navigate("/")}
+					/>
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -214,7 +227,6 @@ function NavLayout() {
 					</List>
 				</Box>
 			</Drawer>
-			{/* MAIN CONTENT OUTLET GOES HERE */}
 			<Container
 				component="main"
 				sx={{

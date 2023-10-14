@@ -38,7 +38,7 @@ function LeafletMap() {
 						<ButtonStyled
 							sx={{
 								transform: "translate(-10px, 10px)",
-								zIndex: 50000,
+								zIndex: 900,
 							}}
 						>
 							JUMP TO RESULTS
@@ -58,7 +58,12 @@ function LeafletMap() {
 				>
 					{"Powered by"}
 				</Typography>
-				<Box component={"img"} src={GoogleLogo} height={"100%"} />
+				<Box
+					component={"img"}
+					alt="Powered by Google"
+					src={GoogleLogo}
+					height={"100%"}
+				/>
 			</Stack>
 		</>
 	);

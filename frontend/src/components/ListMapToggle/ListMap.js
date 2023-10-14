@@ -12,7 +12,7 @@ import {
 import { styled } from "@mui/material";
 import { ListIcon, MapIcon } from "../../Icons/HMEIcons";
 import { useState } from "react";
-import { darkTeal } from "../../Styling/styleConstants";
+import { darkTeal, fontDark } from "../../Styling/styleConstants";
 function ListMap({ children }) {
 	const MAP = true;
 	const LIST = false;
@@ -20,7 +20,6 @@ function ListMap({ children }) {
 
 	const ToggleStyled = styled(ToggleButton)({
 		"&.Mui-selected, &.Mui-selected:hover": {
-			color: "white",
 			backgroundColor: darkTeal,
 		},
 	});
@@ -42,13 +41,23 @@ function ListMap({ children }) {
 					>
 						<ToggleStyled value={LIST} selected={selected === LIST}>
 							<Stack direction={"row"} spacing={2}>
-								<Typography variant="button">LIST</Typography>
+								<Typography
+									variant="button"
+									sx={{ color: selected == LIST ? "white" : "black" }}
+								>
+									LIST
+								</Typography>
 								<ListIcon sx={{ marginLeft: 4 }} />
 							</Stack>
 						</ToggleStyled>
 						<ToggleStyled value={MAP} selected={selected === MAP}>
 							<Stack direction={"row"} spacing={2}>
-								<Typography variant="button">Map</Typography>
+								<Typography
+									variant="button"
+									sx={{ color: selected == MAP ? "white" : "black" }}
+								>
+									Map
+								</Typography>
 								<MapIcon sx={{ marginLeft: 4 }} />
 							</Stack>
 						</ToggleStyled>
