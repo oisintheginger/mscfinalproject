@@ -19,7 +19,7 @@ import PropertyPage from "./Pages/PropertyPage";
 import Profile from "./Pages/Profile";
 
 //layout
-import NavLayout from "./Layouts/NavLayout";
+import NavLayout from "./Layouts/NavLayout.js";
 import theme from "./Styling/theme";
 
 // browser router i.e. route tree

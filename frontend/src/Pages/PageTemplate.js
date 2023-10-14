@@ -16,7 +16,6 @@ function PageTemplate({
 	children,
 	pageTitle = "Page Title",
 	prevPage = null,
-	prevPageBreadcrumb = null,
 	currPageBreadcrumb = null,
 }) {
 	return (

@@ -41,7 +41,7 @@ export default function PropertyCard({ data, key }) {
 	};
 
 	return (
-		<Card sx={{ maxWidth: 345, margin: "0 auto" }} elevation={6}>
+		<Card sx={{ maxWidth: 345 }} elevation={6}>
 			<CardMedia
 				onClick={() =>
 					navigator("/property/" + data.zpid, {

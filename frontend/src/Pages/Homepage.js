@@ -6,22 +6,53 @@ import {
 	Grid,
 	Stack,
 	Typography,
+	TextField,
 } from "@mui/material";
+import LandingPageImage from "./../Icons/LandingPageImage.png";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 function Homepage() {
 	return (
-		<Stack direction={"column"} spacing={4}>
-			<Box width={"100%"}>
-				<Typography variant="h1" textAlign={"center"}>
-					HOUSING MADE EASY
-				</Typography>
-			</Box>
-			<Divider />
-			<Box width={"100%"} justifyContent={"center"}>
+		<>
+			<Stack direction={"column"} spacing={2} mt={5} alignItems={"center"}>
+				<Box width={"100%"} display={"flex"} alignItems={"center"}>
+					<Typography textAlign={"center"} variant="landingPage" width={"100%"}>
+						HOUSING MADE EASY
+					</Typography>
+				</Box>
+				<Box width={"100%"} mb={5} display={"flex"} justifyContent={"center"}>
+					<TextField
+						variant="outlined"
+						type="search"
+						sx={{
+							width: { xs: "100%", md: "55%" },
+							"& .MuiInputBase-root": {
+								height: 50,
+								color: "black",
+								"& fieldset": {
+									borderWidth: 1,
+									borderColor: "darkTeal.main",
+								},
+								"&.Mui-focused fieldset": {
+									borderWidth: 2,
+									borderColor: "darkTeal.main",
+								},
+								"&:hover fieldset": {
+									borderWidth: 2,
+									borderColor: "darkTeal.main",
+								},
+							},
+						}}
+						color="darkTeal"
+						placeholder="Search here for your new home"
+					/>
+				</Box>
+			</Stack>
+
+			<Box width={"100%"} justifyContent={"center"} sx={{ mt: "100px" }}>
 				<Container>
-					<Grid container spacing={0} width={"100%"} padding={0} m={0}>
-						{propertyData.map((data, key) => {
+					<Grid container spacing={2} width={"100%"} mt={0.5}>
+						{propertyData.slice(0, 9).map((data, key) => {
 							return (
 								<Grid item xs={12} sm={6} md={4}>
 									<PropertyCard data={data} key={key} />
@@ -31,7 +62,7 @@ function Homepage() {
 					</Grid>
 				</Container>
 			</Box>
-		</Stack>
+		</>
 	);
 }
 

@@ -12,6 +12,9 @@ const theme = createTheme({
 		lightTeal: {
 			main: "#CEEAEA",
 		},
+		darkWhite: {
+			main: "#e4f0ec",
+		},
 	},
 	typography: {
 		h1: {
@@ -24,12 +27,19 @@ const theme = createTheme({
 			fontSize: 24,
 		},
 		button: { fontWeight: 700 },
+		landingPage: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 44,
+			fontWeight: 200,
+			letterSpacing: 15,
+		},
 	},
 	components: {
 		MuiTypography: {
 			defaultProps: {
 				variantMapping: {
 					h2: "h1",
+					landingPage: "h1",
 				},
 				color: fontDark,
 			},

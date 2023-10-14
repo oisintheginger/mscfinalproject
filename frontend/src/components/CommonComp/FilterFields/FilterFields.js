@@ -70,10 +70,10 @@ function FilterFields({ filtersOpen, filtersSubmit }) {
 								}
 							/>
 						</FormGroup>
-						<Typography variant="overline" mt={3}>
+						<Typography variant="overline" mt={2}>
 							Bedroom Count
 						</Typography>
-						<Divider sx={{ mb: 2 }} />
+						<Divider sx={{ mb: 5 }} />
 						<Slider
 							aria-label="Bedroom Count"
 							defaultValue={1}
@@ -88,7 +88,7 @@ function FilterFields({ filtersOpen, filtersSubmit }) {
 						<Typography variant="overline" mt={3}>
 							Bathroom Count
 						</Typography>
-						<Divider sx={{ mb: 2 }} />
+						<Divider sx={{ mb: 5 }} />
 						<Slider
 							aria-label="Bathroom Count"
 							defaultValue={1}
