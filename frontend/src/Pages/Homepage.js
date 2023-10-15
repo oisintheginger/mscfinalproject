@@ -14,13 +14,13 @@ import { propertyData } from "../MockData/PropertyDataSample";
 function Homepage() {
 	return (
 		<>
-			<Stack direction={"column"} spacing={2} mt={5} alignItems={"center"}>
+			<Stack direction={"column"} spacing={1} mt={10} alignItems={"center"}>
 				<Box width={"100%"} display={"flex"} alignItems={"center"}>
 					<Typography textAlign={"center"} variant="landingPage" width={"100%"}>
 						HOUSING MADE EASY
 					</Typography>
 				</Box>
-				<Box width={"100%"} mb={5} display={"flex"} justifyContent={"center"}>
+				<Box width={"100%"} mb={1} display={"flex"} justifyContent={"center"}>
 					<TextField
 						variant="outlined"
 						type="search"

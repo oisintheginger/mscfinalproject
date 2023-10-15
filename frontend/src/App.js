@@ -27,7 +27,7 @@ const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<NavLayout />}>
 			<Route index element={<Homepage />} />
-			<Route path="browse" element={<Browse />} />
+			<Route path="/browse" element={<Browse />} />
 			<Route path="/favorites" element={<Favorites />} />
 			<Route path="/applications" element={<Applications />} />
 			<Route path="/savedsearches" element={<SavedSearches />} />
