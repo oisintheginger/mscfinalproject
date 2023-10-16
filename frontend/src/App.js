@@ -14,11 +14,12 @@ import Homepage from "./Pages/Homepage";
 import Favorites from "./Pages/Favorites";
 import Applications from "./Pages/Applications";
 import SavedSearches from "./Pages/SavedSearches";
+import PropertyPage from "./Pages/PropertyPage";
 
 import Profile from "./Pages/Profile";
 
 //layout
-import NavLayout from "./layouts/NavLayout";
+import NavLayout from "./Layouts/NavLayout.js";
 import theme from "./Styling/theme";
 
 // browser router i.e. route tree
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
 			<Route path="/applications" element={<Applications />} />
 			<Route path="/savedsearches" element={<SavedSearches />} />
 			<Route path="/profile" element={<Profile />} />
+			<Route path="/property/:id" element={<PropertyPage />} />
 		</Route>
 	)
 );

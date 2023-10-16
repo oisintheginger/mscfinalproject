@@ -16,6 +16,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { propertyData } from "../../../../MockData/PropertyDataSample";
 import { Grid, Stack, Chip } from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
@@ -31,13 +32,29 @@ const ExpandMore = styled((props) => {
 export default function PropertyCard({ data, key }) {
 	const [expanded, setExpanded] = useState(false);
 
+	const navigator = useNavigate();
+	const location = useLocation();
+	console.log(location);
+
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
 
 	return (
-		<Card sx={{ maxWidth: 345, margin: "0 auto" }} key={key}>
+		<Card elevation={6}>
 			<CardMedia
+				onClick={() =>
+					navigator("/property/" + data.zpid, {
+						state: {
+							previousUrl: location.pathname,
+						},
+					})
+				}
+				sx={{
+					"&:hover": {
+						cursor: "pointer",
+					},
+				}}
 				component="img"
 				height="194"
 				image={data.imgSrc}
