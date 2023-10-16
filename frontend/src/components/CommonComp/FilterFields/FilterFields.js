@@ -77,7 +77,6 @@ function FilterFields({ filtersOpen, filtersSubmit }) {
 						<Slider
 							aria-label="Bedroom Count"
 							defaultValue={1}
-							getAriaValueText={""}
 							valueLabelDisplay="on"
 							step={1}
 							marks
@@ -92,7 +91,6 @@ function FilterFields({ filtersOpen, filtersSubmit }) {
 						<Slider
 							aria-label="Bathroom Count"
 							defaultValue={1}
-							getAriaValueText={""}
 							valueLabelDisplay="on"
 							step={1}
 							marks
@@ -117,7 +115,7 @@ function FilterFields({ filtersOpen, filtersSubmit }) {
 									/>
 								}
 								label="House"
-								labelPlacement="right"
+								labelPlacement="start"
 							/>
 							<FormControlLabel
 								control={
@@ -131,7 +129,7 @@ function FilterFields({ filtersOpen, filtersSubmit }) {
 									/>
 								}
 								label="Flat/Apartment/Condo"
-								labelPlacement="right"
+								labelPlacement="start"
 							/>
 							<FormControlLabel
 								control={
@@ -145,7 +143,7 @@ function FilterFields({ filtersOpen, filtersSubmit }) {
 									/>
 								}
 								label="Townhouse"
-								labelPlacement="right"
+								labelPlacement="start"
 							/>
 						</FormGroup>
 					</FormControl>

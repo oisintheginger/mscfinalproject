@@ -1,7 +1,6 @@
 import { MapContainer, TileLayer, useMap, useMapEvent } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Box, Button, Container, Link, Stack, Typography } from "@mui/material";
 import { darkTeal } from "../../Styling/styleConstants";
 import GoogleLogo from "./../../Icons/google_on_white.png";
 import ButtonStyled from "../CommonComp/Button/ButtonStyle";
@@ -24,7 +23,7 @@ function HMEMap({}) {
 
 function LeafletMap() {
 	return (
-		<>
+		<Box>
 			<Box
 				sx={{
 					height: "500px",
@@ -35,14 +34,33 @@ function LeafletMap() {
 			>
 				<MapContainer center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
 					<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
-						<ButtonStyled
+						{/* <ButtonStyled
 							sx={{
 								transform: "translate(-10px, 10px)",
 								zIndex: 900,
 							}}
+							href="#results"
 						>
 							JUMP TO RESULTS
-						</ButtonStyled>
+						</ButtonStyled> */}
+						<Button
+							sx={{
+								transform: "translate(-10px, 10px)",
+								zIndex: 900,
+								color: "white",
+								backgroundColor: darkTeal,
+								borderColor: darkTeal,
+								"&:hover": {
+									color: "white",
+									backgroundColor: "darkTeal.main",
+								},
+							}}
+							href="#results"
+						>
+							<Typography variant="button" sx={{ color: "white" }}>
+								JUMP TO RESULTS
+							</Typography>
+						</Button>
 					</Stack>
 					<HMEMap />
 				</MapContainer>
@@ -65,7 +83,7 @@ function LeafletMap() {
 					height={"100%"}
 				/>
 			</Stack>
-		</>
+		</Box>
 	);
 }
 export default LeafletMap;

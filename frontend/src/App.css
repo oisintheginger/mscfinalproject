@@ -3,6 +3,9 @@
     --secondary:red;
     
 }
+a {
+    color: #F3FCFF;
+}
 
 html{
     height: 100%;

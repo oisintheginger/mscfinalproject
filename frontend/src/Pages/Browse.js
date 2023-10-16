@@ -23,7 +23,7 @@ function Browse() {
 			<ListMap>
 				<LeafletMap />
 			</ListMap>
-			<ResultGrid propertyData={propertyData} />
+			<ResultGrid propertyData={propertyData} id={"results"} />
 			<Pagination
 				count={10}
 				boundaryCount={0}

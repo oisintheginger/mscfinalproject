@@ -1,17 +1,15 @@
-import { Button } from "@mui/material";
+import { Button, Chip } from "@mui/material";
 import { SmallCloseIcon } from "../../Icons/HMEIcons";
-function ActiveTag({ tagName, tagCount, deactivateFunc }) {
+function ActiveTag({ tagName, tagCount, deactivateFunc = () => {} }) {
 	return (
-		<Button
-			endIcon={<SmallCloseIcon sx={{ maxHeight: "24px" }} />}
+		<Chip
+			label={tagName + (tagCount ? ": " + tagCount : "")}
+			onDelete={deactivateFunc}
 			sx={{
 				color: "fontDark",
 				backgroundColor: "lightTeal.main",
 			}}
-			variant="contained"
-		>
-			{tagName + (tagCount ? ": " + tagCount : "")}
-		</Button>
+		/>
 	);
 }
 
