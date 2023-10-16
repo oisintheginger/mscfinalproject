@@ -266,9 +266,9 @@ components:
           format: int64
           example: 123456
         longitude:
-          type: number
+          type: string
         latitude:
-          type: number
+          type: string
         property_tags:
           type: array
           items:

@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/properties/JsonPlaceholderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/properties/QuickViewProperty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/QuickViewProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +61,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -109,6 +116,8 @@
       <workItem from="1696586575326" duration="1123000" />
       <workItem from="1697126241518" duration="96000" />
       <workItem from="1697126669930" duration="8236000" />
+      <workItem from="1697451780659" duration="6000" />
+      <workItem from="1697451805455" duration="2683000" />
     </task>
     <servers />
   </component>
