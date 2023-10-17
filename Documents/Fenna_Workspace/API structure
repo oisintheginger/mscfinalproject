@@ -26,14 +26,7 @@ GET 	/rentEstimate 	            Based on property type (+ other optional paramet
 GET 	/building  	                Building details
 GET 	/locationSuggestions 	    Input neighborhood, street or name
 
-Users (creation, authentication,  authorization)
-/api/users	                GET 	Body: user id 	                Get user
-                            POST 		                            Register new user
-                            PUT 	Body: user id                   Edit user
-                                    Optional parameters:
-                                    name, email, phone number,
-                                    password, profile picture
-                            DELETE 	Body: user id	                Delete user
+Users (extra profile aside user pool)
 /api/account/favourites	    GET	    Body: user id	                Retrieve user favourite listings
 	                        POST	Body: user id, listing id 	    Add new user favourite
 	                        DELETE	Body: user id, listing id 	    Remove user favourite
@@ -41,12 +34,11 @@ Users (creation, authentication,  authorization)
                                     Optional: search id	            Retrieve saved searches
 	                        POST	Body: user id, search id	    Add new saved search
 	                        DELETE	Body: user id, search id	    Remove saved search
-/api/login 	                PUT     Body: email, password	        User login, returns JWT
-/api/logout	                PUT 	Body: JWT	                    User logout, Invalidate JWT
-/api/currentUser	        GET 	Body: JWT	                    Returns details of currently authenticated user
-/api/account/password	    PUT	    Body: email	                    Request user password reset
-	                        PUT	    Body: token, new password	    Change user password from reset request
-
+potentially
+/api/account/questions      GET     Body: user id
+                            POST    Body: user id, QAObject
+                            PUT     Body: user id, QAObject
+                            DELETE  Body: user id, QAObject
 Recommendation System
 /api/recommendation	        GET 	Retrieves recommendations from recommendation system
 /api/userFeedback	        POST	Sends user feedback on recommendations (back to recommendation system)

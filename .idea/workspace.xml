@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/secure credentials.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/Backend_documentation/API structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Backend_documentation/API structure.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Frontend-landing" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,11 +55,13 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fenna\OneDrive - Technological University Dublin\GP\mscfinalproject\Documents\Backend_documentation" />
       <recent name="C:\Users\fenna\OneDrive - Technological University Dublin\GP\mscfinalproject\Documents\Fenna_Workspace\" />
     </key>
   </component>
@@ -99,6 +101,9 @@
       <workItem from="1696435311332" duration="732000" />
       <workItem from="1696436199206" duration="32000" />
       <workItem from="1696586575326" duration="1123000" />
+      <workItem from="1696970184018" duration="350000" />
+      <workItem from="1697014645045" duration="1086000" />
+      <workItem from="1697031570031" duration="3513000" />
     </task>
     <servers />
   </component>

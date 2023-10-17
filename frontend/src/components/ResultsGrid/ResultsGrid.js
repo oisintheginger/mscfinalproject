@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import PropertyCard from "../PropertyCard/PropertyCard";
+import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
 import {
 	Box,
 	Stack,
@@ -26,7 +26,7 @@ function ResultGrid({ propertyData }) {
 				pl={0}
 				pr={1}
 			>
-				<Typography variant="h3">
+				<Typography variant="h2">
 					{above ? "RESULTS IN THIS AREA" : "RESULTS"}
 				</Typography>
 				<Button
@@ -46,11 +46,11 @@ function ResultGrid({ propertyData }) {
 			</Stack>
 
 			<Divider />
-			<Grid container spacing={0} width={"100%"} padding={0} m={0}>
-				{propertyData.map((data, key) => {
+			<Grid container spacing={2} width={"100%"} mt={0.5}>
+				{propertyData.slice(0, 9).map((data, key) => {
 					return (
-						<Grid item xs={12} sm={6} md={4}>
-							<PropertyCard data={data} key={key} />
+						<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+							<PropertyCard data={data} />
 						</Grid>
 					);
 				})}
