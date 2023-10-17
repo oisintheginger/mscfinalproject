@@ -11,7 +11,7 @@ function PageSection({
 			<Typography variant="h2">{sectionTitle}</Typography>
 			<Divider />
 			<Box
-				minHeight={100}
+				minHeight={50}
 				sx={{
 					backgroundColor: background ? "darkWhite.main" : null,
 					mt: 0.5,

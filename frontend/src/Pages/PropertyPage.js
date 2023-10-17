@@ -179,47 +179,7 @@ function PropertyPage() {
 							<PageSection background={false} sectionTitle="Map View" id="map">
 								<PropertyDetailMap center={[39.2904, -76.6122]} />
 							</PageSection>
-							{down && (
-								<PageSection background={false} sectionTitle="Ready to Apply?">
-									<Button
-										variant="outlined"
-										sx={{
-											backgroundColor: "darkTeal.main",
 
-											"&:hover": {
-												backgroundColor: "buttonHover.main",
-												color: "darkWhite.main",
-											},
-											marginRight: 2,
-											height: 50,
-										}}
-										endIcon={<ApplicationIcon />}
-									>
-										Apply Now
-									</Button>
-									<Button
-										variant="outlined"
-										sx={{
-											backgroundColor: "white",
-											color: "darkTeal.main",
-											borderColor: "darkTeal.main",
-											borderWidth: 1,
-
-											"&:hover": {
-												backgroundColor: "darkWhite.main",
-												color: "darkTeal.main",
-												borderColor: "darkTeal.main",
-												borderWidth: 1,
-											},
-											marginRight: 2,
-											height: 50,
-										}}
-										endIcon={<FavoriteIcon />}
-									>
-										Favorite
-									</Button>
-								</PageSection>
-							)}
 							<PageSection background={false} sectionTitle="Contact">
 								<Stack
 									paddingLeft={1}
@@ -247,6 +207,55 @@ function PropertyPage() {
 									</Stack>
 								</Stack>
 							</PageSection>
+							{down && (
+								<PageSection background={false} sectionTitle="Ready to Apply?">
+									<Stack
+										spacing={1}
+										width={"100%"}
+										direction={{ xs: "column", sm: "row" }}
+									>
+										<Button
+											variant="outlined"
+											sx={{
+												backgroundColor: "darkTeal.main",
+
+												"&:hover": {
+													backgroundColor: "buttonHover.main",
+													color: "darkWhite.main",
+												},
+												marginRight: 2,
+												height: 50,
+											}}
+											endIcon={<ApplicationIcon />}
+											fullWidth
+										>
+											Apply Now
+										</Button>
+										<Button
+											variant="outlined"
+											sx={{
+												backgroundColor: "white",
+												color: "darkTeal.main",
+												borderColor: "darkTeal.main",
+												borderWidth: 1,
+
+												"&:hover": {
+													backgroundColor: "darkWhite.main",
+													color: "darkTeal.main",
+													borderColor: "darkTeal.main",
+													borderWidth: 1,
+												},
+												marginRight: 2,
+												height: 50,
+											}}
+											endIcon={<FavoriteIcon />}
+											fullWidth
+										>
+											Favorite
+										</Button>
+									</Stack>
+								</PageSection>
+							)}
 						</Stack>
 					</Box>
 				</Box>
