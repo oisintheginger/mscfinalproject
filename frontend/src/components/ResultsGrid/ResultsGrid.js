@@ -11,13 +11,17 @@ import {
 import { SortIcon } from "../../Icons/HMEIcons";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-function ResultGrid({ propertyData }) {
+function ResultGrid({
+	propertyData,
+	displayTitle = "RESULTS IN THIS AREA",
+	id = null,
+}) {
 	const theme = useTheme();
 
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 
 	return (
-		<Box m={0}>
+		<Box m={0} id={id}>
 			<Stack
 				direction={"row"}
 				alignItems={"flex-end"}
@@ -26,9 +30,7 @@ function ResultGrid({ propertyData }) {
 				pl={0}
 				pr={1}
 			>
-				<Typography variant="h2">
-					{above ? "RESULTS IN THIS AREA" : "RESULTS"}
-				</Typography>
+				<Typography variant="h2">{above ? displayTitle : "RESULTS"}</Typography>
 				<Button
 					variant="outlined"
 					color="darkTeal"

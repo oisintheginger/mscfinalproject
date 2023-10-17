@@ -36,7 +36,7 @@ function Favorites() {
 				)}
 			</Button>
 			<FilterFields filtersOpen={filtersOpen} filtersSubmit={filterSubmit} />
-			<ResultsGrid propertyData={propertyData} />
+			<ResultsGrid propertyData={propertyData} displayTitle="RESULTS" />
 		</PageTemplate>
 	);
 }
