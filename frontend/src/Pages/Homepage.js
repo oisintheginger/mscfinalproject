@@ -2,16 +2,24 @@ import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCa
 import {
 	Box,
 	Container,
-	Divider,
 	Grid,
 	Stack,
 	Typography,
 	TextField,
 } from "@mui/material";
-import LandingPageImage from "./../Icons/LandingPageImage.png";
+import { useForm } from "react-hook-form";
+
+import { useNavigate } from "react-router";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 function Homepage() {
+	const navigator = useNavigate();
+	const { register, handleSubmit } = useForm();
+	const navigateToBrowse = (data) => {
+		navigator(
+			navigator({ pathname: "browse", search: "location=" + data.location })
+		);
+	};
 	return (
 		<>
 			<Stack direction={"column"} spacing={1} mt={10} alignItems={"center"}>
@@ -20,7 +28,14 @@ function Homepage() {
 						HOUSING MADE EASY
 					</Typography>
 				</Box>
-				<Box width={"100%"} mb={1} display={"flex"} justifyContent={"center"}>
+				<Box
+					width={"100%"}
+					mb={1}
+					display={"flex"}
+					justifyContent={"center"}
+					component={"form"}
+					onSubmit={handleSubmit(navigateToBrowse)}
+				>
 					<TextField
 						variant="outlined"
 						type="search"
@@ -45,6 +60,7 @@ function Homepage() {
 						}}
 						color="darkTeal"
 						placeholder="Search here for your new home"
+						{...register("location", { required: true })}
 					/>
 				</Box>
 			</Stack>

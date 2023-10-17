@@ -7,6 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import ResultsGrid from "../components/ResultsGrid/ResultsGrid";
+import { useForm, FormProvider } from "react-hook-form";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 
@@ -15,6 +16,17 @@ function Favorites() {
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 	const [filtersOpen, setFiltersOpen] = useState(false);
 	const filterSubmit = (event) => {};
+	const methods = useForm({
+		defaultValues: {
+			minPrice: 0,
+			maxPrice: 5000,
+			bedroomCount: null,
+			bathroomCount: null,
+			includeHouse: true,
+			includeFlatApartmentCondo: true,
+			includeTownhouse: true,
+		},
+	});
 
 	return (
 		<PageTemplate pageTitle="My Favorites" currPageBreadcrumb={"My Favorites"}>
@@ -35,7 +47,9 @@ function Favorites() {
 					</Typography>
 				)}
 			</Button>
-			<FilterFields filtersOpen={filtersOpen} filtersSubmit={filterSubmit} />
+			<FormProvider {...methods}>
+				<FilterFields filtersOpen={filtersOpen} />
+			</FormProvider>
 			<ResultsGrid propertyData={propertyData} displayTitle="RESULTS" />
 		</PageTemplate>
 	);

@@ -15,10 +15,31 @@ import Pagination from "@mui/material/Pagination";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 
+import { useForm, FormProvider } from "react-hook-form";
+
 function Browse() {
+	const methods = useForm({
+		defaultValues: {
+			minPrice: 0,
+			maxPrice: 5000,
+			bedroomCount: null,
+			bathroomCount: null,
+			includeHouse: true,
+			includeFlatApartmentCondo: true,
+			includeTownhouse: true,
+		},
+	});
+
+	const BrowsingFilterSubmitHandler = (data) => {
+		console.log(data);
+	};
+	methods.customSubmitBehavior = BrowsingFilterSubmitHandler;
+
 	return (
 		<PageTemplate pageTitle="Browse" currPageBreadcrumb={"Browse"}>
-			<SearchAndFilters />
+			<FormProvider {...methods}>
+				<SearchAndFilters secondarySubmitFunc={BrowsingFilterSubmitHandler} />
+			</FormProvider>
 			<Divider />
 			<ListMap>
 				<LeafletMap />
