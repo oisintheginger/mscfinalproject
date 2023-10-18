@@ -68,6 +68,15 @@ const theme = createTheme({
 				color: fontDark,
 			},
 		},
+
+		MuiFormLabel: {
+			styleOverrides: {
+				root: {
+					color: "greyDark.main",
+					fontWeight: 600,
+				},
+			},
+		},
 	},
 });
 

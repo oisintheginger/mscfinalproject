@@ -12,27 +12,38 @@ import ListMap from "../components/ListMapToggle/ListMap";
 import LeafletMap from "../components/MapComponent/LeafletMap";
 import ResultGrid from "../components/ResultsGrid/ResultsGrid";
 import Pagination from "@mui/material/Pagination";
+import {
+	MIN_PRICE,
+	MAX_PRICE,
+	BEDROOM_COUNT,
+	BATHROOM_COUNT,
+	SHOW_FLAT,
+	SHOW_HOUSES,
+	SHOW_TOWNHOUSE,
+} from "../Utils/filter_constants";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 
 import { useForm, FormProvider } from "react-hook-form";
+import { useState } from "react";
 
 function Browse() {
 	const methods = useForm({
 		defaultValues: {
-			minPrice: 0,
-			maxPrice: 5000,
-			bedroomCount: null,
-			bathroomCount: null,
-			includeHouse: true,
-			includeFlatApartmentCondo: true,
-			includeTownhouse: true,
+			[`${MIN_PRICE}`]: 1,
+			[`${MAX_PRICE}`]: 10000,
+			[`${BEDROOM_COUNT}`]: null,
+			[`${BATHROOM_COUNT}`]: null,
+			[`${SHOW_FLAT}`]: null,
+			[`${SHOW_HOUSES}`]: null,
+			[`${SHOW_TOWNHOUSE}`]: null,
 		},
 	});
 
 	const BrowsingFilterSubmitHandler = (data) => {
 		console.log(data);
 	};
+
 	methods.customSubmitBehavior = BrowsingFilterSubmitHandler;
 
 	return (

@@ -1,18 +1,4 @@
-import {
-	Box,
-	TextField,
-	Typography,
-	Paper,
-	ButtonGroup,
-	Collapse,
-	Stack,
-	FormControl,
-	FormControlLabel,
-	FormGroup,
-	Slider,
-	Checkbox,
-	Divider,
-} from "@mui/material";
+import { Box, TextField, Typography, ButtonGroup, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
 import { BookmarkIcon, FilterIcon } from "../../Icons/HMEIcons";
@@ -22,13 +8,22 @@ import { useState } from "react";
 import ActiveTag from "../ActiveTag/ActiveTag";
 import FilterFields from "../CommonComp/FilterFields/FilterFields";
 
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
+import {
+	BATHROOM_COUNT,
+	BEDROOM_COUNT,
+	MAX_PRICE,
+	MIN_PRICE,
+	SEARCH_TERM,
+	SHOW_FLAT,
+	SHOW_HOUSES,
+	SHOW_TOWNHOUSE,
+} from "../../Utils/filter_constants";
 
 function SearchAndFilters({ secondarySubmitFunc = () => {} }) {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 	const methods = useFormContext();
-
 	const [filtersOpen, setFiltersOpen] = useState(false);
 	return (
 		<Box sx={{ width: "100%", flexGrow: 1, height: "max-content" }}>
@@ -52,7 +47,7 @@ function SearchAndFilters({ secondarySubmitFunc = () => {} }) {
 							sx={{ width: "100%", height: "fit-content" }}
 							color="darkTeal"
 							InputProps={{ height: "40px" }}
-							{...methods.register("searchTerm", {})}
+							{...methods.register(SEARCH_TERM, {})}
 						/>
 					</Grid>
 					<Grid xs={12} md={4}>
@@ -96,24 +91,52 @@ function SearchAndFilters({ secondarySubmitFunc = () => {} }) {
 				</Grid>
 				<FilterFields filtersOpen={filtersOpen} />
 			</Box>
-			<Stack
-				direction={"row"}
-				flexWrap={"wrap"}
-				justifyContent={"flex-start"}
-				useFlexGap
-				spacing={1}
-			>
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-				<ActiveTag tagName={"Beds"} tagCount={"1"} />
-			</Stack>
+			{methods.formState.isSubmitted && (
+				<Stack
+					direction={"row"}
+					flexWrap={"wrap"}
+					justifyContent={"flex-start"}
+					useFlexGap
+					spacing={1}
+				>
+					{methods.formState.dirtyFields[MIN_PRICE] && (
+						<ActiveTag
+							tagName={MIN_PRICE}
+							tagVal={methods.getValues(MIN_PRICE)}
+						/>
+					)}
+					{methods.formState.dirtyFields[MAX_PRICE] && (
+						<ActiveTag
+							tagName={MAX_PRICE}
+							tagVal={methods.getValues(MAX_PRICE)}
+						/>
+					)}
+					{methods.formState.dirtyFields[BEDROOM_COUNT] && (
+						<ActiveTag
+							tagName={BEDROOM_COUNT}
+							tagVal={methods.getValues(BEDROOM_COUNT)}
+						/>
+					)}
+					{methods.formState.dirtyFields[BATHROOM_COUNT] && (
+						<ActiveTag
+							tagName={BATHROOM_COUNT}
+							tagVal={methods.getValues(BATHROOM_COUNT)}
+						/>
+					)}
+					{methods.formState.dirtyFields[SHOW_HOUSES] &&
+						methods.getValues(SHOW_HOUSES) == true && (
+							<ActiveTag tagName={"Houses"} />
+						)}
+					{methods.formState.dirtyFields[SHOW_FLAT] &&
+						methods.getValues(SHOW_FLAT) == true && (
+							<ActiveTag tagName={"Flats/Condos/Apartments"} />
+						)}
+					{methods.formState.dirtyFields[SHOW_TOWNHOUSE] &&
+						methods.getValues(SHOW_TOWNHOUSE) == true && (
+							<ActiveTag tagName={"Townhouse"} />
+						)}
+				</Stack>
+			)}
 		</Box>
 	);
 }

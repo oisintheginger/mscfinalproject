@@ -1,13 +1,22 @@
 import FilterFields from "../components/CommonComp/FilterFields/FilterFields";
 import PageTemplate from "./PageTemplate";
 import { FilterIcon } from "../Icons/HMEIcons";
-import { Button, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Button, Typography, Stack } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import ResultsGrid from "../components/ResultsGrid/ResultsGrid";
+import ActiveTag from "../components/ActiveTag/ActiveTag";
 import { useForm, FormProvider } from "react-hook-form";
+import {
+	MIN_PRICE,
+	MAX_PRICE,
+	BEDROOM_COUNT,
+	BATHROOM_COUNT,
+	SHOW_FLAT,
+	SHOW_HOUSES,
+	SHOW_TOWNHOUSE,
+} from "../Utils/filter_constants";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 
@@ -18,13 +27,13 @@ function Favorites() {
 	const filterSubmit = (event) => {};
 	const methods = useForm({
 		defaultValues: {
-			minPrice: 0,
-			maxPrice: 5000,
-			bedroomCount: null,
-			bathroomCount: null,
-			includeHouse: true,
-			includeFlatApartmentCondo: true,
-			includeTownhouse: true,
+			[`${MIN_PRICE}`]: 1,
+			[`${MAX_PRICE}`]: 10000,
+			[`${BEDROOM_COUNT}`]: null,
+			[`${BATHROOM_COUNT}`]: null,
+			[`${SHOW_FLAT}`]: null,
+			[`${SHOW_HOUSES}`]: null,
+			[`${SHOW_TOWNHOUSE}`]: null,
 		},
 	});
 
@@ -49,6 +58,52 @@ function Favorites() {
 			</Button>
 			<FormProvider {...methods}>
 				<FilterFields filtersOpen={filtersOpen} />
+				{methods.formState.isSubmitted && (
+					<Stack
+						direction={"row"}
+						flexWrap={"wrap"}
+						justifyContent={"flex-start"}
+						useFlexGap
+						spacing={1}
+					>
+						{methods.formState.dirtyFields[MIN_PRICE] && (
+							<ActiveTag
+								tagName={MIN_PRICE}
+								tagVal={methods.getValues(MIN_PRICE)}
+							/>
+						)}
+						{methods.formState.dirtyFields[MAX_PRICE] && (
+							<ActiveTag
+								tagName={MAX_PRICE}
+								tagVal={methods.getValues(MAX_PRICE)}
+							/>
+						)}
+						{methods.formState.dirtyFields[BEDROOM_COUNT] && (
+							<ActiveTag
+								tagName={BEDROOM_COUNT}
+								tagVal={methods.getValues(BEDROOM_COUNT)}
+							/>
+						)}
+						{methods.formState.dirtyFields[BATHROOM_COUNT] && (
+							<ActiveTag
+								tagName={BATHROOM_COUNT}
+								tagVal={methods.getValues(BATHROOM_COUNT)}
+							/>
+						)}
+						{methods.formState.dirtyFields[SHOW_HOUSES] &&
+							methods.getValues(SHOW_HOUSES) == true && (
+								<ActiveTag tagName={"Houses"} />
+							)}
+						{methods.formState.dirtyFields[SHOW_FLAT] &&
+							methods.getValues(SHOW_FLAT) == true && (
+								<ActiveTag tagName={"Flats/Condos/Apartments"} />
+							)}
+						{methods.formState.dirtyFields[SHOW_TOWNHOUSE] &&
+							methods.getValues(SHOW_TOWNHOUSE) == true && (
+								<ActiveTag tagName={"Townhouse"} />
+							)}
+					</Stack>
+				)}
 			</FormProvider>
 			<ResultsGrid propertyData={propertyData} displayTitle="RESULTS" />
 		</PageTemplate>
