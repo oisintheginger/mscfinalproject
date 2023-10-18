@@ -32,14 +32,14 @@ public class DetailedProperty {
     @JsonProperty
     private LocalDate datePosted;
     @JsonProperty
-    private float TBDScore;
+    private double TBDScore;
     @JsonProperty
     private String[] images;
     // private String atAGlanceFacts; maybe use a structured object or Map instead of a raw JSON string
 
     public DetailedProperty() {}
 
-    public DetailedProperty(int propertyId, double price, int bedrooms, int bathrooms, String propertyType, String address, String zipcode, String longitude, String latitude, String description, boolean petsAllowed, LocalDate lastUpdated, LocalDate datePosted, float TBDScore, String[] images) {
+    public DetailedProperty(int propertyId, double price, int bedrooms, int bathrooms, String propertyType, String address, String zipcode, String longitude, String latitude, String description, boolean petsAllowed, LocalDate lastUpdated, LocalDate datePosted, double TBDScore, String[] images) {
         this.propertyId = propertyId;
         this.price = price;
         this.bedrooms = bedrooms;
@@ -161,11 +161,11 @@ public class DetailedProperty {
         this.datePosted = datePosted;
     }
 
-    public float getTBDScore() {
+    public double getTBDScore() {
         return TBDScore;
     }
 
-    public void setTBDScore(float TBDScore) {
+    public void setTBDScore(double TBDScore) {
         this.TBDScore = TBDScore;
     }
 

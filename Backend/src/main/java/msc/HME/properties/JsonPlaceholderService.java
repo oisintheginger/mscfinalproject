@@ -72,7 +72,7 @@ public class JsonPlaceholderService {
         LocalDate posted = randomPastDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Date randomDate = faker.date().past(60, TimeUnit.DAYS);
         LocalDate updated = randomDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        float score = faker.random().nextInt(0,10);
+        double score = faker.number().randomDouble(1, 0, 10);
         return new DetailedProperty(id, price, bed, bath, type, address, zipcode, longitude, latitude, description, true, posted, updated, score, images);
     }
 
