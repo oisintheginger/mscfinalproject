@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception e) {
         // Optionally log the exception
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body( e +"occurred.");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
 
     }
 }
