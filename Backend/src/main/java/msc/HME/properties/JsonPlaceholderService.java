@@ -24,8 +24,8 @@ public class JsonPlaceholderService {
             tags.add("example3");
             String address = faker.address().fullAddress();
 //            String image = ;
-//            String description = ;
-            QuickViewProperty property = new QuickViewProperty(id, longitude, latitude, price, tags, address);
+            String description = faker.lorem().paragraph();
+            QuickViewProperty property = new QuickViewProperty(id, longitude, latitude, price, tags, address, description);
             properties.add(property);
         }
 

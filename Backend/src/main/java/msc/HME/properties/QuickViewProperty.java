@@ -2,7 +2,10 @@ package msc.HME.properties;
 
 import java.util.List;
 
-public record QuickViewProperty(long propertyId, String longitude, String latitude, double price, List<String> tags,
-                                String address) {
-//TO DO: String image, String description
+public class QuickViewProperty {
+    //TO DO: String image
+    public QuickViewProperty() {}
+    public QuickViewProperty(long propertyId, String longitude, String latitude, double price, List<String> tags, String address, String description) {
+    };
+
 }
