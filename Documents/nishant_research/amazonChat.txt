@@ -1,0 +1,119 @@
+Correspondence
+Reply
+HMEDeploymentAccount
+
+
+Thu Oct 12 2023
+16:37:20 GMT+0100 (British Summer Time)
+I thought all the charges done would be removed, I tried checking billing again, and I am being charged, my RDS is not running anymore, andres helped me suspend all payment services.
+
+Amazon Web Services
+
+
+Tue Oct 10 2023
+19:47:32 GMT+0100 (British Summer Time)
+Was this response helpful? Click here to rate:
+
+
+Translate
+Hello there,
+
+Andres here from AWS Billing & Accounts Support Team. I appreciate your patience!
+
+I’m pleased to inform you that we’ve approved a billing adjustment for the charges on your October bill, which has been applied as a credit of 480 USD to your account. This credit will automatically apply towards this month’s usage and can be referenced in your Account and Billing Console here: https://console.aws.amazon.com/billing/home#/credits .
+
+I sincerely hope that this resolution is of your satisfaction and that the service I provided has met or gone beyond your expectations, nevertheless if there is anything else that I can do for you, please feel free to reply to this message, remember we are here 24/7 to assist you in the best way possible.
+
+Have an awesome rest of the day. 
+
+We value your feedback. Please share your experience by rating this and other correspondences in the AWS Support Center. You can rate a correspondence by selecting the stars in the top right corner of the correspondence.
+
+Best regards,
+Andres
+Amazon Web Services
+
+Amazon Web Services
+
+
+Mon Oct 09 2023
+19:01:55 GMT+0100 (British Summer Time)
+Was this response helpful? Click here to rate:
+
+
+Translate
+Hello there,
+
+Andres here from AWS Billing & Accounts Support Team. It was a pleasure to assist you today!
+
+As we discussed over our chat conversation, please note the billing console is not updated in real time, so wee need to give it time to reflect the current billing details. Because of this I will be monitoring your account for the next 24 hours until the bill settles so I can issue an accurate adjustment for the full amount charged this month. 
+
+Once I've applied the adjustment I will let you thong through the same support case that you opened.
+
+And for more information about using the Free Tier, please see the links below:
+
+https://aws.amazon.com/free/ 
+https://amzn.to/2qY2XVC 
+
+I'll be in touch with you soon!
+
+We value your feedback. Please share your experience by rating this and other correspondences in the AWS Support Center. You can rate a correspondence by selecting the stars in the top right corner of the correspondence.
+
+Best regards,
+Andres
+Amazon Web Services
+
+HMEDeploymentAccount
+
+
+Mon Oct 09 2023
+18:13:41 GMT+0100 (British Summer Time)
+05:14:43 PM Andres: Hello, my name is Andres and I am here to assist you today. While I review your case details, would you please share your name with me?
+05:15:00 PM Customer: Hi my name is HME Project
+05:15:26 PM Andres: Thanks! Please allow me a moment to review your account!
+05:20:09 PM Andres: I see you would like to request a billing adjustment for the charges generated this month. I'll be glad to assist you with this request. Allow me a minute to make sure all resources not included in the Free Tier have been terminated
+05:24:09 PM Customer: can you help me terminate
+05:24:14 PM Customer: the resouces that are being charged
+05:25:30 PM Andres: I can see the RDS resources are in the progress of termination already, however I also see there are Elasticache resources generating charges. To terminate them please follow the instructions bellow:
+https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Delete.html 
+05:28:53 PM Customer: i think i am deleting it
+05:28:55 PM Customer: can you see it
+05:29:51 PM Andres: Let me check
+05:33:50 PM Customer: is there a way i can set up to alert me if anything goes above 1$
+05:33:59 PM Andres: I see they are in the process of deletion, lets wait a moment to confirm the full deletion
+05:34:46 PM Andres: Yes, actually the next step to request a billing adjustment is to set up a preventative measure to ensure this doesn't happen again. Please add a billing budget to continue with the adjustment request:
+https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html 
+05:35:17 PM Andres: Also, for a better track of the charges, please enable Cost Explorer:
+https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html 
+05:41:11 PM Customer: let me do tht
+05:42:02 PM Andres: I can confirm the deletion of the billable resources! Just let me know once you have added the budget and enabled Cost Explorer
+05:43:16 PM Customer: Welcome to AWS Cost Management
+Since this is your first visit, it will take some time to prepare your cost and usage data. Check back in 24 hours.
+
+
+05:43:19 PM Customer: i see this on cost explorer
+05:43:32 PM Customer: i think i did zero budget enabled in budget
+05:48:24 PM Andres: Excellent! I can see the budget and Cost explorer enabled. With this we can now move with the adjustment.
+However please note the billing console is not updated in real time, so wee need to give it time to reflect the current billing details. Because of this I will be monitoring your account for ther next 24 hours until the bill settles so I can issue an accurate adjustment for the full amount charged this month. Once i've applied the adjustment I will let you thong through the same support case that you opened
+05:49:04 PM Andres: Do you have any questions in the meantime? 
+05:49:06 PM Customer: Good thanks a lot andres!
+05:49:09 PM Customer: I have a question.
+05:49:19 PM Customer: the Zero budget will not let me exceed the limit right
+05:51:49 PM Andres: The budget will notify you if the limit is exceed, but it wont stop the resources, that will need to be done manually. If you want to prevent charges altogether, you can also review the service you wish to use on the Free Tier website (https://aws.com/free ) to check which are the included resources for any given service, as well as the covered amount
+05:54:08 PM Customer: Thanks Andres, that will be done! as long as I dont get charged is fine after I get notified i can stop the future instances
+05:54:56 PM Andres: Excellent! In that case I will be in touch with you soon with the billing adjustment. Hope you have a great day ahead!
+05:55:01 PM Andres: Feel free to close this chat window.
+
+HMEDeploymentAccount
+
+
+Mon Oct 09 2023
+18:13:38 GMT+0100 (British Summer Time)
+Hi AWS, I am currently under a free tier. I am a university student using AWS for educational purposes, I was using the aurora service for my database as it was propiertary of AWS, wanted to explore and use it. Nevertheless, I was not able to even connect to my instance, and was looking for resources to try and connect, but Then I came to a a website that advices to not use Aurora on free Tier, as it cna incur charges, my charges are now above 500$, and as a student, I am not able to pay that. And I am unhappy with how everything is withing AWS, if I have free tier, why am I accessed to use the charged services, and why are there no kind of disclaimer saying what is charged or what is not.
+
+Can you help me get rid of this charge as I wont be able to pay it being a student. 
+
+And can you help me set billing alerts.
+Name of the Service: Aurora Database, ElastiCache
+Invoice ID: NA
+Total Amount: NA
+Time Frame( in Days, Weeks and Months): NA
