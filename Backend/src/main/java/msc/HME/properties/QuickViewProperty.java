@@ -4,9 +4,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class QuickViewProperty {
-
+    // TO DO: String image
     @JsonProperty
-    private long propertyId;
+    private int propertyId;
 
     @JsonProperty
     private String longitude;
@@ -30,7 +30,7 @@ public class QuickViewProperty {
     public QuickViewProperty() {}
 
     // Parameterized constructor
-    public QuickViewProperty(long propertyId, String longitude, String latitude, double price, List<String> tags, String address, String description) {
+    public QuickViewProperty(int propertyId, String longitude, String latitude, double price, List<String> tags, String address, String description) {
         this.propertyId = propertyId;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -46,7 +46,7 @@ public class QuickViewProperty {
         return propertyId;
     }
 
-    public void setPropertyId(long propertyId) {
+    public void setPropertyId(int propertyId) {
         this.propertyId = propertyId;
     }
 
