@@ -100,38 +100,46 @@ Stephen: Gathering the businesses dataset around the properties
 
 ## Week 4: 09/10/2023
 
+### Team Members:
+1. Nishant
+2. Sean
+3. Stephen
+4. Charlotte
+5. Fenna
+6. Oisin
+
 ### What Went Well:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: We have overcome some issues with AWS billing, and google api issues.
+- Sean: We managed to collect the neighbourhood data using the google API, crucial for listing nearby services. We put significant time into planning our database structure and addressing various data related challenges, this work improved the quality and organisation of our datasets.
+- Stephen: We were able to start extracting businesses data using the now working Google Places API
+- Charlotte: frontend development starting to take shape quite quickly, the backend is now rigged up.
+- Fenna: planning and communication on how to connect the parts was efficient and quick. Frontend development made big strides this week. 
+- Oisin: The coding for the frontend layout went pretty quickly. Backend deployment by Fenna was good. 
 
 ### What Could Be Improved:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: Before deploying anything on AWS, we need to check if it is included in the free tier.
+- Sean: Each member of the team could go into a little bit more depth on how the things they’ve been doing work. This would include how their code and algorithms were put together, how their design and thought process was carried out, and how they integrated third party software to function with the project.
+- Stephen: Consistent updates for all team members on Github
+- Charlotte: Communication between frontend devs. I also don’t have much of an understanding on the database side of things, so better communication with them is needed.
+- Fenna: Communication between software and data science groups. 
+- Oisin: N/A
 
 
 ### Action Items for Next Week:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: Database should be created, communication with the back end is needed to connect all the resources.
+- Sean: A little bit more feature engineering needs to be done. And finally the database schema needs to be put together and completed.
+- Stephen: Looking through extracted businesses data and planning how to create the database for it
+- Charlotte: Start to hook up backend to frontend and start interim report.
+- Fenna: Alongside development, start on the interim report. 
+- Oisin: Beginning to hook up the backend to the frontend
 
 ### Additional Comments:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: N/A
+- Sean: If we could plan out our show and tells a little bit more as a team that would be beneficial
+- Stephen: I think we need to improve how quick we move to our next task after finishing off one
+- Charlotte: Splitting the workload between the frontend devs feels a bit uneven at times, better communication would solve these issues.
+- Fenna: To me it feels like we’re missing a bit of direction and efficiency at times. Especially considering the interim presentation and report are less than 2 weeks away. 
+- Oisin: N/A
 
 
 ---
