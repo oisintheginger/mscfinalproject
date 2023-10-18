@@ -12,21 +12,13 @@ import ListMap from "../components/ListMapToggle/ListMap";
 import LeafletMap from "../components/MapComponent/LeafletMap";
 import ResultGrid from "../components/ResultsGrid/ResultsGrid";
 import Pagination from "@mui/material/Pagination";
-import {
-	MIN_PRICE,
-	MAX_PRICE,
-	BEDROOM_COUNT,
-	BATHROOM_COUNT,
-	SHOW_FLAT,
-	SHOW_HOUSES,
-	SHOW_TOWNHOUSE,
-	DEFAULT_FIELD_VALUES,
-} from "../Utils/filter_constants";
+import { DEFAULT_FIELD_VALUES, SEARCH_TERM } from "../Utils/filter_constants";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 
 import { useForm, FormProvider } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 function Browse() {
 	const methods = useForm({
@@ -37,6 +29,16 @@ function Browse() {
 	const BrowsingFilterSubmitHandler = (data) => {
 		methods.reset({}, { keepValues: true });
 	};
+
+	const location = useLocation();
+
+	useEffect(() => {
+		const searchParams = new URLSearchParams(location.search);
+		if (searchParams.has("searchString")) {
+			methods.setValue("Search Term", searchParams.get("searchString"));
+		}
+	}, []);
+
 	useEffect(() => {
 		console.log(methods.formState.isDirty);
 	}, [methods.formState.isDirty]);

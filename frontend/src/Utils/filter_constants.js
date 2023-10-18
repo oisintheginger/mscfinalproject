@@ -8,6 +8,7 @@ export const SHOW_FLAT = "Flats/Apartments/Condos";
 export const SHOW_TOWNHOUSE = "Townhouses";
 
 export const DEFAULT_FIELD_VALUES = {
+	[`${SEARCH_TERM}`]: null,
 	[`${MIN_PRICE}`]: 1,
 	[`${MAX_PRICE}`]: 10000,
 	[`${BEDROOM_COUNT}`]: 1,

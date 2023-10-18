@@ -17,7 +17,10 @@ function Homepage() {
 	const { register, handleSubmit } = useForm();
 	const navigateToBrowse = (data) => {
 		navigator(
-			navigator({ pathname: "browse", search: "location=" + data.location })
+			navigator({
+				pathname: "browse",
+				search: "searchString=" + data.searchString,
+			})
 		);
 	};
 	return (
@@ -60,7 +63,7 @@ function Homepage() {
 						}}
 						color="darkTeal"
 						placeholder="Search here for your new home"
-						{...register("location", { required: true })}
+						{...register("searchString", { required: true })}
 					/>
 				</Box>
 			</Stack>
