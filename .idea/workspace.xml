@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/Backend_documentation/API structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Backend_documentation/API structure.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Frontend-landing" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,7 +48,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Fenna-research&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fenna__dev&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/fenna/OneDrive - Technological University Dublin/GP/mscfinalproject&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -61,11 +61,13 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\fenna\OneDrive - Technological University Dublin\GP\mscfinalproject\Documents\Backend_documentation" />
       <recent name="C:\Users\fenna\OneDrive - Technological University Dublin\GP\mscfinalproject\Documents\Fenna_Workspace\" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="mscfinalproject" />
       <method v="2">
@@ -79,6 +81,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -101,9 +108,11 @@
       <workItem from="1696435311332" duration="732000" />
       <workItem from="1696436199206" duration="32000" />
       <workItem from="1696586575326" duration="1123000" />
-      <workItem from="1696970184018" duration="350000" />
-      <workItem from="1697014645045" duration="1086000" />
-      <workItem from="1697031570031" duration="3513000" />
+      <workItem from="1697126241518" duration="96000" />
+      <workItem from="1697126669930" duration="8236000" />
+      <workItem from="1697451780659" duration="6000" />
+      <workItem from="1697451805455" duration="2683000" />
+      <workItem from="1697581026319" duration="36000" />
     </task>
     <servers />
   </component>
