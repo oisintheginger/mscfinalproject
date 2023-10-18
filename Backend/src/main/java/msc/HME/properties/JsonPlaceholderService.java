@@ -54,7 +54,7 @@ public class JsonPlaceholderService {
         int bed = faker.random().nextInt(1, 10);
         int bath = faker.random().nextInt(1, 10);
         String[] random = {"apartment", "townhouse", "house", "studio"};
-        String type = random[faker.random().nextInt(0,4)];
+        String type = random[faker.random().nextInt(0,3)];
         String address = faker.address().streetAddress();
         String zipcode = faker.address().zipCode();
         String[] images = {"https://photos.zillowstatic.com/fp/e3819b051b082ceecf67c8c86e47360f-p_e.jpg",

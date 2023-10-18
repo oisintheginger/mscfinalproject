@@ -4,7 +4,9 @@ import jakarta.annotation.PostConstruct;
 import msc.HME.properties.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.constraints.Positive;
+
+import javax.validation.constraints.Min;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,10 @@ public class PropertiesController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable @Positive Integer id) {
+    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable Integer id) {
+        if (id <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
         DetailedProperty property = jsonPlaceholderService.loadDetailedProperty(id);
         if (property == null) {
             return ResponseEntity.notFound().build();
