@@ -28,9 +28,19 @@ public class JsonPlaceholderService {
             tags.add("example2");
             tags.add("example3");
             String address = faker.address().fullAddress();
-            // String image = ;
+            String[] random = {"https://photos.zillowstatic.com/fp/e3819b051b082ceecf67c8c86e47360f-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/a7568313a2fe28ec2a0df7d516227dac-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/fc2da78a5219a7153981fdb1dd429e8e-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/01bb80ae9214483048c82a3b968377bb-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/a48bfc49573a605a3acb80effb402127-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/cf24caf418ad193c1e1006ccd9f9cf31-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/4fe48247d917a72c5fb2962345db2dc2-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/a5edf4d937f8e37d4a5e6ac736367f5f-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/4992183033f22c8a28c0d6a256b27cfd-p_e.jpg",
+                    "https://photos.zillowstatic.com/fp/f1a36cd4265001f7c86fe1ba38585183-p_e.jpg"};
+            String image = random[faker.random().nextInt(0,9)];
             String description = faker.lorem().paragraph();
-            QuickViewProperty property = new QuickViewProperty(id, longitude, latitude, price, tags, address, description);
+            QuickViewProperty property = new QuickViewProperty(id, longitude, latitude, price, tags, address, description, image);
             properties.add(property);
         }
 
@@ -47,14 +57,23 @@ public class JsonPlaceholderService {
         String type = random[faker.random().nextInt(0,4)];
         String address = faker.address().streetAddress();
         String zipcode = faker.address().zipCode();
-        // String image = ;
+        String[] images = {"https://photos.zillowstatic.com/fp/e3819b051b082ceecf67c8c86e47360f-p_e.jpg",
+        "https://photos.zillowstatic.com/fp/a7568313a2fe28ec2a0df7d516227dac-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/fc2da78a5219a7153981fdb1dd429e8e-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/01bb80ae9214483048c82a3b968377bb-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/a48bfc49573a605a3acb80effb402127-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/cf24caf418ad193c1e1006ccd9f9cf31-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/4fe48247d917a72c5fb2962345db2dc2-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/a5edf4d937f8e37d4a5e6ac736367f5f-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/4992183033f22c8a28c0d6a256b27cfd-p_e.jpg",
+                "https://photos.zillowstatic.com/fp/f1a36cd4265001f7c86fe1ba38585183-p_e.jpg"};
         String description = faker.lorem().paragraph(15);
         Date randomPastDate = faker.date().past(365, TimeUnit.DAYS);
         LocalDate posted = randomPastDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Date randomDate = faker.date().past(60, TimeUnit.DAYS);
         LocalDate updated = randomDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         float score = faker.random().nextInt(0,10);
-        return new DetailedProperty(id, price, bed, bath, type, address, zipcode, longitude, latitude, description, true, posted, updated, score);
+        return new DetailedProperty(id, price, bed, bath, type, address, zipcode, longitude, latitude, description, true, posted, updated, score, images);
     }
 
 }

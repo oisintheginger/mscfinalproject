@@ -26,11 +26,14 @@ public class QuickViewProperty {
     @JsonProperty
     private String description;
 
+    @JsonProperty
+    private String image;
+
     // Default constructor
     public QuickViewProperty() {}
 
     // Parameterized constructor
-    public QuickViewProperty(int propertyId, String longitude, String latitude, double price, List<String> tags, String address, String description) {
+    public QuickViewProperty(int propertyId, String longitude, String latitude, double price, List<String> tags, String address, String description, String image) {
         this.propertyId = propertyId;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -38,6 +41,7 @@ public class QuickViewProperty {
         this.tags = tags;
         this.address = address;
         this.description = description;
+        this.image = image;
     }
 
     // Getters and setters for each field...
@@ -96,5 +100,13 @@ public class QuickViewProperty {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

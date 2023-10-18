@@ -2,7 +2,6 @@
 package msc.HME.properties;
 
 import java.time.LocalDate;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DetailedProperty {
@@ -34,13 +33,13 @@ public class DetailedProperty {
     private LocalDate datePosted;
     @JsonProperty
     private float TBDScore;
-
-    // private List<String> images;
-    // private String atAGlanceFacts; //maybe use a structured object or Map instead of a raw JSON string
+    @JsonProperty
+    private String[] images;
+    // private String atAGlanceFacts; maybe use a structured object or Map instead of a raw JSON string
 
     public DetailedProperty() {}
 
-    public DetailedProperty(int propertyId, double price, int bedrooms, int bathrooms, String propertyType, String address, String zipcode, String longitude, String latitude, String description, boolean petsAllowed, LocalDate lastUpdated, LocalDate datePosted, float TBDScore) {
+    public DetailedProperty(int propertyId, double price, int bedrooms, int bathrooms, String propertyType, String address, String zipcode, String longitude, String latitude, String description, boolean petsAllowed, LocalDate lastUpdated, LocalDate datePosted, float TBDScore, String[] images) {
         this.propertyId = propertyId;
         this.price = price;
         this.bedrooms = bedrooms;
@@ -55,9 +54,8 @@ public class DetailedProperty {
         this.lastUpdated = lastUpdated;
         this.datePosted = datePosted;
         this.TBDScore = TBDScore;
+        this.images = images;
     }
-
-    // Getters, setters, hashCode, equals, and toString methods can be added below...
 
     public int getPropertyId() {
         return propertyId;
@@ -169,6 +167,14 @@ public class DetailedProperty {
 
     public void setTBDScore(float TBDScore) {
         this.TBDScore = TBDScore;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
     }
 }
 
