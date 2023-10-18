@@ -1,6 +1,6 @@
 export const MIN_PRICE = "Min Price";
 export const MAX_PRICE = "Max Price";
-export const SEARCH_TERM = "Search Term";
+export const SEARCH_TERM = "searchString";
 export const BEDROOM_COUNT = "Beds";
 export const BATHROOM_COUNT = "Bathrooms";
 export const SHOW_HOUSES = "Houses";

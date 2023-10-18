@@ -18,7 +18,7 @@ import { propertyData } from "../MockData/PropertyDataSample";
 
 import { useForm, FormProvider } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function Browse() {
 	const methods = useForm({
@@ -27,21 +27,24 @@ function Browse() {
 
 	const [filtersOpen, setFiltersOpen] = useState(false);
 	const BrowsingFilterSubmitHandler = (data) => {
+		Object.keys(data).forEach((key) => {
+			setSearchParameters((params) => {
+				params.set(key, methods.getValues(key));
+				return params;
+			});
+		});
 		methods.reset({}, { keepValues: true });
 	};
 
-	const location = useLocation();
+	const [searchParameters, setSearchParameters] = useSearchParams();
 
 	useEffect(() => {
-		const searchParams = new URLSearchParams(location.search);
-		if (searchParams.has("searchString")) {
-			methods.setValue("Search Term", searchParams.get("searchString"));
+		console.log(searchParameters);
+		if (searchParameters.has(SEARCH_TERM)) {
+			methods.setValue(SEARCH_TERM, searchParameters.get(SEARCH_TERM));
 		}
 	}, []);
 
-	useEffect(() => {
-		console.log(methods.formState.isDirty);
-	}, [methods.formState.isDirty]);
 	methods.customSubmitBehavior = BrowsingFilterSubmitHandler;
 
 	return (

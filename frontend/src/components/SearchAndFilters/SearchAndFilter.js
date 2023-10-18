@@ -52,14 +52,16 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 								}}
 								startIcon={<FilterIcon />}
 								onClick={(event) => {
+									if (filtersOpen) {
+										methods.handleSubmit(
+											methods.customSubmitBehavior
+												? methods.customSubmitBehavior
+												: () => {
+														console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+												  }
+										)(event);
+									}
 									setFiltersOpen((prev) => !prev);
-									methods.handleSubmit(
-										methods.customSubmitBehavior
-											? methods.customSubmitBehavior
-											: () => {
-													console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
-											  }
-									)(event);
 								}}
 							>
 								{above && (
