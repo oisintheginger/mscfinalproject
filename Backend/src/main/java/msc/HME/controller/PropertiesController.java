@@ -2,8 +2,9 @@ package msc.HME.controller;
 
 import jakarta.annotation.PostConstruct;
 import msc.HME.properties.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,21 +21,20 @@ public class PropertiesController {
     }
 
     @GetMapping
-    List<QuickViewProperty> findAll() {
-        return properties;
+    public ResponseEntity<List<QuickViewProperty>> findAll() {
+        return ResponseEntity.ok(properties);
     }
 
-    /*
-    TO DO:
     @GetMapping("/{id}")
-    Optional<QuickViewProperty> findById(@PathVariable Integer id) {
-        return Optional.ofNullable(posts
-                .stream()
-                .filter(property -> property.id().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new PropertyNotFoundException("Property with id: " + id + " not found.")));
+    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable @Min(1) Integer id) {
+        DetailedProperty property = jsonPlaceholderService.loadDetailedProperty(id);
+        if (property == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(property);
     }
-*/
+
+    // business logic to service layer -> refactoring
     @PostConstruct
     private void init() {
         if(properties.isEmpty()) {
