@@ -9,22 +9,13 @@ import ActiveTag from "../ActiveTag/ActiveTag";
 import FilterFields from "../CommonComp/FilterFields/FilterFields";
 
 import { useFormContext } from "react-hook-form";
-import {
-	BATHROOM_COUNT,
-	BEDROOM_COUNT,
-	MAX_PRICE,
-	MIN_PRICE,
-	SEARCH_TERM,
-	SHOW_FLAT,
-	SHOW_HOUSES,
-	SHOW_TOWNHOUSE,
-} from "../../Utils/filter_constants";
+import { SEARCH_TERM } from "../../Utils/filter_constants";
+import ActiveTagsStack from "../ActiveTag/ActiveTagsStack";
 
-function SearchAndFilters({ secondarySubmitFunc = () => {} }) {
+function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 	const methods = useFormContext();
-	const [filtersOpen, setFiltersOpen] = useState(false);
 	return (
 		<Box sx={{ width: "100%", flexGrow: 1, height: "max-content" }}>
 			<Box>
@@ -60,7 +51,16 @@ function SearchAndFilters({ secondarySubmitFunc = () => {} }) {
 									justifyContent: { xs: "center", sm: "start" },
 								}}
 								startIcon={<FilterIcon />}
-								onClick={() => setFiltersOpen((prev) => !prev)}
+								onClick={(event) => {
+									setFiltersOpen((prev) => !prev);
+									methods.handleSubmit(
+										methods.customSubmitBehavior
+											? methods.customSubmitBehavior
+											: () => {
+													console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+											  }
+									)(event);
+								}}
 							>
 								{above && (
 									<Typography variant="button" display={"block"}>
@@ -86,57 +86,13 @@ function SearchAndFilters({ secondarySubmitFunc = () => {} }) {
 							</Button>
 						</ButtonGroup>
 					</Grid>
-					<Grid xs={4} md={2} height={"100%"}></Grid>
-					<Grid xs={4} md={2} height={"100%"}></Grid>
 				</Grid>
-				<FilterFields filtersOpen={filtersOpen} />
+				<FilterFields
+					filtersOpen={filtersOpen}
+					setFiltersOpen={setFiltersOpen}
+				/>
 			</Box>
-			{methods.formState.isSubmitted && (
-				<Stack
-					direction={"row"}
-					flexWrap={"wrap"}
-					justifyContent={"flex-start"}
-					useFlexGap
-					spacing={1}
-				>
-					{methods.formState.dirtyFields[MIN_PRICE] && (
-						<ActiveTag
-							tagName={MIN_PRICE}
-							tagVal={methods.getValues(MIN_PRICE)}
-						/>
-					)}
-					{methods.formState.dirtyFields[MAX_PRICE] && (
-						<ActiveTag
-							tagName={MAX_PRICE}
-							tagVal={methods.getValues(MAX_PRICE)}
-						/>
-					)}
-					{methods.formState.dirtyFields[BEDROOM_COUNT] && (
-						<ActiveTag
-							tagName={BEDROOM_COUNT}
-							tagVal={methods.getValues(BEDROOM_COUNT)}
-						/>
-					)}
-					{methods.formState.dirtyFields[BATHROOM_COUNT] && (
-						<ActiveTag
-							tagName={BATHROOM_COUNT}
-							tagVal={methods.getValues(BATHROOM_COUNT)}
-						/>
-					)}
-					{methods.formState.dirtyFields[SHOW_HOUSES] &&
-						methods.getValues(SHOW_HOUSES) == true && (
-							<ActiveTag tagName={"Houses"} />
-						)}
-					{methods.formState.dirtyFields[SHOW_FLAT] &&
-						methods.getValues(SHOW_FLAT) == true && (
-							<ActiveTag tagName={"Flats/Condos/Apartments"} />
-						)}
-					{methods.formState.dirtyFields[SHOW_TOWNHOUSE] &&
-						methods.getValues(SHOW_TOWNHOUSE) == true && (
-							<ActiveTag tagName={"Townhouse"} />
-						)}
-				</Stack>
-			)}
+			<ActiveTagsStack filtersOpen={filtersOpen} />
 		</Box>
 	);
 }

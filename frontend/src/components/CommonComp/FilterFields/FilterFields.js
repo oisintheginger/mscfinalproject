@@ -24,7 +24,7 @@ import {
 	SHOW_HOUSES,
 	SHOW_TOWNHOUSE,
 } from "../../../Utils/filter_constants";
-function FilterFields({ filtersOpen }) {
+function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 	const methods = useFormContext();
 	return (
 		<Collapse in={filtersOpen}>
@@ -35,6 +35,7 @@ function FilterFields({ filtersOpen }) {
 				border={1}
 				borderRadius={1}
 				borderColor="lightTeal.main"
+				mt={1}
 				mb={8}
 			>
 				<Paper
@@ -82,8 +83,8 @@ function FilterFields({ filtersOpen }) {
 												min: 0,
 												onChange: () => {
 													methods.trigger();
-													if (methods.getValues(MIN_PRICE) < 0) {
-														methods.setValue(MIN_PRICE, 0);
+													if (methods.getValues(MIN_PRICE) < 1) {
+														methods.setValue(MIN_PRICE, 1);
 													}
 													if (
 														methods.getValues(MIN_PRICE) >
@@ -91,7 +92,7 @@ function FilterFields({ filtersOpen }) {
 													) {
 														methods.setValue(
 															MIN_PRICE,
-															methods.getValues(MAX_PRICE) - 1
+															methods.getValues(MAX_PRICE)
 														);
 													}
 												},
@@ -134,6 +135,7 @@ function FilterFields({ filtersOpen }) {
 								sx={{ color: "darkTeal.main" }}
 								min={1}
 								max={10}
+								defaultValue={1}
 								{...methods.register(BEDROOM_COUNT, { min: 1, max: 10 })}
 							/>
 							<Typography variant="overline" mt={3}>
@@ -146,6 +148,7 @@ function FilterFields({ filtersOpen }) {
 								step={1}
 								min={1}
 								max={10}
+								defaultValue={1}
 								marks
 								sx={{ color: "darkTeal.main" }}
 								{...methods.register(BATHROOM_COUNT, { min: 1, max: 10 })}
@@ -164,6 +167,7 @@ function FilterFields({ filtersOpen }) {
 													color: "darkTeal.main",
 												},
 											}}
+											defaultChecked
 										/>
 									}
 									label="House"
@@ -179,6 +183,7 @@ function FilterFields({ filtersOpen }) {
 													color: "darkTeal.main",
 												},
 											}}
+											defaultChecked
 										/>
 									}
 									label="Flat/Apartment/Condo"
@@ -194,6 +199,7 @@ function FilterFields({ filtersOpen }) {
 													color: "darkTeal.main",
 												},
 											}}
+											defaultChecked
 										/>
 									}
 									label="Townhouse"
@@ -224,13 +230,16 @@ function FilterFields({ filtersOpen }) {
 								sx={{
 									backgroundColor: "darkTeal.main",
 								}}
-								onClick={methods.handleSubmit(
-									methods.customSubmitBehavior
-										? methods.customSubmitBehavior
-										: () => {
-												console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
-										  }
-								)}
+								onClick={(event) => {
+									setFiltersOpen(false);
+									methods.handleSubmit(
+										methods.customSubmitBehavior
+											? methods.customSubmitBehavior
+											: () => {
+													console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+											  }
+									)(event);
+								}}
 							>
 								APPLY FILTERS
 							</ButtonStyled>

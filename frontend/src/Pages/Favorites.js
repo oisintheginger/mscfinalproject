@@ -16,6 +16,7 @@ import {
 	SHOW_FLAT,
 	SHOW_HOUSES,
 	SHOW_TOWNHOUSE,
+	DEFAULT_FIELD_VALUES,
 } from "../Utils/filter_constants";
 
 import { propertyData } from "../MockData/PropertyDataSample";
@@ -24,18 +25,14 @@ function Favorites() {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 	const [filtersOpen, setFiltersOpen] = useState(false);
-	const filterSubmit = (event) => {};
+	const filterSubmit = (event) => {
+		console.log(event);
+	};
 	const methods = useForm({
-		defaultValues: {
-			[`${MIN_PRICE}`]: 1,
-			[`${MAX_PRICE}`]: 10000,
-			[`${BEDROOM_COUNT}`]: null,
-			[`${BATHROOM_COUNT}`]: null,
-			[`${SHOW_FLAT}`]: null,
-			[`${SHOW_HOUSES}`]: null,
-			[`${SHOW_TOWNHOUSE}`]: null,
-		},
+		defaultValues: { ...DEFAULT_FIELD_VALUES },
 	});
+
+	methods.customSubmitBehavior = filterSubmit;
 
 	return (
 		<PageTemplate pageTitle="My Favorites" currPageBreadcrumb={"My Favorites"}>
@@ -48,7 +45,16 @@ function Favorites() {
 					maxWidth: { xs: "100%", sm: "100%", md: "30%" },
 				}}
 				startIcon={<FilterIcon />}
-				onClick={() => setFiltersOpen((prev) => !prev)}
+				onClick={(event) => {
+					setFiltersOpen((prev) => !prev);
+					methods.handleSubmit(
+						methods.customSubmitBehavior
+							? methods.customSubmitBehavior
+							: () => {
+									console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+							  }
+					)(event);
+				}}
 			>
 				{above && (
 					<Typography variant="button" display={"block"}>
@@ -58,52 +64,6 @@ function Favorites() {
 			</Button>
 			<FormProvider {...methods}>
 				<FilterFields filtersOpen={filtersOpen} />
-				{methods.formState.isSubmitted && (
-					<Stack
-						direction={"row"}
-						flexWrap={"wrap"}
-						justifyContent={"flex-start"}
-						useFlexGap
-						spacing={1}
-					>
-						{methods.formState.dirtyFields[MIN_PRICE] && (
-							<ActiveTag
-								tagName={MIN_PRICE}
-								tagVal={methods.getValues(MIN_PRICE)}
-							/>
-						)}
-						{methods.formState.dirtyFields[MAX_PRICE] && (
-							<ActiveTag
-								tagName={MAX_PRICE}
-								tagVal={methods.getValues(MAX_PRICE)}
-							/>
-						)}
-						{methods.formState.dirtyFields[BEDROOM_COUNT] && (
-							<ActiveTag
-								tagName={BEDROOM_COUNT}
-								tagVal={methods.getValues(BEDROOM_COUNT)}
-							/>
-						)}
-						{methods.formState.dirtyFields[BATHROOM_COUNT] && (
-							<ActiveTag
-								tagName={BATHROOM_COUNT}
-								tagVal={methods.getValues(BATHROOM_COUNT)}
-							/>
-						)}
-						{methods.formState.dirtyFields[SHOW_HOUSES] &&
-							methods.getValues(SHOW_HOUSES) == true && (
-								<ActiveTag tagName={"Houses"} />
-							)}
-						{methods.formState.dirtyFields[SHOW_FLAT] &&
-							methods.getValues(SHOW_FLAT) == true && (
-								<ActiveTag tagName={"Flats/Condos/Apartments"} />
-							)}
-						{methods.formState.dirtyFields[SHOW_TOWNHOUSE] &&
-							methods.getValues(SHOW_TOWNHOUSE) == true && (
-								<ActiveTag tagName={"Townhouse"} />
-							)}
-					</Stack>
-				)}
 			</FormProvider>
 			<ResultsGrid propertyData={propertyData} displayTitle="RESULTS" />
 		</PageTemplate>

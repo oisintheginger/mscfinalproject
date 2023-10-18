@@ -20,36 +20,35 @@ import {
 	SHOW_FLAT,
 	SHOW_HOUSES,
 	SHOW_TOWNHOUSE,
+	DEFAULT_FIELD_VALUES,
 } from "../Utils/filter_constants";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 
 import { useForm, FormProvider } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Browse() {
 	const methods = useForm({
-		defaultValues: {
-			[`${MIN_PRICE}`]: 1,
-			[`${MAX_PRICE}`]: 10000,
-			[`${BEDROOM_COUNT}`]: null,
-			[`${BATHROOM_COUNT}`]: null,
-			[`${SHOW_FLAT}`]: null,
-			[`${SHOW_HOUSES}`]: null,
-			[`${SHOW_TOWNHOUSE}`]: null,
-		},
+		defaultValues: { ...DEFAULT_FIELD_VALUES },
 	});
 
+	const [filtersOpen, setFiltersOpen] = useState(false);
 	const BrowsingFilterSubmitHandler = (data) => {
-		console.log(data);
+		methods.reset({}, { keepValues: true });
 	};
-
+	useEffect(() => {
+		console.log(methods.formState.isDirty);
+	}, [methods.formState.isDirty]);
 	methods.customSubmitBehavior = BrowsingFilterSubmitHandler;
 
 	return (
 		<PageTemplate pageTitle="Browse" currPageBreadcrumb={"Browse"}>
 			<FormProvider {...methods}>
-				<SearchAndFilters secondarySubmitFunc={BrowsingFilterSubmitHandler} />
+				<SearchAndFilters
+					filtersOpen={filtersOpen}
+					setFiltersOpen={setFiltersOpen}
+				/>
 			</FormProvider>
 			<Divider />
 			<ListMap>
