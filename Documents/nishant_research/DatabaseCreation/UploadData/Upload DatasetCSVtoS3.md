@@ -13,3 +13,15 @@ Before loading data from S3 into MySQL database on RDS, the MySQL user must have
 GRANT FILE, INSERT, SELECT ON *.* TO 'your_mysql_username'@'%';
 ```
 
+### Use the LOAD DATA FROM S3 command:
+Now is time to run the LOAD DATA FROM S3 command.
+
+```sql
+Copy code
+LOAD DATA FROM S3 's3-region-url/bucket_name/path_to_file.csv'
+INTO TABLE properties
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+```
