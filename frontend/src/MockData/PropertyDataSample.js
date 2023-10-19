@@ -10,7 +10,11 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 1049911687,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/e3819b051b082ceecf67c8c86e47360f-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/e3819b051b082ceecf67c8c86e47360f-p_e.jpg",
+			"https://photos.zillowstatic.com/fp/a7568313a2fe28ec2a0df7d516227dac-p_e.jpg",
+			"https://photos.zillowstatic.com/fp/01bb80ae9214483048c82a3b968377bb-p_e.jpg",
+			"https://photos.zillowstatic.com/fp/a48bfc49573a605a3acb80effb402127-p_e.jpg"],
+
 		latitude: 39.308994,
 		unit_1_bedroom: "$1,199+",
 		unit_0_bedroom: "",
@@ -46,7 +50,9 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 2090479304,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/a7568313a2fe28ec2a0df7d516227dac-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/a7568313a2fe28ec2a0df7d516227dac-p_e.jpg",
+			"https://photos.zillowstatic.com/fp/a5edf4d937f8e37d4a5e6ac736367f5f-p_e.jpg",
+			"https://photos.zillowstatic.com/fp/f1a36cd4265001f7c86fe1ba38585183-p_e.jpg"],
 		latitude: 39.289722,
 		unit_1_bedroom: "$1,347+",
 		unit_0_bedroom: "$930+",
@@ -82,7 +88,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 1002386396,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/fc2da78a5219a7153981fdb1dd429e8e-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/fc2da78a5219a7153981fdb1dd429e8e-p_e.jpg"],
 		latitude: 39.339527,
 		unit_1_bedroom: "$930+",
 		unit_0_bedroom: "$830+",
@@ -118,7 +124,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 1002374207,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/01bb80ae9214483048c82a3b968377bb-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/01bb80ae9214483048c82a3b968377bb-p_e.jpg"],
 		latitude: 39.366913,
 		unit_1_bedroom: "$988+",
 		unit_0_bedroom: "",
@@ -154,7 +160,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 1002373326,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/a48bfc49573a605a3acb80effb402127-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/a48bfc49573a605a3acb80effb402127-p_e.jpg"],
 		latitude: 39.370182,
 		unit_1_bedroom: "$1,225+",
 		unit_0_bedroom: "",
@@ -190,7 +196,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 1006349010,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/cf24caf418ad193c1e1006ccd9f9cf31-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/cf24caf418ad193c1e1006ccd9f9cf31-p_e.jpg"],
 		latitude: 39.283234,
 		unit_1_bedroom: "$2,085+",
 		unit_0_bedroom: "$1,835+",
@@ -226,7 +232,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 1002160710,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/4fe48247d917a72c5fb2962345db2dc2-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/4fe48247d917a72c5fb2962345db2dc2-p_e.jpg"],
 		latitude: 39.26839,
 		unit_1_bedroom: "$1,588+",
 		unit_0_bedroom: "$1,674+",
@@ -262,7 +268,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 2455107758,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/a5edf4d937f8e37d4a5e6ac736367f5f-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/a5edf4d937f8e37d4a5e6ac736367f5f-p_e.jpg"],
 		latitude: 39.268703,
 		unit_1_bedroom: "$1,707+",
 		unit_0_bedroom: "$1,610+",
@@ -298,7 +304,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 2090540571,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/4992183033f22c8a28c0d6a256b27cfd-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/4992183033f22c8a28c0d6a256b27cfd-p_e.jpg"],
 		latitude: 39.276196,
 		unit_1_bedroom: "$1,872+",
 		unit_0_bedroom: "$1,713+",
@@ -334,7 +340,7 @@ export const propertyData = [
 		hasImage: "TRUE",
 		lotId: 1001688016,
 		imgSrc:
-			"https://photos.zillowstatic.com/fp/f1a36cd4265001f7c86fe1ba38585183-p_e.jpg",
+			["https://photos.zillowstatic.com/fp/f1a36cd4265001f7c86fe1ba38585183-p_e.jpg"],
 		latitude: 39.282993,
 		unit_1_bedroom: "$1,780+",
 		unit_0_bedroom: "",
