@@ -20,8 +20,10 @@ public class PropertiesController {
     }
 
     @GetMapping
-    public ResponseEntity<List<QuickViewProperty>> findAll() {
-        return ResponseEntity.ok(properties);
+    public ResponseEntity<List<QuickViewProperty>> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "50") int size) {
+        return ResponseEntity.ok(properties.subList((page-1)*10, (page-1)*10+size));
     }
 
     @GetMapping("/{id}")
