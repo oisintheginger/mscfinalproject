@@ -22,12 +22,16 @@ import Profile from "./Pages/Profile";
 import NavLayout from "./layouts/NavLayout.js";
 import theme from "./Styling/theme";
 
+import { Amplify, Auth, API } from "aws-amplify";
+import awsconfig from "./aws-exports";
+Amplify.configure(awsconfig);
+
 // browser router i.e. route tree
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<NavLayout />}>
 			<Route index element={<Homepage />} />
-			<Route path="/browse" element={<Browse />} />
+			<Route path="/browse" element={<Browse />}/>
 			<Route path="/favorites" element={<Favorites />} />
 			<Route path="/applications" element={<Applications />} />
 			<Route path="/savedsearches" element={<SavedSearches />} />
