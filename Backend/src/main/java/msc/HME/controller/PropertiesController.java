@@ -5,8 +5,6 @@ import msc.HME.properties.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Min;
-
 import java.util.ArrayList;
 import java.util.List;
 
