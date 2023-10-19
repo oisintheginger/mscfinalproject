@@ -27,19 +27,6 @@ function ActiveTagsStack({ filtersOpen = true }) {
 					spacing={1}
 					mt={1}
 				>
-					{methods.getValues(SEARCH_TERM) !=
-						methods.formState.defaultValues[SEARCH_TERM] &&
-						!Object.keys(methods.formState.dirtyFields).includes(
-							SEARCH_TERM
-						) && <ActiveTag tagName={methods.getValues(SEARCH_TERM)} />}
-					{methods.getValues(MIN_PRICE) !=
-						methods.formState.defaultValues[MIN_PRICE] &&
-						!Object.keys(methods.formState.dirtyFields).includes(MIN_PRICE) && (
-							<ActiveTag
-								tagName={MIN_PRICE}
-								tagVal={methods.getValues(MIN_PRICE)}
-							/>
-						)}
 					{methods.getValues(MIN_PRICE) !=
 						methods.formState.defaultValues[MIN_PRICE] &&
 						!Object.keys(methods.formState.dirtyFields).includes(MIN_PRICE) && (
