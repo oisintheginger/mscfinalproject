@@ -34,7 +34,6 @@ export default function PropertyCard({ data, key }) {
 
 	const navigator = useNavigate();
 	const location = useLocation();
-	console.log(location);
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
