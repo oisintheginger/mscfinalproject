@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Diary/Saturday 14th October.md",
+                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
                 "mode": "source",
                 "source": false
               }
@@ -130,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/Saturday 14th October.md",
+                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/Saturday 14th October.md",
+                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/Saturday 14th October.md"
+                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md"
               }
             }
           }
@@ -194,12 +194,13 @@
   },
   "active": "c77f3e6e729a8c4a",
   "lastOpenFiles": [
-    "Daily Diary/Monday 16th October.md",
-    "Daily Diary/Saturday 14th October.md",
-    "Daily Diary/Friday 6th October.md",
-    "WeeklyDiaries/Untitled.md",
-    "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md",
     "WeeklyDiaries/Week 4 Diary (Oct 9th - Oct 15th).md",
+    "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
+    "Daily Diary/Saturday 14th October.md",
+    "Daily Diary/Monday 16th October.md",
+    "Daily Diary/Tuesday 10th October.md",
+    "Daily Diary/Friday 6th October.md",
+    "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md",
     "WeeklyDiaries/Week 1 + 2 Diary (18th Sep - 1st Oct).md",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",
     "Templates/Weekly Diary Template.md",
@@ -211,7 +212,6 @@
     "Daily Diary/Monday 9th October.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
     "Master's Project/UX Work/User Testing/Participants.md",
-    "Daily Diary/Tuesday 10th October.md",
     "Master's Project/UX Work/User Testing/CBD44750",
     "Master's Project/UX Work/User Testing/3BBE3750",
     "Master's Project/UX Work/User Testing/9C6D3750",
