@@ -24,13 +24,18 @@ paths:
             type: integer
       responses:
         '200':
-          description: A JSON array of QuickViewPropery objects
+          description: A JSON array of QuickViewProperty objects
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/QuickViewProperty'
+        '400':
+          description: returns a 400 bad request response code (with a message)
+        '500':
+          description: returns a 500 internal server error. the body contains the specific error exception.
+
 
   /api/properties/{propertyId}:
     get:
@@ -48,6 +53,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DetailedProperty'
+        '400':
+          description: returns a 400 bad request response code (with a message)
+        '404':
+          description: returns a 404 not found response code
+        '500':
+          description: returns a 500 internal server error. the body contains the specific error exception.
 
   /api/properties/search:
     get:
@@ -271,6 +282,13 @@ components:
       type: object
       required:
         - id
+        - longitude
+        - latitude
+        - price
+        - property_tags
+        - address
+        - outline_description
+        - img
       properties:
         id:
           type: integer
@@ -289,11 +307,11 @@ components:
         address:
           type: string
         img:
-          type: object
+          type: string
         outline_description:
           type: string
     DetailedProperty:
-      description: Basically everything present in the database, more details will follow.
+      description: Details implemented right now in the mock data
       type: object
       required:
         - id
@@ -302,8 +320,52 @@ components:
           type: integer
           format: int64
           example: 123456
-        much_more:
+        price:
+          type: number
+        bedrooms:
+          type: integer
+        bathrooms:
+          type: integer
+        propertyType:
           type: string
+          example: apartment
+        address:
+          type: string
+          example: 1424 Karen Spur
+        zipcode:
+          type: string
+        longitude:
+          type: string
+        latitude:
+          type: string
+        full_description:
+          type: string
+        petsAllowed:
+          type: boolean
+        lastUpdated:
+          type: array
+          items:
+            type: integer
+          example: [
+            2023,
+            8,
+            30
+          ]
+        datePosted:
+          type: array
+          items:
+            type: integer
+          example: [
+            2023,
+            8,
+            30
+          ]
+        TBDScore:
+          type: number
+        images:
+          type: array
+          items:
+            type: string
     SavedSearch:
       description: a user can save a search, in order to return to it later
       type: object

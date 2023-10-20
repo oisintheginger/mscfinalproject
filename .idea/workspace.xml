@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documents/Backend_documentation/frontend-backend connection research.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/Fenna_Workspace/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +50,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fenna__dev&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Fenna__updates&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/fenna/OneDrive - Technological University Dublin/GP/mscfinalproject&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -56,6 +59,21 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  &lt;component name=&quot;PropertiesComponent&quot;&gt;{
+  &amp;quot;keyToString&amp;quot;: {
+    &amp;quot;ASKED_ADD_EXTERNAL_FILES&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;RunOnceActivity.OpenProjectViewOnStart&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;RunOnceActivity.ShowReadmeOnStart&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;WebServerToolWindowFactoryState&amp;quot;: &amp;quot;false&amp;quot;,
+    &amp;quot;git-widget-placeholder&amp;quot;: &amp;quot;fenna__dev&amp;quot;,
+    &amp;quot;ignore.virus.scanning.warn.message&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;last_opened_file_path&amp;quot;: &amp;quot;C:/Users/fenna/OneDrive - Technological University Dublin/GP/mscfinalproject&amp;quot;,
+    &amp;quot;node.js.detected.package.eslint&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;node.js.detected.package.tslint&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;node.js.selected.package.eslint&amp;quot;: &amp;quot;(autodetect)&amp;quot;,
+    &amp;quot;node.js.selected.package.tslint&amp;quot;: &amp;quot;(autodetect)&amp;quot;,
+    &amp;quot;nodejs_package_manager_path&amp;quot;: &amp;quot;npm&amp;quot;,
+    &amp;quot;vue.rearranger.settings.migration&amp;quot;: &amp;quot;true&amp;quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -66,19 +84,6 @@
   <component name="RunManager">
     <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="mscfinalproject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="mscfinalproject" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <recent_temporary>
       <list>
