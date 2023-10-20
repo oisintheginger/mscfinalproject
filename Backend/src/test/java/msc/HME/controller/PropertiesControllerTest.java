@@ -53,10 +53,16 @@ class PropertiesControllerTest {
 //
 //    }
 
-//    @Test
-//    public void findAll_404() throws Exception {
-//          to be implemented
-//    }
+    @Test
+    public void findAll_404() throws Exception {
+        int page = 2;
+        int size = 50;
+
+        mockMvc.perform(get("/api/properties")
+                        .param("page", String.valueOf(page))
+                        .param("size", String.valueOf(size)))
+                .andExpect(status().isNotFound());
+    }
 
     @Test
     public void findPropertyById_200() throws Exception {
