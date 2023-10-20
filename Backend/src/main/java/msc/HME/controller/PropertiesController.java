@@ -19,16 +19,11 @@ public class PropertiesController {
         this.jsonPlaceholderService = jsonPlaceholderService;
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<QuickViewProperty>> findAll() {
-//        return ResponseEntity.ok(properties);
-//    }
-
     @GetMapping
     public ResponseEntity<List<QuickViewProperty>> findAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "50") int size) { // default size hard coded for now
-        if (size > properties.size()) {
+        if (size > properties.size() || page*size > properties.size()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(properties.subList((page-1)*10, (page-1)*10+(size-1)));
