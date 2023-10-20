@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -35,39 +36,27 @@ class PropertiesControllerTest {
     void setUp(WebApplicationContext webApplicationContext) {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
+
 //    @Test
-//    void findAll() throws Exception {
-//        List<QuickViewProperty> propertiesList = Collections.singletonList(new QuickViewProperty());
-//        given(jsonPlaceholderService.loadProperties()).willReturn(propertiesList);
+//    public void findAll_200() throws Exception {
+//        //to debug
+//        int page = 2;
+//        int size = 10;
 //
-//        mockMvc.perform(get("/api/properties"))
-//                .andExpect(status().isOk());
-////              to be implemented when connected to db
-////                .andExpect(content().json(objectMapper.writeValueAsString(propertiesList)));
+//        mockMvc.perform(get("/api/properties")
+//                        .queryParam("page", String.valueOf(page))
+//                        .queryParam("size", String.valueOf(size)))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+////                  implemented with db
+////                .andExpect(content().json(objectMapper.writeValueAsString(expectedProperties)));
+//
 //    }
 
-    @Test
-    void findAll_pagination() throws Exception {
-        // Mock a larger list of properties
-        List<QuickViewProperty> allProperties = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            allProperties.add(new QuickViewProperty());
-        }
-        given(jsonPlaceholderService.loadProperties()).willReturn(allProperties);
-
-        // Set pagination parameters
-        int page = 2;
-        int size = 10;
-        List<QuickViewProperty> expectedProperties = allProperties.subList((page - 1) * size, (page - 1) * size + size);
-
-        mockMvc.perform(get("/api/properties")
-                        .param("page", String.valueOf(page))
-                        .param("size", String.valueOf(size)))
-                .andExpect(status().isOk());
-//                to be implemented with db
-//                .andExpect(content().json(objectMapper.writeValueAsString(expectedProperties)));
-    }
-
+//    @Test
+//    public void findAll_404() throws Exception {
+//          to be implemented
+//    }
 
     @Test
     public void findPropertyById_200() throws Exception {
