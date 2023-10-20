@@ -10,7 +10,18 @@ servers:
 paths:
   /api/properties:
     get:
-      summary: returns a list of properties
+      summary: returns a list of properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50 (for now because of mocked data)
+      parameters:
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: size
+          required: false
+          schema:
+            type: integer
       responses:
         '200':
           description: A JSON array of QuickViewPropery objects
