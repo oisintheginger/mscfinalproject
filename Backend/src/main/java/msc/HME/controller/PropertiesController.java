@@ -26,7 +26,7 @@ public class PropertiesController {
         if (size > properties.size() || page*size > properties.size()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(properties.subList((page-1)*10, (page-1)*10+(size-1)));
+        return ResponseEntity.ok(properties.subList((page-1)*size, (page-1)*size+(size-1)));
     }
 
     @GetMapping("/{id}")
