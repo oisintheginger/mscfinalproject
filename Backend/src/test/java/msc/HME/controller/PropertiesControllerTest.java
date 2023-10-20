@@ -45,12 +45,23 @@ class PropertiesControllerTest {
     }
 
     @Test
-    public void findPropertyById() throws Exception {
+    public void findPropertyById_200() throws Exception {
         DetailedProperty property = new DetailedProperty();
         given(jsonPlaceholderService.loadDetailedProperty(1)).willReturn(property);
 
         mockMvc.perform(get("/api/properties/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(property)));
+    }
+
+    @Test
+    public void findPropertyById_400() throws Exception {
+        mockMvc.perform(get("/api/properties/-1"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void findPropertyById_404() throws Exception {
+        //will be implemented later when connected to db
     }
 }
