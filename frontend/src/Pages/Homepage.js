@@ -16,12 +16,10 @@ function Homepage() {
 	const navigator = useNavigate();
 	const { register, handleSubmit } = useForm();
 	const navigateToBrowse = (data) => {
-		navigator(
-			navigator({
-				pathname: "browse",
-				search: "searchString=" + data.searchString,
-			})
-		);
+		navigator({
+			pathname: "/browse",
+			search: "searchString=" + data.searchString,
+		});
 	};
 	return (
 		<>
