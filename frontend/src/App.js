@@ -23,24 +23,18 @@ import NavLayout from "./layouts/NavLayout.js";
 import theme from "./Styling/theme";
 
 // browser router i.e. route tree
-const router = createBrowserRouter(
-	createRoutesFromElements(
-		<Route path="/" element={<NavLayout />}>
-			<Route index element={<Homepage />} />
-			<Route path="/browse" element={<Browse />} />
-			<Route path="/favorites" element={<Favorites />} />
-			<Route path="/applications" element={<Applications />} />
-			<Route path="/savedsearches" element={<SavedSearches />} />
-			<Route path="/profile" element={<Profile />} />
-			<Route path="/property/:id" element={<PropertyPage />} />
-		</Route>
-	)
-);
+
+import UserPool from "./UserPool/UserPool";
+
+import HMERouter from "./Routers/HMERouter";
+import { Authenticator } from "@aws-amplify/ui-react";
 
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
-			<RouterProvider router={router} />
+			<Authenticator.Provider>
+				<HMERouter />
+			</Authenticator.Provider>
 		</ThemeProvider>
 	);
 }
