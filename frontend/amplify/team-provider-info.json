@@ -1,0 +1,25 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifye9f1d1c39afe4-staging-112741-authRole",
+      "UnauthRoleArn": "arn:aws:iam::718438814545:role/amplify-amplifye9f1d1c39afe4-staging-112741-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::718438814545:role/amplify-amplifye9f1d1c39afe4-staging-112741-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-amplifye9f1d1c39afe4-staging-112741-deployment",
+      "UnauthRoleName": "amplify-amplifye9f1d1c39afe4-staging-112741-unauthRole",
+      "StackName": "amplify-amplifye9f1d1c39afe4-staging-112741",
+      "StackId": "arn:aws:cloudformation:eu-north-1:718438814545:stack/amplify-amplifye9f1d1c39afe4-staging-112741/845fc4e0-6e72-11ee-855b-0e08df08bfa6",
+      "AmplifyAppId": "d27klqxhb5utgt"
+    },
+    "categories": {
+      "auth": {
+        "housingmadeeasyfront678aaf11": {
+          "userPoolId": "eu-north-1_SvnV7EDxt",
+          "userPoolName": "HMEUserpool",
+          "webClientId": "65etcmma09pdvc75gnhl908aae",
+          "nativeClientId": "65etcmma09pdvc75gnhl908aae"
+        }
+      }
+    }
+  }
+}

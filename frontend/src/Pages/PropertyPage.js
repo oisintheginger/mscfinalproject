@@ -62,7 +62,7 @@ function PropertyPage() {
 							width={"100%"}
 							direction={"row"}
 							sx={{
-								zIndex: 4000,
+								zIndex: 1000,
 
 								height: 0,
 								color: "black",
