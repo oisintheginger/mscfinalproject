@@ -30,10 +30,12 @@ import {
 } from "../Icons/HMEIcons";
 import { fontDark } from "../Styling/styleConstants";
 import { useMediaQuery, useTheme } from "@mui/material";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 import HMELogo from "./../Icons/NewLogo.png";
 import HMELogoCompact from "./../Icons/NewLogoCompact.png";
 import CreateAccountModal from "../components/CreateAccountModal/CreateAccountModal";
+import ButtonStyled from "../components/CommonComp/Button/ButtonStyle";
 
 function NavLayout() {
 	const theme = useTheme();
@@ -62,6 +64,15 @@ function NavLayout() {
 			xs: "16px",
 			sm: "24px",
 		},
+	};
+
+	const { route, signOut } = useAuthenticator((context) => [
+		context.route,
+		context.signOut,
+	]);
+
+	const LogoutFunc = () => {
+		signOut();
 	};
 
 	const navigate = useNavigate();
@@ -167,7 +178,14 @@ function NavLayout() {
 							<Divider />
 						</List>
 					</Box>
-					<Box id="DrawerMenu" sx={{ ml: 2, mr: 2, mt: 3 }}>
+
+					<Box
+						id="DrawerMenu"
+						sx={{ ml: 2, mr: 2, mt: 3 }}
+						display={"flex"}
+						flexDirection={"column"}
+						justifyContent={"center"}
+					>
 						<Typography variant="h6">My Stuff</Typography>
 						<Divider />
 						<List sx={{ m: 2, mt: 0 }}>
@@ -229,6 +247,10 @@ function NavLayout() {
 								</ListItemIcon>
 							</ListItemButton>
 						</List>
+
+						{route === "authenticated" && (
+							<ButtonStyled onClick={LogoutFunc}>SIGN OUT</ButtonStyled>
+						)}
 					</Box>
 				</Drawer>
 				<Container
