@@ -23,6 +23,8 @@ export default function RenderSaveSearch() {
         setSearchData(newData);
     }
 
+    /// the handleDelete doesn't actually delete from the SearchData.js -> when you reload the page, it's still there.
+
   return (
     <div>
     <TableContainer component={Paper}>
