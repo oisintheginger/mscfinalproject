@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { propertyData } from "../../../../MockData/PropertyDataSample";
 import { Grid, Stack, Chip } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
+import Carousel from "../../../Carousel/Carousel";
 
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
@@ -41,6 +42,7 @@ export default function PropertyCard({ data, key }) {
 
 	return (
 		<Card elevation={6}>
+			
 			<CardMedia
 				onClick={() =>
 					navigator("/property/" + data.zpid, {
@@ -56,7 +58,7 @@ export default function PropertyCard({ data, key }) {
 				}}
 				component="img"
 				height="194"
-				image={data.imgSrc}
+				image={data.imgSrc[0]}
 				alt="Property Image"
 			/>
 			<CardHeader title={data.price} subheader={data.address} />
