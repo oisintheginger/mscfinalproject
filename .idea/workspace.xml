@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="922034b1-1a57-44e9-adec-cac45c820ef4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +43,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;fenna__dev&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Fenna__updates",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\fenna\OneDrive - Technological University Dublin\GP\mscfinalproject\Documents\Fenna_Workspace\" />
@@ -65,7 +72,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e10b2c92-fc59-43ca-a321-246358b0742c" name="Changes" comment="" />
+      <changelist id="922034b1-1a57-44e9-adec-cac45c820ef4" name="Changes" comment="" />
       <created>1695640078868</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -89,6 +96,7 @@
       <workItem from="1697451805455" duration="2683000" />
       <workItem from="1697581026319" duration="36000" />
       <workItem from="1697722013671" duration="115000" />
+      <workItem from="1697885738287" duration="468000" />
     </task>
     <servers />
   </component>
