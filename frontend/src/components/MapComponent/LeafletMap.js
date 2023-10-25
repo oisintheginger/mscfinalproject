@@ -14,11 +14,13 @@ import GoogleLogo from "./../../Icons/google_on_white.png";
 import ButtonStyled from "../CommonComp/Button/ButtonStyle";
 import { propertyData } from "../../MockData/PropertyDataSample";
 import mapmarkericon from "../../Icons/mapmarkericon.png";
+import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
 
 function HMEMap({ marks }) {
 	const map2 = useMapEvent("zoom", () => {
 		console.log(map2.getBounds());
 	});
+
 	map2.setView([39.2904, -76.6122], map2.getZoom());
 	return (
 		<>
@@ -29,17 +31,18 @@ function HMEMap({ marks }) {
 			/>
 			{marks &&
 				marks.map((data, key) => {
+					const markerIcon = new Leaflet.Icon({
+						iconUrl: require("../../Icons/mapmarkericon.png"),
+						iconAnchor: [14, 28],
+						popupAnchor: [0, -28],
+					});
 					return (
 						<Marker
 							position={[data.latitude, data.longitude]}
-							eventHandlers={{
-								click: (event) => {
-									console.log("clicked");
-								},
-							}}
+							icon={markerIcon}
 						>
 							<Popup position={[data.latitude, data.longitude]}>
-								{data.price}
+								<PropertyCard data={data} />
 							</Popup>
 						</Marker>
 					);

@@ -55,6 +55,11 @@ function Profile() {
 						/>
 					</Box>
 				</PageSection>
+				<PageSection background={false} sectionTitle="Recommended for Me">
+					<Container>
+						<CardCarousel propData={propertyData} />
+					</Container>
+				</PageSection>
 				<PageSection
 					background={false}
 					sectionTitle="My Favorites"
