@@ -1,15 +1,25 @@
-import { MapContainer, TileLayer, useMap, useMapEvent } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import {
+	MapContainer,
+	TileLayer,
+	useMap,
+	useMapEvent,
+	Marker,
+	Popup,
+} from "react-leaflet";
+import Leaflet from "leaflet";
+
 import { Box, Button, Container, Link, Stack, Typography } from "@mui/material";
 import { darkTeal } from "../../Styling/styleConstants";
 import GoogleLogo from "./../../Icons/google_on_white.png";
 import ButtonStyled from "../CommonComp/Button/ButtonStyle";
+import { propertyData } from "../../MockData/PropertyDataSample";
+import mapmarkericon from "../../Icons/mapmarkericon.png";
 
-function HMEMap({}) {
+function HMEMap({ marks }) {
 	const map2 = useMapEvent("zoom", () => {
 		console.log(map2.getBounds());
 	});
-	map2.setView([53.345, -6.29], map2.getZoom());
+	map2.setView([39.2904, -76.6122], map2.getZoom());
 	return (
 		<>
 			<TileLayer
@@ -17,11 +27,28 @@ function HMEMap({}) {
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				zIndex={1}
 			/>
+			{marks &&
+				marks.map((data, key) => {
+					return (
+						<Marker
+							position={[data.latitude, data.longitude]}
+							eventHandlers={{
+								click: (event) => {
+									console.log("clicked");
+								},
+							}}
+						>
+							<Popup position={[data.latitude, data.longitude]}>
+								{data.price}
+							</Popup>
+						</Marker>
+					);
+				})}
 		</>
 	);
 }
 
-function LeafletMap() {
+function LeafletMap({ propertyData: {} }) {
 	return (
 		<Box>
 			<Box
@@ -32,7 +59,11 @@ function LeafletMap() {
 					maxHeight: "70vh",
 				}}
 			>
-				<MapContainer center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
+				<MapContainer
+					center={[39.2904, -76.6122]}
+					zoom={12}
+					scrollWheelZoom={true}
+				>
 					<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
 						{/* <ButtonStyled
 							sx={{
@@ -62,7 +93,7 @@ function LeafletMap() {
 							</Typography>
 						</Button>
 					</Stack>
-					<HMEMap />
+					<HMEMap marks={propertyData} />
 				</MapContainer>
 			</Box>
 			<Stack direction={"row"} alignItems={"flex-end"} mt={1} spacing={1}>

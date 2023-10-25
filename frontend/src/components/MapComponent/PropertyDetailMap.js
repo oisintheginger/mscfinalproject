@@ -14,6 +14,7 @@ import {
 	FormControlLabel,
 } from "@mui/material";
 import "leaflet/dist/leaflet.css";
+import { forwardRef } from "react";
 
 import { MapContainer, TileLayer, useMapEvent } from "react-leaflet";
 import { useState } from "react";
@@ -41,7 +42,7 @@ function MapTile() {
 	);
 }
 
-function PropertyDetailMap({ center = [53.345, -6.29] }) {
+function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 	const [togglesOpen, setTogglesOpen] = useState(false);
 
 	const [hospitalsSelected, setHospitalsSelected] = useState(false);
@@ -64,6 +65,7 @@ function PropertyDetailMap({ center = [53.345, -6.29] }) {
 					flexGrow: 1,
 					maxHeight: "70vh",
 				}}
+				ref={ref}
 			>
 				<MapContainer center={center} zoom={12} scrollWheelZoom={true}>
 					<Stack width={"100%"} justifyContent={"flex-end"} direction={"row"}>
@@ -187,4 +189,4 @@ function PropertyDetailMap({ center = [53.345, -6.29] }) {
 	);
 }
 
-export default PropertyDetailMap;
+export default forwardRef(PropertyDetailMap);

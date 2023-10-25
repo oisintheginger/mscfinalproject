@@ -21,6 +21,15 @@ const theme = createTheme({
 		greyDark: {
 			main: "#2E3637",
 		},
+		secureChip: {
+			main: "#3277a8",
+		},
+		nightlifeChip: {
+			main: "#041829",
+		},
+		gymsChip: {
+			main: "#25693c",
+		},
 	},
 	typography: {
 		h1: {
