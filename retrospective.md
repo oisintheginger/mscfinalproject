@@ -1,6 +1,6 @@
 # Weekly Project Retrospective
 
-## Week 2: 25/09/2023
+## Week 2: 25/09/2023 - 01/10/2023
 
 ### Team Members:
 1. Nishant
@@ -48,7 +48,7 @@
 
 ---
 
-## Week 3: 02/10/2023
+## Week 3: 02/10/2023 - 08/10/2023
 
 ### Team Members:
 1. Nishant
@@ -98,7 +98,7 @@ Stephen: Gathering the businesses dataset around the properties
 
 ---
 
-## Week 4: 09/10/2023
+## Week 4: 09/10/2023 - 15/10/2023
 
 ### Team Members:
 1. Nishant
@@ -144,7 +144,7 @@ Stephen: Gathering the businesses dataset around the properties
 
 ---
 
-## Week 5: 16/10/2023
+## Week 5: 16/10/2023 - 22/10/2023
 
 ### Team Members:
 1. Nishant
@@ -191,7 +191,7 @@ Stephen: Gathering the businesses dataset around the properties
 
 ---
 
-## Week 6: 23/10/2023
+## Week 6: 23/10/2023 - 29/10/2023
 
 ### What Went Well:
 - Nishant: 
