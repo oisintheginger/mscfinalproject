@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="922034b1-1a57-44e9-adec-cac45c820ef4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +98,8 @@
       <workItem from="1697722013671" duration="115000" />
       <workItem from="1697885738287" duration="468000" />
       <workItem from="1698235023498" duration="311000" />
+      <workItem from="1697885738287" duration="468000" />
+      <workItem from="1698235023498" duration="1486000" />
     </task>
     <servers />
   </component>
