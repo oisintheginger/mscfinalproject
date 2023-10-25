@@ -1,6 +1,6 @@
 # Weekly Project Retrospective
 
-## Week 2: 25/09/2023
+## Week 2: 25/09/2023 - 01/10/2023
 
 ### Team Members:
 1. Nishant
@@ -48,7 +48,7 @@
 
 ---
 
-## Week 3: 02/10/2023
+## Week 3: 02/10/2023 - 08/10/2023
 
 ### Team Members:
 1. Nishant
@@ -66,8 +66,6 @@
 - Fenna: Because of the project plan everybody’s tasks were clear and we all just kept working. 
 - Oisin: Everyone kinda just did their thing, no real barriers to work.
 
-
-
 ### What Could Be Improved:
 - Nishant: Time management could be improved. As a lot of tasks are awaiting to be completed, there is a gap in research and implementation to be covered.
 - Sean: Managing data requests under the 13,000 limit for cost-saving presented challenges. While I successfully stayed within this threshold, I identified areas for efficiency improvement. Specifically, I encountered null values in certain keys and refined my code to prevent loop interruptions. Additionally, I occasionally had to rerun a for loop due to accidental dataset deletions or post-loop realisations about extracting additional information we initially overlooked.
@@ -75,7 +73,6 @@
 Charlotte: Time management has not been great this week.
 - Fenna: Collaboration especially between the software and data science side. I kinda get what’s going on, but I feel like I only hear about issues after the fact. 
 - Oisin: NA
-
 
 ### Action Items for Next Week:
 - Nishant: Try researching the minimum, and start on implementation.
@@ -98,7 +95,7 @@ Stephen: Gathering the businesses dataset around the properties
 
 ---
 
-## Week 4: 09/10/2023
+## Week 4: 09/10/2023 - 15/10/2023
 
 ### Team Members:
 1. Nishant
@@ -144,7 +141,7 @@ Stephen: Gathering the businesses dataset around the properties
 
 ---
 
-## Week 5: 16/10/2023
+## Week 5: 16/10/2023 - 22/10/2023
 
 ### Team Members:
 1. Nishant
@@ -155,43 +152,40 @@ Stephen: Gathering the businesses dataset around the properties
 6. Oisin
 
 ### What Went Well:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant:We have completely fulfilled what we needed to build the foundation of the project, after this will be mostly implementation of the features we've been talking about for weeks.
+- Sean: We made significant progress on the interim report, filled in most sections with a lot of information that now just needs condensing.
+- Stephen: We discussed and implemented the location data format for the businesses dataset
+- Charlotte: progressing nicely on the interim report and presentation. Taking feedback on presentations into account.
+- Fenna: we all achieved a lot of work this week with development, well done guys!
+- Oisin: We managed to get filters working well with form state, and we got Cognito set up too so that we have the beginning of Auth on the frontend. The team did well presenting on Friday morning too.
 
 ### What Could Be Improved:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
-
+- Nishant: When the interim report is submitted, we will have to work harder, to actually test and try the features.
+- Sean: Creating backups of datasets with progress history to prevent the need for re-cleaning initial datasets in case of errors or discrepancies, ultimately this will save time if future errors occur.
+- Stephen: documenting and sharing the solutions to common challenges
+- Charlotte: communication is still lacking in certain areas but is slowly improving.
+- Fenna: Again, communication but we’re taking steps into the right direction. Also, start earlier with presentations especially for next week.
+- Oisin: Once the interim report is completed, I think that we will need to put the pedal to the metal on the development side of getting things connected (as expected). Cross collaboration between sub-teams has been good so far, but I expect this will need to be ramped up even more. I also need to have a more detailed plan of necessary tasks so that myself and Charlotte have a clear course of progression + objectives. This should help us divide and conquer the challenges facing the frontend.
 
 ### Action Items for Next Week:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
-
+- Nishant: Query optimization for database, planing the implementation for the recommendation system, and distributing the algorithms we will be testing before a final implementation.
+- Sean: Creating sql tables, processing crime data and adding it into schema, may need to use Haversine formula as there is neighbourhood mismatching name errors between the google maps and crime dataset neighbourhoods, create user profiles table in schema and a way of retrieving and storing like data from users.
+- Stephen: Working with Sean to add the datasets to the schema
+- Charlotte: Start connecting the frontend and backend, finish up the interim report and presentation
+- Fenna: interim report and presentation!
+- Oisin: interim  report + presentation, dive into the development fully
 
 ### Additional Comments:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
-
+- Nishant: N/A
+- Sean: We’ve done a lot of work this week guys, especially collaboratively, well done!
+- Stephen: N/A
+- Charlotte: N/A
+- Fenna: N/A
+- Oisin: N/A
 
 ---
 
-## Week 6: 23/10/2023
+## Week 6: 23/10/2023 - 29/10/2023
 
 ### What Went Well:
 - Nishant: 
