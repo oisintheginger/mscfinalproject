@@ -188,34 +188,34 @@ Stephen: Gathering the businesses dataset around the properties
 ## Week 6: 23/10/2023 - 29/10/2023
 
 ### What Went Well:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: We presented live demo and project details
+- Sean: Worked really well as a team to pull the report documentation together, made significant progress on the planning of the the scoring and recommendation systems
+- Stephen: Working together to put together our interim report
+- Charlotte: So much presentation and report work but we really pulled together.
+- Fenna: We did a lot of work for the report and presentation. Excellent teamwork guys!
+- Oisin: Interim Report came together well
 
 ### What Could Be Improved:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: Research about how recommendation systems can work.
+- Sean: Need to do further research on how to integrate the planned recommendation system into the cloud
+- Stephen: Documentation on our plans and next actions
+- Charlotte: Recommendation system/ scoring system communication - we are improving though.
+- Fenna: Communication. 
+- Oisin: Describe how to test on PR’s so that reviewers can verify they pass.
 
 
 ### Action Items for Next Week:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: Have clear plan for the implementation of the recommendation and scoring engine
+- Sean: Research how to implement the scoring and recommendation system into the project, set up database so backend can query from it
+- Stephen: Loading up business dataset, tableau visualization and working on recommendation system evaluation design
+- Charlotte: Connect everything, start layout for user testing and find test subjects.
+- Fenna: Fully connect all parts and continue on.
+- Oisin: Begin to connect everything
 
 ### Additional Comments:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: N/A
+- Sean: Last week was quite a tough one, so I just want to give a pat on the back to everyone for making it through!
+- Stephen: N/A
+- Charlotte: N/A 
+- Fenna: N/A
+- Oisin: N/A
