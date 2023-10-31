@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
+                "file": "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
                 "mode": "source",
                 "source": false
               }
@@ -130,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
+                "file": "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
+                "file": "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md"
+                "file": "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md"
               }
             }
           }
@@ -194,8 +194,11 @@
   },
   "active": "c77f3e6e729a8c4a",
   "lastOpenFiles": [
-    "WeeklyDiaries/Week 4 Diary (Oct 9th - Oct 15th).md",
+    "Master's Project/UX Work/User Testing/F1C7CC20",
+    "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
+    "Master's Project/UX Work/User Testing/LFP Testing Results Report.md",
     "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
+    "WeeklyDiaries/Week 4 Diary (Oct 9th - Oct 15th).md",
     "Daily Diary/Saturday 14th October.md",
     "Daily Diary/Monday 16th October.md",
     "Daily Diary/Tuesday 10th October.md",
@@ -204,13 +207,11 @@
     "WeeklyDiaries/Week 1 + 2 Diary (18th Sep - 1st Oct).md",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",
     "Templates/Weekly Diary Template.md",
-    "Master's Project/UX Work/User Testing/LFP Testing Results Report.md",
     "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
     "Master's Project/Market Analysis/Zillow Demo Presentation Plan.md",
     "Master's Project/Market Analysis/Existing Apps & Zillow Analysis.md",
     "Master's Project/UX Work/User Testing/Questions to Answer.md",
     "Daily Diary/Monday 9th October.md",
-    "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
     "Master's Project/UX Work/User Testing/Participants.md",
     "Master's Project/UX Work/User Testing/CBD44750",
     "Master's Project/UX Work/User Testing/3BBE3750",
@@ -238,7 +239,6 @@
     "Daily Diary/Friday 29th September.md",
     "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (Map View).md",
     "Master's Project/UX Work/Core User Flows/Applying/Applying.md",
-    "Daily Diary/Wednesday 4th October.md",
-    "Daily Diary/Thursday 5th October.md"
+    "Daily Diary/Wednesday 4th October.md"
   ]
 }

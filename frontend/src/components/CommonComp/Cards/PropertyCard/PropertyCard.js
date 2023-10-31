@@ -41,8 +41,7 @@ export default function PropertyCard({ data, key }) {
 	};
 
 	return (
-		<Card elevation={6}>
-			
+		<Card elevation={6} sx={{ height: "100%" }}>
 			<CardMedia
 				onClick={() =>
 					navigator("/property/" + data.zpid, {
@@ -67,12 +66,36 @@ export default function PropertyCard({ data, key }) {
 				<Stack
 					direction="row"
 					spacing={1}
-					sx={{ overflowX: "auto", whiteSpace: "nowrap" }}
+					sx={{
+						overflowX: "auto",
+						whiteSpace: "nowrap",
+						"&::-webkit-scrollbar": { display: "none" },
+					}}
 				>
-					<Chip label={data.listingStatus} color="warning" />
-					<Chip color="success" label="Other1" />
-					<Chip color="primary" label="Other2" />
-					<Chip color="secondary" label="Other3" />
+					<Chip
+						label="SECURE"
+						sx={{
+							backgroundColor: "secureChip.main",
+							color: "white",
+							fontWeight: 600,
+						}}
+					/>
+					<Chip
+						label="NIGHTLIFE"
+						sx={{
+							backgroundColor: "nightlifeChip.main",
+							color: "white",
+							fontWeight: 600,
+						}}
+					/>
+					<Chip
+						label="GYMS"
+						sx={{
+							backgroundColor: "gymsChip.main",
+							color: "white",
+							fontWeight: 600,
+						}}
+					/>
 				</Stack>
 			</CardContent>
 		</Card>
