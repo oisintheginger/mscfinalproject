@@ -1,6 +1,6 @@
 {
   "auth": {
-    "housingmadeeasyfront678aaf11": {
+    "mscfinalprojectfront91c99fa4": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -9,35 +9,35 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_housingmadeeasyfront678aaf11_nativeClientId": {
+    "AMPLIFY_auth_mscfinalprojectfront91c99fa4_nativeClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "housingmadeeasyfront678aaf11"
+          "resourceName": "mscfinalprojectfront91c99fa4"
         }
       ]
     },
-    "AMPLIFY_auth_housingmadeeasyfront678aaf11_userPoolId": {
+    "AMPLIFY_auth_mscfinalprojectfront91c99fa4_userPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "housingmadeeasyfront678aaf11"
+          "resourceName": "mscfinalprojectfront91c99fa4"
         }
       ]
     },
-    "AMPLIFY_auth_housingmadeeasyfront678aaf11_userPoolName": {
+    "AMPLIFY_auth_mscfinalprojectfront91c99fa4_userPoolName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "housingmadeeasyfront678aaf11"
+          "resourceName": "mscfinalprojectfront91c99fa4"
         }
       ]
     },
-    "AMPLIFY_auth_housingmadeeasyfront678aaf11_webClientId": {
+    "AMPLIFY_auth_mscfinalprojectfront91c99fa4_webClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "housingmadeeasyfront678aaf11"
+          "resourceName": "mscfinalprojectfront91c99fa4"
         }
       ]
     }
