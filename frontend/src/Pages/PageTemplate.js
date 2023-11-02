@@ -46,19 +46,43 @@ function PageTemplate({
 			{children}
 			<Box
 				height={"100px"}
-				alignItems={"flex-end"}
 				display={"flex"}
+				flexDirection={"column"}
+				justifyContent={"center"}
+				alignItems={"center"}
 				width={"100%"}
 			>
 				<Stack
 					direction={"row"}
+					spacing={4}
 					justifyContent={"space-between"}
 					width={"100%"}
 				>
-					<Typography textAlign={"center"}>Footer information</Typography>
-					<Typography textAlign={"center"}>Footer information</Typography>
-					<Typography textAlign={"center"}>Footer information</Typography>
-				</Stack>
+					<Link href="/contact" color="inherit">
+            <Typography textAlign={"center"} fontSize={15}>
+                Contact Information
+            </Typography>
+        </Link>
+        <Link href="/privacy-policy" color="inherit">
+            <Typography textAlign={"center"} fontSize={15}>
+                Privacy Policy
+            </Typography>
+        </Link>
+        <Link href="/terms-of-service" color="inherit">
+            <Typography textAlign={"center"} fontSize={15}>
+                Terms of Service
+            </Typography>
+        </Link>
+        <Link href="/faq" color="inherit">
+            <Typography textAlign={"center"}  fontSize={15}>
+                FAQ
+            </Typography>
+        </Link>
+    </Stack>
+    <Typography mt={2} fontSize={12}>
+        © 2023 HousingMadeEasy. All Rights Reserved.
+    </Typography>
+				
 			</Box>
 		</Stack>
 	);
