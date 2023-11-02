@@ -12,5 +12,7 @@ export function URLToBreadcrumbMapper({ inputString }) {
 			return "My Profile";
 		case "/savedsearches":
 			return "My Searches";
+		case "/contactus":
+			return "Contact";
 	}
 }
