@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-02T18:13:09.976Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="1ZZwKex44Gu-8vSxqgo3" version="22.0.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-11-02T18:40:09.470Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="BmpCcm7s6SqdN2TFBid2" version="22.0.8" type="device">
   <diagram name="Page-1" id="Kjt-iG_JIWa3z1-oIHLA">
-    <mxGraphModel dx="2788" dy="2155" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3203" dy="2381" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -85,7 +85,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Slogdnl2pw9yYkc5tazO-41" value="Request Overall Match Score" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Slogdnl2pw9yYkc5tazO-38" vertex="1" connectable="0">
+        <mxCell id="Slogdnl2pw9yYkc5tazO-41" value="Request Overall Services Score" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Slogdnl2pw9yYkc5tazO-38" vertex="1" connectable="0">
           <mxGeometry x="0.3643" y="2" relative="1" as="geometry">
             <mxPoint x="-28" y="38" as="offset" />
           </mxGeometry>
@@ -103,9 +103,10 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9sfzdNhPHF9fwhm8lbpX-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.102;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Slogdnl2pw9yYkc5tazO-25" target="HkA3kdm-LTjqPYIi5Wi_-9">
+        <mxCell id="9sfzdNhPHF9fwhm8lbpX-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.102;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HkA3kdm-LTjqPYIi5Wi_-1" target="HkA3kdm-LTjqPYIi5Wi_-9">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="730" y="110" as="targetPoint" />
+            <mxPoint x="650" y="380" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="9sfzdNhPHF9fwhm8lbpX-9" value="Request to update user recommendations" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9sfzdNhPHF9fwhm8lbpX-6">
@@ -166,7 +167,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Slogdnl2pw9yYkc5tazO-43" value="Overall Match Score" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Slogdnl2pw9yYkc5tazO-40" vertex="1" connectable="0">
+        <mxCell id="Slogdnl2pw9yYkc5tazO-43" value="Overall Services Score" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Slogdnl2pw9yYkc5tazO-40" vertex="1" connectable="0">
           <mxGeometry x="0.2649" y="-3" relative="1" as="geometry">
             <mxPoint x="11" y="-13" as="offset" />
           </mxGeometry>
@@ -196,13 +197,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HkA3kdm-LTjqPYIi5Wi_-6" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;Observe changes in user favourites table&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="640" y="350" width="155" height="15" as="geometry" />
-        </mxCell>
-        <mxCell id="HkA3kdm-LTjqPYIi5Wi_-7" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;1. Observe changes in users favourites in table&lt;br&gt;&lt;br&gt;2. Pull property data&lt;br&gt;&lt;/font&gt;" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="480" y="740" width="260" height="190" as="geometry" />
+          <mxGeometry x="570" y="375" width="155" height="15" as="geometry" />
         </mxCell>
         <mxCell id="HkA3kdm-LTjqPYIi5Wi_-9" value="Recommendation System Python lamda funciton" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="710" y="40" width="220" height="60" as="geometry" />
+          <mxGeometry x="650" y="40" width="280" height="60" as="geometry" />
         </mxCell>
         <mxCell id="HkA3kdm-LTjqPYIi5Wi_-16" value="(If Auth token exists in request) modify users&#39;&amp;nbsp; records" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="545" y="440" width="130" height="80" as="geometry" />
@@ -217,6 +215,18 @@
         </mxCell>
         <mxCell id="9sfzdNhPHF9fwhm8lbpX-5" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.gear;" vertex="1" parent="1">
           <mxGeometry x="850" y="-10" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9sfzdNhPHF9fwhm8lbpX-11" value="KNN" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.sagemaker;" vertex="1" parent="1">
+          <mxGeometry x="650" y="-150" width="80" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="9sfzdNhPHF9fwhm8lbpX-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.146;entryY=-0.037;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="9sfzdNhPHF9fwhm8lbpX-11" target="HkA3kdm-LTjqPYIi5Wi_-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9sfzdNhPHF9fwhm8lbpX-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9sfzdNhPHF9fwhm8lbpX-13" target="9sfzdNhPHF9fwhm8lbpX-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9sfzdNhPHF9fwhm8lbpX-13" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Features:&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;-property attributes (price, beds, area)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;-area z scores&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="830" y="-190" width="120" height="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
