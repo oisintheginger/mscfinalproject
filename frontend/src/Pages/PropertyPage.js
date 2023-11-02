@@ -21,6 +21,7 @@ import PropertyDetailMap from "../components/MapComponent/PropertyDetailMap";
 import { useTheme, useMediaQuery } from "@mui/material";
 import Carousel from "../components/Carousel/Carousel";
 import { useEffect, useRef, useState } from "react";
+import ApplyModal from "../components/CreateApplicationModal/ApplyModal";
 
 function PropertyPage() {
 	const location = useLocation();
@@ -358,6 +359,7 @@ function PropertyPage() {
 				</Box>
 			</PageTemplate>
 			<Modal open={modalOpen} onClose={closeModal} sx={{ width: "98%" }}>
+				
 				<Box
 					sx={{
 						position: "absolute",
@@ -378,7 +380,8 @@ function PropertyPage() {
 						p: 4,
 					}}
 				>
-					<Typography textAlign={"center"}>FILL IN DETAILS TO APPLY</Typography>
+					{/* <Typography textAlign={"center"}>FILL IN DETAILS TO APPLY</Typography> */}
+					<ApplyModal closeModal={closeModal}/>
 				</Box>
 			</Modal>
 		</>
