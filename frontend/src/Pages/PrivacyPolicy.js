@@ -117,6 +117,32 @@ function PrivacyPolicy() {
 							tasks assigned to them on our behalf. However, they are obligated
 							not to disclose or use the information for any other purpose.
 						</Typography>
+						<br />
+						<Typography variant="body2">
+							{
+								"This site makes use of Google Places and Maps APIs, be sure to review the following:"
+							}
+						</Typography>
+						<ul>
+							<li>
+								<Typography
+									component={"a"}
+									href="https://policies.google.com/privacy"
+									variant="body2"
+								>
+									Google's Privacy Policy
+								</Typography>
+							</li>
+							<li>
+								<Typography
+									component={"a"}
+									href="https://policies.google.com/terms?hl=en"
+									variant="body2"
+								>
+									Google Maps Terms of Service
+								</Typography>
+							</li>
+						</ul>
 					</Box>
 					<Box mt={5}>
 						<Typography variant="h2">Security</Typography>

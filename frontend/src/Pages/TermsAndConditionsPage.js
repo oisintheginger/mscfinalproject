@@ -123,6 +123,35 @@ function TermsAndConditions() {
 						</Typography>
 					</Box>
 					<Box mt={3}>
+						<Typography variant="h2">{"External Services"}</Typography>
+						<Divider />
+						<Typography variant="body2">
+							{
+								"This site makes use of the Google Maps and Google Places APIs. By using the Site, you are bound by Google's Terms of Service."
+							}
+						</Typography>
+						<ul>
+							<li>
+								<Typography
+									component={"a"}
+									href="https://policies.google.com/privacy"
+									variant="body2"
+								>
+									Google's Privacy Policy
+								</Typography>
+							</li>
+							<li>
+								<Typography
+									component={"a"}
+									href="https://policies.google.com/terms?hl=en"
+									variant="body2"
+								>
+									Google Maps Terms of Service
+								</Typography>
+							</li>
+						</ul>
+					</Box>
+					<Box mt={3}>
 						<Typography variant="h2">{"Severability"}</Typography>
 						<Divider />
 						<Typography variant="body2">
