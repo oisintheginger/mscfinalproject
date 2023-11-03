@@ -43,11 +43,9 @@
             <version>5.2.1</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-
 <!--            <exclusions>-->
 <!--                comment out when running locally-->
 <!--                <exclusion>-->
@@ -101,7 +99,6 @@
             <version>5.9.3</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <dependencyManagement>
