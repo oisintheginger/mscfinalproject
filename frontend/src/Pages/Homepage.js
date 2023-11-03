@@ -17,6 +17,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 
 import { propertyData } from "../MockData/PropertyDataSample";
 import CardCarousel from "../components/Carousel/CardCarousel";
+import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 function Homepage() {
 	const { register, handleSubmit } = useForm();
 	const navigator = useNavigate();
@@ -86,15 +87,6 @@ function Homepage() {
 				</Typography>
 				{auth.route === "authenticated" ? (
 					<Container>
-						{/* <Grid container spacing={2} width={"100%"} mt={0.5}>
-							{propertyData.slice(0, 9).map((data, key) => {
-								return (
-									<Grid item xs={12} sm={6} md={4}>
-										<PropertyCard data={data} key={key} />
-									</Grid>
-								);
-							})}
-						</Grid> */}
 						<CardCarousel propData={propertyData} />
 					</Container>
 				) : (
@@ -108,6 +100,7 @@ function Homepage() {
 					</ButtonStyled>
 				)}
 			</Box>
+			<SiteFooter />
 		</>
 	);
 }

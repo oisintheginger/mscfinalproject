@@ -31,8 +31,13 @@ public class DetailedProperty {
     private LocalDate lastUpdated;
     @JsonProperty
     private LocalDate datePosted;
+
     @JsonProperty
-    private double TBDScore;
+    private int safetyScore;
+
+    @JsonProperty
+    private int servicesScore;
+
     @JsonProperty
     private String[] images;
     // private String atAGlanceFacts; maybe use a structured object or Map instead of a raw JSON string
@@ -53,7 +58,8 @@ public class DetailedProperty {
         this.petsAllowed = petsAllowed;
         this.lastUpdated = lastUpdated;
         this.datePosted = datePosted;
-        this.TBDScore = TBDScore;
+        this.safetyScore = safetyScore;
+        this.servicesScore = servicesScore;
         this.images = images;
     }
 
@@ -161,12 +167,20 @@ public class DetailedProperty {
         this.datePosted = datePosted;
     }
 
-    public double getTBDScore() {
-        return TBDScore;
+    public int getSafetyScore() {
+        return safetyScore;
     }
 
-    public void setTBDScore(double TBDScore) {
-        this.TBDScore = TBDScore;
+    public void setSafetyScore(int safetyScore) {
+        this.safetyScore = safetyScore;
+    }
+
+    public int getServicesScore() {
+        return servicesScore;
+    }
+
+    public void setServicesScore(int servicesScore) {
+        this.servicesScore = servicesScore;
     }
 
     public String[] getImages() {

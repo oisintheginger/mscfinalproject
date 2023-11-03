@@ -1,4 +1,3 @@
-
 import NavLayout from "../layouts/NavLayout";
 
 import Browse from "../Pages/Browse";
@@ -13,6 +12,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import RequireAuthWrapper from "../Pages/RequireAuthWrapper";
 import Login from "../Pages/Login";
+import ContactInformationPage from "../Pages/ContactInformation";
+import PrivacyPolicy from "../Pages/PrivacyPolicy";
+import TermsAndConditions from "../Pages/TermsAndConditionsPage";
 
 function HMERouter() {
 	return (
@@ -55,6 +57,9 @@ function HMERouter() {
 					/>
 					<Route path="/login" element={<Login />} />
 					<Route path="/property/:id" element={<PropertyPage />} />
+					<Route path="/contactus" element={<ContactInformationPage />} />
+					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
+					<Route path="/termsandconditions" element={<TermsAndConditions />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
