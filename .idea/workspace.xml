@@ -7,6 +7,8 @@
     <list default="true" id="922034b1-1a57-44e9-adec-cac45c820ef4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/DatabaseComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/test/java/msc/HME/controller/PropertiesControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/msc/HME/controller/PropertiesControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +53,8 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;git-widget-placeholder&quot;: &quot;fenna__dev&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
 }</component>
   <component name="RecentsManager">
