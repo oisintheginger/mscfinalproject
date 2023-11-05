@@ -1,12 +1,11 @@
 package msc.HME.controller;
 
-import msc.HME.Greeting;
-import msc.HME.properties.QuickViewProperty;
+import msc.HME.School;
+import msc.HME.properties.QuickViewPropertyV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class TestController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public TestController(JdbcTemplate jdbcTemplate) {
@@ -26,10 +25,16 @@ public class TestController {
     }
 
     @GetMapping("/test")
-    public List<QuickViewProperty> testAll() {
+    public List<School> test() {
         String sql = "SELECT * FROM Schools;";
-
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(QuickViewProperty.class));
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(School.class));
     }
+
+//    @GetMapping("/testProp")
+//    public List<QuickViewPropertyV2> testAll() {
+//        String sql = "";
+//
+//        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(QuickViewPropertyV2.class));
+//    }
 }
 
