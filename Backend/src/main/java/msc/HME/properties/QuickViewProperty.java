@@ -2,11 +2,15 @@ package msc.HME.properties;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class QuickViewProperty {
     // TO DO: String image
     @JsonProperty
-    private int propertyId;
+    private long propertyId;
 
     @JsonProperty
     private String longitude;
@@ -43,70 +47,39 @@ public class QuickViewProperty {
         this.description = description;
         this.image = image;
     }
-
-    // Getters and setters for each field...
-
-    public long getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(int propertyId) {
-        this.propertyId = propertyId;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
