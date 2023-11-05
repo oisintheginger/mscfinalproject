@@ -80,22 +80,22 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 											fullWidth
 											InputProps={{ height: "40px" }}
 											{...methods.register(MIN_PRICE, {
-												min: 0,
-												onChange: () => {
-													methods.trigger();
-													if (methods.getValues(MIN_PRICE) < 1) {
-														methods.setValue(MIN_PRICE, 1);
-													}
-													if (
-														methods.getValues(MIN_PRICE) >
-														methods.getValues(MAX_PRICE)
-													) {
-														methods.setValue(
-															MIN_PRICE,
-															methods.getValues(MAX_PRICE)
-														);
-													}
-												},
+												min: 1,
+												// onChange: () => {
+												// 	methods.trigger();
+												// 	// if (methods.getValues(MIN_PRICE) < 1) {
+												// 	// 	methods.setValue(MIN_PRICE, 1);
+												// 	// }
+												// 	// if (
+												// 	// 	methods.getValues(MIN_PRICE) >
+												// 	// 	methods.getValues(MAX_PRICE)
+												// 	// ) {
+												// 	// 	methods.setValue(
+												// 	// 		MIN_PRICE,
+												// 	// 		methods.getValues(MAX_PRICE)
+												// 	// 	);
+												// 	// }
+												// },
 											})}
 										/>
 									}
@@ -110,21 +110,21 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 											label="Max Price"
 											InputProps={{ height: "40px" }}
 											{...methods.register(MAX_PRICE, {
-												min: 0,
-												onChange: () => {
-													methods.trigger();
-													if (methods.getValues(MAX_PRICE) < 0) {
-														methods.setValue(MAX_PRICE, 0);
-														return;
-													}
-												},
+												min: 1,
+												// onChange: () => {
+												// 	methods.trigger();
+												// 	if (methods.getValues(MAX_PRICE) < 0) {
+												// 		methods.setValue(MAX_PRICE, 0);
+												// 		return;
+												// 	}
+												// },
 											})}
 										/>
 									}
 								/>
 							</Stack>
 							<Typography variant="overline" mt={2}>
-								Bedroom Count
+								Min. Bedroom Count
 							</Typography>
 							<Divider sx={{ mb: 5 }} />
 							<Slider
@@ -139,7 +139,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 								{...methods.register(BEDROOM_COUNT, { min: 1, max: 10 })}
 							/>
 							<Typography variant="overline" mt={3}>
-								Bathroom Count
+								Min. Bathroom Count
 							</Typography>
 							<Divider sx={{ mb: 5 }} />
 							<Slider

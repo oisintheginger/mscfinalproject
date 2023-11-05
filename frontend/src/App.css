@@ -7,15 +7,9 @@ a {
     color: #F3FCFF;
 }
 
-html{
-    height: 100%;
-}
 body{
     padding: 0px;
     margin: 0px;
-    height: 100%;
-    
-    width: 100%;
 }
 
 .leaflet-container{
@@ -23,4 +17,6 @@ body{
 }
 
 
+
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;400;500;600;700;900&display=swap');
+@import url('https://unpkg.com/leaflet@1.5.1/dist/leaflet.css');

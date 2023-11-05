@@ -4,20 +4,20 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
+// import CardActions from "@mui/material/CardActions";
+// import Collapse from "@mui/material/Collapse";
 //import Avatar from '@mui/material/Avatar';
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 //import { red } from '@mui/material/colors';
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
+// import ShareIcon from "@mui/icons-material/Share";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { propertyData } from "../../../../MockData/PropertyDataSample";
-import { Grid, Stack, Chip } from "@mui/material";
+// import { propertyData } from "../../../../MockData/PropertyDataSample";
+import { Stack, Chip } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
-import Carousel from "../../../Carousel/Carousel";
+// import Carousel from "../../../Carousel/Carousel";
 
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
@@ -30,7 +30,7 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-export default function PropertyCard({ data, key }) {
+export default function PropertyCard({ data, key, inPopup = false}) {
 	const [expanded, setExpanded] = useState(false);
 
 	const navigator = useNavigate();
@@ -41,8 +41,7 @@ export default function PropertyCard({ data, key }) {
 	};
 
 	return (
-		<Card elevation={6}>
-			
+		<Card elevation={inPopup ? 0: 6} sx={{ height: "100%" }}>
 			<CardMedia
 				onClick={() =>
 					navigator("/property/" + data.zpid, {
@@ -67,12 +66,36 @@ export default function PropertyCard({ data, key }) {
 				<Stack
 					direction="row"
 					spacing={1}
-					sx={{ overflowX: "auto", whiteSpace: "nowrap" }}
+					sx={{
+						overflowX: "auto",
+						whiteSpace: "nowrap",
+						"&::-webkit-scrollbar": { display: "none" },
+					}}
 				>
-					<Chip label={data.listingStatus} color="warning" />
-					<Chip color="success" label="Other1" />
-					<Chip color="primary" label="Other2" />
-					<Chip color="secondary" label="Other3" />
+					<Chip
+						label="SECURE"
+						sx={{
+							backgroundColor: "secureChip.main",
+							color: "white",
+							fontWeight: 600,
+						}}
+					/>
+					<Chip
+						label="NIGHTLIFE"
+						sx={{
+							backgroundColor: "nightlifeChip.main",
+							color: "white",
+							fontWeight: 600,
+						}}
+					/>
+					<Chip
+						label="GYMS"
+						sx={{
+							backgroundColor: "gymsChip.main",
+							color: "white",
+							fontWeight: 600,
+						}}
+					/>
 				</Stack>
 			</CardContent>
 		</Card>

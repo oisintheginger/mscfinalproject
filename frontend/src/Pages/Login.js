@@ -59,12 +59,10 @@ function Login() {
 		});
 	}
 
-	console.log(auth);
-
 	return (
 		<Box height={"100%"} paddingTop={2}>
 			<View className="auth-wrapper">
-				<form onSubmit={onSubmit}>
+				{/* <form onSubmit={onSubmit}>
 					<fieldset>
 						<legend>TEST LOGIN FOR CUSTOM LOGIN EVENTS</legend>
 						<Box display={"flex"} flexDirection={"column"}>
@@ -85,7 +83,7 @@ function Login() {
 							<button type="submit">submit</button>
 						</Box>
 					</fieldset>
-				</form>
+				</form> */}
 				<Authenticator />
 			</View>
 		</Box>

@@ -6,15 +6,23 @@ import {
 	Stack,
 	Typography,
 	TextField,
+	Button,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
+import ButtonStyled from "../components/CommonComp/Button/ButtonStyle.js";
 
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 import { propertyData } from "../MockData/PropertyDataSample";
+import CardCarousel from "../components/Carousel/CardCarousel";
+import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 function Homepage() {
-	const navigator = useNavigate();
 	const { register, handleSubmit } = useForm();
+	const navigator = useNavigate();
+	const location = useLocation();
+	const auth = useAuthenticator((context) => [context.route]);
 	const navigateToBrowse = (data) => {
 		navigator({
 			pathname: "/browse",
@@ -66,19 +74,33 @@ function Homepage() {
 				</Box>
 			</Stack>
 
-			<Box width={"100%"} justifyContent={"center"} sx={{ mt: "100px" }}>
-				<Container>
-					<Grid container spacing={2} width={"100%"} mt={0.5}>
-						{propertyData.slice(0, 9).map((data, key) => {
-							return (
-								<Grid item xs={12} sm={6} md={4}>
-									<PropertyCard data={data} key={key} />
-								</Grid>
-							);
-						})}
-					</Grid>
-				</Container>
+			<Box
+				width={"100%"}
+				display={"flex"}
+				flexDirection={"column"}
+				justifyContent={"center"}
+				alignItems={"center"}
+				sx={{ mt: "100px" }}
+			>
+				<Typography variant={"h2"} textAlign="center">
+					Your Recommendations
+				</Typography>
+				{auth.route === "authenticated" ? (
+					<Container>
+						<CardCarousel propData={propertyData} />
+					</Container>
+				) : (
+					<ButtonStyled
+						sx={{ width: "30%" }}
+						onClick={() => {
+							navigator("/login", { state: { previousUrl: location } });
+						}}
+					>
+						Sign in to View Recommendations
+					</ButtonStyled>
+				)}
 			</Box>
+			<SiteFooter />
 		</>
 	);
 }

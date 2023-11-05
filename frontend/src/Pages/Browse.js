@@ -57,7 +57,7 @@ function Browse() {
 			</FormProvider>
 			<Divider />
 			<ListMap>
-				<LeafletMap />
+				<LeafletMap propertyData={propertyData} />
 			</ListMap>
 			<ResultGrid propertyData={propertyData} id={"results"} />
 			<Pagination
