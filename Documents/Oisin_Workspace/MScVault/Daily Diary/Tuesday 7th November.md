@@ -6,4 +6,6 @@
 
 
 > [!afternoon] Afternoon
-> - Task Here
+> - Learning ReactQuery (TanStack Query) (~1 hour)
+> - Integrating React Query + Starting User Context work + Other Work Relating to retrieving data from API Gateway (favorites, Browsing(pagination/results), Homepage recommendation) + login prompt modal on property details page when not logged in + rework of nav menu to have login button (~10 hours)
+> - 
