@@ -49,7 +49,7 @@ function ResultGrid({
 
 			<Divider />
 			<Grid container spacing={2} width={"100%"} mt={0.5}>
-				{propertyData.slice(0, 9).map((data, key) => {
+				{propertyData.map((data, key) => {
 					return (
 						<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
 							<PropertyCard data={data} />

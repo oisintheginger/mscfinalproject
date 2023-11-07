@@ -32,6 +32,7 @@ function Favorites() {
 		defaultValues: { ...DEFAULT_FIELD_VALUES },
 	});
 
+	
 	methods.customSubmitBehavior = filterSubmit;
 
 	return (

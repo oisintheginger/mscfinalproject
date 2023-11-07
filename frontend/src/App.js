@@ -22,20 +22,26 @@ import Profile from "./Pages/Profile";
 import NavLayout from "./layouts/NavLayout.js";
 import theme from "./Styling/theme";
 
-// browser router i.e. route tree
-
 import UserPool from "./UserPool/UserPool";
 
 import HMERouter from "./Routers/HMERouter";
 import { Authenticator } from "@aws-amplify/ui-react";
 
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient();
+
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
-			<Authenticator.Provider>
-				<HMERouter />
-			</Authenticator.Provider>
-		</ThemeProvider>
+		<QueryClientProvider client={queryClient}>
+			<ThemeProvider theme={theme}>
+				<Authenticator.Provider>
+					<HMERouter />
+				</Authenticator.Provider>
+			</ThemeProvider>
+			<ReactQueryDevtools isOpen={false} position={"bottom-right"} />
+		</QueryClientProvider>
 	);
 }
 

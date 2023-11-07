@@ -15,6 +15,7 @@ import Login from "../Pages/Login";
 import ContactInformationPage from "../Pages/ContactInformation";
 import PrivacyPolicy from "../Pages/PrivacyPolicy";
 import TermsAndConditions from "../Pages/TermsAndConditionsPage";
+import NotFoundPage from "../Pages/NotFoundPage";
 
 function HMERouter() {
 	return (
@@ -60,6 +61,7 @@ function HMERouter() {
 					<Route path="/contactus" element={<ContactInformationPage />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
 					<Route path="/termsandconditions" element={<TermsAndConditions />} />
+					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

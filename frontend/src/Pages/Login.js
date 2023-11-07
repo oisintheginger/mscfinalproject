@@ -4,7 +4,6 @@ import "@aws-amplify/ui-react/styles.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TextField, Box } from "@mui/material";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-import { Auth } from "aws-amplify";
 
 import UserPool from "../UserPool/UserPool";
 function Login() {
@@ -18,18 +17,18 @@ function Login() {
 	const [password, setPassword] = useState("");
 
 	let prev = location.state?.from?.pathname || "/";
-	Auth.currentSession()
-		.then((res) => {
-			let accessToken = res.getAccessToken();
-			let jwt = accessToken.getJwtToken();
+	// Auth.currentSession()
+	// 	.then((res) => {
+	// 		let accessToken = res.getAccessToken();
+	// 		let jwt = accessToken.getJwtToken();
 
-			//You can print them to see the full objects
-			console.log(`myAccessToken: ${JSON.stringify(accessToken)}`);
-			console.log(`myJwt: ${jwt}`);
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+	// 		//You can print them to see the full objects
+	// 		console.log(`myAccessToken: ${JSON.stringify(accessToken)}`);
+	// 		console.log(`myJwt: ${jwt}`);
+	// 	})
+	// 	.catch((err) => {
+	// 		console.log(err);
+	// 	});
 
 	useEffect(() => {
 		if (route === "authenticated") {

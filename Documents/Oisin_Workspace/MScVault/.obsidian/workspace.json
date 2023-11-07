@@ -78,9 +78,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "1fc3c2f790106274",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/Monday 6th November.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ef936b31ccf075c9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/Tuesday 7th November.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -154,7 +178,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/2nd November 2023.md",
+                "file": "Daily Diary/Tuesday 7th November.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -171,7 +195,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/2nd November 2023.md",
+                "file": "Daily Diary/Tuesday 7th November.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -194,7 +218,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/2nd November 2023.md"
+                "file": "Daily Diary/Tuesday 7th November.md"
               }
             }
           }
@@ -216,10 +240,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "97ab786ad2478a7e",
+  "active": "ef936b31ccf075c9",
   "lastOpenFiles": [
-    "Daily Diary/1st November 2023.md",
+    "Daily Diary/Monday 6th November.md",
+    "Daily Diary/Tuesday 7th November.md",
+    "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Daily Diary/2nd November 2023.md",
+    "Daily Diary/1st November 2023.md",
     "Daily Diary/Tuesday 3rd October.md",
     "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
     "Master's Project/UX Work/Core User Flows/Saving Searches/Untitled.md",
@@ -249,7 +276,6 @@
     "Master's Project/UX Work/User Testing/06CA3750",
     "Master's Project/UX Work/User Testing/DC6A3750",
     "Master's Project/UX Work/User Testing/B6193750",
-    "Master's Project/UX Work/User Testing/29F83750",
     "Daily Diary/Weekend Saturday + Sunday October 7th-8th.md",
     "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
     "Master's Project/UX Work/UX Mockups/Tablet Layout.png",
@@ -261,8 +287,6 @@
     "Master's Project/UX Work/UX Mockups/OpenMenu/Mobile.png",
     "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Tablet.png",
     "Master's Project/UX Work/UX Research/Survey Results.md",
-    "Templates/Daily Work Diary.md",
-    "Master's Project/UX Work/UX Research/Research Plan.md",
-    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md"
+    "Templates/Daily Work Diary.md"
   ]
 }

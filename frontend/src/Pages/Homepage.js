@@ -18,17 +18,52 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { propertyData } from "../MockData/PropertyDataSample";
 import CardCarousel from "../components/Carousel/CardCarousel";
 import SiteFooter from "../components/SiteFooter/SiteFooter.js";
+
+import { Auth } from "aws-amplify";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { API } from "aws-amplify";
+import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner.js";
 function Homepage() {
 	const { register, handleSubmit } = useForm();
 	const navigator = useNavigate();
 	const location = useLocation();
-	const auth = useAuthenticator((context) => [context.route]);
+	const { route, user } = useAuthenticator((context) => [
+		context.route,
+		context.user,
+	]);
 	const navigateToBrowse = (data) => {
 		navigator({
 			pathname: "/browse",
 			search: "searchString=" + data.searchString,
 		});
 	};
+
+	const { data, isLoading, isError, refetch } = useQuery(
+		"recommended",
+		() => {
+			return API.get("HMEBackend", `/api/user/favorites`, {
+				headers: {
+					Authorization:
+						user.getSignInUserSession().getAccessToken().jwtToken || null,
+				},
+				response: true,
+				queryStringParameters: {
+					userId: user.username || null,
+				},
+			});
+		},
+		{
+			enabled: false,
+		}
+	);
+
+	useEffect(() => {
+		if (route == "authenticated") {
+			refetch();
+		}
+	}, [user]);
+
 	return (
 		<>
 			<Stack direction={"column"} spacing={1} mt={10} alignItems={"center"}>
@@ -85,10 +120,20 @@ function Homepage() {
 				<Typography variant={"h2"} textAlign="center">
 					Your Recommendations
 				</Typography>
-				{auth.route === "authenticated" ? (
-					<Container>
-						<CardCarousel propData={propertyData} />
-					</Container>
+				{route === "authenticated" ? (
+					isLoading ? (
+						<LoadingSpinner message={"Getting your recommendations"} />
+					) : isError ? (
+						<p>Error</p>
+					) : (
+						<Container>
+							{data?.data > 0 ? (
+								<CardCarousel propData={propertyData} />
+							) : (
+								<Typography>No Recommendations</Typography>
+							)}
+						</Container>
+					)
 				) : (
 					<ButtonStyled
 						sx={{ width: "30%" }}

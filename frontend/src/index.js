@@ -26,22 +26,6 @@ Amplify.configure({
 	},
 });
 
-API.post("OisinTestAPI", "/", {
-	header: {},
-	response: true,
-	body: { message: "This is a test invocation of the test API" },
-})
-	.then((response) => {
-		console.log(response);
-	})
-	.catch((error) => {
-		console.log(error.response);
-	});
-// API.get("HMEBackend", "/api/properties", { headers: {}, response: true })
-// 	.then((response) => console.log(response.data))
-// 	.catch((err) => {
-// 		console.log(err.response);
-// 	});
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>

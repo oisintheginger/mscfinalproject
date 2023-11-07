@@ -16,7 +16,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import { forwardRef } from "react";
 
-import { MapContainer, TileLayer, useMapEvent } from "react-leaflet";
+import { MapContainer, TileLayer, useMapEvent, Marker } from "react-leaflet";
 import { useState } from "react";
 import {
 	ExpandLeftIcon,
@@ -26,11 +26,15 @@ import {
 } from "../../Icons/HMEIcons";
 import MapFeatureToggle from "./MapFeatureToggle";
 import GoogleLogo from "./../../Icons/google_on_white.png";
+import Leaflet from "leaflet";
 
-function MapTile() {
-	const map2 = useMapEvent("zoom", () => {
-		console.log(map2.getBounds());
-	});
+const markerIcon = new Leaflet.Icon({
+	iconUrl: require("../../Icons/mapmarkericon.png"),
+	iconAnchor: [14, 28],
+	popupAnchor: [0, -28],
+});
+
+function MapTile({ location }) {
 	return (
 		<>
 			<TileLayer
@@ -38,6 +42,7 @@ function MapTile() {
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				zIndex={1}
 			/>
+			<Marker position={location} icon={markerIcon} />
 		</>
 	);
 }
@@ -67,7 +72,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 				}}
 				ref={ref}
 			>
-				<MapContainer center={center} zoom={12} scrollWheelZoom={true}>
+				<MapContainer center={center} zoom={14} scrollWheelZoom={true}>
 					<Stack width={"100%"} justifyContent={"flex-end"} direction={"row"}>
 						{below ? (
 							!togglesOpen && (
@@ -112,7 +117,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 							</Button>
 						)}
 					</Stack>
-					<MapTile />
+					<MapTile location={center} />
 				</MapContainer>
 				<Stack direction={"row"} alignItems={"flex-end"} mt={1} spacing={1}>
 					<Typography
