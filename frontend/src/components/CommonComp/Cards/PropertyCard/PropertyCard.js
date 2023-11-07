@@ -5,7 +5,7 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
-import { Stack, Chip } from "@mui/material";
+import { Stack, Chip, Typography } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
@@ -49,7 +49,15 @@ export default function PropertyCard({ data, key, inPopup = false }) {
 				image={data.image}
 				alt="Property Image"
 			/>
-			<CardHeader title={"$" + data.price} subheader={data.address} />
+			<CardHeader
+				title={<Typography variant="cardHeader">{"$" + data.price}</Typography>}
+				sx={{ textOverflow: "ellipsis" }}
+				subheader={
+					<Typography variant="subtitle1" noWrap>
+						{data.address}
+					</Typography>
+				}
+			/>
 
 			<CardContent>
 				<Stack

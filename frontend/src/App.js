@@ -29,6 +29,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import UserContextProvider from "./Utils/UserContext/UserContextProvider.js";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +38,9 @@ function App() {
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider theme={theme}>
 				<Authenticator.Provider>
-					<HMERouter />
+					<UserContextProvider>
+						<HMERouter />
+					</UserContextProvider>
 				</Authenticator.Provider>
 			</ThemeProvider>
 			<ReactQueryDevtools isOpen={false} position={"bottom-right"} />

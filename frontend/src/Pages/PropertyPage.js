@@ -20,16 +20,18 @@ import PropertyDetailMap from "../components/MapComponent/PropertyDetailMap";
 
 import { useTheme, useMediaQuery } from "@mui/material";
 import Carousel from "../components/Carousel/Carousel";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ApplyModal from "../components/CreateApplicationModal/ApplyModal";
 
 import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
+import { UserContext } from "../Utils/UserContext/UserContext";
 
 function PropertyPage() {
 	const location = useLocation();
-	const individualProperty = propertyData[0];
+
+	const { userData, handleRefresh } = useContext(UserContext);
 
 	const mapRef = useRef(null);
 
@@ -45,21 +47,21 @@ function PropertyPage() {
 		setModalOpen(false);
 	};
 
-	const [propertyId, setPropertyId] = useState();
-	useEffect(() => {
-		setPropertyId(location.pathname.split("/")[2]);
-	}, []);
+	const [propertyId, setPropertyId] = useState(null);
 	const { isError, isLoading, error, data } = useQuery(
 		["propertydetails", propertyId],
 		() => {
-			return API.get("HMEBackend", `/api/properties/${propertyId}`, {
-				response: true,
-				queryStringParameters: {},
-			});
+			return API.get(
+				"HMEBackend",
+				`/api/properties/${location.pathname.split("/")[2]}`,
+				{
+					response: true,
+					queryStringParameters: {},
+				}
+			);
 		},
 		{ staleTime: 500000, refetchOnMount: false }
 	);
-	console.log(data?.data);
 
 	return (
 		<>
