@@ -115,7 +115,7 @@ function Homepage() {
 				flexDirection={"column"}
 				justifyContent={"center"}
 				alignItems={"center"}
-				sx={{ mt: "100px" }}
+				sx={{ mt: { xs: 7, md: "100px" } }}
 			>
 				<Typography variant={"h2"} textAlign="center">
 					Your Recommendations
