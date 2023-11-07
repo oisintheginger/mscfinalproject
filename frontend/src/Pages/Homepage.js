@@ -120,30 +120,36 @@ function Homepage() {
 				<Typography variant={"h2"} textAlign="center">
 					Your Recommendations
 				</Typography>
-				{route === "authenticated" ? (
-					isLoading ? (
-						<LoadingSpinner message={"Getting your recommendations"} />
-					) : isError ? (
-						<p>Error</p>
+				<Stack
+					minHeight={"35vh"}
+					width={"100%"}
+					display={"flex"}
+					alignItems={"center"}
+				>
+					{route === "authenticated" ? (
+						isLoading ? (
+							<LoadingSpinner message={"Getting your recommendations"} />
+						) : isError ? (
+							<p>Error</p>
+						) : (
+							<Container>
+								{data?.data > 0 ? (
+									<CardCarousel propData={propertyData} />
+								) : (
+									<Typography>No Recommendations</Typography>
+								)}
+							</Container>
+						)
 					) : (
-						<Container>
-							{data?.data > 0 ? (
-								<CardCarousel propData={propertyData} />
-							) : (
-								<Typography>No Recommendations</Typography>
-							)}
-						</Container>
-					)
-				) : (
-					<ButtonStyled
-						sx={{ width: "30%" }}
-						onClick={() => {
-							navigator("/login", { state: { previousUrl: location } });
-						}}
-					>
-						Sign in to View Recommendations
-					</ButtonStyled>
-				)}
+						<ButtonStyled
+							onClick={() => {
+								navigator("/login", { state: { from: location } });
+							}}
+						>
+							Sign in to View Recommendations
+						</ButtonStyled>
+					)}
+				</Stack>
 			</Box>
 			<SiteFooter />
 		</>

@@ -27,6 +27,9 @@ function UserContextProvider({ children }) {
 				return data.data;
 			},
 			enabled: false,
+			onError: (err) => {
+				console.log(err);
+			},
 		}
 	);
 
@@ -44,7 +47,7 @@ function UserContextProvider({ children }) {
 
 	return (
 		<UserContext.Provider
-			value={{ userData: data, handleRefresh: handleRefresh }}
+			value={{ userData: data, handleRefresh: handleRefresh, route }}
 		>
 			{children}
 		</UserContext.Provider>

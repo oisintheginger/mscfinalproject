@@ -32,6 +32,10 @@ function Browse() {
 
 	const [pageNum, setPageNum] = useState(1);
 
+	const [searchParameters, setSearchParameters] = useSearchParams();
+
+	const [filtersOpen, setFiltersOpen] = useState(false);
+
 	useEffect(() => {
 		setSearchParameters((params) => {
 			params.set("page", pageNum);
@@ -40,30 +44,13 @@ function Browse() {
 		return () => {};
 	}, [pageNum]);
 
-	const [filtersOpen, setFiltersOpen] = useState(false);
-	const BrowsingFilterSubmitHandler = (data) => {
-		Object.keys(data).forEach((key) => {
-			setSearchParameters((params) => {
-				params.set(key, methods.getValues(key));
-				return params;
-			});
-		});
-		methods.reset({}, { keepValues: true });
-	};
-
-	const [searchParameters, setSearchParameters] = useSearchParams();
-
 	useEffect(() => {
 		if (searchParameters.has(SEARCH_TERM)) {
 			methods.setValue(SEARCH_TERM, searchParameters.get(SEARCH_TERM));
 		}
 	}, []);
 
-	methods.customSubmitBehavior = BrowsingFilterSubmitHandler;
-
-	const [propertyResults, setPropertyResults] = useState([]);
-
-	const { isLoading, isError, data, error } = useQuery(
+	const { isLoading, isError, data, error, refetch } = useQuery(
 		["browsing-results", pageNum],
 		() => {
 			return API.get("HMEBackend", "/api/properties", {
@@ -72,16 +59,33 @@ function Browse() {
 				queryStringParameters: {
 					page: pageNum,
 					size: 10,
+					...methods.getValues(),
 				},
 			});
 		},
-		{ staleTime: 30000, refetchOnMount: true }
+		{
+			staleTime: 30000,
+			refetchOnMount: true,
+		}
 	);
 
 	const handlePageChange = (event, val) => {
 		event.preventDefault();
 		setPageNum(val);
 	};
+
+	const BrowsingFilterSubmitHandler = (formdata) => {
+		Object.keys(formdata).forEach((key) => {
+			setSearchParameters((params) => {
+				params.set(key, methods.getValues(key));
+				return params;
+			});
+		});
+		methods.reset({}, { keepValues: true });
+		refetch();
+	};
+
+	methods.customSubmitBehavior = BrowsingFilterSubmitHandler;
 
 	return (
 		<PageTemplate pageTitle="Browse" currPageBreadcrumb={"Browse"}>

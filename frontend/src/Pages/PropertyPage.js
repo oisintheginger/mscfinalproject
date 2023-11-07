@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PageTemplate from "./PageTemplate";
 import {
 	Box,
@@ -12,7 +12,6 @@ import {
 	Modal,
 } from "@mui/material";
 import { ApplicationIcon, FavoriteIcon, MapIcon } from "../Icons/HMEIcons";
-import { propertyData } from "../MockData/PropertyDataSample";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyle";
 import PropertyQuickInfoTag from "../components/PropertyQuickInfoTag/PropertyQuickInfoTag";
 import PageSection from "../components/CommonComp/PageSection/PageSection";
@@ -27,11 +26,13 @@ import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
+import { Authenticator, View } from "@aws-amplify/ui-react";
 
 function PropertyPage() {
 	const location = useLocation();
+	const navigate = useNavigate();
 
-	const { userData, handleRefresh } = useContext(UserContext);
+	const { userData, handleRefresh, route } = useContext(UserContext);
 
 	const mapRef = useRef(null);
 
@@ -39,6 +40,7 @@ function PropertyPage() {
 	const down = useMediaQuery(theme.breakpoints.down("md"));
 
 	const [modalOpen, setModalOpen] = useState(false);
+	const [loginModalOpen, setLoginModalOpen] = useState(false);
 
 	const openModal = () => {
 		setModalOpen(true);
@@ -47,9 +49,22 @@ function PropertyPage() {
 		setModalOpen(false);
 	};
 
-	const [propertyId, setPropertyId] = useState(null);
+	const openLoginModal = () => {
+		setLoginModalOpen(true);
+	};
+
+	const closeLoginModal = () => {
+		setLoginModalOpen(false);
+	};
+
+	useEffect(() => {
+		if (route === "authenticated") {
+			setLoginModalOpen(false);
+		}
+	}, [route]);
+
 	const { isError, isLoading, error, data } = useQuery(
-		["propertydetails", propertyId],
+		["propertydetails", location.pathname.split("/")[2]],
 		() => {
 			return API.get(
 				"HMEBackend",
@@ -60,7 +75,7 @@ function PropertyPage() {
 				}
 			);
 		},
-		{ staleTime: 500000, refetchOnMount: false }
+		{ staleTime: 500000, refetchOnMount: true }
 	);
 
 	return (
@@ -101,7 +116,11 @@ function PropertyPage() {
 							>
 								<Button
 									onClick={() => {
-										openModal();
+										if (route === "authenticated") {
+											openModal();
+										} else {
+											openLoginModal();
+										}
 									}}
 									variant="outlined"
 									sx={{
@@ -140,6 +159,13 @@ function PropertyPage() {
 										height: 45,
 									}}
 									endIcon={<FavoriteIcon />}
+									onClick={() => {
+										if (route === "authenticated") {
+											console.log("Added to Favorites");
+										} else {
+											openLoginModal();
+										}
+									}}
 								>
 									Favorite
 								</Button>
@@ -158,13 +184,6 @@ function PropertyPage() {
 									<Typography variant="propertyPrice">
 										{`$ ${data?.data.price}/mon`}
 									</Typography>
-
-									<IconButton
-										sx={{ color: "darkTeal.main" }}
-										aria-label="Favorite Button"
-									>
-										<FavoriteIcon />
-									</IconButton>
 								</Stack>
 								<Stack //ADDRESS + VIEW ON MAP BUTTON
 									direction={{ xs: "column", md: "row" }}
@@ -288,7 +307,6 @@ function PropertyPage() {
 									</Stack>
 								</PageSection>
 							</Stack>
-
 							{down && (
 								<Box
 									sx={{
@@ -310,7 +328,11 @@ function PropertyPage() {
 										<Button
 											variant="outlined"
 											onClick={() => {
-												openModal();
+												if (route === "authenticated") {
+													openModal();
+												} else {
+													openLoginModal();
+												}
 											}}
 											sx={{
 												backgroundColor: "darkTeal.main",
@@ -319,7 +341,7 @@ function PropertyPage() {
 													color: "darkWhite.main",
 												},
 												marginRight: 2,
-												height: 50,
+												height: 40,
 											}}
 											endIcon={<ApplicationIcon />}
 											fullWidth
@@ -333,7 +355,6 @@ function PropertyPage() {
 												color: "darkTeal.main",
 												borderColor: "darkTeal.main",
 												borderWidth: 1,
-
 												"&:hover": {
 													backgroundColor: "darkWhite.main",
 													color: "darkTeal.main",
@@ -341,10 +362,17 @@ function PropertyPage() {
 													borderWidth: 1,
 												},
 												marginRight: 2,
-												height: 50,
+												height: 40,
 											}}
 											endIcon={<FavoriteIcon />}
 											fullWidth
+											onClick={() => {
+												if (route === "authenticated") {
+													console.log("Added to Favorites");
+												} else {
+													openLoginModal();
+												}
+											}}
 										>
 											Favorite
 										</Button>
@@ -378,6 +406,24 @@ function PropertyPage() {
 				>
 					{/* <Typography textAlign={"center"}>FILL IN DETAILS TO APPLY</Typography> */}
 					<ApplyModal closeModal={closeModal} />
+				</Box>
+			</Modal>
+			<Modal open={loginModalOpen} onClose={closeLoginModal}>
+				<Box
+					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						width: {
+							xs: "90vw",
+							md: "1000px",
+						},
+					}}
+				>
+					<View className="auth-wrapper">
+						<Authenticator />
+					</View>
 				</Box>
 			</Modal>
 		</>
