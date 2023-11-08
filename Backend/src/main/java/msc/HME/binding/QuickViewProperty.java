@@ -39,7 +39,7 @@ public class QuickViewProperty {
     private String zipcode;
 
     @JsonProperty
-    private String description;
+    private String overview;
 
     @JsonProperty
     private ArrayList<String> images;
@@ -47,7 +47,7 @@ public class QuickViewProperty {
     // Default constructor
     public QuickViewProperty() {}
 
-    public QuickViewProperty(long propertyId, double longitude, double latitude, BigDecimal price, int bathrooms, int bedrooms, List<String> tags, String streetAddress, String zipcode, String description, ArrayList<String> images) {
+    public QuickViewProperty(long propertyId, double longitude, double latitude, BigDecimal price, int bathrooms, int bedrooms, List<String> tags, String streetAddress, String zipcode, String overview, ArrayList<String> images) {
         this.propertyId = propertyId;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -57,7 +57,7 @@ public class QuickViewProperty {
 //        this.tags = tags;
         this.streetAddress = streetAddress;
         this.zipcode = zipcode;
-        this.description = description;
+        this.overview = overview;
         this.images = images;
     }
 }

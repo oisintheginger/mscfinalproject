@@ -307,7 +307,7 @@ components:
           type: string
         zipcode:
           type: string
-        description:
+        overview:
           type: string
         images:
           type: array
