@@ -10,7 +10,7 @@ servers:
 paths:
   /api/properties:
     get:
-      summary: returns a list of properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50
+      summary: returns a list with the first entry the total number of pages and the rest of quick view properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50
       parameters:
         - in: query
           name: page
