@@ -293,8 +293,10 @@ components:
           type: integer
           format: int64
           example: 123456
-        geolocation:
-          type: string
+        longitude:
+          type: number
+        latitude:
+          type: number
         price:
           type: number
         bathrooms:
@@ -359,15 +361,28 @@ components:
           type: array
           items:
             type: string
-    SavedSearch:
-      description: a user can save a search, in order to return to it later
+    user:
+      description: user details available in user table
       type: object
       required:
         - id
+        - email
       properties:
         id:
-          type: integer
-          format: int64
-          example: 123456
-        much_more:
           type: string
+        email:
+          type: string
+        searches:
+          type: array
+          items:
+            type: string
+        favourites:
+          type: array
+          items:
+            type: integer
+        weights:
+          type: object
+        applications:
+          type: array
+          items:
+            type: object
