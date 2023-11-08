@@ -20,7 +20,23 @@ public class PropertyService {
     }
 
     public List<QuickViewProperty> getAllQVProperties() {
-        String sql = "SELECT mi.propertyID, a.geoLocation, mi.price, mi.bathrooms, mi.bedrooms, a.streetAddress, a.zipcode, mi.overview, GROUP_CONCAT(img.propertyURL) AS Images FROM MainInformation mi INNER JOIN Addresses a ON mi.addressID = a.addressID LEFT JOIN images img ON mi.propertyID = img.propertyID WHERE mi.availableNow = 1 GROUP BY mi.propertyID;";
+        String sql = """
+                SELECT mi.propertyID,\s
+                       ST_X(a.geoLocation) AS latitude,\s
+                       ST_Y(a.geoLocation) AS longitude,\s
+                       mi.price,\s
+                       mi.bathrooms,\s
+                       mi.bedrooms,\s
+                       a.streetAddress,\s
+                       a.zipcode,\s
+                       mi.overview,\s
+                       GROUP_CONCAT(img.propertyURL) AS Images\s
+                FROM MainInformation mi\s
+                INNER JOIN Addresses a ON mi.addressID = a.addressID\s
+                LEFT JOIN images img ON mi.propertyID = img.propertyID\s
+                WHERE mi.availableNow = 1\s
+                GROUP BY mi.propertyID;
+                """;
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(QuickViewProperty.class));
     }
 

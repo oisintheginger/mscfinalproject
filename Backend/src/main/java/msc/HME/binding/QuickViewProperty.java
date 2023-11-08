@@ -15,7 +15,10 @@ public class QuickViewProperty {
     private Long propertyId;
 
     @JsonProperty
-    private String geoLocation; //data type needs to be fixed
+    private Double longitude;
+
+    @JsonProperty
+    private Double latitude;
 
     @JsonProperty
     private BigDecimal price;
@@ -44,9 +47,10 @@ public class QuickViewProperty {
     // Default constructor
     public QuickViewProperty() {}
 
-    public QuickViewProperty(long propertyId, String geoLocation, BigDecimal price, int bathrooms, int bedrooms, List<String> tags, String streetAddress, String zipcode, String description, ArrayList<String> images) {
+    public QuickViewProperty(long propertyId, double longitude, double latitude, BigDecimal price, int bathrooms, int bedrooms, List<String> tags, String streetAddress, String zipcode, String description, ArrayList<String> images) {
         this.propertyId = propertyId;
-        this.geoLocation = geoLocation;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.price = price;
         this.bathrooms = bathrooms;
         this.bedrooms = bedrooms;
