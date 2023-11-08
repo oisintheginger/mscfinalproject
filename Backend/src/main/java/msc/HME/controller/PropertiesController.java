@@ -1,5 +1,7 @@
 package msc.HME.controller;
 
+import msc.HME.binding.DetailedProperty;
+import msc.HME.binding.JsonPlaceholderService;
 import msc.HME.binding.QuickViewProperty;
 import msc.HME.service.PropertyService;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,11 @@ import java.util.List;
 public class PropertiesController {
 
     private final PropertyService QVPService;
+    private final JsonPlaceholderService jsonPlaceholderService;
 
-    public PropertiesController(PropertyService qvpService) {
-        QVPService = qvpService;
+    public PropertiesController(PropertyService qvpService, JsonPlaceholderService jsonPlaceholderService) {
+        this.QVPService = qvpService;
+        this.jsonPlaceholderService = jsonPlaceholderService;
     }
 
     @GetMapping
@@ -24,6 +28,18 @@ public class PropertiesController {
             @RequestParam(defaultValue = "50") int size) { // default size hard coded for now
         List<QuickViewProperty> properties = QVPService.getAllQVProperties();
         return ResponseEntity.ok(properties.subList((page-1)*size, (page-1)*size+(size-1)));
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable Integer id) {
+        if (id <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        DetailedProperty property = jsonPlaceholderService.loadDetailedProperty(id);
+        if (property == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(property);
     }
 
 //    @GetMapping("/{id}")
