@@ -35,7 +35,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import HMELogo from "./../Icons/NewLogo.png";
 import HMELogoCompact from "./../Icons/NewLogoCompact.png";
 import CreateAccountModal from "../components/CreateAccountModal/CreateAccountModal";
-import ButtonStyled from "../components/CommonComp/Button/ButtonStyle";
+import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 
 function NavLayout() {
 	const theme = useTheme();

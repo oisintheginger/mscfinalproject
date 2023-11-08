@@ -102,9 +102,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "56b48df5b4a5cdff",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/Wednesday 8th November.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -178,7 +190,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/Tuesday 7th November.md",
+                "file": "Daily Diary/Wednesday 8th November.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -195,7 +207,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/Tuesday 7th November.md",
+                "file": "Daily Diary/Wednesday 8th November.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -218,7 +230,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/Tuesday 7th November.md"
+                "file": "Daily Diary/Wednesday 8th November.md"
               }
             }
           }
@@ -240,11 +252,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ef936b31ccf075c9",
+  "active": "56b48df5b4a5cdff",
   "lastOpenFiles": [
-    "Daily Diary/Monday 6th November.md",
-    "Daily Diary/Tuesday 7th November.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
+    "Daily Diary/Tuesday 7th November.md",
+    "Daily Diary/Wednesday 8th November.md",
+    "Daily Diary/Monday 6th November.md",
     "Daily Diary/2nd November 2023.md",
     "Daily Diary/1st November 2023.md",
     "Daily Diary/Tuesday 3rd October.md",
@@ -285,8 +298,6 @@
     "Master's Project/UX Work/UX Mockups/ApplyModal/Mobile.png",
     "Master's Project/UX Work/UX Mockups/OpenMenu/Desktop.png",
     "Master's Project/UX Work/UX Mockups/OpenMenu/Mobile.png",
-    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Tablet.png",
-    "Master's Project/UX Work/UX Research/Survey Results.md",
-    "Templates/Daily Work Diary.md"
+    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Tablet.png"
   ]
 }

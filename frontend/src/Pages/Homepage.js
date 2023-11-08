@@ -9,7 +9,7 @@ import {
 	Button,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import ButtonStyled from "../components/CommonComp/Button/ButtonStyle.js";
+import ButtonStyled from "../components/CommonComp/Button/ButtonStyled.js";
 
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";

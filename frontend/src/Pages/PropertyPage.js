@@ -12,7 +12,7 @@ import {
 	Modal,
 } from "@mui/material";
 import { ApplicationIcon, FavoriteIcon, MapIcon } from "../Icons/HMEIcons";
-import ButtonStyled from "../components/CommonComp/Button/ButtonStyle";
+import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 import PropertyQuickInfoTag from "../components/PropertyQuickInfoTag/PropertyQuickInfoTag";
 import PageSection from "../components/CommonComp/PageSection/PageSection";
 import PropertyDetailMap from "../components/MapComponent/PropertyDetailMap";
@@ -27,12 +27,14 @@ import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { Authenticator, View } from "@aws-amplify/ui-react";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 function PropertyPage() {
 	const location = useLocation();
 	const navigate = useNavigate();
 
 	const { userData, handleRefresh, route } = useContext(UserContext);
+	const { user } = useAuthenticator((context) => [context.route, context.user]);
 
 	const mapRef = useRef(null);
 
@@ -70,8 +72,14 @@ function PropertyPage() {
 				"HMEBackend",
 				`/api/properties/${location.pathname.split("/")[2]}`,
 				{
+					headers: {
+						Authorization:
+							user?.getSignInUserSession().getAccessToken().jwtToken || null,
+					},
 					response: true,
-					queryStringParameters: {},
+					queryStringParameters: {
+						userId: user?.username || null,
+					},
 				}
 			);
 		},
@@ -96,7 +104,13 @@ function PropertyPage() {
 				>
 					<Box //WRAPPER BOX FOR STICKY BUTTON
 					>
-						<Box mb={2} sx={{ backgroundColor: "greyDark.main" }} padding={0}>
+						<Box
+							mb={2}
+							sx={{ backgroundColor: "greyDark.main" }}
+							padding={0}
+							borderRadius={1}
+							overflow={"clip"}
+						>
 							<Carousel propData={data?.data.images} />
 						</Box>
 						{!down && (

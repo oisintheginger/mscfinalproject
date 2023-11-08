@@ -6,6 +6,7 @@ import {
 	Button,
 	styled,
 	Box,
+	Grid,
 } from "@mui/material";
 import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
@@ -24,6 +25,7 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
+import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 
 function Browse() {
 	const methods = useForm({
@@ -41,6 +43,7 @@ function Browse() {
 			params.set("page", pageNum);
 			return params;
 		});
+		refetch();
 		return () => {};
 	}, [pageNum]);
 
@@ -75,11 +78,11 @@ function Browse() {
 	};
 
 	const BrowsingFilterSubmitHandler = (formdata) => {
-		Object.keys(formdata).forEach((key) => {
-			setSearchParameters((params) => {
+		setSearchParameters((params) => {
+			Object.keys(formdata).forEach((key) => {
 				params.set(key, methods.getValues(key));
-				return params;
 			});
+			return params;
 		});
 		methods.reset({}, { keepValues: true });
 		refetch();
@@ -100,7 +103,15 @@ function Browse() {
 				<LeafletMap propertyData={data?.data} />
 			</ListMap>
 			{isLoading ? (
-				<LoadingSpinner />
+				<Grid container spacing={2} width={"100%"} mt={0.5}>
+					{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
+						return (
+							<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+								<SkeletonCard />
+							</Grid>
+						);
+					})}
+				</Grid>
 			) : isError ? (
 				<p>error:{error.request.status}</p>
 			) : (
