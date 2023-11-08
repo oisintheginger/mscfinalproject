@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: ''
+  title: ""
   description: Simple API for HME group project
 servers:
   # Added by API Auto Mocking Plugin
@@ -10,7 +10,7 @@ servers:
 paths:
   /api/properties:
     get:
-      summary: returns a list of properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50 (for now because of mocked data)
+      summary: returns a list with the first entry the total number of pages and the rest of quick view properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50
       parameters:
         - in: query
           name: page
@@ -23,23 +23,22 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
-          description: A JSON array of QuickViewProperty objects
+        "200":
+          description: A list of QuickViewProperty objects
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/QuickViewProperty'
-        '400':
+                  $ref: "#/components/schemas/QuickViewProperty"
+        "400":
           description: returns a 400 bad request response code (with a message)
-        '500':
+        "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
-
 
   /api/properties/{propertyId}:
     get:
-      summary: returns details of a specific property
+      summary: returns details of a specific property (still placeholder data)
       parameters:
         - in: path
           name: propertyId
@@ -47,269 +46,273 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: A DetailedPropery object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DetailedProperty'
-        '400':
+                $ref: "#/components/schemas/DetailedProperty"
+        "400":
           description: returns a 400 bad request response code (with a message)
-        '404':
+        "404":
           description: returns a 404 not found response code
-        '500':
+        "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
 
-  /api/properties/search:
-    get:
-      summary: returns a list of QuickViewProperty objects
-      parameters:
-        - in: query
-          name: propertyId
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: priceRange
-          required: false
-          schema:
-            type: array
-            items:
-              type: number
-        - in: query
-          name: type
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: zipcode
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A JSON array of QuickViewPropery objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/QuickViewProperty'
+  # /api/properties/search:
+  #   get:
+  #     summary: returns a list of QuickViewProperty objects
+  #     parameters:
+  #       - in: query
+  #         name: propertyId
+  #         required: false
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: priceRange
+  #         required: false
+  #         schema:
+  #           type: array
+  #           items:
+  #             type: number
+  #       - in: query
+  #         name: type
+  #         required: false
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: zipcode
+  #         required: false
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "200":
+  #         description: A JSON array of QuickViewPropery objects
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: "#/components/schemas/QuickViewProperty"
 
+  # /api/properties/{propertyId}/images:
+  #   get:
+  #     summary: returns JSON array of http links for property images
+  #     parameters:
+  #       - in: path
+  #         name: propertyId
+  #         required: true
+  #         schema:
+  #           type: array
+  #           items:
+  #             type: string
+  #       - in: query
+  #         name: QuickViewImage
+  #         required: true
+  #         schema:
+  #           type: boolean
+  #     responses:
+  #       "200":
+  #         description: a JSON array of image link(s)
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 type: string
 
-  /api/properties/{propertyId}/images:
-    get:
-      summary: returns JSON array of http links for property images
-      parameters:
-        - in: path
-          name: propertyId
-          required: true
-          schema:
-            type: array
-            items:
-              type: string
-        - in: query
-          name: QuickViewImage
-          required: true
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: a JSON array of image link(s)
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
+  # /api/user/favourites:
+  #   get:
+  #     summary: retrieve all of the user's favourite properties
+  #     parameters:
+  #       - in: query
+  #         name: userId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: propertyId
+  #         required: false
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "200":
+  #         description: A JSON array of QuickViewPropery objects
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: "#/components/schemas/QuickViewProperty"
+  #   post:
+  #     summary: create new favourite property for user
+  #     parameters:
+  #       - in: query
+  #         name: userId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: propertyId
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "201":
+  #         description: resource is created
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #   delete:
+  #     summary: delete favourite property for user
+  #     parameters:
+  #       - in: query
+  #         name: userId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: propertyId
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "200":
+  #         description: returns confirmation message
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
 
-  /api/user/favourites:
-    get:
-      summary: retrieve all of the user's favourite properties
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: propertyId
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A JSON array of QuickViewPropery objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/QuickViewProperty'
-    post:
-      summary: create new favourite property for user
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: propertyId
-          required: true
-          schema:
-            type: string
-      responses:
-        '201':
-          description: resource is created
-          content:
-            application/json:
-              schema:
-                type: object
-    delete:
-      summary: delete favourite property for user
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: propertyId
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: returns confirmation message
-          content:
-            application/json:
-              schema:
-                type: object
-
-  /api/user/searches:
-    get:
-      summary: retrieve user's saved search(es)
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: searchId
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: returns a JSON array of saved searches
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SavedSearch'
-    post:
-      summary: creates a new saved search to a user's profile
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: much_more
-          required: true
-          schema:
-            type: string
-      responses:
-        '201':
-          description: resource is created
-          content:
-            application/json:
-              schema:
-                type: object
-    put:
-      summary: update a user's saved search
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: searchId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: updatedSearch
-          required: true
-          schema:
-            $ref: '#/components/schemas/SavedSearch'
-      responses:
-        '200':
-          description: returns confirmation message
-          content:
-            application/json:
-              schema:
-                type: object
-    delete:
-      summary: deletes a user's search
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: string
-        - in: query
-          name: searchId
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: returns confirmation message
-          content:
-            application/json:
-              schema:
-                type: object
+  # /api/user/searches:
+  #   get:
+  #     summary: retrieve user's saved search(es)
+  #     parameters:
+  #       - in: query
+  #         name: userId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: searchId
+  #         required: false
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "200":
+  #         description: returns a JSON array of saved searches
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: "#/components/schemas/SavedSearch"
+  #   post:
+  #     summary: creates a new saved search to a user's profile
+  #     parameters:
+  #       - in: query
+  #         name: userId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: much_more
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "201":
+  #         description: resource is created
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #   put:
+  #     summary: update a user's saved search
+  #     parameters:
+  #       - in: query
+  #         name: userId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: searchId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: updatedSearch
+  #         required: true
+  #         schema:
+  #           $ref: "#/components/schemas/SavedSearch"
+  #     responses:
+  #       "200":
+  #         description: returns confirmation message
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #   delete:
+  #     summary: deletes a user's search
+  #     parameters:
+  #       - in: query
+  #         name: userId
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: searchId
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "200":
+  #         description: returns confirmation message
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
 
 components:
   schemas:
     QuickViewProperty:
       type: object
       required:
-        - id
-        - longitude
-        - latitude
+        - propertyId
+        - geolocation
         - price
-        - property_tags
-        - address
-        - outline_description
-        - img
+        - bathrooms
+        - bedrooms
+        - streetAddress
+        - zipcode
+        - description
+        - images
       properties:
         id:
           type: integer
           format: int64
           example: 123456
         longitude:
-          type: string
+          type: number
         latitude:
+          type: number
+        price:
+          type: number
+        bathrooms:
+          type: integer
+        bedrooms:
+          type: integer
+        streetAddress:
           type: string
-        property_tags:
+        zipcode:
+          type: string
+        overview:
+          type: string
+        images:
           type: array
           items:
             type: string
-        price:
-          type: number
-        address:
-          type: string
-        img:
-          type: string
-        outline_description:
-          type: string
     DetailedProperty:
       description: Details implemented right now in the mock data
       type: object
@@ -346,35 +349,40 @@ components:
           type: array
           items:
             type: integer
-          example: [
-            2023,
-            8,
-            30
-          ]
+          example: [2023, 8, 30]
         datePosted:
           type: array
           items:
             type: integer
-          example: [
-            2023,
-            8,
-            30
-          ]
+          example: [2023, 8, 30]
         TBDScore:
           type: number
         images:
           type: array
           items:
             type: string
-    SavedSearch:
-      description: a user can save a search, in order to return to it later
+    user:
+      description: user details available in user table
       type: object
       required:
         - id
+        - email
       properties:
         id:
-          type: integer
-          format: int64
-          example: 123456
-        much_more:
           type: string
+        email:
+          type: string
+        searches:
+          type: array
+          items:
+            type: string
+        favourites:
+          type: array
+          items:
+            type: integer
+        weights:
+          type: object
+        applications:
+          type: array
+          items:
+            type: object
