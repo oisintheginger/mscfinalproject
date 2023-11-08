@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="922034b1-1a57-44e9-adec-cac45c820ef4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/PropertiesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/School.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/Greeting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/controller/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Backend/src/main/java/msc/HME/DatabaseComponent.java" afterDir="false" />
@@ -44,6 +49,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "fenna__dev",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev-fen",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -104,6 +119,7 @@
       <workItem from="1698235023498" duration="311000" />
       <workItem from="1697885738287" duration="468000" />
       <workItem from="1698235023498" duration="1486000" />
+      <workItem from="1699193158306" duration="1970000" />
     </task>
     <servers />
   </component>
