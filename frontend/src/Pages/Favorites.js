@@ -8,6 +8,7 @@ import {
 	Box,
 	Divider,
 	Pagination,
+	Grid,
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
@@ -18,9 +19,9 @@ import { DEFAULT_FAVORITE_FILTER_VALUES } from "../Utils/filter_constants";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useQuery } from "react-query";
-import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 
 function Favorites() {
 	const theme = useTheme();
@@ -140,7 +141,15 @@ function Favorites() {
 				justifyContent={"center"}
 			>
 				{isLoading ? (
-					<LoadingSpinner />
+					<Grid container spacing={2} width={"100%"} mt={0.5}>
+						{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
+							return (
+								<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+									<SkeletonCard />
+								</Grid>
+							);
+						})}
+					</Grid>
 				) : isError ? (
 					<p>Error</p>
 				) : (
