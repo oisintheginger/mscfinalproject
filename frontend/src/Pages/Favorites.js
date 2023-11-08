@@ -22,8 +22,6 @@ import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinn
 import { useSearchParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-function ConvertParamsToObject() {}
-
 function Favorites() {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
