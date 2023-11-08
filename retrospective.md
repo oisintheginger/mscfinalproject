@@ -219,3 +219,32 @@ Stephen: Gathering the businesses dataset around the properties
 - Charlotte: N/A 
 - Fenna: N/A
 - Oisin: N/A
+
+
+---
+
+## Week 7: 30/10/2023 - 5/11/2023
+
+### What Went Well:
+- Nishant: The connection among systems is now correctly working.
+- Sean: Planning the recommendation system and scoring system architecture using amazon services
+- Stephen: Drawing up the architecture of the recommendation and scoring system
+- Charlotte: Initial setup for the user testing and finally connected with backend.
+- Fenna: Finally got the database connected.
+- Oisin: Finally connected with API Gateway and Amplify and Requesting data
+
+### What Could Be Improved:
+- Nishant: 
+- Sean: Between 10am and 6pm to try reply to people within 10 mins, since these are the hours we all work together at, they should be our most efficient
+- Stephen: Plan on what task to work on next
+- Charlotte: Some of the work hours differ making it difficult to get in contact at times.
+- Fenna: Team communication and efficiency.
+- Oisin: Not falling to a terrible plague, team comms
+
+### Additional Comments:
+- Nishant: 
+- Sean: Don’t forget to reward yourselves for your work guys:)
+- Stephen: I am currently thinking of extra contributions to add to the project, though most of them are looking more and more like future works
+- Charlotte: User testing is way harder than I expected.
+- Fenna: We’re getting closer and closer lets gooo guys. 
+- Oisin: 
