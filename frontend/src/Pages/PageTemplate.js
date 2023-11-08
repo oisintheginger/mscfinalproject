@@ -12,6 +12,7 @@ import { fontDark } from "../Styling/styleConstants";
 
 import { URLToBreadcrumbMapper } from "./BreadCrumbMapper";
 import SiteFooter from "../components/SiteFooter/SiteFooter";
+import { useEffect } from "react";
 
 function PageTemplate({
 	children,
@@ -19,6 +20,9 @@ function PageTemplate({
 	prevPage = null,
 	currPageBreadcrumb = null,
 }) {
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, []);
 	return (
 		<>
 			<Stack direction={"column"} spacing={2} mt={2} mr={0} ml={0}>

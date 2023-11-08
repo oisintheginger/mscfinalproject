@@ -64,7 +64,9 @@ function Profile() {
 					background={false}
 					sectionTitle="My Favorites"
 					action={() => {
-						navigator("/favorites", { state: { previousUrl: location } });
+						navigator("/favorites", {
+							state: { previousUrl: location.pathname },
+						});
 					}}
 				>
 					<Container>
@@ -75,7 +77,9 @@ function Profile() {
 					background={false}
 					sectionTitle="My Applications"
 					action={() => {
-						navigator("/applications", { state: { previousUrl: location } });
+						navigator("/applications", {
+							state: { previousUrl: location.pathname },
+						});
 					}}
 				>
 					<Container>
@@ -86,7 +90,9 @@ function Profile() {
 					background={false}
 					sectionTitle="My Saved Searches"
 					action={() => {
-						navigator("/savedsearches", { state: { previousUrl: location } });
+						navigator("/savedsearches", {
+							state: { previousUrl: location.pathname },
+						});
 					}}
 				>
 					<Container>

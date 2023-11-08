@@ -7,12 +7,19 @@ import {
 } from "react-leaflet";
 import Leaflet from "leaflet";
 
-import { Box, Button, CardHeader, Container, Link, Stack, Typography } from "@mui/material";
+import {
+	Box,
+	Button,
+	CardHeader,
+	Container,
+	Link,
+	Stack,
+	Typography,
+} from "@mui/material";
 import { darkTeal } from "../../Styling/styleConstants";
 import GoogleLogo from "./../../Icons/google_on_white.png";
-import { propertyData } from "../../MockData/PropertyDataSample";
+// import { propertyData } from "../../MockData/PropertyDataSample";
 import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
-
 
 function HMEMap({ marks }) {
 	const map2 = useMapEvent("zoom", () => {
@@ -38,11 +45,10 @@ function HMEMap({ marks }) {
 						<Marker
 							position={[data.latitude, data.longitude]}
 							icon={markerIcon}
+							key={key}
 						>
-							<Popup position={[data.latitude, data.longitude]} >
-								
-								  <PropertyCard data={data} inPopup={true}/>
-								 
+							<Popup position={[data.latitude, data.longitude]}>
+								<PropertyCard data={data} inPopup={true} />
 							</Popup>
 						</Marker>
 					);
@@ -51,7 +57,7 @@ function HMEMap({ marks }) {
 	);
 }
 
-function LeafletMap({ propertyData: {} }) {
+function LeafletMap({ propertyData }) {
 	return (
 		<Box>
 			<Box
@@ -96,7 +102,7 @@ function LeafletMap({ propertyData: {} }) {
 							</Typography>
 						</Button>
 					</Stack>
-					<HMEMap marks={propertyData}/>
+					<HMEMap marks={propertyData} />
 				</MapContainer>
 			</Box>
 			<Stack direction={"row"} alignItems={"flex-end"} mt={1} spacing={1}>

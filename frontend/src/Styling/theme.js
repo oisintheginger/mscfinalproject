@@ -44,6 +44,7 @@ const theme = createTheme({
 		},
 		h3: {
 			fontSize: 24,
+			fontFamily: '"Urbanist", sans-serif',
 		},
 		button: { fontWeight: 700 },
 		landingPage: {
@@ -51,6 +52,11 @@ const theme = createTheme({
 			fontSize: 44,
 			fontWeight: 200,
 			letterSpacing: 15,
+		},
+		cardHeader: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 28,
+			fontWeight: 600,
 		},
 		propertyPrice: {
 			fontFamily: '"Urbanist", sans-serif',

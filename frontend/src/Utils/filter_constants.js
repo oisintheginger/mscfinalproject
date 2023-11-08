@@ -17,3 +17,13 @@ export const DEFAULT_FIELD_VALUES = {
 	[`${SHOW_HOUSES}`]: true,
 	[`${SHOW_TOWNHOUSE}`]: true,
 };
+
+export const DEFAULT_FAVORITE_FILTER_VALUES = {
+	[`${MIN_PRICE}`]: 1,
+	[`${MAX_PRICE}`]: 10000,
+	[`${BEDROOM_COUNT}`]: 1,
+	[`${BATHROOM_COUNT}`]: 1,
+	[`${SHOW_FLAT}`]: true,
+	[`${SHOW_HOUSES}`]: true,
+	[`${SHOW_TOWNHOUSE}`]: true,
+};
