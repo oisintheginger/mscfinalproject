@@ -18,13 +18,13 @@ public class UserController {
     //POST user id
 
 //    @PostMapping("/new/resource") ???
-    //POST req: user id, new resource (ss, fave, user weights)
+    //POST req: user id, new resource (ss, fave, user weights, application )
 
 //    @PatchMapping("/update")
-    //PATCH req: user id, updated resource (ss, fave, user weights)
+    //PATCH req: user id, updated resource (ss, fave, user weights, application)
 
 //    @DeleteMapping("/remove") ???
-    //DELETE: req: user id, deleted resource (ss, fave)
+    //DELETE: req: user id, deleted resource (ss, fave, user weights, applications)
 
 
         // HOW ARE THESE STORED IN THE DB???

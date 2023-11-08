@@ -1,5 +1,5 @@
 
-package msc.HME.properties;
+package msc.HME.binding;
 
 import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonProperty;
