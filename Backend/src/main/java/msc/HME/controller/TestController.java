@@ -1,7 +1,6 @@
 package msc.HME.controller;
 
 import msc.HME.School;
-import msc.HME.properties.QuickViewPropertyV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
