@@ -38,8 +38,7 @@ LEFT JOIN
 GROUP BY 
     mi.propertyID;
 
---  select * from MainInformation
-   select * from user
+
 
 -- SHOW CREATE TABLE user;
 --      ○ Get property details for specific propertyId 
@@ -72,15 +71,112 @@ GROUP BY
    
    -- User table 
 --    ○ Get all info for specific user id
+
+SELECT 
+    id,
+    email,
+    JSON_UNQUOTE(JSON_EXTRACT(searches, '$')) AS all_searches, -- Extracts the entire 'searches' JSON array as text
+    JSON_UNQUOTE(JSON_EXTRACT(favourites, '$')) AS all_favourites, -- Extracts the entire 'favourites' JSON array as text
+    weights,
+    applications
+FROM 
+    user
+WHERE 
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
+
+
+   
 --    ○ Get all favourites for specific user id 
+   
+   SELECT 
+    id,
+    JSON_UNQUOTE(JSON_EXTRACT(favourites, '$')) AS all_favourites
+FROM 
+    user
+WHERE 
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
+
 --    ○ Get all saved searches for specific user id 
+   SELECT 
+    id,
+    JSON_UNQUOTE(JSON_EXTRACT(searches, '$')) AS all_searches
+FROM 
+    user
+WHERE 
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
+
 --    ○ Get all applications for specific user id 
---     ○ Update all info for specific user id 
---    ○ Add new favourite for specific user id 
---    ○ Add new saved search for specific user id 
---    ○ Add new application for specific user id 
---    ○ Delete favourite for specific user id 
---    ○ Delete saved searches for specific user id
---    ○ Add user weights for specific user id 
---    ○ Update user weights for specific user id 
---    ○ Remove user weights for specific user id
+   SELECT 
+    id,
+    JSON_UNQUOTE(JSON_EXTRACT(applications, '$')) AS all_applications
+FROM 
+    user
+WHERE 
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
+
+--     ○ Update all info for specific user id  -NOT TRIED UPDATING-
+   UPDATE user
+SET 
+    email = 'new_email@example.com'
+WHERE 
+    id = 'specific_user_id';
+
+--    ○ Add new favourite for specific user id  -NOT TRIED-
+   UPDATE user
+SET 
+    favourites = JSON_ARRAY_APPEND(favourites, '$', JSON_OBJECT('newFavouriteKey', 'newFavouriteValue'))
+WHERE 
+    id = 'specific_user_id';
+
+   
+--    ○ Add new saved search for specific user id -NOT TRIED-
+   UPDATE user
+SET 
+    searches = JSON_ARRAY_APPEND(searches, '$', JSON_OBJECT('newSearchKey', 'newSearchValue'))
+WHERE 
+    id = 'specific_user_id';
+
+--    ○ Add new application for specific user id  -NOT TRIED-
+   UPDATE user
+SET 
+    applications = JSON_ARRAY_APPEND(applications, '$', JSON_OBJECT('newApplicationKey', 'newApplicationValue'))
+WHERE 
+    id = 'specific_user_id';
+
+--    ○ Delete favourite for specific user id  -This assumes you know the index of the favourite in the JSON array -NOT TRIED-
+
+
+	UPDATE user
+SET 
+    favourites = JSON_REMOVE(favourites, '$[index_of_the_favourite_to_remove]')
+WHERE 
+    id = 'specific_user_id';
+
+--    ○ Delete saved searches for specific user id -NOT TRIED-
+   
+   UPDATE user
+SET 
+    searches = JSON_REMOVE(searches, '$[index_of_the_search_to_remove]')
+WHERE 
+    id = 'specific_user_id';
+
+--    ○ Add user weights for specific user id -NotTried-
+   UPDATE user
+SET 
+    weights = JSON_ARRAY_APPEND(weights, '$', JSON_OBJECT('newWeightKey', 'newWeightValue'))
+WHERE 
+    id = 'specific_user_id';
+
+--    ○ Update user weights for specific user id -Not Tried-
+   UPDATE user
+SET 
+    weights = JSON_SET(weights, '$[index_of_the_weight_to_update]', 'newWeightValue')
+WHERE 
+    id = 'specific_user_id';
+
+--    ○ Remove user weights for specific user id -NotTried-
+   UPDATE user
+SET 
+    weights = JSON_REMOVE(weights, '$[index_of_the_weight_to_remove]')
+WHERE 
+    id = 'specific_user_id';
