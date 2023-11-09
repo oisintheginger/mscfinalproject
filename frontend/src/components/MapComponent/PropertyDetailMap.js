@@ -72,7 +72,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 				}}
 				ref={ref}
 			>
-				<MapContainer center={center} zoom={15} scrollWheelZoom={true}>
+				<MapContainer center={center} zoom={16} scrollWheelZoom={true}>
 					<Stack width={"100%"} justifyContent={"flex-end"} direction={"row"}>
 						{below ? (
 							!togglesOpen && (

@@ -30,6 +30,7 @@ const theme = createTheme({
 		gymsChip: {
 			main: "#25693c",
 		},
+		fullDark: { main: "#232a2b" },
 	},
 	typography: {
 		h1: {

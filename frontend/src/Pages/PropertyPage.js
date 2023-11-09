@@ -85,7 +85,6 @@ function PropertyPage() {
 		},
 		{ staleTime: 500000, refetchOnMount: true }
 	);
-
 	return (
 		<>
 			{isLoading ? (
@@ -95,7 +94,8 @@ function PropertyPage() {
 			) : (
 				<PageTemplate
 					pageTitle={
-						data?.data.bedrooms + " Bed " + capitalize(data?.data.propertyType)
+						data?.data.bedrooms + " Bed "
+						// capitalize(data?.data.propertyType)
 					}
 					prevPage={
 						location.state?.previousUrl ? location.state.previousUrl : null
@@ -104,15 +104,7 @@ function PropertyPage() {
 				>
 					<Box //WRAPPER BOX FOR STICKY BUTTON
 					>
-						<Box
-							mb={2}
-							sx={{ backgroundColor: "greyDark.main" }}
-							padding={0}
-							borderRadius={1}
-							overflow={"clip"}
-						>
-							<Carousel propData={data?.data.images} />
-						</Box>
+						<Carousel propData={data?.data.images} />
 						{!down && (
 							<Stack //APPLY NOW BUTTON
 								width={"100%"}
@@ -205,7 +197,7 @@ function PropertyPage() {
 									spacing={3}
 								>
 									<Typography variant="propertyAddress">
-										{`${data?.data.address}`}
+										{`${data?.data.streetAddress}, ${data?.data.zipcode}`}
 									</Typography>
 									<ButtonStyled
 										endIcon={<MapIcon />}
@@ -224,9 +216,9 @@ function PropertyPage() {
 									useFlexGap
 									spacing={1}
 								>
-									<PropertyQuickInfoTag
-										label={capitalize(data?.data.propertyType)}
-									/>
+									{/* <PropertyQuickInfoTag
+									// label={capitalize(data?.data.propertyType)}
+									/> */}
 									<PropertyQuickInfoTag
 										label={"Bedrooms " + data?.data.bedrooms}
 									/>
@@ -272,9 +264,7 @@ function PropertyPage() {
 						>
 							<Stack mt={5} spacing={6}>
 								<PageSection sectionTitle="Description">
-									<Typography variant="body1">
-										{data?.data.description}
-									</Typography>
+									<Typography variant="body1">{data?.data.overview}</Typography>
 								</PageSection>
 								<PageSection
 									background={false}
