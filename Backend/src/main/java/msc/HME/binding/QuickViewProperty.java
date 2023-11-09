@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QuickViewProperty {
-    // TO DO: String image
+
     @JsonProperty
     private Long propertyId;
 

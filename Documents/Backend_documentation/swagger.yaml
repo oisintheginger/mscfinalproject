@@ -35,8 +35,27 @@ paths:
           description: returns a 400 bad request response code (with a message)
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
-
   /api/properties/{propertyId}:
+    get:
+      summary: returns quick view property of specific property id
+      parameters:
+        -in: path
+        name: propertyId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: returns a quickviewproperty object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuickViewProperty"
+        "404":
+          description: is returned when the property was not found
+        "500":
+          description: is returned when database access error occured
+  /api/properties/details/{propertyId}:
     get:
       summary: returns details of a specific property (still placeholder data)
       parameters:
@@ -58,7 +77,20 @@ paths:
           description: returns a 404 not found response code
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
-
+    /api/properties/locations:
+      get:
+        summary: returns all property ids with longitude and latitude
+        responses:
+          "200":
+            description: returns a list with objects containing property id, longitude and latitude
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+          "500":
+            description: returns a list with objects containing property id, longitude and latitude
   # /api/properties/search:
   #   get:
   #     summary: returns a list of QuickViewProperty objects
