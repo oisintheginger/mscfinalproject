@@ -119,14 +119,14 @@ WHERE
 SET 
     email = 'new_email@example.com'
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
 
 --    ○ Add new favourite for specific user id  -NOT TRIED-
    UPDATE user
 SET 
     favourites = JSON_ARRAY_APPEND(favourites, '$', JSON_OBJECT('newFavouriteKey', 'newFavouriteValue'))
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
 
    
 --    ○ Add new saved search for specific user id -NOT TRIED-
@@ -134,14 +134,14 @@ WHERE
 SET 
     searches = JSON_ARRAY_APPEND(searches, '$', JSON_OBJECT('newSearchKey', 'newSearchValue'))
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
 
 --    ○ Add new application for specific user id  -NOT TRIED-
    UPDATE user
 SET 
     applications = JSON_ARRAY_APPEND(applications, '$', JSON_OBJECT('newApplicationKey', 'newApplicationValue'))
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
 
 --    ○ Delete favourite for specific user id  -This assumes you know the index of the favourite in the JSON array -NOT TRIED-
 
@@ -150,33 +150,33 @@ WHERE
 SET 
     favourites = JSON_REMOVE(favourites, '$[index_of_the_favourite_to_remove]')
 WHERE 
-    id = 'specific_user_id';
-
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
+   
 --    ○ Delete saved searches for specific user id -NOT TRIED-
    
    UPDATE user
 SET 
     searches = JSON_REMOVE(searches, '$[index_of_the_search_to_remove]')
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
 
 --    ○ Add user weights for specific user id -NotTried-
    UPDATE user
 SET 
     weights = JSON_ARRAY_APPEND(weights, '$', JSON_OBJECT('newWeightKey', 'newWeightValue'))
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
 
 --    ○ Update user weights for specific user id -Not Tried-
    UPDATE user
 SET 
     weights = JSON_SET(weights, '$[index_of_the_weight_to_update]', 'newWeightValue')
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
 
 --    ○ Remove user weights for specific user id -NotTried-
    UPDATE user
 SET 
     weights = JSON_REMOVE(weights, '$[index_of_the_weight_to_remove]')
 WHERE 
-    id = 'specific_user_id';
+    id = '725205ee-e24b-4430-8c15-c9d695fa519b';
