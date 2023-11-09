@@ -1,0 +1,16 @@
+Revised Architecture: 
+
+The updated design has incorporated additional AWS services to optimize the operation, particularly focusing on cost-efficiency and improved automation: 
+
+  
+ 
+
+API to Lambda: This remains consistent, where the API triggers a Lambda function. However, the primary function of this Lambda now includes controlling the RDS database's state - turning it on or off based on requirements. 
+
+Lambda to DB: When the database is needed, the Lambda function starts it, allowing for operations. Post operations, the Lambda function can trigger a stop command. 
+
+CloudWatch Integration: CloudWatch monitors the database's activity. If there's a period of inactivity or low activity (like 1 hour), CloudWatch generates an event. 
+
+SNS Topic: Upon detecting the CloudWatch event, an SNS topic is triggered. This topic effectively sends a command to stop the database, ensuring that the RDS isn't running (and incurring costs) during periods of inactivity. 
+
+VPC & Security Groups: To bolster security and streamline network communication, all these components (API, Lambda, DB, CloudWatch, and SNS) are encapsulated within the same Virtual Private Cloud (VPC) and are governed by the same security group. This ensures that the components can efficiently communicate internally while being shielded from potential external threats

@@ -1,0 +1,12 @@
+Steps to Create the Database 
+
+Initial Setup: We started by navigating to the Amazon RDS console and initiated the database creation process. 
+
+Configuration: Opting for the 'Standard Create' method, we chose MySQL as our engine type and selected the free tier template. 
+
+Instance Details: We defined our database with the identifier myhmedb and set up our master username and password. Ensuring cost-efficiency, we chose the "Burstable classes (includes t2)" under the "DB instance size" section. 
+
+Architecture Initial vs Current 
+
+ 
+

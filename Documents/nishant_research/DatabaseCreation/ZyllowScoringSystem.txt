@@ -1,0 +1,43 @@
+Zillow Approach. 
+
+Content-Based Scoring: 
+
+  
+
+For each home (or “listing”), a score is computed based on the user's preference profile and the home's attributes. 
+
+The main aim is to predict a user’s click probability for each home. This score would be a relevance score, which is essentially a measure of how likely a user is to click on a particular listing based on their past interactions and preferences. 
+
+Content-based models can address the cold-start problem, i.e., for newly listed homes that haven’t been interacted with by many users. 
+
+Diversification Algorithm: 
+
+  
+
+After generating scores using the content-based model, Zillow applies a diversification algorithm to improve the diversity of the recommendations. 
+
+The diversification algorithm re-sorts the list of homes based on a submodular objective function that balances both relevance and diversity. 
+
+The algorithm tries to ensure that the recommended homes are not just relevant but also diverse in terms of property type, price, size, etc. This is important to give users a variety of options and help them explore the market better. 
+
+Category-Based Scoring: 
+
+  
+
+Zillow partitions homes into categories. To achieve this categorization, they consider home attributes like price, square footage, and house type and cluster the listings. 
+
+Two types of user preferences for these categories are computed: global user category preference (based on overall click-through rates) and personalized category preference (adjusted for each user based on their past click history). 
+
+The combination of these preferences with the home's category helps in further refining the score. 
+
+User Feedback & Historical Data: 
+
+Zillow considers users’ click history to understand their preferences. This feedback is crucial for refining scores. For instance, a home that matches the user's previously clicked or liked homes would get a higher score. 
+
+Collaboration with External Information: 
+
+Large platforms like Zillow use collaborative filtering techniques, where scores are determined based on patterns of likes or interactions across multiple users. 
+
+ 
+
+https://www.zillow.com/tech/personalized-recommendation-diversity/#:~:text=Our%20home%20recommendation%20engine%20produces,the%20size%20of%20the%20set. 
