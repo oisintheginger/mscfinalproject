@@ -14,8 +14,8 @@ public class DatabaseConfig {
     public DataSource dataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.url("jdbc:mysql://myhmedb.cdc3elu6ufgt.eu-west-1.rds.amazonaws.com/hmedbmain");
-        dataSourceBuilder.username("admin");
-        dataSourceBuilder.password("PassCondria123");
+        dataSourceBuilder.username(System.getenv("RDS_USER")); // for deployment!!!
+        dataSourceBuilder.password(System.getenv("RDS_PW"));
         return dataSourceBuilder.build();
     }
 
