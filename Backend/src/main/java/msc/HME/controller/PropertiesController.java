@@ -11,29 +11,39 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/properties")
 public class PropertiesController {
 
-    private final PropertyService QVPService;
+    private final PropertyService propertyService;
     private final JsonPlaceholderService jsonPlaceholderService;
 
     public PropertiesController(PropertyService qvpService, JsonPlaceholderService jsonPlaceholderService) {
-        this.QVPService = qvpService;
+        this.propertyService = qvpService;
         this.jsonPlaceholderService = jsonPlaceholderService;
     }
 
     @GetMapping
-    public ResponseEntity<ArrayList<Object>> findAll(
+    public ResponseEntity<JSONObject> findAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "50") int size) { // default size hard coded for now
-        List<QuickViewProperty> properties = QVPService.getAllQVProperties();
+        List<QuickViewProperty> properties = propertyService.getAllQVProperties();
         ArrayList<Object> paginatedProperties = new ArrayList<>(properties.subList((page-1)*size, (page-1)*size+(size-1)));
-            // to ensure the total pages is always rounded up this is used: (numerator + denominator - 1) / denominator
-        paginatedProperties.add(0, "[{\"total_pages\":\""+ (properties.size() + size-1 /size) +"\"}]");
-        return ResponseEntity.ok(paginatedProperties);
+        JSONObject result = new JSONObject();
+        // to ensure the total pages is always rounded up this is used: (numerator + denominator - 1) / denominator
+        result.put("totalPages", (properties.size() + size-1)/size);
+        result.put("properties", paginatedProperties);
+        return ResponseEntity.ok(result);
     }
+
+//    @GetMapping("/{id}")
+//    ResponseEntity<QuickViewProperty> findQVProperty(@PathVariable Long id) {
+//        QuickViewProperty property = propertyService.getQVProperty(id);
+//        return ResponseEntity.ok(property);
+//    }
 
     @GetMapping("/{id}")
     ResponseEntity<DetailedProperty> findPropertyById(@PathVariable Integer id) {
@@ -47,6 +57,10 @@ public class PropertiesController {
         return ResponseEntity.ok(property);
     }
 
+
+
+    // get all geolocations + property ids
+
 //    @GetMapping("/{id}")
 //    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable Integer id) {
 ////        if (id <= 0) {
@@ -58,4 +72,6 @@ public class PropertiesController {
 ////        }
 ////        return ResponseEntity.ok(property);
 //    }
+
+
 }
