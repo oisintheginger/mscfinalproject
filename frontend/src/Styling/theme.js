@@ -72,6 +72,17 @@ const theme = createTheme({
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 18,
 			fontWeight: 600,
+			color: fontDark,
+		},
+		weightsIndicator: {
+			fontSize: 22,
+			fontFamily: '"Urbanist", sans-serif',
+			fontWeight: 800,
+		},
+		weightsOption: {
+			fontSize: 16,
+			fontFamily: '"Urbanist", sans-serif',
+			fontWeight: 600,
 		},
 	},
 	components: {
