@@ -1,0 +1,18 @@
+
+
+ 
+
+Data ingress 
+Data Extraction: The initial step was to pull data from these public sources. The Zillow API and Google Maps provided direct API endpoints for this purpose, whereas Kaggle datasets were downloaded in structured formats like CSV or Excel.  
+
+Data Transformation: Given the diverse nature of our sources, the extracted data came in different formats. Using an ETL (Extract, Transform, Load) process, we converted all incoming data into a consistent format, making it compatible with our database schema. 
+
+  
+
+Loading: Once the data was transformed into a suitable format, we proceeded to load it into our RDS MySQL database. To ensure efficiency and reduce potential strains on our system, we used batch processing techniques. 
+
+While the process was meticulously planned, we still encountered challenges:  
+
+API Limitations: APIs, especially the Zillow API and Google Maps, had rate limits which constrained the speed at which we could fetch data. 
+
+Data Consistency: Since we were drawing from various sources, there were occasional discrepancies in the data, such as different naming conventions or units of measurement. 

@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
-import { useNavigate, Link as RRDLink } from "react-router-dom";
+import { useNavigate, Link as RRDLink, useLocation } from "react-router-dom";
 import "./NavLayout.css";
 import {
 	ApplicationIcon,
@@ -35,7 +35,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import HMELogo from "./../Icons/NewLogo.png";
 import HMELogoCompact from "./../Icons/NewLogoCompact.png";
 import CreateAccountModal from "../components/CreateAccountModal/CreateAccountModal";
-import ButtonStyled from "../components/CommonComp/Button/ButtonStyle";
+import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 
 function NavLayout() {
 	const theme = useTheme();
@@ -44,6 +44,7 @@ function NavLayout() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	const [modalOpen, setModalOpen] = useState(false);
+	const location = useLocation();
 
 	const toggleDrawer = (open) => (event) => {
 		if (
@@ -71,11 +72,11 @@ function NavLayout() {
 		context.signOut,
 	]);
 
+	const navigate = useNavigate();
 	const LogoutFunc = () => {
 		signOut();
 	};
 
-	const navigate = useNavigate();
 	return (
 		<>
 			<Box sx={{ flexGrow: 1, width: "100%", backgroundColor: "primary.main" }}>
@@ -188,66 +189,81 @@ function NavLayout() {
 					>
 						<Typography variant="h6">My Stuff</Typography>
 						<Divider />
-						<List sx={{ m: 2, mt: 0 }}>
-							<ListItemButton
-								to="/favorites"
-								component={RRDLink}
-								onClick={toggleDrawer(false)}
-							>
-								<ListItemText
-									primary="MY FAVORITES"
-									secondary="View Saved Listings Here"
-								/>
-								<ListItemIcon sx={{ color: fontDark }}>
-									<FavoriteIcon color="black" sx={navIconStyle} />
-								</ListItemIcon>
-							</ListItemButton>
-							<Divider />
+						{route !== "authenticated" ? (
+							<Stack mt={3} spacing={1}>
+								<ButtonStyled
+									onClick={() => {
+										setDrawerOpen(false);
+										navigate("/login", { state: { from: location } });
+									}}
+								>
+									SIGN IN
+								</ButtonStyled>
+								<Typography variant="subtitle1" textAlign={"center"}>
+									Sign in to access your stuff
+								</Typography>
+							</Stack>
+						) : (
+							<List sx={{ m: 2, mt: 0 }}>
+								<ListItemButton
+									to="/favorites"
+									component={RRDLink}
+									onClick={toggleDrawer(false)}
+								>
+									<ListItemText
+										primary="MY FAVORITES"
+										secondary="View Saved Listings Here"
+									/>
+									<ListItemIcon sx={{ color: fontDark }}>
+										<FavoriteIcon color="black" sx={navIconStyle} />
+									</ListItemIcon>
+								</ListItemButton>
+								<Divider />
 
-							<ListItemButton
-								to="/savedsearches"
-								component={RRDLink}
-								onClick={toggleDrawer(false)}
-							>
-								<ListItemText
-									primary="MY SAVED SEARCHES"
-									secondary="View Saved Searches Here"
-								/>
-								<ListItemIcon sx={{ color: fontDark }}>
-									<BookmarkIcon color="black" sx={navIconStyle} />
-								</ListItemIcon>
-							</ListItemButton>
-							<Divider />
+								<ListItemButton
+									to="/savedsearches"
+									component={RRDLink}
+									onClick={toggleDrawer(false)}
+								>
+									<ListItemText
+										primary="MY SAVED SEARCHES"
+										secondary="View Saved Searches Here"
+									/>
+									<ListItemIcon sx={{ color: fontDark }}>
+										<BookmarkIcon color="black" sx={navIconStyle} />
+									</ListItemIcon>
+								</ListItemButton>
+								<Divider />
 
-							<ListItemButton
-								to="/applications"
-								component={RRDLink}
-								onClick={toggleDrawer(false)}
-							>
-								<ListItemText
-									primary="MY APPLICATIONS"
-									secondary="View and Edit your Applications"
-								/>
-								<ListItemIcon sx={{ color: fontDark }}>
-									<ApplicationIcon color="black" sx={navIconStyle} />
-								</ListItemIcon>
-							</ListItemButton>
-							<Divider />
-							<ListItemButton
-								to="/profile"
-								component={RRDLink}
-								onClick={toggleDrawer(false)}
-							>
-								<ListItemText
-									primary="MY PROFILE"
-									secondary="View and Edit your Profile"
-								/>
-								<ListItemIcon sx={{ color: fontDark }}>
-									<UserIcon color="black" sx={navIconStyle} />
-								</ListItemIcon>
-							</ListItemButton>
-						</List>
-
+								<ListItemButton
+									to="/applications"
+									component={RRDLink}
+									onClick={toggleDrawer(false)}
+								>
+									<ListItemText
+										primary="MY APPLICATIONS"
+										secondary="View and Edit your Applications"
+									/>
+									<ListItemIcon sx={{ color: fontDark }}>
+										<ApplicationIcon color="black" sx={navIconStyle} />
+									</ListItemIcon>
+								</ListItemButton>
+								<Divider />
+								<ListItemButton
+									to="/profile"
+									component={RRDLink}
+									onClick={toggleDrawer(false)}
+								>
+									<ListItemText
+										primary="MY PROFILE"
+										secondary="View and Edit your Profile"
+									/>
+									<ListItemIcon sx={{ color: fontDark }}>
+										<UserIcon color="black" sx={navIconStyle} />
+									</ListItemIcon>
+								</ListItemButton>
+							</List>
+						)}
 						{route === "authenticated" && (
 							<ButtonStyled onClick={LogoutFunc}>SIGN OUT</ButtonStyled>
 						)}

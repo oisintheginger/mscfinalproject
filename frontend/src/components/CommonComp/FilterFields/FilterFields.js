@@ -14,7 +14,7 @@ import {
 	Button,
 } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import ButtonStyled from "../Button/ButtonStyle";
+import ButtonStyled from "../Button/ButtonStyled";
 import {
 	MIN_PRICE,
 	MAX_PRICE,
