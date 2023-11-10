@@ -122,7 +122,7 @@ function Browse() {
 				/>
 			)}
 			<Pagination
-				count={data?.data?.totalPages || 10}
+				count={data?.data?.totalPages - 1 || 10}
 				boundaryCount={1}
 				siblingCount={1}
 				variant="outlined"
