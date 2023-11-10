@@ -9,36 +9,36 @@ import lombok.Setter;
 public class UserWeights {
 
     @JsonProperty
-    private Integer one;
+    private Integer entertainment;
 
     @JsonProperty
-    private Integer two;
+    private Integer pharmacies;
 
     @JsonProperty
-    private Integer three;
+    private Integer retail;
 
     @JsonProperty
-    private Integer four;
+    private Integer fitness;
 
     @JsonProperty
-    private Integer five;
+    private Integer financial;
 
     @JsonProperty
-    private Integer six;
+    private Integer transportation;
 
     @JsonProperty
-    private Integer seven;
+    private Integer emergency;
 
     public UserWeights() {
     }
 
-    public UserWeights(Integer one, Integer two, Integer three, Integer four, Integer five, Integer six, Integer seven) {
-        this.one = one;
-        this.two = two;
-        this.three = three;
-        this.four = four;
-        this.five = five;
-        this.six = six;
-        this.seven = seven;
+    public UserWeights(Integer entertainment, Integer pharmacies, Integer retail, Integer fitness, Integer financial, Integer transportation, Integer emergency) {
+        this.entertainment = entertainment;
+        this.pharmacies = pharmacies;
+        this.retail = retail;
+        this.fitness = fitness;
+        this.financial = financial;
+        this.transportation = transportation;
+        this.emergency = emergency;
     }
 }
