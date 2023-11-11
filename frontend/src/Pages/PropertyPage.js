@@ -85,6 +85,7 @@ function PropertyPage() {
 		},
 		{ staleTime: 500000, refetchOnMount: true }
 	);
+
 	return (
 		<>
 			{isLoading ? (

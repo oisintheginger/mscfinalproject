@@ -25,11 +25,12 @@ function SampleNextArrow({ style, onClick }) {
 				top: "50%",
 				right: isMobile ? "0px" : "25px",
 				transform: "translate(0, -50%)",
-				fontSize: "30px",
+				fontSize: isMobile ? "20px" : "30px",
+				borderRadius: "3px",
 				color: "white",
 				zIndex: 2,
-				backgroundColor: "rgba(0, 0, 0, 0.5)", // Slight background
-				padding: "10px",
+				backgroundColor: "rgba(0, 0, 0, 0.2)", // Slight background
+				padding: isMobile ? "5px" : "10px",
 			}}
 			onClick={onClick}
 		>
@@ -53,11 +54,12 @@ function SamplePrevArrow({ style, onClick }) {
 				top: "50%",
 				left: isMobile ? "0px" : "25px",
 				transform: "translate(0, -50%)",
-				fontSize: "30px",
+				fontSize: isMobile ? "20px" : "30px",
+				borderRadius: "3px",
 				color: "white",
 				zIndex: 2,
-				backgroundColor: "rgba(0, 0, 0, 0.5)", // Slight background
-				padding: "10px",
+				backgroundColor: "rgba(0, 0, 0, 0.2)", // Slight background
+				padding: isMobile ? "5px" : "10px",
 			}}
 			onClick={onClick}
 		>
@@ -80,6 +82,7 @@ const Carousel = ({ propData }) => {
 		prevArrow: <SamplePrevArrow />,
 		nextArrow: <SampleNextArrow />,
 		afterChange: (current) => setCurrentSlide(current), // Update currentSlide state on slide change
+		adaptiveHeight: true,
 	};
 
 	// Determine the number of thumbnail slides based on the num of images available
@@ -111,13 +114,18 @@ const Carousel = ({ propData }) => {
 				sx={{ backgroundColor: "fullDark.main" }}
 				borderRadius={1}
 				overflow={"clip"}
-				justifyContent={""}
-				alignItems={"center"}
 			>
-				<Slider {...settingsMain} ref={(slider) => setNav1(slider)}>
+				<Slider
+					{...settingsMain}
+					ref={(slider) => setNav1(slider)}
+					style={{
+						margin: 0,
+						padding: 0,
+					}}
+				>
 					{propData?.map((img, index) => (
 						<Box key={index} width={"100%"} m={0}>
-							<Stack sx={{ height: "100%" }}>
+							<Stack>
 								<Box
 									alignSelf={"center"}
 									component={"img"}
@@ -125,7 +133,7 @@ const Carousel = ({ propData }) => {
 									alt={`Slide ${index + 1}`}
 									maxWidth={"100%"}
 									height={"auto"}
-									maxHeight={"500px"}
+									maxHeight={{ xs: "300px", md: "500px" }}
 								/>
 							</Stack>
 						</Box>

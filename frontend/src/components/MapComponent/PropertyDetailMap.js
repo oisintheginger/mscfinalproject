@@ -27,6 +27,9 @@ import {
 import MapFeatureToggle from "./MapFeatureToggle";
 import GoogleLogo from "./../../Icons/google_on_white.png";
 import Leaflet from "leaflet";
+import { useQuery } from "react-query";
+import { API } from "aws-amplify";
+import { useEffect } from "react";
 
 const markerIcon = new Leaflet.Icon({
 	iconUrl: require("../../Icons/mapmarkericon.png"),
@@ -55,6 +58,31 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 
 	const theme = useTheme();
 	const below = useMediaQuery(theme.breakpoints.down("md"));
+	const {
+		isError: mapIsError,
+		isLoading: mapIsLoading,
+		error: mapError,
+		data: mapData,
+		refetch,
+	} = useQuery(
+		["mapRequest"],
+		() => {
+			return API.post("GoogleMapApi", "/", {
+				queryStringParameters: {
+					latitude: center[0],
+					longitude: center[1],
+					type: "hospital",
+				},
+			});
+		},
+		{ enabled: false }
+	);
+	useEffect(() => {
+		console.log(center);
+		refetch();
+		console.log("rendering");
+	}, []);
+	mapData && console.log(JSON.parse(mapData));
 	return (
 		<Stack
 			direction={"row"}

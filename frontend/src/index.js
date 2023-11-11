@@ -11,7 +11,7 @@ Amplify.configure({
 	API: {
 		endpoints: [
 			{
-				name: "OisinTestAPI",
+				name: "GoogleMapApi",
 				endpoint: "https://88u4rq8vn2.execute-api.eu-west-1.amazonaws.com/Dev",
 				service: "lambda",
 				region: "eu-west-1",
