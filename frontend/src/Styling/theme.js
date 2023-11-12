@@ -71,7 +71,13 @@ const theme = createTheme({
 		},
 		toggleMenu: {
 			fontFamily: '"Urbanist", sans-serif',
-			fontSize: 18,
+			fontSize: 22,
+			fontWeight: 800,
+			color: fontDark,
+		},
+		menuSubCategory: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 16,
 			fontWeight: 600,
 			color: fontDark,
 		},
