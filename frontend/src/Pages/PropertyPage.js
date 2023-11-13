@@ -28,6 +28,8 @@ import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinn
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { Authenticator, View } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import PropertyScoresComponent from "../components/PropertyScoresComponent/PropertyScoresComponent";
+import { MockScores } from "../MockData/PropertyScoresMockData";
 
 function PropertyPage() {
 	const location = useLocation();
@@ -267,10 +269,7 @@ function PropertyPage() {
 								<PageSection sectionTitle="Description">
 									<Typography variant="body1">{data?.data.overview}</Typography>
 								</PageSection>
-								<PageSection
-									background={false}
-									sectionTitle="Property Scores"
-								></PageSection>
+								<PropertyScoresComponent inputData={MockScores} />
 								<PageSection
 									background={false}
 									sectionTitle="Map View"
