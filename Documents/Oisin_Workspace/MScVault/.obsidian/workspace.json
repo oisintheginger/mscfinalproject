@@ -109,14 +109,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Diary/Wednesday 8th November.md",
+                "file": "Daily Diary/Tuesday 7th November.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ce37c8b2379e2121",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/Saturday 11th November.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -190,7 +202,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/Wednesday 8th November.md",
+                "file": "Daily Diary/Saturday 11th November.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -207,7 +219,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/Wednesday 8th November.md",
+                "file": "Daily Diary/Saturday 11th November.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -230,7 +242,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/Wednesday 8th November.md"
+                "file": "Daily Diary/Saturday 11th November.md"
               }
             }
           }
@@ -252,11 +264,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "56b48df5b4a5cdff",
+  "active": "ce37c8b2379e2121",
   "lastOpenFiles": [
     "Daily Diary/Tuesday 7th November.md",
-    "Daily Diary/Monday 6th November.md",
+    "Daily Diary/Saturday 11th November.md",
     "Daily Diary/Wednesday 8th November.md",
+    "Daily Diary/Monday 6th November.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Daily Diary/2nd November 2023.md",
     "Daily Diary/1st November 2023.md",
