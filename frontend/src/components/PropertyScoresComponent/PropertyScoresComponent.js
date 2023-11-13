@@ -106,7 +106,6 @@ function Rating({ scoreData }) {
 				alignItems={"center"}
 				sx={{}}
 				width={"100%"}
-				height={"60px"}
 				borderRadius={2}
 				overflow={"clip"}
 				bgcolor={"#e6e6e6"}
