@@ -44,7 +44,7 @@ function MapToggleList({ features, displayTitle }) {
 				<Collapse in={collapse}>
 					{features?.map((el) => {
 						return (
-							<ListItem>
+							<ListItem key={el.label + "Toggle"}>
 								<MapFeatureToggle
 									label={el.label}
 									icon={el.menuIcon}

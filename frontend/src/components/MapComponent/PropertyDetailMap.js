@@ -127,13 +127,17 @@ function MapTile({ location, services }) {
 			/>
 			{services.map((serviceType) => {
 				if (serviceType?.locations && serviceType?.enabled) {
-					return serviceType.locations.map((location) => {
+					return serviceType.locations.map((location, ind) => {
 						const newPosition = [
 							location.geometry.location.lat,
 							location.geometry.location.lng,
 						];
 						return (
-							<Marker position={newPosition} icon={serviceType.icon}>
+							<Marker
+								position={newPosition}
+								icon={serviceType.icon}
+								key={location.name + " " + ind}
+							>
 								<Popup>
 									<Box maxWidth={"50vw"}>
 										<Stack alignItems={"center"} spacing={2}>
