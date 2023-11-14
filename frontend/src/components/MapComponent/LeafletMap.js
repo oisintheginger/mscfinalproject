@@ -4,8 +4,10 @@ import {
 	useMapEvent,
 	Marker,
 	Popup,
+	useMap,
+	useMapEvents,
 } from "react-leaflet";
-import Leaflet from "leaflet";
+import Leaflet, { point, LatLng } from "leaflet";
 
 import {
 	Box,
@@ -15,18 +17,61 @@ import {
 	Link,
 	Stack,
 	Typography,
+	Grid,
 } from "@mui/material";
+import SkeletonCard from "../CommonComp/Cards/SkeletonCard/SkeletonCard";
 import { darkTeal } from "../../Styling/styleConstants";
-import GoogleLogo from "./../../Icons/google_on_white.png";
-// import { propertyData } from "../../MockData/PropertyDataSample";
-import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
 
-function HMEMap({ marks }) {
-	const map2 = useMapEvent("zoom", () => {
-		console.log(map2.getBounds());
+import { useSearchParams } from "react-router-dom";
+import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
+import { useEffect, useState } from "react";
+import ResultGrid from "../ResultsGrid/ResultsGrid";
+import { API } from "aws-amplify";
+import { useQueries } from "react-query";
+import MapResultsGrid from "../MapResultsGrid/MapResultsGrid";
+
+function HMEMap({ marks, children, points, setPoints }) {
+	const FilterPoints = (points, map, setPointsState) => {
+		setPointsState(
+			points
+				.sort((a, b) => {
+					return (
+						map.distance([a.latitude, a.longitude], map.getCenter()) -
+						map.distance([b.latitude, b.longitude], map.getCenter())
+					);
+				})
+				?.filter((mark) => {
+					return (
+						mark.latitude <= map.getBounds()._northEast.lat &&
+						mark.longitude <= map.getBounds()._northEast.lng &&
+						mark.latitude > map.getBounds()._southWest.lat &&
+						mark.longitude > map.getBounds()._southWest.lng
+					);
+				})
+				?.filter((_, index, arr) => {
+					if (arr.length < 600) {
+						return true;
+					}
+					return index % 60 < 30;
+				})
+				.slice(0, 600)
+		);
+	};
+
+	const map = useMapEvents({
+		zoom: () => {
+			FilterPoints(marks, map, setPoints);
+		},
+		dragend: () => {
+			FilterPoints(marks, map, setPoints);
+		},
 	});
 
-	map2.setView([39.2904, -76.6122], map2.getZoom());
+	useEffect(() => {
+		FilterPoints(marks, map, setPoints);
+		return () => {};
+	}, []);
+
 	return (
 		<>
 			<TileLayer
@@ -34,32 +79,46 @@ function HMEMap({ marks }) {
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				zIndex={1}
 			/>
-			{marks &&
-				marks.map((data, key) => {
+			{children}
+			{points &&
+				points.map((data, key) => {
 					const markerIcon = new Leaflet.Icon({
 						iconUrl: require("../../Icons/mapmarkericon.png"),
 						iconAnchor: [14, 28],
 						popupAnchor: [0, -28],
 					});
-					return (
-						<Marker
-							position={[data.latitude, data.longitude]}
-							icon={markerIcon}
-							key={key}
-						>
-							<Popup position={[data.latitude, data.longitude]}>
-								<PropertyCard data={data} inPopup={true} />
-							</Popup>
-						</Marker>
-					);
+					{
+						return (
+							<Marker
+								position={[data.latitude, data.longitude]}
+								icon={markerIcon}
+								key={key}
+							>
+								<Popup position={[data.latitude, data.longitude]}>
+									<PropertyCard data={data} inPopup={true} />
+								</Popup>
+							</Marker>
+						);
+					}
 				})}
 		</>
 	);
 }
 
 function LeafletMap({ propertyData }) {
+	const [points, setPoints] = useState([]);
+	const [searchParameters, setSearchParameters] = useSearchParams();
+
+	const [pageNum, setPageNum] = useState(
+		searchParameters.get("page") ? parseInt(searchParameters.get("page")) : 1
+	);
+
+	const listRender = points.filter((v, ind) => {
+		return ind < 9 * pageNum && ind >= 9 * (pageNum - 1);
+	});
+
 	return (
-		<Box>
+		<Stack spacing={3} direction={"column"}>
 			<Box
 				sx={{
 					height: "500px",
@@ -68,62 +127,70 @@ function LeafletMap({ propertyData }) {
 					maxHeight: "70vh",
 				}}
 			>
-				<MapContainer
-					center={[39.2904, -76.6122]}
-					zoom={12}
-					scrollWheelZoom={true}
-				>
-					<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
-						{/* <ButtonStyled
-							sx={{
-								transform: "translate(-10px, 10px)",
-								zIndex: 900,
-							}}
-							href="#results"
-						>
-							JUMP TO RESULTS
-						</ButtonStyled> */}
-						<Button
-							sx={{
-								transform: "translate(-10px, 10px)",
-								zIndex: 900,
-								color: "white",
-								backgroundColor: darkTeal,
-								borderColor: darkTeal,
-								"&:hover": {
+				{propertyData && (
+					<MapContainer
+						center={[39.2904, -76.6122]}
+						zoom={12}
+						scrollWheelZoom={true}
+					>
+						<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
+							<Button
+								sx={{
+									transform: "translate(-10px, 10px)",
+									zIndex: 900,
 									color: "white",
-									backgroundColor: "darkTeal.main",
-								},
-							}}
-							href="#results"
-						>
-							<Typography variant="button" sx={{ color: "white" }}>
-								JUMP TO RESULTS
-							</Typography>
-						</Button>
-					</Stack>
-					<HMEMap marks={propertyData} />
-				</MapContainer>
+									backgroundColor: darkTeal,
+									borderColor: darkTeal,
+									"&:hover": {
+										color: "white",
+										backgroundColor: "darkTeal.main",
+									},
+								}}
+								href="#results"
+							>
+								<Typography variant="button" sx={{ color: "white" }}>
+									JUMP TO RESULTS
+								</Typography>
+							</Button>
+						</Stack>
+						<HMEMap
+							marks={propertyData || []}
+							points={points}
+							setPoints={setPoints}
+						/>
+					</MapContainer>
+				)}
 			</Box>
-			<Stack direction={"row"} alignItems={"flex-end"} mt={1} spacing={1}>
-				<Typography
-					fontStyle={"normal"}
-					fontWeight={500}
-					fontSize={"16px"}
-					lineHeight={"16px"}
-					letterSpacing={"0.0575em"}
-					color={"#5F6368"}
-				>
-					{"Powered by"}
-				</Typography>
-				<Box
-					component={"img"}
-					alt="Powered by Google"
-					src={GoogleLogo}
-					height={"100%"}
-				/>
-			</Stack>
-		</Box>
+			<MapResultsGrid properties={listRender} />
+			{/* {isLoading ? (
+				<Grid container spacing={2} width={"100%"} mt={0.5}>
+					{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
+						return (
+							<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+								<SkeletonCard />
+							</Grid>
+						);
+					})}
+				</Grid>
+			) : isError ? (
+				<p>error:{}</p>
+			) : (
+				<>
+					<ResultGrid id={"results"} propertyData={ListData} />
+					{isSuccess && (
+						<Pagination
+							count={totalPages - 1}
+							boundaryCount={1}
+							siblingCount={1}
+							variant="outlined"
+							sx={{ alignSelf: "center" }}
+							page={pageNum}
+							onChange={handlePageChange}
+						/>
+					)}
+				</>
+			)} */}
+		</Stack>
 	);
 }
 export default LeafletMap;

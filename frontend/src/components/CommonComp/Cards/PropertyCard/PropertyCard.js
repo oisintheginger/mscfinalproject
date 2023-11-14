@@ -48,21 +48,21 @@ export default function PropertyCard({ data, key, inPopup = false }) {
 					}}
 					component="img"
 					height="194"
-					image={data.images ? data.images[0] : null}
+					image={data?.images ? data.images[0] : null}
 					alt="Property Image"
 				/>
 				<CardHeader
 					title={
-						<Typography variant="cardHeader">{"$" + data.price}</Typography>
+						<Typography variant="cardHeader">{"$" + data?.price}</Typography>
 					}
 					sx={{ textOverflow: "ellipsis" }}
 					subheader={
 						<>
 							<Typography variant="subtitle1" noWrap>
-								{data.streetAddress}
+								{data?.streetAddress}
 							</Typography>
 							<Typography variant="subtitle1" noWrap>
-								{"Zip Code: " + data.zipcode}
+								{"Zip Code: " + data?.zipcode}
 							</Typography>
 						</>
 					}
