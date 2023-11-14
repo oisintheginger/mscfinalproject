@@ -15,6 +15,7 @@ import { propertyData } from "../MockData/PropertyDataSample";
 import { NextCarouselIcon } from "../Icons/HMEIcons";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
+import UserWeights from "../components/UserWeightsComponent/UserWeights";
 
 function Profile() {
 	const { route } = useAuthenticator((context) => [context.route]);
@@ -23,36 +24,14 @@ function Profile() {
 	return (
 		<PageTemplate pageTitle="My Profile" currPageBreadcrumb={"Profile"}>
 			<Stack width={"100%"} spacing={8}>
-				{/* <Typography width={"100%"} variant="body1">
-					{route === "authenticated" ? "LOGGED IN" : "NOT LOGGED IN"}
-				</Typography> */}
-				<PageSection sectionTitle="" background={false}>
-					<Box>
-						<TextField
-							variant="outlined"
-							type="search"
-							sx={{
-								width: { xs: "100%", md: "55%" },
-								"& .MuiInputBase-root": {
-									height: 50,
-									color: "black",
-									"& fieldset": {
-										borderWidth: 1,
-										borderColor: "darkTeal.main",
-									},
-									"&.Mui-focused fieldset": {
-										borderWidth: 2,
-										borderColor: "darkTeal.main",
-									},
-									"&:hover fieldset": {
-										borderWidth: 2,
-										borderColor: "darkTeal.main",
-									},
-								},
-							}}
-							color="darkTeal"
-							placeholder="Name Goes Here"
-						/>
+				<PageSection sectionTitle="My Weights" background={false}>
+					<Typography>
+						{
+							"With HME, you can specify and tune what services are the most important for you. We use this information to recommend more relevant properties."
+						}
+					</Typography>
+					<Box display={"flex"} justifyContent={"center"}>
+						<UserWeights />
 					</Box>
 				</PageSection>
 				<PageSection background={false} sectionTitle="Recommended for Me">

@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Container } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import React, { useState, useEffect } from "react";
@@ -14,7 +14,7 @@ function SampleNextArrow({ style, onClick }) {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-	return isMobile ? (
+	return false ? (
 		<></>
 	) : (
 		<div
@@ -23,13 +23,14 @@ function SampleNextArrow({ style, onClick }) {
 				display: "block",
 				position: "absolute",
 				top: "50%",
-				right: "25px",
+				right: isMobile ? "0px" : "25px",
 				transform: "translate(0, -50%)",
-				fontSize: "30px",
+				fontSize: isMobile ? "20px" : "30px",
+				borderRadius: "3px",
 				color: "white",
 				zIndex: 2,
-				backgroundColor: "rgba(0, 0, 0, 0.5)", // Slight background
-				padding: "10px",
+				backgroundColor: "rgba(0, 0, 0, 0.2)", // Slight background
+				padding: isMobile ? "5px" : "10px",
 			}}
 			onClick={onClick}
 		>
@@ -42,7 +43,7 @@ function SamplePrevArrow({ style, onClick }) {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-	return isMobile ? (
+	return false ? (
 		<></>
 	) : (
 		<div
@@ -51,13 +52,14 @@ function SamplePrevArrow({ style, onClick }) {
 				display: "block",
 				position: "absolute",
 				top: "50%",
-				left: "25px",
+				left: isMobile ? "0px" : "25px",
 				transform: "translate(0, -50%)",
-				fontSize: "30px",
+				fontSize: isMobile ? "20px" : "30px",
+				borderRadius: "3px",
 				color: "white",
 				zIndex: 2,
-				backgroundColor: "rgba(0, 0, 0, 0.5)", // Slight background
-				padding: "10px",
+				backgroundColor: "rgba(0, 0, 0, 0.2)", // Slight background
+				padding: isMobile ? "5px" : "10px",
 			}}
 			onClick={onClick}
 		>
@@ -80,6 +82,7 @@ const Carousel = ({ propData }) => {
 		prevArrow: <SamplePrevArrow />,
 		nextArrow: <SampleNextArrow />,
 		afterChange: (current) => setCurrentSlide(current), // Update currentSlide state on slide change
+		adaptiveHeight: true,
 	};
 
 	// Determine the number of thumbnail slides based on the num of images available
@@ -101,46 +104,69 @@ const Carousel = ({ propData }) => {
 		setNav2(nav2);
 	}, [nav1, nav2]);
 
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
 	return (
-		<>
-			<Slider {...settingsMain} ref={(slider) => setNav1(slider)}>
-				{propData?.map((img, index) => (
-					<Box key={index} width={"100%"} m={0}>
-						<Stack>
+		<Box>
+			<Box
+				mb={2}
+				sx={{ backgroundColor: "fullDark.main" }}
+				borderRadius={1}
+				overflow={"clip"}
+			>
+				<Slider
+					{...settingsMain}
+					ref={(slider) => setNav1(slider)}
+					style={{
+						margin: 0,
+						padding: 0,
+					}}
+				>
+					{propData?.map((img, index) => (
+						<Box key={index} width={"100%"} m={0}>
+							<Stack>
+								<Box
+									alignSelf={"center"}
+									component={"img"}
+									src={img}
+									alt={`Slide ${index + 1}`}
+									maxWidth={"100%"}
+									height={"auto"}
+									maxHeight={{ xs: "300px", md: "500px" }}
+								/>
+							</Stack>
+						</Box>
+					))}
+				</Slider>
+			</Box>
+			{!isMobile && (
+				<Box>
+					<Slider {...settingsThumbs} ref={(slider) => setNav2(slider)}>
+						{propData?.map((img, index) => (
 							<Box
-								alignSelf={"center"}
+								key={index}
 								component={"img"}
 								src={img}
-								alt={`Slide ${index + 1}`}
-								maxWidth={"100%"}
-								height={"auto"}
+								alt={`Thumbnail ${index + 1}`}
+								sx={{
+									height: "60px",
+									width: "auto",
+									backgroundColor: "fullDark.main",
+									opacity:
+										nav1 &&
+										nav1.innerSlider &&
+										nav1.innerSlider.state.currentSlide === index
+											? 1
+											: 0.5,
+									transition: "opacity .5s",
+								}}
 							/>
-						</Stack>
-					</Box>
-				))}
-			</Slider>
-
-			<Slider {...settingsThumbs} ref={(slider) => setNav2(slider)}>
-				{propData?.map((img, index) => (
-					<div key={index}>
-						<img
-							src={img}
-							alt={`Thumbnail ${index + 1}`}
-							style={{
-								width: "100%",
-								opacity:
-									nav1 &&
-									nav1.innerSlider &&
-									nav1.innerSlider.state.currentSlide === index
-										? 1
-										: 0.5,
-								transition: "opacity .5s",
-							}}
-						/>
-					</div>
-				))}
-			</Slider>
-		</>
+						))}
+					</Slider>
+				</Box>
+			)}
+		</Box>
 	);
 };
 

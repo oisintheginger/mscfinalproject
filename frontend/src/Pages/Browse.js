@@ -99,8 +99,9 @@ function Browse() {
 				/>
 			</FormProvider>
 			<Divider />
+
 			<ListMap>
-				<LeafletMap propertyData={data?.data} />
+				<LeafletMap propertyData={data?.data.properties} />
 			</ListMap>
 			{isLoading ? (
 				<Grid container spacing={2} width={"100%"} mt={0.5}>
@@ -115,10 +116,13 @@ function Browse() {
 			) : isError ? (
 				<p>error:{error.request.status}</p>
 			) : (
-				<ResultGrid propertyData={data?.data} id={"results"} />
+				<ResultGrid
+					propertyData={data?.data.properties ? data?.data.properties : []}
+					id={"results"}
+				/>
 			)}
 			<Pagination
-				count={10}
+				count={data?.data?.totalPages - 1 || 10}
 				boundaryCount={1}
 				siblingCount={1}
 				variant="outlined"
