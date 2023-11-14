@@ -18,6 +18,8 @@ import {
 } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { forwardRef } from "react";
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import { motion } from "framer-motion";
 
 import {
 	MapContainer,
@@ -25,6 +27,7 @@ import {
 	useMapEvent,
 	Marker,
 	Popup,
+	useMap,
 } from "react-leaflet";
 import { useState } from "react";
 import {
@@ -129,8 +132,31 @@ function MapTile({ location, services }) {
 	);
 }
 
+function RecenterButton({ center }) {
+	const map = useMap();
+	return (
+		<IconButton
+			sx={{
+				zIndex: 900,
+				backgroundColor: "darkTeal.main",
+				color: "white",
+				mt: 1,
+				mr: 1,
+				"&:hover": { backgroundColor: "buttonHover.main" },
+				width: "max-content",
+			}}
+			onClick={(e) => {
+				e.preventDefault();
+				map.flyTo(center);
+			}}
+		>
+			<MyLocationIcon fontSize="large" />
+		</IconButton>
+	);
+}
+
 function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
-	const [togglesOpen, setTogglesOpen] = useState(true);
+	const [togglesOpen, setTogglesOpen] = useState(false);
 
 	const [hospitalsSelected, setHospitalsSelected] = useState(true);
 	const [policeStationsSelected, setPoliceStationsSelected] = useState(true);
@@ -227,20 +253,34 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 					ref={ref}
 				>
 					<MapContainer center={center} zoom={16} scrollWheelZoom={true}>
-						<Stack width={"100%"} justifyContent={"flex-end"} direction={"row"}>
+						<Box
+							display={"flex"}
+							flexDirection={"column"}
+							width={"100%"}
+							height={"90%"}
+							justifyContent={"space-between"}
+							alignItems={"flex-end"}
+							direction={"column"}
+						>
 							{!below && (
 								<Button
 									sx={{
 										zIndex: 900,
 										backgroundColor: "darkTeal.main",
 										color: "white",
-
 										mt: 1,
 										mr: 1,
 										"&:hover": { backgroundColor: "buttonHover.main" },
+										width: "max-content",
 									}}
 									startIcon={
-										togglesOpen ? <ExpandRightIcon /> : <ExpandLeftIcon />
+										<motion.div
+											animate={{ x: 0, y: 0, rotate: togglesOpen ? 0 : 180 }}
+											transition={{ type: "spring" }}
+											style={{ display: "flex" }}
+										>
+											<ExpandRightIcon fontSize="medium" />
+										</motion.div>
 									}
 									onClick={(event) => {
 										event.preventDefault();
@@ -250,7 +290,8 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 									{togglesOpen ? "Collapse Filters" : "Expand Filters"}
 								</Button>
 							)}
-						</Stack>
+							<RecenterButton center={center} />
+						</Box>
 						<MapTile
 							location={center}
 							services={ProcessQueries(nearbyPlaces)}
@@ -465,19 +506,21 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 			</Stack>
 			{below && (
 				<Box pt={3}>
-					<Typography variant="toggleMenu">Map Filters</Typography>
-					<IconButton
-						aria-label="Expand Map Feature Toggles"
-						onClick={() => {
-							setTogglesOpen(!togglesOpen);
-						}}
-					>
-						{togglesOpen ? (
-							<ExpandLessIcon fontSize="large" />
-						) : (
-							<ExpandMoreIcon fontSize="large" />
-						)}
-					</IconButton>
+					<Stack direction={"row"} alignItems={"center"}>
+						<Typography variant="toggleMenu">Map Filters</Typography>
+						<motion.div
+							animate={{ x: 0, y: 0, rotate: togglesOpen ? 180 : 90 }}
+							transition={{ type: "spring" }}
+						>
+							<IconButton
+								onClick={() => {
+									setTogglesOpen(!togglesOpen);
+								}}
+							>
+								<ExpandLessIcon fontSize="large" />
+							</IconButton>
+						</motion.div>
+					</Stack>
 					<Divider />
 					<Collapse orientation="vertical" in={togglesOpen} collapsedSize={0}>
 						<Paper elevation={7}>
