@@ -26,12 +26,12 @@ public class User {
     private UserWeights weights;
 
     @JsonProperty
-    private ArrayList<Application> applications;
+    private ArrayList<Enquiry> applications;
 
     public User() {
     }
 
-    public User(String id, String email, ArrayList<String> searches, ArrayList<Integer> favourites, UserWeights weights, ArrayList<Application> applications) {
+    public User(String id, String email, ArrayList<String> searches, ArrayList<Integer> favourites, UserWeights weights, ArrayList<Enquiry> applications) {
         this.id = id;
         this.email = email;
         this.searches = searches;

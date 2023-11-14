@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*") // for now //secure way for user id/authorisation to send???
@@ -34,18 +36,18 @@ public class UserController {
     @GetMapping("/{id}/{resource}") // resource options: s, f, a, w
     public ResponseEntity<Object> findResource(@PathVariable String id, @PathVariable String resource) {
 //        try {
-            if (resource == "s") {
+            if (Objects.equals(resource, "s")) {
                 Object result = userService.findSearches(id);
-                return
-            } else if (resource == "f") {
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            } else if (Objects.equals(resource, "f")) {
                 Object result = userService.findFaves(id);
-                return
-            } else if (resource == "a") {
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            } else if (Objects.equals(resource, "a")) {
                 Object result = userService.findApplication(id);
-                return
-            } else if (resource == "w") {
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            } else if (Objects.equals(resource, "w")) {
                 Object result = userService.findWeights(id);
-                return
+                return ResponseEntity.status(HttpStatus.OK).body(result);
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
             }
@@ -59,9 +61,7 @@ public class UserController {
 
 //    @PostMapping("/update/resource") ???
     //POST req: user id, new resource (ss, fave, user weights, application )
-
-//    @PatchMapping("/update")
-    //PATCH req: user id, updated resource (ss, fave, user weights, application)
+    
 
 //    @DeleteMapping("/remove") ???
     //DELETE: req: user id, deleted resource (ss, fave, user weights, applications)
