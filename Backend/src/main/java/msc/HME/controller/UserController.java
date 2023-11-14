@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "*") // for now
 public class UserController {
 
     public UserController() {
@@ -14,10 +15,10 @@ public class UserController {
     //GET req: user id, resource (ss, faves, user weights)
         //secure way for user id/authorisation to be send???
 
-//    @PostMapping("/new")
+//    @PostMapping("/update/email")
     //POST user id
 
-//    @PostMapping("/new/resource") ???
+//    @PostMapping("/update/resource") ???
     //POST req: user id, new resource (ss, fave, user weights, application )
 
 //    @PatchMapping("/update")
