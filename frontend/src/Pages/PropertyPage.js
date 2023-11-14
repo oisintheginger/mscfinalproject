@@ -28,6 +28,8 @@ import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinn
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { Authenticator, View } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import PropertyScoresComponent from "../components/PropertyScoresComponent/PropertyScoresComponent";
+import { MockScores } from "../MockData/PropertyScoresMockData";
 
 function PropertyPage() {
 	const location = useLocation();
@@ -267,10 +269,7 @@ function PropertyPage() {
 								<PageSection sectionTitle="Description">
 									<Typography variant="body1">{data?.data.overview}</Typography>
 								</PageSection>
-								<PageSection
-									background={false}
-									sectionTitle="Property Scores"
-								></PageSection>
+								<PropertyScoresComponent inputData={MockScores} />
 								<PageSection
 									background={false}
 									sectionTitle="Map View"
@@ -293,7 +292,7 @@ function PropertyPage() {
 									>
 										<Box
 											component={"img"}
-											src="https://media.licdn.com/dms/image/C4E03AQETC_6MIU7IPQ/profile-displayphoto-shrink_200_200/0/1648397391375?e=1703116800&v=beta&t=gZZ13Q30B2eG9gWTDcKUIFXKwNLmB9YHY2sCbGPE5tY"
+											src="https://global-uploads.webflow.com/63cda40ae1eb3d792c09917b/64774c50e2dcd05af867f9b8_n_yPPwDrPTVoOzu4WjbGBA6IIgYq2lTLBB8Qcm-WbFg.jpeg"
 											width={"150px"}
 											borderRadius={"5px"}
 											alt="Picture of Owner"
@@ -420,10 +419,6 @@ function PropertyPage() {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%)",
-						width: {
-							xs: "90vw",
-							md: "1000px",
-						},
 					}}
 				>
 					<View className="auth-wrapper">

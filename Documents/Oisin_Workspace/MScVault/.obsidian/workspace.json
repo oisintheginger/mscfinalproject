@@ -126,9 +126,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "46f2d2bf4ba649bd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/Wednesday 4th October.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 9
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -202,7 +214,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/Saturday 11th November.md",
+                "file": "Daily Diary/Wednesday 4th October.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -219,7 +231,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/Saturday 11th November.md",
+                "file": "Daily Diary/Wednesday 4th October.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -242,7 +254,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/Saturday 11th November.md"
+                "file": "Daily Diary/Wednesday 4th October.md"
               }
             }
           }
@@ -264,11 +276,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ce37c8b2379e2121",
+  "active": "46f2d2bf4ba649bd",
   "lastOpenFiles": [
-    "Daily Diary/Tuesday 7th November.md",
-    "Daily Diary/Saturday 11th November.md",
     "Daily Diary/Wednesday 8th November.md",
+    "Daily Diary/Wednesday 4th October.md",
+    "Daily Diary/Monday 13th November.md",
+    "Daily Diary/Monday 2nd October.md",
+    "Daily Diary/Saturday 11th November.md",
+    "Daily Diary/Saturday 14th October.md",
+    "Daily Diary/Tuesday 7th November.md",
     "Daily Diary/Monday 6th November.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Daily Diary/2nd November 2023.md",
@@ -281,7 +297,6 @@
     "Master's Project/UX Work/User Testing/LFP Testing Results Report.md",
     "WeeklyDiaries/Week 5 Diary (Oct 16th - Oct 22nd).md",
     "WeeklyDiaries/Week 4 Diary (Oct 9th - Oct 15th).md",
-    "Daily Diary/Saturday 14th October.md",
     "Daily Diary/Monday 16th October.md",
     "Daily Diary/Tuesday 10th October.md",
     "Daily Diary/Friday 6th October.md",
@@ -293,8 +308,6 @@
     "Master's Project/Market Analysis/Zillow Demo Presentation Plan.md",
     "Master's Project/Market Analysis/Existing Apps & Zillow Analysis.md",
     "Master's Project/UX Work/User Testing/Questions to Answer.md",
-    "Daily Diary/Monday 9th October.md",
-    "Master's Project/UX Work/User Testing/Participants.md",
     "Master's Project/UX Work/User Testing/CBD44750",
     "Master's Project/UX Work/User Testing/3BBE3750",
     "Master's Project/UX Work/User Testing/9C6D3750",
@@ -302,7 +315,6 @@
     "Master's Project/UX Work/User Testing/06CA3750",
     "Master's Project/UX Work/User Testing/DC6A3750",
     "Master's Project/UX Work/User Testing/B6193750",
-    "Daily Diary/Weekend Saturday + Sunday October 7th-8th.md",
     "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
     "Master's Project/UX Work/UX Mockups/Tablet Layout.png",
     "Master's Project/UX Work/UX Research/Graphs/PreviousKnowledge.png",

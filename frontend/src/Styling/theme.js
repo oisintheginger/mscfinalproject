@@ -91,6 +91,17 @@ const theme = createTheme({
 			fontFamily: '"Urbanist", sans-serif',
 			fontWeight: 600,
 		},
+		scoreCategory: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 22,
+			fontWeight: 600,
+			color: fontDark,
+		},
+		scoreValue: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 30,
+			fontWeight: 600,
+		},
 	},
 	components: {
 		MuiTypography: {
