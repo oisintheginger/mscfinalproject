@@ -1,15 +1,14 @@
 package msc.HME.service;
 
-import msc.HME.Application;
 import msc.HME.binding.Enquiry;
 import msc.HME.binding.User;
 import msc.HME.binding.UserWeights;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.sql.PreparedStatement;
 import java.util.*;
 
 @Service
@@ -137,4 +136,87 @@ public class UserService {
         System.out.println(result);
         return result;
     }
+
+    // why doesnt this work lol
+//    public void addSearchOrFave(String id, String update, String table) {
+//        String sql = """
+//                UPDATE user
+//                SET
+//                    ? = JSON_ARRAY_APPEND(?, '$', JSON_OBJECT('newKey', ?))
+//                WHERE
+//                        id = ?
+//                """;
+//        System.out.println(sql);
+//        int rows = jdbcTemplate.update(sql, table, table, update, id);
+//        System.out.println(rows);
+//        if (rows == 0) {
+//            System.out.println("update couldnt be done lol");
+////            return new DataAccessException; /// not sure what to do her eugh
+//
+//        }
+//    }
+    public void addSearch(String id, String search) {
+        String sql = """
+                UPDATE user
+                SET
+                    searches = JSON_ARRAY_APPEND(searches, '$', JSON_OBJECT('key', ?))
+                WHERE
+                        id = ?
+                """;
+        int rows = jdbcTemplate.update(sql, search, id);
+        if (rows == 0) {
+            System.out.println("update couldnt be done lol");
+//            return new DataAccessException; /// not sure what to do her eugh
+        }
+    }
+
+    public void addFaves(String id, String propertyId) {
+        String sql = """
+                UPDATE user
+                SET
+                    favourites = JSON_ARRAY_APPEND(favourites, '$', JSON_OBJECT('newKey', ?))
+                WHERE
+                        id = ?
+                """;
+        int rows = jdbcTemplate.update(sql, propertyId, id);
+        if (rows == 0) {
+            System.out.println("update couldnt be done lol");
+//            return new DataAccessException; /// not sure what to do her eugh
+        }
+    }
+
+    public void addApplication(String id, String propertyId, String message) {
+        String sql = """
+                UPDATE user
+                SET
+                    applications = JSON_ARRAY_APPEND(applications, '$', JSON_OBJECT(?, ?))
+                WHERE
+                        id = ?
+                """;
+        int rows = jdbcTemplate.update(sql, propertyId, message, id);
+        if (rows == 0) {
+            System.out.println("update couldnt be done lol");
+//            return new DataAccessException; /// not sure what to do her eugh
+        }
+    }
+
+    public void updateWeights(String id, String entertainment, String pharmacies, String retail, String fitness, String financial, String transportation, String emergency) {
+        String sql = """
+                UPDATE user
+                SET weights = JSON_SET(weights, '$', ?)
+                WHERE id = ?
+                """;
+        String insert  = "[{\"entertainment\": "+ entertainment +"}, {\"pharmacies\": "+ pharmacies +"}, {\"retail\": "+ retail +"}, {\"fitness\": "+ fitness +"}, {\"financial\": "+ financial +"}, {\"transportation\": "+ transportation +"}, {\"emergency\": "+ emergency +"}]";
+        int rows = jdbcTemplate.update(sql, insert);
+        if (rows == 0) {
+            System.out.println("update couldnt be done lol");
+//            return new DataAccessException; /// not sure what to do her eugh
+        }
+    }
+
+    // org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE user
+    //SET weights = JSON_SET(weights, '$', ?)
+    //WHERE id = ?
+    //]
+
 }
