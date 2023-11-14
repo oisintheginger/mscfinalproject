@@ -102,6 +102,16 @@ const theme = createTheme({
 			fontSize: 30,
 			fontWeight: 600,
 		},
+		mapPopupName: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 18,
+			fontWeight: 700,
+		},
+		mapPopupRating: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 22,
+			fontWeight: 400,
+		},
 	},
 	components: {
 		MuiTypography: {
