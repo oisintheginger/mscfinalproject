@@ -138,9 +138,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "e3b8b04c7960771d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/Tuesday 14th November.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 10
+        "currentTab": 11
       }
     ],
     "direction": "vertical"
@@ -214,7 +226,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/Wednesday 4th October.md",
+                "file": "Daily Diary/Tuesday 14th November.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -231,7 +243,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/Wednesday 4th October.md",
+                "file": "Daily Diary/Tuesday 14th November.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -254,7 +266,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/Wednesday 4th October.md"
+                "file": "Daily Diary/Tuesday 14th November.md"
               }
             }
           }
@@ -276,10 +288,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "46f2d2bf4ba649bd",
+  "active": "e3b8b04c7960771d",
   "lastOpenFiles": [
-    "Daily Diary/Wednesday 8th November.md",
     "Daily Diary/Wednesday 4th October.md",
+    "Daily Diary/Tuesday 14th November.md",
+    "Daily Diary/Wednesday 8th November.md",
     "Daily Diary/Monday 13th November.md",
     "Daily Diary/Monday 2nd October.md",
     "Daily Diary/Saturday 11th November.md",
@@ -307,7 +320,6 @@
     "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
     "Master's Project/Market Analysis/Zillow Demo Presentation Plan.md",
     "Master's Project/Market Analysis/Existing Apps & Zillow Analysis.md",
-    "Master's Project/UX Work/User Testing/Questions to Answer.md",
     "Master's Project/UX Work/User Testing/CBD44750",
     "Master's Project/UX Work/User Testing/3BBE3750",
     "Master's Project/UX Work/User Testing/9C6D3750",
