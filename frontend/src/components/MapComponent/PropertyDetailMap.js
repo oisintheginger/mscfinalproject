@@ -2,7 +2,6 @@ import {
 	Stack,
 	Box,
 	Typography,
-	Drawer,
 	Paper,
 	Divider,
 	Collapse,
@@ -10,25 +9,13 @@ import {
 	Button,
 	useTheme,
 	useMediaQuery,
-	Checkbox,
-	FormControlLabel,
-	List,
-	ListItem,
-	ListSubheader,
 	Link,
 } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { forwardRef } from "react";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import { motion } from "framer-motion";
-import {
-	MapContainer,
-	TileLayer,
-	useMapEvent,
-	Marker,
-	Popup,
-	useMap,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useState } from "react";
 import {
 	HospitalIcon,
@@ -70,38 +57,13 @@ import {
 	LeafletPlaceholder,
 } from "../../Icons/MapIcons";
 import { ExpandRightIcon } from "../../Icons/HMEIcons";
-import MapFeatureToggle from "./MapFeatureToggle";
 import GoogleLogo from "./../../Icons/google_on_white.png";
 import Leaflet from "leaflet";
-import { useQueries, useQuery } from "react-query";
+import { useQueries } from "react-query";
 import { API } from "aws-amplify";
-import { useEffect } from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import MapToggleList from "./MapToggleList";
 import MapToggles from "./MapToggles";
-
-const placeTypes = [
-	"hospital",
-	"bank",
-	"pharmacy",
-	"supermarket",
-	"gym",
-	"cafe",
-	"restaurant",
-	"night_club",
-	"police",
-	"fire_station",
-	"bus_station",
-	"train_station",
-	"art_gallery",
-	"amusement_park",
-	"bowling_alley",
-	"aquarium",
-	"museum",
-	"movie_theater",
-];
 
 const markerIcon = new Leaflet.Icon({
 	iconUrl: require("../../Icons/mapmarkericon.png"),
@@ -209,96 +171,113 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 
 	const mapFeatures = {
 		hospital: {
+			type: "hopsital",
 			state: useState(true),
 			icon: LeafletHospital,
 			menuIcon: <HospitalIcon fontSize="medium" />,
 			label: "Hospital",
 		},
 		police: {
+			type: "police",
 			state: useState(true),
 			icon: LeafletPolice,
 			menuIcon: <PoliceIcon fontSize="medium" />,
 			label: "Police",
 		},
 		bank: {
+			type: "bank",
 			state: useState(true),
 			icon: LeafletBank,
 			menuIcon: <BankIcon fontSize="medium" />,
 			label: "Bank",
 		},
 		bus_station: {
+			type: "bus_station",
 			state: useState(true),
 			icon: LeafletBus,
 			menuIcon: <BusStationIcon fontSize="medium" />,
 			label: "Bus Stop",
 		},
 		cafe: {
+			type: "cafe",
 			state: useState(true),
 			icon: LeafletCafe,
 			menuIcon: <CafeIcon fontSize="medium" />,
 			label: "Cafe",
 		},
 		pharmacy: {
+			type: "pharmacy",
+
 			state: useState(true),
 			icon: LeafletPharmacy,
 			menuIcon: <PharmacyIcon fontSize="medium" />,
 			label: "Pharmacy",
 		},
 		supermarket: {
+			type: "supermarket",
 			state: useState(true),
 			icon: LeafletSupermarket,
 			menuIcon: <SupermarketIcon fontSize="medium" />,
 			label: "Supermarket",
 		},
 		gym: {
+			type: "gym",
 			state: useState(true),
 			icon: LeafletGym,
 			menuIcon: <GymIcon fontSize="medium" />,
 			label: "Gym",
 		},
 		restaurant: {
+			type: "restaurant",
 			state: useState(true),
 			icon: LeafletRestaurant,
 			menuIcon: <RestaurantIcon fontSize="medium" />,
 			label: "Restaurant",
 		},
 		night_club: {
+			type: "night_club",
 			state: useState(true),
 			icon: LeafletNightclub,
 			menuIcon: <NightclubIcon fontSize="medium" />,
 			label: "Nightclub",
 		},
 		fire_station: {
+			type: "fire_station",
 			state: useState(true),
 			icon: LeafletFireStation,
 			menuIcon: <FireStationIcon fontSize="medium" />,
 			label: "Fire Station",
 		},
 		train_station: {
+			type: "train_station",
 			state: useState(true),
 			icon: LeafletTrain,
 			menuIcon: <TrainIcon fontSize="medium" />,
 			label: "Train",
 		},
 		art_gallery: {
+			type: "art_gallery",
 			state: useState(true),
 			icon: LeafletArtGallery,
 			menuIcon: <ArtGalleryIcon fontSize="medium" />,
 			label: "Art Gallery",
 		},
 		amusement_park: {
+			type: "amusement_park",
 			state: useState(true),
 			icon: LeafletAmusementPark,
 			menuIcon: <AmusementParkIcon fontSize="medium" />,
 			label: "Amusement Park",
 		},
 		bowling_alley: {
+			type: "bowling_alley",
 			state: useState(true),
 			icon: LeafletBowling,
 			menuIcon: <BowlingIcon fontSize="medium" />,
 			label: "Bowling Alley",
 		},
 		aquarium: {
+			type: "aquarium",
 			state: useState(true),
 			icon: LeafletAquarium,
 			menuIcon: <AquariumIcon fontSize="medium" />,
@@ -306,12 +285,14 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 			label: "Aquarium",
 		},
 		museum: {
+			type: "museum",
 			state: useState(true),
 			icon: LeafletMuseum,
 			menuIcon: <MuseumIcon fontSize="medium" />,
 			label: "Museum",
 		},
 		movie_theater: {
+			type: "movie_theater",
 			state: useState(true),
 			icon: LeafletMovieTheatre,
 			menuIcon: <MovieTheatreIcon fontSize="medium" />,
@@ -323,15 +304,15 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 	const below = useMediaQuery(theme.breakpoints.down("md"));
 
 	const nearbyPlaces = useQueries([
-		...placeTypes.map((type) => {
+		...Object.values(mapFeatures).map((mapFeature) => {
 			return {
-				queryKey: ["place", type],
+				queryKey: ["place", mapFeature.type],
 				queryFn: () => {
 					return API.post("GoogleMapApi", "/", {
 						queryStringParameters: {
 							latitude: center[0],
 							longitude: center[1],
-							type: type,
+							type: mapFeature.type,
 						},
 					});
 				},
@@ -340,12 +321,9 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 				select: (data) => {
 					return {
 						locations: JSON.parse(data),
-						icon: mapFeatures[type].icon || LeafletPlaceholder,
-						type,
-						enabled:
-							mapFeatures[type]?.state !== null
-								? mapFeatures[type].state[0]
-								: true,
+						icon: mapFeature.icon || LeafletPlaceholder,
+						type: mapFeature.type,
+						enabled: mapFeature?.state !== null ? mapFeature.state[0] : true,
 					};
 				},
 			};
