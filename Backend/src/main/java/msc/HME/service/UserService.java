@@ -203,11 +203,10 @@ public class UserService {
     public void updateWeights(String id, String entertainment, String pharmacies, String retail, String fitness, String financial, String transportation, String emergency) {
         String sql = """
                 UPDATE user
-                SET weights = JSON_SET(weights, '$', ?)
+                SET weights = JSON_REPLACE(weights, '$', JSON_ARRAY(JSON_OBJECT('entertainment', ?), JSON_OBJECT('pharmacies', ?), JSON_OBJECT('retail', ?), JSON_OBJECT('fitness', ?), JSON_OBJECT('financial', ?), JSON_OBJECT('transportation', ?), JSON_OBJECT('emergency', ?)))
                 WHERE id = ?
                 """;
-        String insert  = "[{\"entertainment\": "+ entertainment +"}, {\"pharmacies\": "+ pharmacies +"}, {\"retail\": "+ retail +"}, {\"fitness\": "+ fitness +"}, {\"financial\": "+ financial +"}, {\"transportation\": "+ transportation +"}, {\"emergency\": "+ emergency +"}]";
-        int rows = jdbcTemplate.update(sql, insert);
+        int rows = jdbcTemplate.update(sql, entertainment, pharmacies, retail, fitness, financial, transportation, emergency, id);
         if (rows == 0) {
             System.out.println("update couldnt be done lol");
 //            return new DataAccessException; /// not sure what to do her eugh
