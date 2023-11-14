@@ -186,8 +186,8 @@ function PropertyScoresComponent({ inputData }) {
 						}}
 					>
 						<Stack spacing={4}>
-							{inputData.map((data) => {
-								return <Rating scoreData={data} />;
+							{inputData.map((data, ind) => {
+								return <Rating scoreData={data} key={data.id + " score"} />;
 							})}
 						</Stack>
 					</Box>

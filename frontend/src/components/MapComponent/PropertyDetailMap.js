@@ -2,7 +2,6 @@ import {
 	Stack,
 	Box,
 	Typography,
-	Drawer,
 	Paper,
 	Divider,
 	Collapse,
@@ -10,29 +9,15 @@ import {
 	Button,
 	useTheme,
 	useMediaQuery,
-	Checkbox,
-	FormControlLabel,
-	List,
-	ListItem,
-	ListSubheader,
+	Link,
 } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { forwardRef } from "react";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import { motion } from "framer-motion";
-
-import {
-	MapContainer,
-	TileLayer,
-	useMapEvent,
-	Marker,
-	Popup,
-	useMap,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useState } from "react";
 import {
-	ExpandLeftIcon,
-	ExpandRightIcon,
 	HospitalIcon,
 	LeafletHospital,
 	PoliceIcon,
@@ -57,30 +42,28 @@ import {
 	LeafletFireStation,
 	TrainIcon,
 	LeafletTrain,
-} from "../../Icons/HMEIcons";
-import MapFeatureToggle from "./MapFeatureToggle";
+	ArtGalleryIcon,
+	LeafletArtGallery,
+	AmusementParkIcon,
+	LeafletAmusementPark,
+	BowlingIcon,
+	LeafletBowling,
+	AquariumIcon,
+	LeafletAquarium,
+	MuseumIcon,
+	LeafletMuseum,
+	MovieTheatreIcon,
+	LeafletMovieTheatre,
+	LeafletPlaceholder,
+} from "../../Icons/MapIcons";
+import { ExpandRightIcon } from "../../Icons/HMEIcons";
 import GoogleLogo from "./../../Icons/google_on_white.png";
 import Leaflet from "leaflet";
-import { useQueries, useQuery } from "react-query";
+import { useQueries } from "react-query";
 import { API } from "aws-amplify";
-import { useEffect } from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-
-const placeTypes = [
-	"hospital",
-	"bank",
-	"pharmacy",
-	"supermarket",
-	"gym",
-	"cafe",
-	"restaurant",
-	"nightclub",
-	"police",
-	"fire_station",
-	"bus_station",
-	"train_station",
-];
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import MapToggles from "./MapToggles";
 
 const markerIcon = new Leaflet.Icon({
 	iconUrl: require("../../Icons/mapmarkericon.png"),
@@ -106,21 +89,49 @@ function MapTile({ location, services }) {
 			/>
 			{services.map((serviceType) => {
 				if (serviceType?.locations && serviceType?.enabled) {
-					return serviceType.locations.map((location) => {
+					return serviceType.locations.map((location, ind) => {
 						const newPosition = [
 							location.geometry.location.lat,
 							location.geometry.location.lng,
 						];
 						return (
-							<Marker position={newPosition} icon={serviceType.icon}>
+							<Marker
+								position={newPosition}
+								icon={serviceType.icon}
+								key={location.name + " " + ind}
+							>
 								<Popup>
-									{location.name}
-									<a
-										href={`https://www.google.com/maps/place/?q=place_id:${location.place_id}`}
-										target="_blank"
-									>
-										VIEW
-									</a>
+									<Box maxWidth={"50vw"}>
+										<Stack alignItems={"center"} spacing={2}>
+											<Typography textAlign={"center"} variant="mapPopupName">
+												{location.name}
+											</Typography>
+											{location.rating && (
+												<Stack
+													mt={2}
+													mb={2}
+													direction={"row"}
+													alignItems={"center"}
+													spacing={1}
+												>
+													<Typography
+														textAlign={"center"}
+														variant="mapPopupRating"
+													>
+														{location.rating}
+													</Typography>
+													<StarOutlineIcon fontSize="medium" />
+												</Stack>
+											)}
+											<Link
+												href={`https://www.google.com/maps/place/?q=place_id:${location.place_id}`}
+												target="_blank"
+												textAlign={"center"}
+											>
+												VIEW ON GOOGLE MAPS
+											</Link>
+										</Stack>
+									</Box>
 								</Popup>
 							</Marker>
 						);
@@ -147,7 +158,7 @@ function RecenterButton({ center }) {
 			}}
 			onClick={(e) => {
 				e.preventDefault();
-				map.flyTo(center);
+				map?.flyTo(center);
 			}}
 		>
 			<MyLocationIcon fontSize="large" />
@@ -158,62 +169,150 @@ function RecenterButton({ center }) {
 function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 	const [togglesOpen, setTogglesOpen] = useState(false);
 
-	const [hospitalsSelected, setHospitalsSelected] = useState(true);
-	const [policeStationsSelected, setPoliceStationsSelected] = useState(true);
-	const [banksSelected, setBanksSelected] = useState(true);
-	const [busSelected, setBusSelected] = useState(true);
-	const [cafeSelected, setCafeSelected] = useState(true);
-	const [pharmacySelected, setPharmacySelected] = useState(true);
-	const [supermarketSelected, setSupermarketSelected] = useState(true);
-	const [gymSelected, setGymSelected] = useState(true);
-	const [restaurantSelected, setRestaurantSelected] = useState(true);
-	const [nightclubSelected, setNightclubSelected] = useState(true);
-	const [fireStationSelected, setFireStationSelected] = useState(true);
-	const [trainSelected, setTrainSelected] = useState(true);
+	const mapFeatures = {
+		hospital: {
+			type: "hopsital",
+			state: useState(true),
+			icon: LeafletHospital,
+			menuIcon: <HospitalIcon fontSize="medium" />,
+			label: "Hospital",
+		},
+		police: {
+			type: "police",
+			state: useState(true),
+			icon: LeafletPolice,
+			menuIcon: <PoliceIcon fontSize="medium" />,
+			label: "Police",
+		},
+		bank: {
+			type: "bank",
+			state: useState(true),
+			icon: LeafletBank,
+			menuIcon: <BankIcon fontSize="medium" />,
+			label: "Bank",
+		},
+		bus_station: {
+			type: "bus_station",
+			state: useState(true),
+			icon: LeafletBus,
+			menuIcon: <BusStationIcon fontSize="medium" />,
+			label: "Bus Stop",
+		},
+		cafe: {
+			type: "cafe",
+			state: useState(true),
+			icon: LeafletCafe,
+			menuIcon: <CafeIcon fontSize="medium" />,
+			label: "Cafe",
+		},
+		pharmacy: {
+			type: "pharmacy",
 
-	const FeatureToggles = {
-		hospital: hospitalsSelected,
-		police: policeStationsSelected,
-		bank: banksSelected,
-		bus_station: busSelected,
-		cafe: cafeSelected,
-		pharmacy: pharmacySelected,
-		supermarket: supermarketSelected,
-		gym: gymSelected,
-		restaurant: restaurantSelected,
-		nightclub: nightclubSelected,
-		fire_station: fireStationSelected,
-		train_station: trainSelected,
-	};
+			state: useState(true),
+			icon: LeafletPharmacy,
+			menuIcon: <PharmacyIcon fontSize="medium" />,
+			label: "Pharmacy",
+		},
+		supermarket: {
+			type: "supermarket",
+			state: useState(true),
+			icon: LeafletSupermarket,
+			menuIcon: <SupermarketIcon fontSize="medium" />,
+			label: "Supermarket",
+		},
+		gym: {
+			type: "gym",
+			state: useState(true),
+			icon: LeafletGym,
+			menuIcon: <GymIcon fontSize="medium" />,
+			label: "Gym",
+		},
+		restaurant: {
+			type: "restaurant",
+			state: useState(true),
+			icon: LeafletRestaurant,
+			menuIcon: <RestaurantIcon fontSize="medium" />,
+			label: "Restaurant",
+		},
+		night_club: {
+			type: "night_club",
+			state: useState(true),
+			icon: LeafletNightclub,
+			menuIcon: <NightclubIcon fontSize="medium" />,
+			label: "Nightclub",
+		},
+		fire_station: {
+			type: "fire_station",
+			state: useState(true),
+			icon: LeafletFireStation,
+			menuIcon: <FireStationIcon fontSize="medium" />,
+			label: "Fire Station",
+		},
+		train_station: {
+			type: "train_station",
+			state: useState(true),
+			icon: LeafletTrain,
+			menuIcon: <TrainIcon fontSize="medium" />,
+			label: "Train",
+		},
+		art_gallery: {
+			type: "art_gallery",
+			state: useState(true),
+			icon: LeafletArtGallery,
+			menuIcon: <ArtGalleryIcon fontSize="medium" />,
+			label: "Art Gallery",
+		},
+		amusement_park: {
+			type: "amusement_park",
+			state: useState(true),
+			icon: LeafletAmusementPark,
+			menuIcon: <AmusementParkIcon fontSize="medium" />,
+			label: "Amusement Park",
+		},
+		bowling_alley: {
+			type: "bowling_alley",
+			state: useState(true),
+			icon: LeafletBowling,
+			menuIcon: <BowlingIcon fontSize="medium" />,
+			label: "Bowling Alley",
+		},
+		aquarium: {
+			type: "aquarium",
+			state: useState(true),
+			icon: LeafletAquarium,
+			menuIcon: <AquariumIcon fontSize="medium" />,
 
-	const IconMap = {
-		hospital: LeafletHospital,
-		police: LeafletPolice,
-		bank: LeafletBank,
-		bus_station: LeafletBus,
-		cafe: LeafletCafe,
-		pharmacy: LeafletPharmacy,
-		supermarket: LeafletSupermarket,
-		gym: LeafletGym,
-		restaurant: LeafletRestaurant,
-		nightclub: LeafletNightclub,
-		fire_station: LeafletFireStation,
-		train_station: LeafletTrain,
+			label: "Aquarium",
+		},
+		museum: {
+			type: "museum",
+			state: useState(true),
+			icon: LeafletMuseum,
+			menuIcon: <MuseumIcon fontSize="medium" />,
+			label: "Museum",
+		},
+		movie_theater: {
+			type: "movie_theater",
+			state: useState(true),
+			icon: LeafletMovieTheatre,
+			menuIcon: <MovieTheatreIcon fontSize="medium" />,
+			label: "Movie Theatre",
+		},
 	};
 
 	const theme = useTheme();
 	const below = useMediaQuery(theme.breakpoints.down("md"));
 
 	const nearbyPlaces = useQueries([
-		...placeTypes.map((type) => {
+		...Object.values(mapFeatures).map((mapFeature) => {
 			return {
-				queryKey: ["place", type],
+				queryKey: ["place", mapFeature.type],
 				queryFn: () => {
 					return API.post("GoogleMapApi", "/", {
 						queryStringParameters: {
 							latitude: center[0],
 							longitude: center[1],
-							type: type,
+							type: mapFeature.type,
 						},
 					});
 				},
@@ -222,16 +321,14 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 				select: (data) => {
 					return {
 						locations: JSON.parse(data),
-						icon: IconMap[type],
-						type,
-						enabled: FeatureToggles[type],
+						icon: mapFeature.icon || LeafletPlaceholder,
+						type: mapFeature.type,
+						enabled: mapFeature?.state !== null ? mapFeature.state[0] : true,
 					};
 				},
 			};
 		}),
 	]);
-
-	console.log(ProcessQueries(nearbyPlaces));
 
 	return (
 		<>
@@ -295,7 +392,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 						<MapTile
 							location={center}
 							services={ProcessQueries(nearbyPlaces)}
-							featureToggles={FeatureToggles}
+							mapFeatures={mapFeatures}
 						/>
 					</MapContainer>
 					<Stack direction={"row"} alignItems={"flex-end"} mt={1} spacing={1}>
@@ -352,154 +449,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 								</Button>
 							)}
 
-							<Stack paddingLeft={1} width={"100%"}>
-								<Typography variant="toggleMenu">Map Features</Typography>
-								<Divider />
-								<List
-									subheader={
-										<Typography
-											component="div"
-											id="Emergency Services"
-											variant="menuSubCategory"
-										>
-											Emergency Services
-										</Typography>
-									}
-								>
-									<ListItem>
-										<MapFeatureToggle
-											label="Hospital"
-											icon={<HospitalIcon fontSize="medium" />}
-											checkedState={hospitalsSelected}
-											changeStateFunc={setHospitalsSelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Police"
-											icon={<PoliceIcon fontSize="medium" />}
-											checkedState={policeStationsSelected}
-											changeStateFunc={setPoliceStationsSelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Fire Station"
-											icon={<FireStationIcon fontSize="medium" />}
-											checkedState={fireStationSelected}
-											changeStateFunc={setFireStationSelected}
-										/>
-									</ListItem>
-								</List>
-								<List
-									subheader={
-										<Typography
-											component="div"
-											id="Emergency Services"
-											variant="menuSubCategory"
-										>
-											Transport Services
-										</Typography>
-									}
-								>
-									<ListItem>
-										<MapFeatureToggle
-											label="Trains"
-											icon={<TrainIcon fontSize="medium" />}
-											checkedState={trainSelected}
-											changeStateFunc={setTrainSelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Bus Stop"
-											icon={<BusStationIcon fontSize="medium" />}
-											checkedState={busSelected}
-											changeStateFunc={setBusSelected}
-										/>
-									</ListItem>
-								</List>
-								<List
-									subheader={
-										<Typography
-											component="div"
-											id="Emergency Services"
-											variant="menuSubCategory"
-										>
-											Retail Services
-										</Typography>
-									}
-								>
-									<ListItem>
-										<MapFeatureToggle
-											label="Bank"
-											icon={<BankIcon fontSize="medium" />}
-											checkedState={banksSelected}
-											changeStateFunc={setBanksSelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Pharmacy"
-											icon={<PharmacyIcon fontSize="medium" />}
-											checkedState={pharmacySelected}
-											changeStateFunc={setPharmacySelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Supermarket"
-											icon={<SupermarketIcon fontSize="medium" />}
-											checkedState={supermarketSelected}
-											changeStateFunc={setSupermarketSelected}
-										/>
-									</ListItem>
-								</List>
-								<List
-									subheader={
-										<Typography
-											component="div"
-											id="Emergency Services"
-											variant="menuSubCategory"
-										>
-											Food and Entertainment
-										</Typography>
-									}
-								>
-									<ListItem>
-										<MapFeatureToggle
-											label="Café"
-											icon={<CafeIcon fontSize="medium" />}
-											checkedState={cafeSelected}
-											changeStateFunc={setCafeSelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Restaurant"
-											icon={<RestaurantIcon fontSize="medium" />}
-											checkedState={restaurantSelected}
-											changeStateFunc={setRestaurantSelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Nightclub"
-											icon={<NightclubIcon fontSize="medium" />}
-											checkedState={nightclubSelected}
-											changeStateFunc={setNightclubSelected}
-										/>
-									</ListItem>
-									<ListItem>
-										<MapFeatureToggle
-											label="Gym"
-											icon={<GymIcon fontSize="medium" />}
-											checkedState={gymSelected}
-											changeStateFunc={setGymSelected}
-										/>
-									</ListItem>
-								</List>
-							</Stack>
+							<MapToggles mapFeatures={mapFeatures} />
 						</Box>
 					</Collapse>
 				)}
@@ -535,156 +485,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 									paddingLeft: 2,
 								}}
 							>
-								<Stack paddingLeft={1} width={"100%"}>
-									<List
-										subheader={
-											<Typography
-												component="div"
-												id="Emergency Services"
-												variant="menuSubCategory"
-											>
-												Emergency Services
-											</Typography>
-										}
-									>
-										<Divider />
-										<ListItem>
-											<MapFeatureToggle
-												label="Hospital"
-												icon={<HospitalIcon fontSize="medium" />}
-												checkedState={hospitalsSelected}
-												changeStateFunc={setHospitalsSelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Police"
-												icon={<PoliceIcon fontSize="medium" />}
-												checkedState={policeStationsSelected}
-												changeStateFunc={setPoliceStationsSelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Fire Station"
-												icon={<FireStationIcon fontSize="medium" />}
-												checkedState={fireStationSelected}
-												changeStateFunc={setFireStationSelected}
-											/>
-										</ListItem>
-									</List>
-									<List
-										subheader={
-											<Typography
-												component="div"
-												id="Emergency Services"
-												variant="menuSubCategory"
-											>
-												Transport Services
-											</Typography>
-										}
-									>
-										<Divider />
-										<ListItem>
-											<MapFeatureToggle
-												label="Trains"
-												icon={<TrainIcon fontSize="medium" />}
-												checkedState={trainSelected}
-												changeStateFunc={setTrainSelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Bus Stop"
-												icon={<BusStationIcon fontSize="medium" />}
-												checkedState={busSelected}
-												changeStateFunc={setBusSelected}
-											/>
-										</ListItem>
-									</List>
-									<List
-										subheader={
-											<Typography
-												component="div"
-												id="Emergency Services"
-												variant="menuSubCategory"
-											>
-												Retail Services
-											</Typography>
-										}
-									>
-										<Divider />
-										<ListItem>
-											<MapFeatureToggle
-												label="Bank"
-												icon={<BankIcon fontSize="medium" />}
-												checkedState={banksSelected}
-												changeStateFunc={setBanksSelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Pharmacy"
-												icon={<PharmacyIcon fontSize="medium" />}
-												checkedState={pharmacySelected}
-												changeStateFunc={setPharmacySelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Supermarket"
-												icon={<SupermarketIcon fontSize="medium" />}
-												checkedState={supermarketSelected}
-												changeStateFunc={setSupermarketSelected}
-											/>
-										</ListItem>
-									</List>
-									<List
-										subheader={
-											<Typography
-												component="div"
-												id="Emergency Services"
-												variant="menuSubCategory"
-											>
-												Food and Entertainment
-											</Typography>
-										}
-									>
-										<Divider />
-										<ListItem>
-											<MapFeatureToggle
-												label="Café"
-												icon={<CafeIcon fontSize="medium" />}
-												checkedState={cafeSelected}
-												changeStateFunc={setCafeSelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Restaurant"
-												icon={<RestaurantIcon fontSize="medium" />}
-												checkedState={restaurantSelected}
-												changeStateFunc={setRestaurantSelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Nightclub"
-												icon={<NightclubIcon fontSize="medium" />}
-												checkedState={nightclubSelected}
-												changeStateFunc={setNightclubSelected}
-											/>
-										</ListItem>
-										<ListItem>
-											<MapFeatureToggle
-												label="Gym"
-												icon={<GymIcon fontSize="medium" />}
-												checkedState={gymSelected}
-												changeStateFunc={setGymSelected}
-											/>
-										</ListItem>
-									</List>
-								</Stack>
+								<MapToggles mapFeatures={mapFeatures} />
 							</Box>
 						</Paper>
 					</Collapse>
