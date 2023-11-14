@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Application {
+public class Enquiry {
 
     @JsonProperty
     private Long propertyId;
@@ -14,10 +14,10 @@ public class Application {
     @JsonProperty
     private String message;
 
-    public Application() {
+    public Enquiry() {
     }
 
-    public Application(long propertyId, String message) {
+    public Enquiry(long propertyId, String message) {
         this.propertyId = propertyId;
         this.message = message;
     }
