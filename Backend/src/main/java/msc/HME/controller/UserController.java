@@ -109,8 +109,10 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/update/{id}/resource")
-    public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource) {
+    @PatchMapping("/update/{id}/{resource}")
+    public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource,
+                                                  @RequestParam(required = false, defaultValue = "") String searchString,
+                                                  @RequestParam(required = false, defaultValue = "") String propertyId) {
         //        try {
         if (Objects.equals(resource, "s")) {
         } else if (Objects.equals(resource, "f")) {
@@ -119,8 +121,10 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
         }
-//        } catch (EmptyResultDataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
+//        catch (EmptyResultDataAccessException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
+//        } catch(NoSuchElementException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
 //        } catch (DataAccessException e) {
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
 //        }
@@ -128,21 +132,32 @@ public class UserController {
     }
 
     @DeleteMapping("/remove/{id}/{resource}")
-    public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource) {
+    public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource,
+                                                 @RequestParam(required = false, defaultValue = "") String searchString,
+                                                 @RequestParam(required = false, defaultValue = "") String propertyId) {
 //        try {
-        if (Objects.equals(resource, "s")) {
-        } else if (Objects.equals(resource, "f")) {
-        } else if (Objects.equals(resource, "a")) {
+        if (Objects.equals(resource, "s") && !searchString.isBlank()) {
+            userService.removeSearch(id, searchString);
+            return ResponseEntity.status(HttpStatus.OK).body("Search was removed");
+        } else if (Objects.equals(resource, "f") && !propertyId.isBlank()) {
+            userService.removeFave(id, propertyId);
+            return ResponseEntity.status(HttpStatus.OK).body("Favourite was removed");
+        } else if (Objects.equals(resource, "a") && !propertyId.isBlank()) {
+            userService.removeApplication(id, propertyId);
+            return ResponseEntity.status(HttpStatus.OK).body("Application was removed");
         } else if (Objects.equals(resource, "w")) {
+            userService.updateWeights(id, "", "", "", "", "", "", "");
+            return ResponseEntity.status(HttpStatus.OK).body("User weights were removed");
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
         }
-//        } catch (EmptyResultDataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
+//        catch (EmptyResultDataAccessException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not removed");
+//        } catch(NoSuchElementException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be removed");
 //        } catch (DataAccessException e) {
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
 //        }
-        return null;
     }
 
     @DeleteMapping("/remove/{id}")

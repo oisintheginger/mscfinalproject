@@ -225,6 +225,40 @@ public class UserService {
         }
         return result;
 
+    }
 
+    //leaves empty json object fix!
+    public void removeSearch(String id, String searchString) {
+        String sql = """
+                UPDATE user
+                SET searches = JSON_REMOVE(
+                        searches,
+                        JSON_UNQUOTE(JSON_SEARCH(searches, 'one', ?))
+                    )
+                WHERE
+                        id = ?
+                """;
+        jdbcTemplate.update(sql, searchString, id);
+    }
+
+    //leaves empty json object fix!
+    public void removeFave(String id, String propertyId) {
+        String sql = """
+                UPDATE user
+                SET favourites = JSON_REMOVE(
+                        favourites,
+                        JSON_UNQUOTE(JSON_SEARCH(favourites, 'one', ?))
+                    )
+                WHERE
+                        id = ?
+                """;
+        jdbcTemplate.update(sql, propertyId, id);
+    }
+
+    public void removeApplication(String id, String propertyId) {
+        String sql = """
+                """;
+        // determine sql query
+        jdbcTemplate.update(sql, propertyId, id);
     }
 }
