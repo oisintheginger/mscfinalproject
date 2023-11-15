@@ -54,8 +54,7 @@ public class UserService {
                 id
         );
         if (searchString == null) {
-            System.out.println("couldnt be found lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
         List<String> splitString = List.of(searchString.split("\""));
         List<String> result = new ArrayList<>();
@@ -80,8 +79,7 @@ public class UserService {
                 id
         );
         if (faveString == null) {
-            System.out.println("couldnt be found lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
         List<String> splitFaves = List.of(faveString.split("\""));
         List<String> result = new ArrayList<>();
@@ -105,8 +103,7 @@ public class UserService {
                 id
         );
         if (appString == null) {
-            System.out.println("couldnt be found lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
         List<String> splitFaves = List.of(appString.split("\""));
         List<Enquiry> result = new ArrayList<>();
@@ -132,8 +129,7 @@ public class UserService {
                 id
         );
         if (weightString == null) {
-            System.out.println("couldnt be found lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
         List<String> splitWeights = List.of(weightString.split("\""));
         UserWeights result = new UserWeights(Integer.parseInt(splitWeights.get(3)), Integer.parseInt(splitWeights.get(7)), Integer.parseInt(splitWeights.get(11)), Integer.parseInt(splitWeights.get(15)), Integer.parseInt(splitWeights.get(19)), Integer.parseInt(splitWeights.get(23)), Integer.parseInt(splitWeights.get(27)));
@@ -142,24 +138,6 @@ public class UserService {
         return result;
     }
 
-    // why doesnt this work lol
-//    public void addSearchOrFave(String id, String update, String table) {
-//        String sql = """
-//                UPDATE user
-//                SET
-//                    ? = JSON_ARRAY_APPEND(?, '$', JSON_OBJECT('newKey', ?))
-//                WHERE
-//                        id = ?
-//                """;
-//        System.out.println(sql);
-//        int rows = jdbcTemplate.update(sql, table, table, update, id);
-//        System.out.println(rows);
-//        if (rows == 0) {
-//            System.out.println("update couldnt be done lol");
-////            return new DataAccessException; /// not sure what to do her eugh
-//
-//        }
-//    }
     public void addSearch(String id, String search) {
         String sql = """
                 UPDATE user
@@ -170,8 +148,7 @@ public class UserService {
                 """;
         int rows = jdbcTemplate.update(sql, search, id);
         if (rows == 0) {
-            System.out.println("update couldnt be done lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
     }
 
@@ -185,8 +162,7 @@ public class UserService {
                 """;
         int rows = jdbcTemplate.update(sql, propertyId, id);
         if (rows == 0) {
-            System.out.println("update couldnt be done lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
     }
 
@@ -200,8 +176,7 @@ public class UserService {
                 """;
         int rows = jdbcTemplate.update(sql, propertyId, message, id);
         if (rows == 0) {
-            System.out.println("update couldnt be done lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
     }
 
@@ -213,12 +188,11 @@ public class UserService {
                 """;
         int rows = jdbcTemplate.update(sql, entertainment, pharmacies, retail, fitness, financial, transportation, emergency, id);
         if (rows == 0) {
-            System.out.println("update couldnt be done lol");
-//            return new DataAccessException; /// not sure what to do her eugh
+            throw new NoSuchElementException();
         }
     }
 
-    public Object updateEmail(String id, String email) {
+    public ResponseEntity<Object> updateEmail(String id, String email) {
         //update cognito
         ResponseEntity<Object> result = cognitoService.updateUserEmail(id, email);
         if (result.getStatusCode().is2xxSuccessful()) {
