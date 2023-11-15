@@ -223,6 +223,47 @@ paths:
             description: returns a 404 resource not found response code
           "500":
             description: returns a 500 internal server error, the body contains the specific error
+    /api/user/{id}/update/email:
+      patch:
+        summary: updates users email address for cognito and user table
+        parameters:
+          - in: path
+          name: id
+          required: true
+          schema:
+            type: String
+          - in: query
+          name: email
+          required: true
+          schema:
+            type: String
+        responses: 
+          "200":
+            description: returns 200 OK response with message 
+          "400":
+            description: returns 400 bad request with message 
+          "404":
+            description: returns 404 not found with message 
+          "500":
+            description: returns 500 internal server error with specific error in the body
+    /api/user/remove/{id}:
+      delete:
+        summary: removes user from cognito and user table 
+        parameters:
+          - in: path
+          name: id
+          required: true
+          schema:
+            type: String
+        responses: 
+          "200":
+            description: returns 200 OK response with message 
+          "400":
+            description: returns 400 bad request with message 
+          "404":
+            description: returns 404 not found with message 
+          "500":
+            description: returns 500 internal server error with specific error in the body  
 
   # /api/user/favourites:
   #   get:
