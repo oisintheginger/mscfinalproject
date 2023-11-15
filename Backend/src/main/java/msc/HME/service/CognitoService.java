@@ -21,7 +21,7 @@ public class CognitoService {
                 .build();
     }
 
-    public Object updateUserEmail(String username, String newEmail) {
+    public ResponseEntity<Object> updateUserEmail(String username, String newEmail) {
         AttributeType emailAttribute = new AttributeType()
                 .withName("email")
                 .withValue(newEmail);
@@ -37,32 +37,31 @@ public class CognitoService {
                 .withUserAttributes(emailAttribute, emailVerifiedAttribute); // Add both attributes to the request
 
         try {
-            return cognitoClient.adminUpdateUserAttributes(updateRequest);
+            cognitoClient.adminUpdateUserAttributes(updateRequest);
+            return ResponseEntity.status(HttpStatus.OK).body("Account was updated successfully");
         } catch (AliasExistsException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("An account with the given email already exists");
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource could not be found");
         } catch (InternalErrorException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (Exception e) {
-            // To fix
-            System.out.println(e);
-            return e;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Account could not be updated");
         }
     }
 
-    public Object deleteUser(String id) {
+    public ResponseEntity<Object> deleteUser(String id) {
         AdminDeleteUserRequest deleteRequest = new AdminDeleteUserRequest()
                 .withUserPoolId("eu-west-1_VBubqBEr4")
                 .withUsername(id);
 
         try {
-            return cognitoClient.adminDeleteUser(deleteRequest);
+            cognitoClient.adminDeleteUser(deleteRequest);
+            return ResponseEntity.status(HttpStatus.OK).body("User was deleted successfully");
         } catch (ResourceNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        } catch (Exception e) {
-            // Handle other exceptions appropriately
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting user: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User was not found");
+        } catch(InternalErrorException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be removed");
         }
     }
 }

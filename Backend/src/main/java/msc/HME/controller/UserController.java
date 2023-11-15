@@ -93,11 +93,10 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/{id}/update/email")
+    @PatchMapping("/update/{id}/email")
     public ResponseEntity<Object> updateEmail(@PathVariable String id, @RequestParam String email) {
         try {
-            Object result =  userService.updateEmail(id, email);
-            return ResponseEntity.status(HttpStatus.OK).body("User's email has been updated");
+            return userService.updateEmail(id, email);
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
         } catch (DataAccessException e) {
@@ -105,7 +104,7 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/{id}/update/resource")
+    @PatchMapping("/update/{id}/resource")
     public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource) {
         //        try {
         if (Objects.equals(resource, "s")) {
@@ -142,9 +141,14 @@ public class UserController {
     }
 
     @DeleteMapping("/remove/{id}")
-    public ResponseEntity<Object> removeUser(@PathVariable String id) {
-        Object result = userService.deleteUser(id); // woooorks
-        return null;
+    public Object removeUser(@PathVariable String id) {
+        try {
+            return userService.deleteUser(id);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+        }
     }
 
 }

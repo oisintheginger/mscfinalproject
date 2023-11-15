@@ -220,11 +220,8 @@ public class UserService {
 
     public Object updateEmail(String id, String email) {
         //update cognito
-        Object result = cognitoService.updateUserEmail(id, email);
-        if (result instanceof ResponseEntity<?>) {
-            return result;
-        } else {
-            System.out.println("we got hereee");
+        ResponseEntity<Object> result = cognitoService.updateUserEmail(id, email);
+        if (result.getStatusCode().is2xxSuccessful()) {
             //update user table
             String sql = """
                     UPDATE user
@@ -235,29 +232,24 @@ public class UserService {
                     """;
             int rows = jdbcTemplate.update(sql, email, id);
             if (rows == 0) {
-                System.out.println("update couldnt be done lol");
-                //            return new DataAccessException; /// not sure what to do her eugh
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Email could not be completely removed");
             }
-            return ResponseEntity.status(HttpStatus.OK);
         }
+        return result;
     }
 
-    public Object deleteUser(String id) {
+    public ResponseEntity<Object> deleteUser(String id) {
         // delete from cognito
-        Object result = cognitoService.deleteUser(id);
-        System.out.println(result);
-        if (result instanceof ResponseEntity<?>) {
-            return result;
-        } else {
+        ResponseEntity<Object> result = cognitoService.deleteUser(id);
+        if (result.getStatusCode().is2xxSuccessful()) {
             //delete from user table
             String sql = "DELETE FROM user WHERE id=?";
             int rows = jdbcTemplate.update(sql, id);
             if (rows == 0) {
-                System.out.println("update couldnt be done lol");
-                //            return new DataAccessException; /// not sure what to do her eugh
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be completely removed");
             }
-            return ResponseEntity.ok().body("User deleted successfully");
         }
+        return result;
 
 
     }
