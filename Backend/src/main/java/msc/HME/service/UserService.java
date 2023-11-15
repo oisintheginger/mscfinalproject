@@ -4,21 +4,26 @@ import msc.HME.binding.Enquiry;
 import msc.HME.binding.User;
 import msc.HME.binding.UserWeights;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
-import java.sql.PreparedStatement;
 import java.util.*;
 
 @Service
 public class UserService {
 
     private final JdbcTemplate jdbcTemplate;
+    private final CognitoService cognitoService;
 
     @Autowired
-    public UserService(JdbcTemplate jdbcTemplate) {
+    public UserService(JdbcTemplate jdbcTemplate, CognitoService cognitoService) {
         this.jdbcTemplate = jdbcTemplate;
+        this.cognitoService = cognitoService;
     }
 
     public User getUser(String id) {
@@ -213,4 +218,47 @@ public class UserService {
         }
     }
 
+    public Object updateEmail(String id, String email) {
+        //update cognito
+        Object result = cognitoService.updateUserEmail(id, email);
+        if (result instanceof ResponseEntity<?>) {
+            return result;
+        } else {
+            System.out.println("we got hereee");
+            //update user table
+            String sql = """
+                    UPDATE user
+                    SET
+                        email = ?
+                    WHERE
+                            id = ?
+                    """;
+            int rows = jdbcTemplate.update(sql, email, id);
+            if (rows == 0) {
+                System.out.println("update couldnt be done lol");
+                //            return new DataAccessException; /// not sure what to do her eugh
+            }
+            return ResponseEntity.status(HttpStatus.OK);
+        }
+    }
+
+    public Object deleteUser(String id) {
+        // delete from cognito
+        Object result = cognitoService.deleteUser(id);
+        System.out.println(result);
+        if (result instanceof ResponseEntity<?>) {
+            return result;
+        } else {
+            //delete from user table
+            String sql = "DELETE FROM user WHERE id=?";
+            int rows = jdbcTemplate.update(sql, id);
+            if (rows == 0) {
+                System.out.println("update couldnt be done lol");
+                //            return new DataAccessException; /// not sure what to do her eugh
+            }
+            return ResponseEntity.ok().body("User deleted successfully");
+        }
+
+
+    }
 }
