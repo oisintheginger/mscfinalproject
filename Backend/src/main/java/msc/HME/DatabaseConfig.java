@@ -1,5 +1,7 @@
 package msc.HME;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +14,16 @@ public class DatabaseConfig {
 
     @Bean
     public DataSource dataSource() {
-        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.url("jdbc:mysql://myhmedb.cdc3elu6ufgt.eu-west-1.rds.amazonaws.com/hmedbmain");
-        dataSourceBuilder.username(System.getenv("RDS_USER"));
-        dataSourceBuilder.password(System.getenv("RDS_PW"));
-        return dataSourceBuilder.build();
+        HikariConfig hikariConfig = new HikariConfig();
+
+        hikariConfig.setJdbcUrl("jdbc:mysql://myhmedb.cdc3elu6ufgt.eu-west-1.rds.amazonaws.com/hmedbmain");
+        hikariConfig.setUsername(System.getenv("RDS_USER"));
+        hikariConfig.setPassword(System.getenv("RDS_PW"));
+
+        // Set the maximum pool size
+        hikariConfig.setMaximumPoolSize(1);
+
+        return new HikariDataSource(hikariConfig);
     }
 
     @Bean
