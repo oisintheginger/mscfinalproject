@@ -16,11 +16,9 @@ import java.util.List;
 public class PropertiesController {
 
     private final PropertyService propertyService;
-    private final JsonPlaceholderService jsonPlaceholderService;
 
-    public PropertiesController(PropertyService qvpService, JsonPlaceholderService jsonPlaceholderService) {
-        this.propertyService = qvpService;
-        this.jsonPlaceholderService = jsonPlaceholderService;
+    public PropertiesController(PropertyService propertyService) {
+        this.propertyService = propertyService;
     }
 
     @GetMapping
@@ -47,17 +45,10 @@ public class PropertiesController {
         }
     }
 
-    @GetMapping("/details/{id}")
-    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable Integer id) {
-        if (id <= 0) {
-            return ResponseEntity.badRequest().build();
-        }
-        DetailedProperty property = jsonPlaceholderService.loadDetailedProperty(id);
-        if (property == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(property);
-    }
+//    @GetMapping("/details/{id}")
+//    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable Integer id) {
+//
+//    }
 
     @GetMapping("/locations")
     ResponseEntity<Object> getAll() {
