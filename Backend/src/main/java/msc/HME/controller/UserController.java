@@ -31,7 +31,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
     }
-    
+
     @GetMapping("/{id}/{resource}") // resource options: s, f, a, w
     public ResponseEntity<Object> findResource(@PathVariable String id, @PathVariable String resource) {
         try {
@@ -59,12 +59,12 @@ public class UserController {
 
     @PostMapping("/new/{id}/{resource}")
     public ResponseEntity<Object> addResource(@PathVariable String id, @PathVariable String resource,
-                                                 @RequestParam(defaultValue = "") String searchString,
-                                                 @RequestParam(defaultValue = "") String propertyId,
-                                                @RequestParam(defaultValue = "") String message,
-                                                @RequestParam(defaultValue = "null") String entertainment,
-                                                @RequestParam(defaultValue = "null") String pharmacies,
-                                                @RequestParam(defaultValue = "null") String retail,
+                                              @RequestParam(defaultValue = "") String searchString,
+                                              @RequestParam(defaultValue = "") String propertyId,
+                                              @RequestParam(defaultValue = "") String message,
+                                              @RequestParam(defaultValue = "null") String entertainment,
+                                              @RequestParam(defaultValue = "null") String pharmacies,
+                                              @RequestParam(defaultValue = "null") String retail,
                                               @RequestParam(defaultValue = "null") String fitness,
                                               @RequestParam(defaultValue = "null") String financial,
                                               @RequestParam(defaultValue = "null") String transportation,
@@ -101,13 +101,13 @@ public class UserController {
     @DeleteMapping("/remove/{id}/{resource}")
     public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource) {
 //        try {
-            if (Objects.equals(resource, "s")) {
-            } else if (Objects.equals(resource, "f")) {
-            } else if (Objects.equals(resource, "a")) {
-            } else if (Objects.equals(resource, "w")) {
-            } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
-            }
+        if (Objects.equals(resource, "s")) {
+        } else if (Objects.equals(resource, "f")) {
+        } else if (Objects.equals(resource, "a")) {
+        } else if (Objects.equals(resource, "w")) {
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+        }
 //        } catch (EmptyResultDataAccessException e) {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
 //        } catch (DataAccessException e) {

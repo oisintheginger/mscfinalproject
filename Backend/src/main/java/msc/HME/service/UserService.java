@@ -213,9 +213,4 @@ public class UserService {
         }
     }
 
-    // org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [UPDATE user
-    //SET weights = JSON_SET(weights, '$', ?)
-    //WHERE id = ?
-    //]
-
 }
