@@ -62,16 +62,16 @@ public class UserController {
 
     @PostMapping("/new/{id}/{resource}")
     public ResponseEntity<Object> addResource(@PathVariable String id, @PathVariable String resource,
-                                              @RequestParam(required = false, defaultValue = "") String searchString,
-                                              @RequestParam(required = false, defaultValue = "") String propertyId,
-                                              @RequestParam(required = false, defaultValue = "") String message,
-                                              @RequestParam(required = false, defaultValue = "null") String entertainment,
-                                              @RequestParam(required = false, defaultValue = "null") String pharmacies,
-                                              @RequestParam(required = false, defaultValue = "null") String retail,
-                                              @RequestParam(required = false, defaultValue = "null") String fitness,
-                                              @RequestParam(required = false, defaultValue = "null") String financial,
-                                              @RequestParam(required = false, defaultValue = "null") String transportation,
-                                              @RequestParam(required = false, defaultValue = "null") String emergency)
+                                              @RequestParam(required = false ) String searchString,
+                                              @RequestParam(required = false ) String propertyId,
+                                              @RequestParam(required = false ) String message,
+                                              @RequestParam(required = false ) String entertainment,
+                                              @RequestParam(required = false ) String pharmacies,
+                                              @RequestParam(required = false ) String retail,
+                                              @RequestParam(required = false ) String fitness,
+                                              @RequestParam(required = false ) String financial,
+                                              @RequestParam(required = false ) String transportation,
+                                              @RequestParam(required = false ) String emergency)
     {
         try {
             if (Objects.equals(resource, "s") && !searchString.isBlank()) {
@@ -112,7 +112,7 @@ public class UserController {
     @PatchMapping("/update/{id}/{resource}") // s, w.
     public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource,
                                                   @RequestParam(required = false) String searchString,
-                                                  @RequestParam(required = false) String newVal,
+                                                  @RequestParam(required = false) String newSearchString,
                                                   @RequestParam(required = false ) String entertainment,
                                                   @RequestParam(required = false ) String pharmacies,
                                                   @RequestParam(required = false ) String retail,
@@ -121,8 +121,8 @@ public class UserController {
                                                   @RequestParam(required = false ) String transportation,
                                                   @RequestParam(required = false ) String emergency) {
         try {
-            if (Objects.equals(resource, "s") && searchString != null && newVal != null) {
-                userService.addSearch(id, newVal);
+            if (Objects.equals(resource, "s") && searchString != null && newSearchString != null) {
+                userService.addSearch(id, newSearchString);
                 userService.removeSearch(id, searchString);
                 return ResponseEntity.status(HttpStatus.OK).body("Search was updated");
             } else if (Objects.equals(resource, "w") && entertainment != null && pharmacies != null && retail != null && fitness != null && financial != null && transportation != null && emergency != null) {
@@ -142,8 +142,8 @@ public class UserController {
 
     @DeleteMapping("/remove/{id}/{resource}") // s f w
     public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource,
-                                                 @RequestParam(required = false, defaultValue = "") String searchString,
-                                                 @RequestParam(required = false, defaultValue = "") String propertyId) {
+                                                 @RequestParam(required = false ) String searchString,
+                                                 @RequestParam(required = false ) String propertyId) {
         try {
             if (Objects.equals(resource, "s") && !searchString.isBlank()) {
                 userService.removeSearch(id, searchString);
