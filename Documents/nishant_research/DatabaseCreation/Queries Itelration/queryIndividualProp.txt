@@ -1,0 +1,72 @@
+i think this is more complete
+
+  SELECT 
+    mi.propertyID,
+    mi.price,
+    mi.bedrooms,
+    mi.bathrooms,
+    mi.homeType AS propertyType,
+    a.streetAddress,
+    a.zipcode,
+    a.geoLocation,
+    mi.overview AS Description,
+    pd.Pets AS petsAllowed,
+    mi.datePosted AS Dateposted,
+    GROUP_CONCAT(img.propertyURL) AS Images,
+    czs.sum_z_scores AS CrimeZScore,
+    czs.AGG_ASSAULT_Count AS AggAssaultCount,
+    czs.ARSON_Count AS ArsonCount,
+    czs.AUTO_THEFT_Count AS AutoTheft,
+    czs.BURGLARY_Count AS BurglaryCount,
+    czs.COMMON_ASSAULT_Count AS CommonAssaultCount,
+    czs.HOMICIDE_Count AS HomicideCount,
+    czs.LARCENY_Count AS LarcenyCount,
+    czs.LARCENY_FROM_AUTO_Count AS LarcenyFromAuto,
+    czs.mapped_values_sigmoid AS OverallCrimeScore,
+    czs.RAPE_Count AS RapeCount,
+    czs.ROBBERY_CARJACKING_Count AS RobberyCarJackingCount,
+    czs.ROBBERY_COMMERCIAL_Count AS RobberyCommercialCount,
+    czs.ROBBERY_Count AS RobberyCount,
+    czs.SHOOTING_Count AS ShootingCount,
+  
+    ss.overall_score AS ServicesOverallScore,
+    ss.sum_count AS ServicesCount,
+    ss.finance_score,
+    ss.transportation_score ,
+    ss.personal_care_score,
+    ss.retail_score,
+    ss.fitness_score,
+    ss.leisure_score,
+    ss.emergency_score,
+    ss.bankCount,
+    ss.barCount,
+    ss.beauty_salonCount,
+    ss.bus_stationCount,
+    ss.cafeCount,
+    ss.fire_stationCount,
+    ss.gymCount,
+    ss.hospitalCount,
+    ss.night_clubCount,
+    ss.parkCount,
+    ss.pharmacyCount,
+    ss.police_stationCount,
+    ss.restaurantCount,
+    ss.supermarketCount,
+    ss.train_stationCount,
+    ss.transit_stationCount
+FROM 
+    MainInformation mi
+INNER JOIN 
+    Addresses a ON mi.addressID = a.addressID
+INNER JOIN 
+    PropertyDetails pd ON mi.propertyDetailsID = pd.propertyDetailsID
+LEFT JOIN 
+    images img ON mi.propertyID = img.propertyID
+LEFT JOIN 
+    crime_z_scores czs ON a.neighbourhoodID = czs.neighbourhoodID
+LEFT JOIN 
+    service_scores ss ON a.neighbourhoodID = ss.neighbourhoodID
+WHERE 
+    mi.propertyID = 36428890 -- Replace with the actual property ID
+GROUP BY 
+    mi.propertyID;
