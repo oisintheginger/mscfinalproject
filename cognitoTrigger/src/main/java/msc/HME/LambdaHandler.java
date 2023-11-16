@@ -37,10 +37,10 @@ public class LambdaHandler implements RequestHandler<Object, Object> {
             List<String> data = getCognitoData(requestObject);
             insertStatement.setString(1, data.get(0));
             insertStatement.setString(2, data.get(1));
-            insertStatement.setString(3, "[{\"search1\":\"1\"}]");
-            insertStatement.setString(4, "[{\"favourite1\": \"1\"}]");
+            insertStatement.setString(3, "[{\"search\":\"1\"}]");
+            insertStatement.setString(4, "[{\"favourite\": \"1\"}]");
             insertStatement.setString(5, "[{\"entertainment\": \"null\"}, {\"pharmacies\": \"null\"}, {\"retail\": \"null\"}, {\"fitness\": \"null\"}, {\"financial\": \"null\"}, {\"transportation\": \"null\"}, {\"emergency\": \"null\"}]");
-            insertStatement.setString(6, "[{\"application1\": \"1\"}]");
+            insertStatement.setString(6, "[{\"propertyId\": \"1\", \"message\": \"1\"}]");
             int result = insertStatement.executeUpdate();
 
             if (result < 0) {
