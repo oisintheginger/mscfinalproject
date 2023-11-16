@@ -29,7 +29,7 @@ public class UserController {
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User was not found");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class UserController {
         } catch(NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be found");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -94,7 +94,7 @@ public class UserController {
         } catch(NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -105,7 +105,7 @@ public class UserController {
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -126,12 +126,12 @@ public class UserController {
 //        } catch(NoSuchElementException e) {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
 //        } catch (DataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 //        }
         return null;
     }
 
-    @DeleteMapping("/remove/{id}/{resource}")
+    @DeleteMapping("/remove/{id}/{resource}") // s f w
     public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource,
                                                  @RequestParam(required = false, defaultValue = "") String searchString,
                                                  @RequestParam(required = false, defaultValue = "") String propertyId) {
@@ -142,9 +142,6 @@ public class UserController {
         } else if (Objects.equals(resource, "f") && !propertyId.isBlank()) {
             userService.removeFave(id, propertyId);
             return ResponseEntity.status(HttpStatus.OK).body("Favourite was removed");
-        } else if (Objects.equals(resource, "a") && !propertyId.isBlank()) {
-            userService.removeApplication(id, propertyId);
-            return ResponseEntity.status(HttpStatus.OK).body("Application was removed");
         } else if (Objects.equals(resource, "w")) {
             userService.updateWeights(id, "", "", "", "", "", "", "");
             return ResponseEntity.status(HttpStatus.OK).body("User weights were removed");
@@ -156,7 +153,7 @@ public class UserController {
 //        } catch(NoSuchElementException e) {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be removed");
 //        } catch (DataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 //        }
     }
 
@@ -167,7 +164,7 @@ public class UserController {
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

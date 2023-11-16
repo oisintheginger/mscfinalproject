@@ -1,16 +1,15 @@
 package msc.HME.service;
 
 import msc.HME.binding.Enquiry;
+import msc.HME.binding.Search;
 import msc.HME.binding.User;
 import msc.HME.binding.UserWeights;
+import msc.HME.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.*;
 
@@ -34,7 +33,7 @@ public class UserService {
                 """;
         return jdbcTemplate.queryForObject(
                 sql,
-                BeanPropertyRowMapper.newInstance(User.class),
+                new UserRowMapper(),
                 id
         );
     }
@@ -48,46 +47,27 @@ public class UserService {
                 WHERE
                         id = ?;
                 """;
-        String searchString = jdbcTemplate.queryForObject(
+        return jdbcTemplate.queryForObject(
                 sql,
-                String.class,
+                new SearchRowMapper(),
                 id
         );
-        if (searchString == null) {
-            throw new NoSuchElementException();
-        }
-        List<String> splitString = List.of(searchString.split("\""));
-        List<String> result = new ArrayList<>();
-        for (int i = 7; i < splitString.size() ;i += 4) {
-            result.add(splitString.get(i));
-        }
-        return result;
     }
 
     public Object findFaves(String id) {
         String sql = """
                 SELECT
-                    JSON_UNQUOTE(JSON_EXTRACT(favourites, '$')) AS all_favourites
+                    JSON_UNQUOTE(JSON_EXTRACT(favourites, '$')) AS favourites
                 FROM
                 	user
                 WHERE
                     id = ?;
                 """;
-        String faveString = jdbcTemplate.queryForObject(
+        return jdbcTemplate.queryForObject(
                 sql,
-                String.class,
+                new FavouriteRowMapper(),
                 id
         );
-        if (faveString == null) {
-            throw new NoSuchElementException();
-        }
-        List<String> splitFaves = List.of(faveString.split("\""));
-        List<String> result = new ArrayList<>();
-        for (int i = 7; i < splitFaves.size() ;i += 4) {
-            result.add(splitFaves.get(i));
-        }
-        return result;
-
     }
 
     public Object findApplication(String id) {
@@ -97,22 +77,11 @@ public class UserService {
                 FROM user
                 WHERE id = ?
                 """;
-        String appString = jdbcTemplate.queryForObject(
+        return jdbcTemplate.queryForObject(
                 sql,
-                String.class,
+                new EnquiryRowMapper(),
                 id
         );
-        if (appString == null) {
-            throw new NoSuchElementException();
-        }
-        List<String> splitFaves = List.of(appString.split("\""));
-        List<Enquiry> result = new ArrayList<>();
-        for (int i = 5; i < splitFaves.size() ;i += 4) {
-            Enquiry app = new Enquiry(Long.parseLong(splitFaves.get(i)), splitFaves.get(i+2));
-            result.add(app);
-        }
-        return result;
-
     }
 
     public Object findWeights(String id) {
@@ -123,26 +92,18 @@ public class UserService {
                 WHERE id = ?
                 """;
 
-        String weightString = jdbcTemplate.queryForObject(
+        return jdbcTemplate.queryForObject(
                 sql,
-                String.class,
+                new UserWeightsRowMapper(),
                 id
         );
-        if (weightString == null) {
-            throw new NoSuchElementException();
-        }
-        List<String> splitWeights = List.of(weightString.split("\""));
-        UserWeights result = new UserWeights(Integer.parseInt(splitWeights.get(3)), Integer.parseInt(splitWeights.get(7)), Integer.parseInt(splitWeights.get(11)), Integer.parseInt(splitWeights.get(15)), Integer.parseInt(splitWeights.get(19)), Integer.parseInt(splitWeights.get(23)), Integer.parseInt(splitWeights.get(27)));
-
-        System.out.println(result);
-        return result;
     }
 
     public void addSearch(String id, String search) {
         String sql = """
                 UPDATE user
                 SET
-                    searches = JSON_ARRAY_APPEND(searches, '$', JSON_OBJECT('key', ?))
+                    searches = JSON_ARRAY_APPEND(searches, '$', JSON_OBJECT('search1', ?))
                 WHERE
                         id = ?
                 """;
@@ -156,7 +117,7 @@ public class UserService {
         String sql = """
                 UPDATE user
                 SET
-                    favourites = JSON_ARRAY_APPEND(favourites, '$', JSON_OBJECT('newKey', ?))
+                    favourites = JSON_ARRAY_APPEND(favourites, '$', JSON_OBJECT('favourite1', ?))
                 WHERE
                         id = ?
                 """;
@@ -170,7 +131,7 @@ public class UserService {
         String sql = """
                 UPDATE user
                 SET
-                    applications = JSON_ARRAY_APPEND(applications, '$', JSON_OBJECT(?, ?))
+                    applications = JSON_ARRAY_APPEND(applications, '$', JSON_OBJECT('propertyId', ?, 'message', ?))
                 WHERE
                         id = ?
                 """;
@@ -252,13 +213,6 @@ public class UserService {
                 WHERE
                         id = ?
                 """;
-        jdbcTemplate.update(sql, propertyId, id);
-    }
-
-    public void removeApplication(String id, String propertyId) {
-        String sql = """
-                """;
-        // determine sql query
         jdbcTemplate.update(sql, propertyId, id);
     }
 }
