@@ -103,7 +103,7 @@ public class UserService {
         String sql = """
                 UPDATE user
                 SET
-                    searches = JSON_ARRAY_APPEND(searches, '$', JSON_OBJECT('search1', ?))
+                    searches = JSON_ARRAY_APPEND(searches, '$', JSON_OBJECT('search', ?))
                 WHERE
                         id = ?
                 """;
@@ -117,7 +117,7 @@ public class UserService {
         String sql = """
                 UPDATE user
                 SET
-                    favourites = JSON_ARRAY_APPEND(favourites, '$', JSON_OBJECT('favourite1', ?))
+                    favourites = JSON_ARRAY_APPEND(favourites, '$', JSON_OBJECT('favourite', ?))
                 WHERE
                         id = ?
                 """;
@@ -188,7 +188,6 @@ public class UserService {
 
     }
 
-    //leaves empty json object fix!
     public void removeSearch(String id, String searchString) {
         String sql = """
                 UPDATE user
@@ -202,7 +201,6 @@ public class UserService {
         jdbcTemplate.update(sql, searchString, id);
     }
 
-    //leaves empty json object fix!
     public void removeFave(String id, String propertyId) {
         String sql = """
                 UPDATE user

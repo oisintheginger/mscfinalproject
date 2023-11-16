@@ -42,11 +42,11 @@ public class UserRowMapper implements RowMapper<User> {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
         user.setSearches(searchList);
         user.setFavourites(favesList);
         user.setApplications(appList);
-        user.setWeights(weightList.get(0));
+        UserWeights setWeights = new UserWeights(weightList.get(0).getEntertainment(), weightList.get(1).getPharmacies(), weightList.get(2).getRetail(), weightList.get(3).getFitness(), weightList.get(4).getFinancial(), weightList.get(5).getTransportation(), weightList.get(6).getEmergency());
+        user.setWeights(setWeights);
         return user;
     }
 }

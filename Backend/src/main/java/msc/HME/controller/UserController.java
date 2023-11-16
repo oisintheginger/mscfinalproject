@@ -109,30 +109,35 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/update/{id}/{resource}") // s,
+    @PatchMapping("/update/{id}/{resource}") // s, w.
     public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource,
-                                                  @RequestParam(required = false, defaultValue = "") String searchString,
-                                                  @RequestParam(required = false, defaultValue = "") String propertyId,
-                                                  @RequestParam String newVal) {
-        //        try {
-        if (Objects.equals(resource, "s") && !searchString.isBlank() && !newVal.isBlank()) {
-            userService.addSearch(id, newVal);
-            userService.removeSearch(id, searchString);
-        } else if (Objects.equals(resource, "a")) {
-            
-        } else if (Objects.equals(resource, "w")) {
-
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+                                                  @RequestParam(required = false) String searchString,
+                                                  @RequestParam(required = false) String newVal,
+                                                  @RequestParam(required = false ) String entertainment,
+                                                  @RequestParam(required = false ) String pharmacies,
+                                                  @RequestParam(required = false ) String retail,
+                                                  @RequestParam(required = false ) String fitness,
+                                                  @RequestParam(required = false ) String financial,
+                                                  @RequestParam(required = false ) String transportation,
+                                                  @RequestParam(required = false ) String emergency) {
+        try {
+            if (Objects.equals(resource, "s") && searchString != null && newVal != null) {
+                userService.addSearch(id, newVal);
+                userService.removeSearch(id, searchString);
+                return ResponseEntity.status(HttpStatus.OK).body("Search was updated");
+            } else if (Objects.equals(resource, "w") && entertainment != null && pharmacies != null && retail != null && fitness != null && financial != null && transportation != null && emergency != null) {
+                userService.updateWeights(id, entertainment, pharmacies, retail, fitness, financial, transportation, emergency);
+                return ResponseEntity.status(HttpStatus.OK).body("Weights were updated");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
-//        catch (EmptyResultDataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
-//        } catch(NoSuchElementException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
-//        } catch (DataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//        }
-        return null;
     }
 
     @DeleteMapping("/remove/{id}/{resource}") // s f w

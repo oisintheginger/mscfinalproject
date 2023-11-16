@@ -20,7 +20,7 @@ public class UserWeightsRowMapper implements RowMapper<UserWeights> {
         try {
             List<UserWeights> weightList = objectMapper.readValue(weights, new TypeReference<>() {
             });
-            return weightList.get(0);
+            return new UserWeights(weightList.get(0).getEntertainment(), weightList.get(1).getPharmacies(), weightList.get(2).getRetail(), weightList.get(3).getFitness(), weightList.get(4).getFinancial(), weightList.get(5).getTransportation(), weightList.get(6).getEmergency());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
