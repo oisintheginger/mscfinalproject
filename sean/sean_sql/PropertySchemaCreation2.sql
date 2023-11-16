@@ -808,7 +808,7 @@ UPDATE crime_z_scores AS a JOIN Neighbourhoods AS n ON a.crime_neighbourhood = n
 
 ALTER TABLE crime_z_scores DROP COLUMN crime_neighbourhood
 
-DROP TABLE services_z_scores 
+DROP TABLE service_scores 
 
 CREATE TABLE service_scores (
     service_score_ID INT,
@@ -850,6 +850,7 @@ CREATE TABLE service_scores (
     retail_score FLOAT,
     fitness_score FLOAT,
     leisure_score FLOAT,
+    emergency_score FLOAT,
     sum_count INT,
     sum_z_scores FLOAT,
     overall_score FLOAT,
@@ -867,21 +868,7 @@ UPDATE service_scores AS a JOIN Neighbourhoods AS n ON a.service_score_ID = n.ne
 
 #####
 
-DESCRIBE Addresses 
 
-DESCRIBE Neighbourhoods 
-
-DESCRIBE crime_z_scores 
-
-DESCRIBE services_z_scores 
-
-SELECT * FROM Addresses a 
-
-SELECT * FROM Neighbourhoods n
-
-SELECT * FROM crime_z_scores czs 
-
-SELECT * FROM services_z_scores szs 
 
 
 
