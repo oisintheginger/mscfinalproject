@@ -808,52 +808,81 @@ UPDATE crime_z_scores AS a JOIN Neighbourhoods AS n ON a.crime_neighbourhood = n
 
 ALTER TABLE crime_z_scores DROP COLUMN crime_neighbourhood
 
-CREATE TABLE services_z_scores(
-    neighbourhood_z_score_ID INT,
+DROP TABLE services_z_scores 
+
+CREATE TABLE service_scores (
+    service_score_ID INT,
     bankCount INT,
-    bank_z_score_mapped FLOAT,
+    bank_z_score FLOAT,
     barCount INT,
-    bar_z_score_mapped FLOAT,
+    bar_z_score FLOAT,
     beauty_salonCount INT,
-    beauty_salon_z_score_mapped FLOAT,
+    beauty_salon_z_score FLOAT,
     bus_stationCount INT,
-    bus_station_z_score_mapped FLOAT,
+    bus_station_z_score FLOAT,
     cafeCount INT,
-    cafe_z_score_mapped FLOAT,
+    cafe_z_score FLOAT,
     fire_stationCount INT,
-    fire_station_z_score_mapped FLOAT,
+    fire_station_z_score FLOAT,
     gymCount INT,
-    gym_z_score_mapped FLOAT,
+    gym_z_score FLOAT,
     hospitalCount INT,
-    hospital_z_score_mapped FLOAT,
+    hospital_z_score FLOAT,
     night_clubCount INT,
-    night_club_z_score_mapped FLOAT,
+    night_club_z_score FLOAT,
     parkCount INT,
-    park_z_score_mapped FLOAT,
+    park_z_score FLOAT,
     pharmacyCount INT,
-    pharmacy_z_score_mapped FLOAT,
+    pharmacy_z_score FLOAT,
     police_stationCount INT,
-    police_station_z_score_mapped FLOAT,
+    police_station_z_score FLOAT,
     restaurantCount INT,
-    restaurant_z_score_mapped FLOAT,
+    restaurant_z_score FLOAT,
     supermarketCount INT,
-    supermarket_z_score_mapped FLOAT,
+    supermarket_z_score FLOAT,
     train_stationCount INT,
-    train_station_z_score_mapped FLOAT,
+    train_station_z_score FLOAT,
     transit_stationCount INT,
-    transit_station_z_score_mapped FLOAT,
+    transit_station_z_score FLOAT,
+    finance_score FLOAT,
+    transportation_score FLOAT,
+    personal_care_score FLOAT,
+    retail_score FLOAT,
+    fitness_score FLOAT,
+    leisure_score FLOAT,
     sum_count INT,
     sum_z_scores FLOAT,
-    z_scores_before_mapping FLOAT,
-    mapped_values_sigmoid FLOAT,
+    overall_score FLOAT,
     
-    PRIMARY KEY (neighbourhood_z_score_ID)
+    PRIMARY KEY (service_score_ID)
 );
 
-DESCRIBE services_z_scores
+DESCRIBE service_scores
+
+SELECT * FROM service_scores szs 
+
+ALTER TABLE service_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
+
+UPDATE service_scores AS a JOIN Neighbourhoods AS n ON a.service_score_ID = n.neighbourhoodID  SET a.neighbourhoodID = n.neighbourhoodID;
+
+#####
+
+DESCRIBE Addresses 
+
+DESCRIBE Neighbourhoods 
+
+DESCRIBE crime_z_scores 
+
+DESCRIBE services_z_scores 
+
+SELECT * FROM Addresses a 
+
+SELECT * FROM Neighbourhoods n
+
+SELECT * FROM crime_z_scores czs 
 
 SELECT * FROM services_z_scores szs 
 
-ALTER TABLE services_z_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
-UPDATE services_z_scores AS a JOIN Neighbourhoods AS n ON a.neighbourhood_z_score_ID = n.neighbourhoodID  SET a.neighbourhoodID = n.neighbourhoodID;
+
+
