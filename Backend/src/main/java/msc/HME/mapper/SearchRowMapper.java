@@ -17,8 +17,9 @@ public class SearchRowMapper implements RowMapper<List<Search>>{
     public List<Search> mapRow(ResultSet rs, int rowNum) throws SQLException {
         String searches = rs.getString("searches");
         try {
-            return objectMapper.readValue(searches, new TypeReference<>() {
-            });
+            List<Search> searchList = objectMapper.readValue(searches, new TypeReference<>() {});
+            searchList.removeIf(search -> search.getSearch() == null);
+            return searchList;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

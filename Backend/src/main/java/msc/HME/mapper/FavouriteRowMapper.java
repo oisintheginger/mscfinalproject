@@ -17,8 +17,10 @@ public class FavouriteRowMapper implements RowMapper<List<Favourite>>{
     public List<Favourite> mapRow(ResultSet rs, int rowNum) throws SQLException {
         String favourites = rs.getString("favourites");
         try {
-            return objectMapper.readValue(favourites, new TypeReference<>() {
+            List<Favourite> favesList = objectMapper.readValue(favourites, new TypeReference<>() {
             });
+            favesList.removeIf(fave -> fave.getFavourite() == null);
+            return favesList;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e.getMessage());
         }

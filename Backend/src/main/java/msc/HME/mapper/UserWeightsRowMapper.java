@@ -18,8 +18,9 @@ public class UserWeightsRowMapper implements RowMapper<UserWeights> {
     public UserWeights mapRow(ResultSet rs, int rowNum) throws SQLException {
         String weights = rs.getString("weights");
         try {
-            return objectMapper.readValue(weights, new TypeReference<>() {
+            List<UserWeights> weightList = objectMapper.readValue(weights, new TypeReference<>() {
             });
+            return weightList.get(0);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

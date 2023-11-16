@@ -34,7 +34,9 @@ public class UserRowMapper implements RowMapper<User> {
         List<UserWeights> weightList;
         try {
             searchList = objectMapper.readValue(searches, new TypeReference<>() {});
+            searchList.removeIf(search -> search.getSearch() == null);
             favesList = objectMapper.readValue(favourites, new TypeReference<>() {});
+            favesList.removeIf(fave -> fave.getFavourite() == null);
             appList = objectMapper.readValue(applications, new TypeReference<>() {});
             weightList = objectMapper.readValue(weights, new TypeReference<>() {});
         } catch (JsonProcessingException e) {
