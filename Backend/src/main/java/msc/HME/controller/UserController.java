@@ -109,15 +109,19 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/update/{id}/{resource}")
+    @PatchMapping("/update/{id}/{resource}") // s,
     public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource,
                                                   @RequestParam(required = false, defaultValue = "") String searchString,
-                                                  @RequestParam(required = false, defaultValue = "") String propertyId) {
+                                                  @RequestParam(required = false, defaultValue = "") String propertyId,
+                                                  @RequestParam String newVal) {
         //        try {
-        if (Objects.equals(resource, "s")) {
-        } else if (Objects.equals(resource, "f")) {
+        if (Objects.equals(resource, "s") && !searchString.isBlank() && !newVal.isBlank()) {
+            userService.addSearch(id, newVal);
+            userService.removeSearch(id, searchString);
         } else if (Objects.equals(resource, "a")) {
+            
         } else if (Objects.equals(resource, "w")) {
+
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
         }
@@ -135,26 +139,26 @@ public class UserController {
     public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource,
                                                  @RequestParam(required = false, defaultValue = "") String searchString,
                                                  @RequestParam(required = false, defaultValue = "") String propertyId) {
-//        try {
-        if (Objects.equals(resource, "s") && !searchString.isBlank()) {
-            userService.removeSearch(id, searchString);
-            return ResponseEntity.status(HttpStatus.OK).body("Search was removed");
-        } else if (Objects.equals(resource, "f") && !propertyId.isBlank()) {
-            userService.removeFave(id, propertyId);
-            return ResponseEntity.status(HttpStatus.OK).body("Favourite was removed");
-        } else if (Objects.equals(resource, "w")) {
-            userService.updateWeights(id, "", "", "", "", "", "", "");
-            return ResponseEntity.status(HttpStatus.OK).body("User weights were removed");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+        try {
+            if (Objects.equals(resource, "s") && !searchString.isBlank()) {
+                userService.removeSearch(id, searchString);
+                return ResponseEntity.status(HttpStatus.OK).body("Search was removed");
+            } else if (Objects.equals(resource, "f") && !propertyId.isBlank()) {
+                userService.removeFave(id, propertyId);
+                return ResponseEntity.status(HttpStatus.OK).body("Favourite was removed");
+            } else if (Objects.equals(resource, "w")) {
+                userService.updateWeights(id, "", "", "", "", "", "", "");
+                return ResponseEntity.status(HttpStatus.OK).body("User weights were removed");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not removed");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be removed");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
-//        catch (EmptyResultDataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not removed");
-//        } catch(NoSuchElementException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be removed");
-//        } catch (DataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//        }
     }
 
     @DeleteMapping("/remove/{id}")
