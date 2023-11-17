@@ -12,7 +12,6 @@ import msc.HME.controller.PingController;
 // @ComponentScan(basePackages = "msc.HME.controller")
 @Import({ PingController.class })
 public class Application {
-
     public static void main(String[] args)
     {
         SpringApplication.run(Application.class, args);

@@ -1,33 +1,180 @@
 package msc.HME.controller;
 
+import msc.HME.binding.User;
+import msc.HME.service.UserService;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "*") // for now //secure way for user id/authorisation to send???
 public class UserController {
 
-    public UserController() {
-
+    private final UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-//    @GetMapping
-    //GET req: user id, resource (ss, faves, user weights)
-        //secure way for user id/authorisation to be send???
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findUser(@PathVariable String id) {
+        try {
+            User result = userService.getUser(id);
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User was not found");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
-//    @PostMapping("/new")
-    //POST user id
+    @GetMapping("/{id}/{resource}") // resource options: s, f, a, w
+    public ResponseEntity<Object> findResource(@PathVariable String id, @PathVariable String resource) {
+        try {
+            if (Objects.equals(resource, "s")) {
+                Object result = userService.findSearches(id);
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            } else if (Objects.equals(resource, "f")) {
+                Object result = userService.findFaves(id);
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            } else if (Objects.equals(resource, "a")) {
+                Object result = userService.findApplication(id);
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            } else if (Objects.equals(resource, "w")) {
+                Object result = userService.findWeights(id);
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be found");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
-//    @PostMapping("/new/resource") ???
-    //POST req: user id, new resource (ss, fave, user weights, application )
+    @PostMapping("/new/{id}/{resource}")
+    public ResponseEntity<Object> addResource(@PathVariable String id, @PathVariable String resource,
+                                              @RequestParam(required = false ) String searchString,
+                                              @RequestParam(required = false ) String propertyId,
+                                              @RequestParam(required = false ) String message,
+                                              @RequestParam(required = false ) String entertainment,
+                                              @RequestParam(required = false ) String pharmacies,
+                                              @RequestParam(required = false ) String retail,
+                                              @RequestParam(required = false ) String fitness,
+                                              @RequestParam(required = false ) String financial,
+                                              @RequestParam(required = false ) String transportation,
+                                              @RequestParam(required = false ) String emergency)
+    {
+        try {
+            if (Objects.equals(resource, "s") && !searchString.isBlank()) {
+                userService.addSearch(id, searchString);
+                return ResponseEntity.status(HttpStatus.OK).body("Search was added");
+            } else if (Objects.equals(resource, "f") && !propertyId.isBlank()) {
+                userService.addFaves(id, propertyId);
+                return ResponseEntity.status(HttpStatus.OK).body("Favourite was added");
+            } else if (Objects.equals(resource, "a")  && !propertyId.isBlank() && !message.isBlank()) {
+                userService.addApplication(id, propertyId, message);
+                return ResponseEntity.status(HttpStatus.OK).body("Application was added");
+            } else if (Objects.equals(resource, "w")) {
+                userService.updateWeights(id, entertainment, pharmacies, retail, fitness, financial, transportation, emergency);
+                return ResponseEntity.status(HttpStatus.OK).body("Weights were added");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
-//    @PatchMapping("/update")
-    //PATCH req: user id, updated resource (ss, fave, user weights, application)
+    @PatchMapping("/update/{id}/email")
+    public ResponseEntity<Object> updateEmail(@PathVariable String id, @RequestParam String email) {
+        try {
+            return userService.updateEmail(id, email);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
-//    @DeleteMapping("/remove") ???
-    //DELETE: req: user id, deleted resource (ss, fave, user weights, applications)
+    @PatchMapping("/update/{id}/{resource}") // s, w.
+    public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource,
+                                                  @RequestParam(required = false) String searchString,
+                                                  @RequestParam(required = false) String newSearchString,
+                                                  @RequestParam(required = false ) String entertainment,
+                                                  @RequestParam(required = false ) String pharmacies,
+                                                  @RequestParam(required = false ) String retail,
+                                                  @RequestParam(required = false ) String fitness,
+                                                  @RequestParam(required = false ) String financial,
+                                                  @RequestParam(required = false ) String transportation,
+                                                  @RequestParam(required = false ) String emergency) {
+        try {
+            if (Objects.equals(resource, "s") && searchString != null && newSearchString != null) {
+                userService.addSearch(id, newSearchString);
+                userService.removeSearch(id, searchString);
+                return ResponseEntity.status(HttpStatus.OK).body("Search was updated");
+            } else if (Objects.equals(resource, "w") && entertainment != null && pharmacies != null && retail != null && fitness != null && financial != null && transportation != null && emergency != null) {
+                userService.updateWeights(id, entertainment, pharmacies, retail, fitness, financial, transportation, emergency);
+                return ResponseEntity.status(HttpStatus.OK).body("Weights were updated");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
+    @DeleteMapping("/remove/{id}/{resource}") // s f w
+    public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource,
+                                                 @RequestParam(required = false ) String searchString,
+                                                 @RequestParam(required = false ) String propertyId) {
+        try {
+            if (Objects.equals(resource, "s") && !searchString.isBlank()) {
+                userService.removeSearch(id, searchString);
+                return ResponseEntity.status(HttpStatus.OK).body("Search was removed");
+            } else if (Objects.equals(resource, "f") && !propertyId.isBlank()) {
+                userService.removeFave(id, propertyId);
+                return ResponseEntity.status(HttpStatus.OK).body("Favourite was removed");
+            } else if (Objects.equals(resource, "w")) {
+                userService.updateWeights(id, "", "", "", "", "", "", "");
+                return ResponseEntity.status(HttpStatus.OK).body("User weights were removed");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not removed");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be removed");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
-        // HOW ARE THESE STORED IN THE DB???
-
+    @DeleteMapping("/remove/{id}")
+    public Object removeUser(@PathVariable String id) {
+        try {
+            return userService.deleteUser(id);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
 }
