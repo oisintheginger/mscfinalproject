@@ -22,11 +22,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> findUser(@PathVariable String id, HttpServletRequest request) {
+    @GetMapping()
+    public ResponseEntity<Object> findUser(HttpServletRequest request) {
         if (!userService.checkAuth(request)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
         }
+        String id = userService.validateJWT(request);
         try {
             User result = userService.getUser(id);
             return ResponseEntity.status(HttpStatus.OK).body(result);

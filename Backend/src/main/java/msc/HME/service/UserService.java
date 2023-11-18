@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import java.time.LocalDate;
 import java.util.*;
+import java.time.LocalDateTime;
 
 @Service
 public class UserService {
@@ -29,6 +31,26 @@ public class UserService {
     public Boolean checkAuth(HttpServletRequest request) {
        return request.getHeader("Authorization") != null;
 
+    }
+
+    public String validateJWT(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if ( authHeader == null) {
+            return null;
+        }
+        String token = authHeader.split(" ")[1];  // not necessary in production ... I believe
+
+        DecodedJWT jwt = JWT.decode(token);
+        String userId = jwt.getSubject();
+        String issuer = jwt.getIssuer();
+        Date expiresAt = jwt.getExpiresAt();
+        Date now = new Date();
+
+        if (!Objects.equals(issuer, "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_VBubqBEr4") && (expiresAt.equals(now) || expiresAt.after(now))) {
+            return null;
+        } else {
+            return userId;
+        }
     }
 
     public User getUser(String id) {
