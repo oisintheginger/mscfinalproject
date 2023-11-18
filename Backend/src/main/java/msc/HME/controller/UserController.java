@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @RestController
@@ -28,7 +29,7 @@ public class UserController {
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User was not found");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -52,23 +53,25 @@ public class UserController {
             }
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be found");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
     @PostMapping("/new/{id}/{resource}")
     public ResponseEntity<Object> addResource(@PathVariable String id, @PathVariable String resource,
-                                              @RequestParam(defaultValue = "") String searchString,
-                                              @RequestParam(defaultValue = "") String propertyId,
-                                              @RequestParam(defaultValue = "") String message,
-                                              @RequestParam(defaultValue = "null") String entertainment,
-                                              @RequestParam(defaultValue = "null") String pharmacies,
-                                              @RequestParam(defaultValue = "null") String retail,
-                                              @RequestParam(defaultValue = "null") String fitness,
-                                              @RequestParam(defaultValue = "null") String financial,
-                                              @RequestParam(defaultValue = "null") String transportation,
-                                              @RequestParam(defaultValue = "null") String emergency)
+                                              @RequestParam(required = false ) String searchString,
+                                              @RequestParam(required = false ) String propertyId,
+                                              @RequestParam(required = false ) String message,
+                                              @RequestParam(required = false ) String entertainment,
+                                              @RequestParam(required = false ) String pharmacies,
+                                              @RequestParam(required = false ) String retail,
+                                              @RequestParam(required = false ) String fitness,
+                                              @RequestParam(required = false ) String financial,
+                                              @RequestParam(required = false ) String transportation,
+                                              @RequestParam(required = false ) String emergency)
     {
         try {
             if (Objects.equals(resource, "s") && !searchString.isBlank()) {
@@ -87,38 +90,91 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
             }
         } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
+        } catch(NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
         } catch (DataAccessException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    //    @PutMapping("/update/email")
-    //POST user id
-
-    //@PutMapping update resources
-
-    @DeleteMapping("/remove/{id}/{resource}")
-    public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource) {
-//        try {
-        if (Objects.equals(resource, "s")) {
-        } else if (Objects.equals(resource, "f")) {
-        } else if (Objects.equals(resource, "a")) {
-        } else if (Objects.equals(resource, "w")) {
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+    @PatchMapping("/update/{id}/email")
+    public ResponseEntity<Object> updateEmail(@PathVariable String id, @RequestParam String email) {
+        try {
+            return userService.updateEmail(id, email);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
-//        } catch (EmptyResultDataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
-//        } catch (DataAccessException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
-//        }
-        return null;
     }
 
-//    @DeleteMapping("/remove/{id}")
-    //DELETE: req: user id, deleted resource (ss, fave, user weights, applications)
+    @PatchMapping("/update/{id}/{resource}") // s, w.
+    public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource,
+                                                  @RequestParam(required = false) String searchString,
+                                                  @RequestParam(required = false) String newSearchString,
+                                                  @RequestParam(required = false ) String entertainment,
+                                                  @RequestParam(required = false ) String pharmacies,
+                                                  @RequestParam(required = false ) String retail,
+                                                  @RequestParam(required = false ) String fitness,
+                                                  @RequestParam(required = false ) String financial,
+                                                  @RequestParam(required = false ) String transportation,
+                                                  @RequestParam(required = false ) String emergency) {
+        try {
+            if (Objects.equals(resource, "s") && searchString != null && newSearchString != null) {
+                userService.addSearch(id, newSearchString);
+                userService.removeSearch(id, searchString);
+                return ResponseEntity.status(HttpStatus.OK).body("Search was updated");
+            } else if (Objects.equals(resource, "w") && entertainment != null && pharmacies != null && retail != null && fitness != null && financial != null && transportation != null && emergency != null) {
+                userService.updateWeights(id, entertainment, pharmacies, retail, fitness, financial, transportation, emergency);
+                return ResponseEntity.status(HttpStatus.OK).body("Weights were updated");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
+    @DeleteMapping("/remove/{id}/{resource}") // s f w
+    public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource,
+                                                 @RequestParam(required = false ) String searchString,
+                                                 @RequestParam(required = false ) String propertyId) {
+        try {
+            if (Objects.equals(resource, "s") && !searchString.isBlank()) {
+                userService.removeSearch(id, searchString);
+                return ResponseEntity.status(HttpStatus.OK).body("Search was removed");
+            } else if (Objects.equals(resource, "f") && !propertyId.isBlank()) {
+                userService.removeFave(id, propertyId);
+                return ResponseEntity.status(HttpStatus.OK).body("Favourite was removed");
+            } else if (Objects.equals(resource, "w")) {
+                userService.updateWeights(id, "", "", "", "", "", "", "");
+                return ResponseEntity.status(HttpStatus.OK).body("User weights were removed");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not removed");
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be removed");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
+    @DeleteMapping("/remove/{id}")
+    public Object removeUser(@PathVariable String id) {
+        try {
+            return userService.deleteUser(id);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
 }
