@@ -1,15 +1,15 @@
 package msc.HME.service;
 
-import msc.HME.binding.Enquiry;
-import msc.HME.binding.Search;
+import jakarta.servlet.http.HttpServletRequest;
 import msc.HME.binding.User;
-import msc.HME.binding.UserWeights;
 import msc.HME.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.*;
 
@@ -23,6 +23,12 @@ public class UserService {
     public UserService(JdbcTemplate jdbcTemplate, CognitoService cognitoService) {
         this.jdbcTemplate = jdbcTemplate;
         this.cognitoService = cognitoService;
+    }
+
+    //returns true if user is authorised
+    public Boolean checkAuth(HttpServletRequest request) {
+       return request.getHeader("Authorization") != null;
+
     }
 
     public User getUser(String id) {
