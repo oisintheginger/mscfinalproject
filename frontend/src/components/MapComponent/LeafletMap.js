@@ -134,22 +134,22 @@ function LeafletMap({ propertyData }) {
 		setPageNum(val);
 	};
 
-	const pointQuickViews = useQueries([
-		...listRender?.map((point, ind) => {
-			return {
-				queryKey: ["Points", point.ind],
-				queryFn: () => {
-					return API.get(
-						"HMEBackend",
-						`/api/properties/${point.propertyId}`,
-						{}
-					);
-				},
-				enabled: false,
-				refetchOnWindowFocus: false,
-			};
-		}),
-	]);
+	// const pointQuickViews = useQueries([
+	// 	...listRender?.map((point, ind) => {
+	// 		return {
+	// 			queryKey: ["Points", point.ind],
+	// 			queryFn: () => {
+	// 				return API.get(
+	// 					"HMEBackend",
+	// 					`/api/properties/${point.propertyId}`,
+	// 					{}
+	// 				);
+	// 			},
+	// 			enabled: false,
+	// 			refetchOnWindowFocus: false,
+	// 		};
+	// 	}),
+	// ]);
 
 	useEffect(() => {
 		setPageNum(1);
@@ -190,7 +190,7 @@ function LeafletMap({ propertyData }) {
 						zoom={12}
 						scrollWheelZoom={true}
 					>
-						<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
+						{/* <Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
 							<Button
 								sx={{
 									transform: "translate(-10px, 10px)",
@@ -209,7 +209,7 @@ function LeafletMap({ propertyData }) {
 									JUMP TO RESULTS
 								</Typography>
 							</Button>
-						</Stack>
+						</Stack> */}
 						<HMEMap
 							marks={propertyData || []}
 							points={points}
