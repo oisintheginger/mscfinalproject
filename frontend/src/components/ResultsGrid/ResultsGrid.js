@@ -19,7 +19,7 @@ function ResultGrid({
 	const theme = useTheme();
 
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
-
+	if (!propertyData) return <></>;
 	return (
 		<Box id={id} sx={{ minHeight: "55vh" }}>
 			<Stack

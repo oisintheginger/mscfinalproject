@@ -43,7 +43,7 @@ function Browse() {
 			return params;
 		});
 		refetch();
-		return () => {};
+		return () => [];
 	}, [pageNum]);
 
 	useEffect(() => {
@@ -121,6 +121,10 @@ function Browse() {
 			},
 		}
 	);
+
+	useEffect(() => {
+		mapRefetch();
+	}, searchParameters);
 
 	return (
 		<PageTemplate pageTitle="Browse" currPageBreadcrumb={"Browse"}>

@@ -19,7 +19,7 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-export default function PropertyCard({ data, key, inPopup = false }) {
+function PropertyCard({ data, key, inPopup = false }) {
 	const [expanded, setExpanded] = useState(false);
 
 	const navigator = useNavigate();
@@ -107,3 +107,4 @@ export default function PropertyCard({ data, key, inPopup = false }) {
 		</Card>
 	);
 }
+export default PropertyCard;

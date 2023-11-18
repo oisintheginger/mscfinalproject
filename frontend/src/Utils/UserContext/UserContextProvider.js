@@ -14,9 +14,10 @@ function UserContextProvider({ children }) {
 			return API.get("HMEBackend", `/api/user`, {
 				headers: {
 					Authorization:
-						user.getSignInUserSession().getAccessToken().jwtToken || null,
+						user.getSignInUserSession().getAccessToken().getJwtToken() || null,
 				},
 				response: true,
+				enabled: false,
 				queryStringParameters: {
 					userId: user.username || null,
 				},
@@ -35,6 +36,10 @@ function UserContextProvider({ children }) {
 
 	useEffect(() => {
 		if (route == "authenticated") {
+			console.log(
+				"user jwt: " +
+					user.getSignInUserSession().getAccessToken().getJwtToken()
+			);
 			refetch();
 		}
 	}, [user]);
