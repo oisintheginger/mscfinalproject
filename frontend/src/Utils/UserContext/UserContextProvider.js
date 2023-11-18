@@ -36,10 +36,6 @@ function UserContextProvider({ children }) {
 
 	useEffect(() => {
 		if (route == "authenticated") {
-			console.log(
-				"user jwt: " +
-					user.getSignInUserSession().getAccessToken().getJwtToken()
-			);
 			refetch();
 		}
 	}, [user]);
