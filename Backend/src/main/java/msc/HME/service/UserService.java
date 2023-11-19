@@ -27,12 +27,6 @@ public class UserService {
         this.cognitoService = cognitoService;
     }
 
-    //returns true if user is authorised
-    public Boolean checkAuth(HttpServletRequest request) {
-       return request.getHeader("Authorization") != null;
-
-    }
-
     public String validateJWT(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if ( authHeader == null) {
