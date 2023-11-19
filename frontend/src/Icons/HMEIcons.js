@@ -1,5 +1,7 @@
 import { create } from "@mui/material/styles/createTransitions";
 import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import Leaflet from "leaflet";
+
 const STROKE_WIDTH = 1.5;
 
 export const CloseIcon = createSvgIcon(
@@ -218,45 +220,6 @@ export const ExpandRightIcon = createSvgIcon(
 		<path d="m13 17 5-5-5-5" />
 	</svg>,
 	"ExpandRight"
-);
-
-export const HospitalIcon = createSvgIcon(
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="28"
-		height="28"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		class="lucide lucide-stethoscope"
-	>
-		<path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
-		<path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
-		<circle cx="20" cy="10" r="2" />
-	</svg>,
-	"Hospital"
-);
-
-export const PoliceIcon = createSvgIcon(
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="28"
-		height="28"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		class="lucide lucide-shield-half"
-	>
-		<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-		<path d="M12 22V2" />
-	</svg>,
-	"Police"
 );
 
 export const SortIcon = createSvgIcon(

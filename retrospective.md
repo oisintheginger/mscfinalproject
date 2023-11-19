@@ -248,3 +248,31 @@ Stephen: Gathering the businesses dataset around the properties
 - Charlotte: User testing is way harder than I expected.
 - Fenna: We’re getting closer and closer lets gooo guys. 
 - Oisin: 
+
+## Week 8: 06/11/2023 - 12/11/2023
+
+### What Went Well:
+- Nishant: Finished optimized queries for backend team now front end can finally query on real data. 
+- Sean: Finished the scoring system for nearby services, implemented all tables to database, worked on this with nishant, fixed business dataset neighbourhood coordinates issue with stephen
+- Stephen: We have finally settled on an adddiotnal contribution I am currently working on
+- Charlotte: Team communication is improving and frontend connecting is going well.
+- Fenna: Development and team communications are going well 
+- Oisin: Communication improved, development moving as expected
+
+
+### What Could Be Improved:
+- Nishant: data structures in database can be better set up to accept other columns
+- Sean: potentially make the daily standups shorter, they often cut into doing actual work which is good, but the part where we say what we did and what we got done could be done more quickly 
+- Stephen: planning on what work to be done ahead of time
+- Charlotte: n/a
+- Fenna: planning and deciding the work more than a week in advance 
+- Oisin: 
+
+
+### Additional Comments:
+- Nishant: 
+- Sean: let’s go guys
+- Stephen: N/A
+- Charlotte: We got this.
+- Fenna: Well done everyone, things are coming together now :) 
+- Oisin: 

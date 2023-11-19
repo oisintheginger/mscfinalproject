@@ -19,9 +19,9 @@ function ResultGrid({
 	const theme = useTheme();
 
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
-
+	if (!propertyData) return <></>;
 	return (
-		<Box m={0} id={id}>
+		<Box id={id} sx={{ minHeight: "55vh" }}>
 			<Stack
 				direction={"row"}
 				alignItems={"flex-end"}
@@ -31,25 +31,11 @@ function ResultGrid({
 				pr={1}
 			>
 				<Typography variant="h2">{above ? displayTitle : "RESULTS"}</Typography>
-				<Button
-					variant="outlined"
-					color="darkTeal"
-					sx={{
-						justifyContent: { xs: "center", sm: "start" },
-					}}
-					startIcon={<SortIcon />}
-				>
-					{above && (
-						<Typography variant="button" display={"block"}>
-							Sort
-						</Typography>
-					)}
-				</Button>
 			</Stack>
 
 			<Divider />
 			<Grid container spacing={2} width={"100%"} mt={0.5}>
-				{propertyData.map((data, key) => {
+				{propertyData?.map((data, key) => {
 					return (
 						<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
 							<PropertyCard data={data} />
