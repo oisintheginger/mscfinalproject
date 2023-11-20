@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -42,9 +43,28 @@ public class PropertyService {
     }
 
     public List<QuickViewProperty> batchQVProperties(List<Long> ids) {
+        String inSql = String.join(",", Collections.nCopies(ids.size(), "?"));
         String sql = """
-                """;
-
+            SELECT mi.propertyID,
+                ST_X(a.geoLocation) AS latitude,
+                ST_Y(a.geoLocation) AS longitude,
+                mi.price,
+                mi.bathrooms,
+                mi.bedrooms,
+                a.streetAddress,
+                a.zipcode,
+                mi.overview,
+                GROUP_CONCAT(img.propertyURL) AS Images
+            FROM MainInformation mi
+                     INNER JOIN Addresses a ON mi.addressID = a.addressID
+                     LEFT JOIN images img ON mi.propertyID = img.propertyID
+            WHERE mi.availableNow = 1 AND mi.propertyID IN (%s)
+            GROUP BY mi.propertyID;
+            """.formatted(inSql);
+        return jdbcTemplate.query(
+                sql,
+                BeanPropertyRowMapper.newInstance(QuickViewProperty.class),
+                ids.toArray());
     }
 
     // get QVProperty by id

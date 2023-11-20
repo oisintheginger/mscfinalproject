@@ -37,7 +37,7 @@ public class PropertiesController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @GetMapping
+    @GetMapping("/batch")
     public ResponseEntity<Object> batchQVP(@RequestParam List<Long> ids) {
         try {
             List<QuickViewProperty> result = propertyService.batchQVProperties(ids);
