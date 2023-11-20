@@ -20,7 +20,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const methods = useFormContext();
 	
 
-	// Adding Save Search Functionality
+	//Adding Save Search Functionality
 
 	function getEditedURL() {
 		const url = window.location.href;
@@ -31,9 +31,12 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 		}
 		const params = queryString.split('&').filter(param => !param.startsWith('page=1'));
 		const newQueryString = params.join('&');
-		return `${baseUrl}?${newQueryString}`;
+		return `${newQueryString}`;
 	}; // function to remove page=1&
 	
+
+	
+
 	const handleSaveSearch = async () => {
 		try {
 			const editedUrl = getEditedURL();
