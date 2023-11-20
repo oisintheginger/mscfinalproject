@@ -22,7 +22,7 @@ public class DatabaseConfig {
 
         // Set the maximum pool size
         hikariConfig.setMaximumPoolSize(1);
-
+        hikariConfig.setIdleTimeout(10 * 60 * 1000);
         return new HikariDataSource(hikariConfig);
     }
 
