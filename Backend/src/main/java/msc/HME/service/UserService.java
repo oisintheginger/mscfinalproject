@@ -1,17 +1,19 @@
 package msc.HME.service;
 
-import msc.HME.binding.Enquiry;
-import msc.HME.binding.Search;
+import jakarta.servlet.http.HttpServletRequest;
 import msc.HME.binding.User;
-import msc.HME.binding.UserWeights;
 import msc.HME.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
+import java.time.LocalDate;
 import java.util.*;
+import java.time.LocalDateTime;
 
 @Service
 public class UserService {
@@ -23,6 +25,26 @@ public class UserService {
     public UserService(JdbcTemplate jdbcTemplate, CognitoService cognitoService) {
         this.jdbcTemplate = jdbcTemplate;
         this.cognitoService = cognitoService;
+    }
+
+    public String validateJWT(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if ( authHeader == null) {
+            return null;
+        }
+        String token = authHeader.split(" ")[1];  // not necessary in production ... I believe
+
+        DecodedJWT jwt = JWT.decode(token);
+        String userId = jwt.getSubject();
+        String issuer = jwt.getIssuer();
+        Date expiresAt = jwt.getExpiresAt();
+        Date now = new Date();
+
+        if (!Objects.equals(issuer, "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_VBubqBEr4") && (expiresAt.equals(now) || expiresAt.after(now))) {
+            return null;
+        } else {
+            return userId;
+        }
     }
 
     public User getUser(String id) {
