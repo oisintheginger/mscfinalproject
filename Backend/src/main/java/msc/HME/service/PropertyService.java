@@ -41,6 +41,12 @@ public class PropertyService {
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(QuickViewProperty.class));
     }
 
+    public List<QuickViewProperty> batchQVProperties(List<Long> ids) {
+        String sql = """
+                """;
+
+    }
+
     // get QVProperty by id
     public QuickViewProperty getQVProperty(Long id) {
         String sql = """
@@ -57,7 +63,7 @@ public class PropertyService {
                 FROM MainInformation mi
                          INNER JOIN Addresses a ON mi.addressID = a.addressID
                          LEFT JOIN images img ON mi.propertyID = img.propertyID
-                WHERE mi.availableNow = 1 AND mi.propertyID = ?
+                WHERE mi.availableNow = 1 AND mi.propertyID IN (?, ?, ?)
                 GROUP BY mi.propertyID;
                 """;
         return jdbcTemplate.queryForObject(
