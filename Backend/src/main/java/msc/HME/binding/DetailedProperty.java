@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class DetailedProperty {
 
     @JsonProperty
-    private Integer propertyId;
+    private Long propertyId;
 
     @JsonProperty
     private Double price;
@@ -94,7 +94,7 @@ public class DetailedProperty {
 
     public DetailedProperty() {}
 
-    public DetailedProperty(Integer propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score) {
+    public DetailedProperty(Long propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score) {
         this.propertyId = propertyId;
         this.price = price;
         this.bedrooms = bedrooms;
@@ -120,4 +120,3 @@ public class DetailedProperty {
         this.emergency_score = emergency_score;
     }
 }
-
