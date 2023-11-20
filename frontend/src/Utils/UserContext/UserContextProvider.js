@@ -14,7 +14,9 @@ function UserContextProvider({ children }) {
 			return API.get("HMEBackend", `/api/user`, {
 				headers: {
 					Authorization:
-						user.getSignInUserSession().getAccessToken().getJwtToken() || null,
+						"Bearer " +
+							user.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
 				},
 				response: true,
 				enabled: false,
