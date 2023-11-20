@@ -1,5 +1,6 @@
 package msc.HME.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import msc.HME.binding.User;
 import msc.HME.service.UserService;
 import org.springframework.dao.DataAccessException;
@@ -21,8 +22,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> findUser(@PathVariable String id) {
+    @GetMapping()
+    public ResponseEntity<Object> findUser(HttpServletRequest request) {
+        String id = userService.validateJWT(request);
+        if (id==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+        }
         try {
             User result = userService.getUser(id);
             return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -33,8 +38,12 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{id}/{resource}") // resource options: s, f, a, w
-    public ResponseEntity<Object> findResource(@PathVariable String id, @PathVariable String resource) {
+    @GetMapping("/{resource}") // resource options: s, f, a, w
+    public ResponseEntity<Object> findResource(@PathVariable String resource, HttpServletRequest request) {
+        String id = userService.validateJWT(request);
+        if (id==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+        }
         try {
             if (Objects.equals(resource, "s")) {
                 Object result = userService.findSearches(id);
@@ -60,8 +69,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/new/{id}/{resource}")
-    public ResponseEntity<Object> addResource(@PathVariable String id, @PathVariable String resource,
+    @PostMapping("/new/{resource}")
+    public ResponseEntity<Object> addResource(@PathVariable String resource, HttpServletRequest request,
                                               @RequestParam(required = false ) String searchString,
                                               @RequestParam(required = false ) String propertyId,
                                               @RequestParam(required = false ) String message,
@@ -73,6 +82,10 @@ public class UserController {
                                               @RequestParam(required = false ) String transportation,
                                               @RequestParam(required = false ) String emergency)
     {
+        String id = userService.validateJWT(request);
+        if (id==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+        }
         try {
             if (Objects.equals(resource, "s") && !searchString.isBlank()) {
                 userService.addSearch(id, searchString);
@@ -98,8 +111,12 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/update/{id}/email")
-    public ResponseEntity<Object> updateEmail(@PathVariable String id, @RequestParam String email) {
+    @PatchMapping("/update/email")
+    public ResponseEntity<Object> updateEmail(@RequestParam String email, HttpServletRequest request) {
+        String id = userService.validateJWT(request);
+        if (id==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+        }
         try {
             return userService.updateEmail(id, email);
         } catch (EmptyResultDataAccessException e) {
@@ -109,8 +126,8 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/update/{id}/{resource}") // s, w.
-    public ResponseEntity<Object> updateResources(@PathVariable String id, @PathVariable String resource,
+    @PatchMapping("/update/{resource}") // s, w.
+    public ResponseEntity<Object> updateResources(@PathVariable String resource, HttpServletRequest request,
                                                   @RequestParam(required = false) String searchString,
                                                   @RequestParam(required = false) String newSearchString,
                                                   @RequestParam(required = false ) String entertainment,
@@ -120,6 +137,10 @@ public class UserController {
                                                   @RequestParam(required = false ) String financial,
                                                   @RequestParam(required = false ) String transportation,
                                                   @RequestParam(required = false ) String emergency) {
+        String id = userService.validateJWT(request);
+        if (id==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+        }
         try {
             if (Objects.equals(resource, "s") && searchString != null && newSearchString != null) {
                 userService.addSearch(id, newSearchString);
@@ -140,10 +161,14 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/remove/{id}/{resource}") // s f w
-    public ResponseEntity<Object> removeResource(@PathVariable String id, @PathVariable String resource,
+    @DeleteMapping("/remove/{resource}") // s f w
+    public ResponseEntity<Object> removeResource(@PathVariable String resource, HttpServletRequest request,
                                                  @RequestParam(required = false ) String searchString,
                                                  @RequestParam(required = false ) String propertyId) {
+        String id = userService.validateJWT(request);
+        if (id==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+        }
         try {
             if (Objects.equals(resource, "s") && !searchString.isBlank()) {
                 userService.removeSearch(id, searchString);
@@ -166,8 +191,12 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/remove/{id}")
-    public Object removeUser(@PathVariable String id) {
+    @DeleteMapping("/remove")
+    public Object removeUser(HttpServletRequest request) {
+        String id = userService.validateJWT(request);
+        if (id==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+        }
         try {
             return userService.deleteUser(id);
         } catch (EmptyResultDataAccessException e) {

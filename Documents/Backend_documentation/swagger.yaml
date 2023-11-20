@@ -39,11 +39,11 @@ paths:
     get:
       summary: returns quick view property of specific property id
       parameters:
-        -in: path
-        name: propertyId
-        required: true
-        schema:
-          type: string
+        - in: path
+          name: propertyId
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: returns a quickviewproperty object
@@ -77,286 +77,263 @@ paths:
           description: returns a 404 not found response code
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
-    /api/properties/locations:
-      get:
-        summary: returns all property ids with longitude and latitude
-        responses:
-          "200":
-            description: returns a list with objects containing property id, longitude and latitude
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-          "500":
-            description: returns a list with objects containing property id, longitude and latitude
-    /api/user/{id}:
-      get:
-      summary: returns user info for given user id
-      parameters:
-        - in: path
-        name: id
-        required: true
-        schema:
-        type: String
+  /api/properties/locations:
+    get:
+      summary: returns all property ids with longitude and latitude
+      responses:
+        "200":
+          description: returns a list with objects containing property id, longitude and latitude
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        "500":
+          description: returns a list with objects containing property id, longitude and latitude
+  /api/user:
+    get:
+      summary: returns user info for given user id (authorisation header)
       responses:
         "200":
           description: returns user object with all their info
-          content: 
+          content:
             application/json:
-              schema: 
-              $ref: "#/components/schemas/user"
+              schema:
+                $ref: "#/components/schemas/user"
         "404":
           description: returns a 404 user not found response code
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
         "500":
           description: returns a 500 internal server error, the body contains the specific error
-    /api/user/{id}/{resource}:
-      get:
-        summary: returns specific resource for specific user id 
-        parameters:
-          - in: path
-          name: id
-          required: true
-          schema:
-            type: String  
-          - in: path
+  /api/user/{resource}:
+    get:
+      summary: returns specific resource for specific user id
+      parameters:
+        - in: path
           name: resource
           required: true
-          schema: 
-            type: String
-            example: options are w (weights), f (favourites), s (searches), a (applications) 
-        responses:
-          "200":
-            description: returns user resources 
-            content: 
-              application/json:
-                schema: 
-                type: array 
-          "400":
-            description: returns 400 bad request if the type of resource is not correctly put in
-          "404":
-            description: returns a 404 resource not found response code
-          "500":
-            description: returns a 500 internal server error, the body contains the specific error
-    /api/user/new/{id}/{resource}:
-      post:
-        summary: creates new specific resource for specific user  
-        parameters:
-          - in: path
-            name: id
-            required: true
-            schema:
-              type: String  
-          - in: path
-            name: resource
-            required: true
-            schema: 
-              type: String
-              example: options are w (weights), f (favourites), s (searches), a (applications)
-          - in:  query
-            name: searchString
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: propertyId
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: message
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: entertainment
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: pharmacies
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: retail
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: fitness
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: financial
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: transportation
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: emergency
-            required: false
-            schema:
-              type: String
-        responses:
-          "200":
-            description: adds new user resource, returns 200 ok and message 
-          "400":
-            description: returns 400 bad request if the type of resource is not correctly put in
-          "404":
-            description: returns a 404 resource not found response code
-          "500":
-            description: returns a 500 internal server error, the body contains the specific error
-    /api/user/{id}/update/email:
-      patch:
-        summary: updates users email address for cognito and user table
-        parameters:
-          - in: path
-          name: id
+          schema:
+            type: string
+          example: options are w (weights), f (favourites), s (searches), a (applications)
+      responses:
+        "200":
+          description: returns user resources
+          content:
+            application/json:
+              schema:
+                type: array
+        "400":
+          description: returns 400 bad request if the type of resource is not correctly put in
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns a 404 resource not found response code
+        "500":
+          description: returns a 500 internal server error, the body contains the specific error
+  /api/user/new/{resource}:
+    post:
+      summary: creates new specific resource for specific user
+      parameters:
+        - in: path
+          name: resource
           required: true
           schema:
-            type: String
-          - in: query
+            type: string
+            example: options are w (weights), f (favourites), s (searches), a (applications)
+        - in: query
+          name: search string
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: propertyId
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: message
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: entertainment
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: pharmacies
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: retail
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fitness
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: financial
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: transportation
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: emergency
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: adds new user resource, returns 200 ok and message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "400":
+          description: returns 400 bad request if the type of resource is not correctly put in
+        "404":
+          description: returns a 404 resource not found response code
+        "500":
+          description: returns a 500 internal server error, the body contains the specific error
+  /api/user/update/email:
+    patch:
+      summary: updates users email address for cognito and user table
+      parameters:
+        - in: query
           name: email
           required: true
           schema:
-            type: String
-        responses: 
-          "200":
-            description: returns 200 OK response with message 
-          "400":
-            description: returns 400 bad request with message 
-          "404":
-            description: returns 404 not found with message 
-          "500":
-            description: returns 500 internal server error with specific error in the body
-    /api/user/update/{id}/{resource}:
-      patch:
-        summary: updates a search or weights for a specific user
-        parameters:
-          - in: path
-            name: id
-            required: true
-            schema:
-              type: String  
-          - in: path
-            name: resource
-            required: true
-            schema: 
-              type: String
-              example: options are w (weights), f (favourites), s (searches), a (applications)
-          - in:  query
-            name: searchString
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: newSearchString
-            required: false
-            schema:
-              type: String                             
-          - in:  query
-            name: entertainment
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: pharmacies
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: retail
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: fitness
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: financial
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: transportation
-            required: false
-            schema:
-              type: String               
-          - in:  query
-            name: emergency
-            required: false
-            schema:
-              type: String
-        responses: 
-          "200":
-            description: returns 200 OK response with message 
-          "400":
-            description: returns 400 bad request with message 
-          "404":
-            description: returns 404 not found with message 
-          "500":
-            description: returns 500 internal server error with specific error in the body
-    /api/user/remove/{id}/{resource}:
-      delete:
-        summary: removes user's resource 
-        parameters:
-          - in: path
-            name: id
-            required: true
-            schema:
-              type: String
-          - in: path
-            name: resource
-            required: true
-            schema: 
-              type: String
-              example: options are w (weights), f (favourites), s (searches)
-          - in: query
-            name: searchString
-            required: false
-            schema:
-              type: String
-          - in: query
-            name: propertyId
-            required: false
-            schema:
-              type: String
-        responses: 
-          "200":
-            description: returns 200 OK response with message 
-          "400":
-            description: returns 400 bad request with message 
-          "404":
-            description: returns 404 not found with message 
-          "500":
-            description: returns 500 internal server error with specific error in the body
-    /api/user/remove/{id}:
-      delete:
-        summary: removes user from cognito and user table 
-        parameters:
-          - in: path
-          name: id
+            type: string
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
+  /api/user/update/{resource}:
+    patch:
+      summary: updates a search or weights for a specific user
+      parameters:
+        - in: path
+          name: resource
           required: true
           schema:
-            type: String
-        responses: 
-          "200":
-            description: returns 200 OK response with message 
-          "400":
-            description: returns 400 bad request with message 
-          "404":
-            description: returns 404 not found with message 
-          "500":
-            description: returns 500 internal server error with specific error in the body  
+            type: string
+            example: options are w (weights), f (favourites), s (searches), a (applications)
+        - in: query
+          name: search string
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: newSearch string
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: entertainment
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: pharmacies
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: retail
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fitness
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: financial
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: transportation
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: emergency
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
+  /api/user/remove/{resource}:
+    delete:
+      summary: removes user's resource
+      parameters:
+        - in: path
+          name: resource
+          required: true
+          schema:
+            type: string
+            example: options are w (weights), f (favourites), s (searches)
+        - in: query
+          name: search string
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: propertyId
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
+  /api/user/remove:
+    delete:
+      summary: removes user from cognito and user table
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
 
 components:
   schemas:
