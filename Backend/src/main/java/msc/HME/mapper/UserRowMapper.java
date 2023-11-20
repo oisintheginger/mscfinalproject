@@ -50,4 +50,3 @@ public class UserRowMapper implements RowMapper<User> {
         return user;
     }
 }
-
