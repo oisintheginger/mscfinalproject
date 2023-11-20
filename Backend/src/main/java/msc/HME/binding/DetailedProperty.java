@@ -42,7 +42,7 @@ public class DetailedProperty {
     private String description;
 
     @JsonProperty
-    private Boolean petsAllowed;
+    private String[] petsAllowed;
 
     @JsonProperty
     private LocalDate datePosted;
@@ -94,7 +94,7 @@ public class DetailedProperty {
 
     public DetailedProperty() {}
 
-    public DetailedProperty(Integer propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, Boolean petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score) {
+    public DetailedProperty(Integer propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score) {
         this.propertyId = propertyId;
         this.price = price;
         this.bedrooms = bedrooms;
