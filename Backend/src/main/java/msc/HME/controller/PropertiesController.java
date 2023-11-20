@@ -42,8 +42,6 @@ public class PropertiesController {
         try {
             List<QuickViewProperty> result = propertyService.batchQVProperties(ids);
             return ResponseEntity.status(HttpStatus.OK).body(result);
-        } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Property was not found");
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
@@ -60,7 +58,6 @@ public class PropertiesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
     }
-
     
 
     @GetMapping("/details/{id}")
