@@ -447,6 +447,8 @@ ALTER TABLE NightClubs ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbou
 
 UPDATE NightClubs AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
+ALTER TABLE NightClubs DROP COLUMN neighbourhoodGeoLocation
+
 SELECT * FROM NightClubs
 
 # BARS
@@ -465,6 +467,8 @@ CREATE TABLE Bars (
 ALTER TABLE Bars ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE Bars AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE Bars DROP COLUMN neighbourhoodGeoLocation
 
 SELECT * FROM Bars
 
@@ -485,6 +489,8 @@ ALTER TABLE BeautySalons ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighb
 
 UPDATE BeautySalons AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
+ALTER TABLE BeautySalons DROP COLUMN neighbourhoodGeoLocation
+
 SELECT * FROM BeautySalons
 
 # BUS STATIONS
@@ -503,6 +509,8 @@ CREATE TABLE BusStations (
 ALTER TABLE BusStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE BusStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE BusStations DROP COLUMN neighbourhoodGeoLocation
 
 SELECT * FROM BusStations
 
@@ -523,6 +531,8 @@ ALTER TABLE Cafes ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhood
 
 UPDATE Cafes AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
+ALTER TABLE Cafes DROP COLUMN neighbourhoodGeoLocation]
+
 SELECT * FROM Cafes
 
 # FIRE STATIONS
@@ -541,6 +551,8 @@ CREATE TABLE FireStations (
 ALTER TABLE FireStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE FireStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE FireStations DROP COLUMN neighbourhoodGeoLocation
 
 SELECT * FROM FireStations
 
@@ -561,6 +573,8 @@ ALTER TABLE Gyms ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodI
 
 UPDATE Gyms AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
+ALTER TABLE Gyms DROP COLUMN neighbourhoodGeoLocation
+
 SELECT * FROM Gyms
 
 # HOSPITALS
@@ -579,6 +593,8 @@ CREATE TABLE Hospitals (
 ALTER TABLE Hospitals ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE Hospitals AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE Hospitals DROP COLUMN neighbourhoodGeoLocation
 
 SELECT * FROM Hospitals
 
@@ -599,6 +615,8 @@ ALTER TABLE Parks ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhood
 
 UPDATE Parks AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
+ALTER TABLE Parks DROP COLUMN neighbourhoodGeoLocation
+
 SELECT * FROM Parks
 
 # PHARMACIES
@@ -617,6 +635,8 @@ CREATE TABLE Pharmacies (
 ALTER TABLE Pharmacies ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE Pharmacies AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE Pharmacies DROP COLUMN neighbourhoodGeoLocation
 
 SELECT * FROM Pharmacies
 
@@ -637,6 +657,8 @@ ALTER TABLE PoliceStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neig
 
 UPDATE PoliceStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
+ALTER TABLE PoliceStations DROP COLUMN neighbourhoodGeoLocation
+
 SELECT * FROM PoliceStations
 
 # RESTAURANTS
@@ -655,6 +677,8 @@ CREATE TABLE Restaurants (
 ALTER TABLE Restaurants ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE Restaurants AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE Restaurants DROP COLUMN neighbourhoodGeoLocation
 
 SELECT * FROM Restaurants
 
@@ -675,6 +699,8 @@ ALTER TABLE Supermarkets ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighb
 
 UPDATE Supermarkets AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
+ALTER TABLE Supermarkets DROP COLUMN neighbourhoodGeoLocation
+
 SELECT * FROM Supermarkets
 
 # TRAIN STATIONS
@@ -693,6 +719,8 @@ CREATE TABLE Trainstations (
 ALTER TABLE Trainstations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE Trainstations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE Trainstations DROP COLUMN neighbourhoodGeoLocation
 
 SELECT * FROM Trainstations
 
@@ -713,13 +741,132 @@ ALTER TABLE TransitStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (nei
 
 UPDATE TransitStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-SELECT * FROM TransitStations
+ALTER TABLE TransitStations DROP COLUMN neighbourhoodGeoLocation
 
-SELECT * FROM Addresses a  
+#Update neighbourhoods table so crime information can be linked to it
+ALTER TABLE Neighbourhoods ADD COLUMN crime_neighbourhood VARCHAR(255);
 
-SELECT * FROM user a 
+DROP TABLE temp_table 
 
-CREATE TABLE
+CREATE TABLE temp_table (neighbourhoodID INT, crime_neighbourhood VARCHAR(255));
+
+SELECT * FROM temp_table 
+
+DESCRIBE temp_table 
+
+UPDATE Neighbourhoods JOIN temp_table ON Neighbourhoods.neighbourhoodID = temp_table.neighbourhoodID  
+SET Neighbourhoods.crime_neighbourhood = temp_table.crime_neighbourhood;
+
+# Now upload the scoring datasets, begin with crime
+
+DROP TABLE crime_z_scores 
+
+CREATE TABLE crime_z_scores (
+    crime_scoreID INT,
+    crime_neighbourhood VARCHAR(255),
+    LARCENY_FROM_AUTO_Count INT,
+    LARCENY_FROM_AUTO_z_score_mapped FLOAT,
+    COMMON_ASSAULT_Count INT,
+    COMMON_ASSAULT_z_score_mapped FLOAT,
+    AGG_ASSAULT_Count INT,
+    AGG_ASSAULT_z_score_mapped FLOAT,
+    AUTO_THEFT_Count INT,
+    AUTO_THEFT_z_score_mapped FLOAT,
+    LARCENY_Count INT,
+    LARCENY_z_score_mapped FLOAT,
+    BURGLARY_Count INT,
+    BURGLARY_z_score_mapped FLOAT,
+    ROBBERY_Count INT,
+    ROBBERY_z_score_mapped FLOAT,
+    RAPE_Count INT,
+    RAPE_z_score_mapped FLOAT,
+    HOMICIDE_Count INT,
+    HOMICIDE_z_score_mapped FLOAT,
+    ARSON_Count INT,
+    ARSON_z_score_mapped FLOAT,
+    SHOOTING_Count INT,
+    SHOOTING_z_score_mapped FLOAT,
+    ROBBERY_CARJACKING_Count INT,
+    ROBBERY_CARJACKING_z_score_mapped FLOAT,
+    ROBBERY_COMMERCIAL_Count INT,
+    ROBBERY_COMMERCIAL_z_score_mapped FLOAT,
+    sum_count INT,
+    sum_z_scores FLOAT,
+    z_scores_before_mapping FLOAT,
+    mapped_values_sigmoid FLOAT,
+    
+    PRIMARY KEY (crime_scoreID)
+);
+
+DESCRIBE crime_z_scores
+
+SELECT * FROM crime_z_scores czs 
+
+ALTER TABLE crime_z_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
+
+UPDATE crime_z_scores AS a JOIN Neighbourhoods AS n ON a.crime_neighbourhood = n.crime_neighbourhood SET a.neighbourhoodID = n.neighbourhoodID;
+
+ALTER TABLE crime_z_scores DROP COLUMN crime_neighbourhood
+
+DROP TABLE service_scores 
+
+CREATE TABLE service_scores (
+    service_score_ID INT,
+    bankCount INT,
+    bank_z_score FLOAT,
+    barCount INT,
+    bar_z_score FLOAT,
+    beauty_salonCount INT,
+    beauty_salon_z_score FLOAT,
+    bus_stationCount INT,
+    bus_station_z_score FLOAT,
+    cafeCount INT,
+    cafe_z_score FLOAT,
+    fire_stationCount INT,
+    fire_station_z_score FLOAT,
+    gymCount INT,
+    gym_z_score FLOAT,
+    hospitalCount INT,
+    hospital_z_score FLOAT,
+    night_clubCount INT,
+    night_club_z_score FLOAT,
+    parkCount INT,
+    park_z_score FLOAT,
+    pharmacyCount INT,
+    pharmacy_z_score FLOAT,
+    police_stationCount INT,
+    police_station_z_score FLOAT,
+    restaurantCount INT,
+    restaurant_z_score FLOAT,
+    supermarketCount INT,
+    supermarket_z_score FLOAT,
+    train_stationCount INT,
+    train_station_z_score FLOAT,
+    transit_stationCount INT,
+    transit_station_z_score FLOAT,
+    finance_score FLOAT,
+    transportation_score FLOAT,
+    personal_care_score FLOAT,
+    retail_score FLOAT,
+    fitness_score FLOAT,
+    leisure_score FLOAT,
+    emergency_score FLOAT,
+    sum_count INT,
+    sum_z_scores FLOAT,
+    overall_score FLOAT,
+    
+    PRIMARY KEY (service_score_ID)
+);
+
+DESCRIBE service_scores
+
+SELECT * FROM service_scores szs 
+
+ALTER TABLE service_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
+
+UPDATE service_scores AS a JOIN Neighbourhoods AS n ON a.service_score_ID = n.neighbourhoodID  SET a.neighbourhoodID = n.neighbourhoodID;
+
+#####
 
 
 
