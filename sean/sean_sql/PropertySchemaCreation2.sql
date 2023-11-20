@@ -868,8 +868,14 @@ UPDATE service_scores AS a JOIN Neighbourhoods AS n ON a.service_score_ID = n.ne
 
 #####
 
+SELECT * FROM Neighbourhoods n 
 
 
+SELECT * From `user` u 
 
+DESCRIBE `user` 
 
+CREATE TABLE user_service_scores (
+
+)
 
