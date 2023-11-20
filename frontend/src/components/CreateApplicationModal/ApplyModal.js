@@ -1,128 +1,68 @@
 import {
 	Modal,
 	Box,
+	Stack,
 	Typography,
 	Paper,
 	Button,
 	IconButton,
-    FormControl,
-    OutlinedInput,
+	FormControl,
+	OutlinedInput,
+	TextField,
 } from "@mui/material";
 import { CloseIcon } from "../../Icons/HMEIcons";
-import { useState } from "react";
-import { Form } from "react-router-dom";
-const contentContainerStyle = {
-	position: "absolute",
-	top: "50%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-};
-function ApplyModal({closeModal}) {
+import { useForm } from "react-hook-form";
 
-    const [firstName, setFirstName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [email, setEmail] = useState("");
-    const [contactNumber, setContactNumber] = useState("");
+function ApplyModal({ closeModal, submitFunction }) {
+	const methods = useForm({ defaultValues: { message: "" } });
 
-    const handleSubmit = () => {
-        console.log("First Name:", firstName);
-        console.log("Surname:", surname);
-        console.log("Email Address:", email);
-        console.log("Contact Number:", contactNumber);
-    };
+	const submitHandler = (e) => {
+		console.log(e);
+		submitFunction(e);
+	};
 	return (
-		
-			<Box
-				justifyContent={"center"}
-				alignItems={"center"}
-				width={"100%"}
-				height={"100%"}
-                
+		<Box
+			display={"flex"}
+			flexDirection={"column"}
+			alignItems={"center"}
+			width={"100%"}
+			height={"100%"}
+		>
+			<IconButton
+				onClick={closeModal}
+				sx={{ position: "absolute", right: 0, top: 0 }}
 			>
-				{/* <IconButton
-					disableRipple
-					disableFocusRipple
-					sx={{
-						color: "white",
-						position: "absolute",
-						top: "5%",
-						left: "95%",
-						transform: "translate(-50%, -50%)",
-					}}
-					
+				<CloseIcon />
+			</IconButton>
+			<Typography variant="h3" fontWeight={"bold"} mb={3} textAlign={"center"}>
+				Application Form
+			</Typography>
+			<Stack
+				sx={{
+					alignItems: "center",
+					height: "100%",
+				}}
+				component={"form"}
+				spacing={2}
+			>
+				<TextField
+					placeholder="Message"
+					sx={{ width: "100%" }}
+					color="darkTeal"
+					fullWidth={true}
+					multiline={true}
+					rows={6}
+					{...methods.register("message", {})}
+				/>
+				<Button
+					onClick={methods.handleSubmit(submitHandler)}
+					variant="contained"
+					sx={{ backgroundColor: "darkTeal.main", color: "white", mb: 2 }}
 				>
-					<CloseIcon sx={{ strokeWidth: 4 }} />
-				</IconButton> */}
-                <IconButton onClick={closeModal} sx={{ position: 'absolute', right: 0, top: 0 }}>
-                    <CloseIcon />
-                </IconButton>
-				<Box sx={contentContainerStyle}>
-                <Typography variant="body1" fontWeight={"bold"} mb={3}>
-							Application Form
-						</Typography>
-					{/* <form>
-                        <FormControl>
-                        <Box display="flex" mb={2} gap={2}>
-                            <OutlinedInput placeholder="First Name" sx={{ flexGrow: 1 }} />
-                            <OutlinedInput placeholder="Surname" sx={{ flexGrow: 1 }} />
-                        </Box>
-                            <OutlinedInput placeholder="Email Address" sx={{mb:2}}/>
-                            <OutlinedInput placeholder="Contact Number" sx={{mb:2}}/>
-                            <Button 
-                        onClick={()=>{alert("Well done you pushed a button!")}}
-                        variant="contained"
-                        sx={{backgroundColor: "darkTeal.main",
-                            color: "white",
-                            mb:2}}>
-                            Submit
-                        </Button>
-                        </FormControl>
-                    </form> */}
-
-<form>
-            <FormControl>
-                <Box display="flex" mb={2} gap={2}>
-                    <OutlinedInput 
-                        placeholder="First Name" 
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        sx={{ flexGrow: 1 }} 
-                    />
-                    <OutlinedInput 
-                        placeholder="Surname" 
-                        value={surname}
-                        onChange={(e) => setSurname(e.target.value)}
-                        sx={{ flexGrow: 1 }} 
-                    />
-                </Box>
-                <OutlinedInput 
-                    placeholder="Email Address" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    sx={{mb:2}}
-                />
-                <OutlinedInput 
-                    placeholder="Contact Number" 
-                    value={contactNumber}
-                    onChange={(e) => setContactNumber(e.target.value)}
-                    sx={{mb:2}}
-                />
-                <Button 
-                    onClick={handleSubmit}
-                    variant="contained"
-                    sx={{backgroundColor: "darkTeal.main",
-                        color: "white",
-                        mb:2}}
-                >
-                    Submit
-                </Button>
-            </FormControl>
-        </form>
-						
-					
-				</Box>
-			</Box>
-		
+					Submit
+				</Button>
+			</Stack>
+		</Box>
 	);
 }
 

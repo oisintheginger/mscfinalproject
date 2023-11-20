@@ -157,7 +157,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Diary/November/16th November Thursday.md",
+                "file": "Daily Diary/November/20th November Monday.md",
                 "mode": "source",
                 "source": false
               }
@@ -238,7 +238,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/November/16th November Thursday.md",
+                "file": "Daily Diary/November/20th November Monday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -255,7 +255,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/November/16th November Thursday.md",
+                "file": "Daily Diary/November/20th November Monday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -278,7 +278,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/November/16th November Thursday.md"
+                "file": "Daily Diary/November/20th November Monday.md"
               }
             }
           }
@@ -302,8 +302,9 @@
   },
   "active": "c33f165a65c2721f",
   "lastOpenFiles": [
-    "Daily Diary/November/14th November Tuesday.md",
     "Daily Diary/November/16th November Thursday.md",
+    "Daily Diary/November/20th November Monday.md",
+    "Daily Diary/November/14th November Tuesday.md",
     "Daily Diary/November/13th November Monday.md",
     "Daily Diary/November/18th November Saturday.md",
     "Daily Diary/Saturday 30th September.md",
@@ -331,7 +332,6 @@
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Daily Diary/November/1st November 2023.md",
     "Daily Diary/October/Tuesday 3rd October.md",
-    "Master's Project/UX Work/Core User Flows/Saving Searches/Saving and Using Searches.md",
     "Master's Project/UX Work/User Testing/F1C7CC20",
     "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",

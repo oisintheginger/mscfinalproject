@@ -39,28 +39,28 @@ function Homepage() {
 		});
 	};
 
-	const { data, isLoading, isError, refetch } = useQuery(
-		"recommended",
-		() => {
-			return API.get("HMEBackend", `/api/user/favorites`, {
-				headers: {
-					Authorization:
-						user.getSignInUserSession().getAccessToken().jwtToken || null,
-				},
-				response: true,
-				queryStringParameters: {
-					userId: user.username || null,
-				},
-			});
-		},
-		{
-			enabled: false,
-		}
-	);
+	// const { data, isLoading, isError, refetch } = useQuery(
+	// 	"recommended",
+	// 	() => {
+	// 		return API.get("HMEBackend", `/api/user/favorites`, {
+	// 			headers: {
+	// 				Authorization:
+	// 					user.getSignInUserSession().getAccessToken().jwtToken || null,
+	// 			},
+	// 			response: true,
+	// 			queryStringParameters: {
+	// 				userId: user.username || null,
+	// 			},
+	// 		});
+	// 	},
+	// 	{
+	// 		enabled: false,
+	// 	}
+	// );
 
 	useEffect(() => {
 		if (route == "authenticated") {
-			refetch();
+			// refetch();
 		}
 	}, [user]);
 
@@ -127,7 +127,8 @@ function Homepage() {
 					alignItems={"center"}
 				>
 					{route === "authenticated" ? (
-						isLoading ? (
+						<>
+							{/* isLoading ? (
 							<LoadingSpinner message={"Getting your recommendations"} />
 						) : isError ? (
 							<p>Error</p>
@@ -139,7 +140,8 @@ function Homepage() {
 									<Typography>No Recommendations</Typography>
 								)}
 							</Container>
-						)
+						) */}
+						</>
 					) : (
 						<ButtonStyled
 							onClick={() => {

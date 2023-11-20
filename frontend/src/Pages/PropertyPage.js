@@ -22,7 +22,7 @@ import Carousel from "../components/Carousel/Carousel";
 import { useContext, useEffect, useRef, useState } from "react";
 import ApplyModal from "../components/CreateApplicationModal/ApplyModal";
 
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
@@ -30,14 +30,25 @@ import { Authenticator, View } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import PropertyScoresComponent from "../components/PropertyScoresComponent/PropertyScoresComponent";
 import { MockScores } from "../MockData/PropertyScoresMockData";
+import {
+	AddToFavoritesMutation,
+	RemoveFromFavoritesMutation,
+} from "../Utils/Mutations/FavoriteMutation/FavoritesMutation";
+import {
+	AddFavoriteButton,
+	RemoveFavoriteButton,
+} from "../components/PropertyDetailsPageButtons/FavoritesButtons";
+import { ApplyButton } from "../components/PropertyDetailsPageButtons/ApplyButton";
+import { CreateApplicationMutation } from "../Utils/Mutations/ApplicationMutation/ApplicationMutation";
 
 function PropertyPage() {
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const { userData, handleRefresh, route } = useContext(UserContext);
-	const { user } = useAuthenticator((context) => [context.route, context.user]);
+	const propertyId = location.pathname.split("/")[2];
 
+	const { userData, handleRefresh, route } = useContext(UserContext);
+	const { user } = useAuthenticator((context) => [context.user]);
 	const mapRef = useRef(null);
 
 	const theme = useTheme();
@@ -68,32 +79,50 @@ function PropertyPage() {
 	}, [route]);
 
 	const { isError, isLoading, error, data } = useQuery(
-		["propertydetails", location.pathname.split("/")[2]],
+		["propertydetails", propertyId],
 		() => {
-			return API.get(
-				"HMEBackend",
-				`/api/properties/${location.pathname.split("/")[2]}`,
-				{
-					headers: {
-						Authorization:
-							user?.getSignInUserSession().getAccessToken().jwtToken || null,
-					},
-					response: true,
-					queryStringParameters: {
-						userId: user?.username || null,
-					},
-				}
-			);
+			return API.get("HMEBackend", `/api/properties/${propertyId}`, {
+				headers: {
+					Authorization:
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
+				},
+				response: true,
+				refreshOnWindowFocus: false,
+				queryStringParameters: {
+					userId: user?.username || null,
+				},
+			});
 		},
 		{ staleTime: 500000, refetchOnMount: true }
 	);
+
+	const { mutate: addToFavorites } = AddToFavoritesMutation(propertyId, () => {
+		console.log(userData);
+		handleRefresh();
+		console.log(userData);
+	});
+
+	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+		propertyId,
+		() => {
+			console.log(userData);
+			handleRefresh();
+			console.log(userData);
+		}
+	);
+
+	const { mutate: createApplication } = CreateApplicationMutation();
+
+	const isFavorited = userData?.favourites.includes(propertyId) || false;
 
 	return (
 		<>
 			{isLoading ? (
 				<LoadingSpinner />
 			) : isError ? (
-				<p>Error:{error.request.status}</p>
+				<p>Error:{"Something Went Wrong"}</p>
 			) : (
 				<PageTemplate
 					pageTitle={
@@ -123,7 +152,17 @@ function PropertyPage() {
 									justifyContent: "flex-end",
 								}}
 							>
-								<Button
+								<ApplyButton
+									action={() => {
+										if (route === "authenticated") {
+											openModal();
+										} else {
+											openLoginModal();
+										}
+									}}
+									down={down}
+								/>
+								{/* <Button
 									onClick={() => {
 										if (route === "authenticated") {
 											openModal();
@@ -147,37 +186,24 @@ function PropertyPage() {
 									endIcon={<ApplicationIcon />}
 								>
 									Apply Now
-								</Button>
-								<Button
-									variant="outlined"
-									sx={{
-										maxWidth: "30vw",
-										transform: "translate(0px, 8px)",
-										backgroundColor: "white",
-										color: "darkTeal.main",
-										borderColor: "darkTeal.main",
-										borderWidth: 1,
-
-										"&:hover": {
-											backgroundColor: "darkWhite.main",
-											color: "darkTeal.main",
-											borderColor: "darkTeal.main",
-											borderWidth: 1,
-										},
-										marginRight: 2,
-										height: 45,
-									}}
-									endIcon={<FavoriteIcon />}
-									onClick={() => {
-										if (route === "authenticated") {
-											console.log("Added to Favorites");
-										} else {
-											openLoginModal();
-										}
-									}}
-								>
-									Favorite
-								</Button>
+								</Button> */}
+								{isFavorited ? (
+									<RemoveFavoriteButton
+										action={() => {
+											removeFromFavorites();
+										}}
+									/>
+								) : (
+									<AddFavoriteButton
+										action={() => {
+											if (route === "authenticated") {
+												addToFavorites();
+											} else {
+												openLoginModal();
+											}
+										}}
+									/>
+								)}
 							</Stack>
 						)}
 						<Stack //TOP DETAILS
@@ -325,61 +351,40 @@ function PropertyPage() {
 									}}
 								>
 									<Stack
-										spacing={1}
+										spacing={2}
 										width={"100%"}
 										direction={{ xs: "column", sm: "row" }}
+										alignItems={"center"}
 									>
-										<Button
-											variant="outlined"
-											onClick={() => {
+										<ApplyButton
+											action={() => {
 												if (route === "authenticated") {
 													openModal();
 												} else {
 													openLoginModal();
 												}
 											}}
-											sx={{
-												backgroundColor: "darkTeal.main",
-												"&:hover": {
-													backgroundColor: "buttonHover.main",
-													color: "darkWhite.main",
-												},
-												marginRight: 2,
-												height: 40,
-											}}
-											endIcon={<ApplicationIcon />}
-											fullWidth
-										>
-											Apply Now
-										</Button>
-										<Button
-											variant="outlined"
-											sx={{
-												backgroundColor: "white",
-												color: "darkTeal.main",
-												borderColor: "darkTeal.main",
-												borderWidth: 1,
-												"&:hover": {
-													backgroundColor: "darkWhite.main",
-													color: "darkTeal.main",
-													borderColor: "darkTeal.main",
-													borderWidth: 1,
-												},
-												marginRight: 2,
-												height: 40,
-											}}
-											endIcon={<FavoriteIcon />}
-											fullWidth
-											onClick={() => {
-												if (route === "authenticated") {
-													console.log("Added to Favorites");
-												} else {
-													openLoginModal();
-												}
-											}}
-										>
-											Favorite
-										</Button>
+											down={down}
+										/>
+										{isFavorited ? (
+											<RemoveFavoriteButton
+												down={down}
+												action={() => {
+													removeFromFavorites();
+												}}
+											/>
+										) : (
+											<AddFavoriteButton
+												down={down}
+												action={() => {
+													if (route === "authenticated") {
+														addToFavorites();
+													} else {
+														openLoginModal();
+													}
+												}}
+											/>
+										)}
 									</Stack>
 								</Box>
 							)}
@@ -398,10 +403,6 @@ function PropertyPage() {
 							xs: "90vw",
 							md: "30vw",
 						},
-						height: {
-							xs: "80vh",
-							md: "70vh",
-						},
 						bgcolor: "background.paper",
 						borderRadius: 1,
 						boxShadow: 24,
@@ -409,7 +410,16 @@ function PropertyPage() {
 					}}
 				>
 					{/* <Typography textAlign={"center"}>FILL IN DETAILS TO APPLY</Typography> */}
-					<ApplyModal closeModal={closeModal} />
+					<ApplyModal
+						closeModal={closeModal}
+						submitFunction={(event) => {
+							closeModal();
+							createApplication({
+								propertyId: propertyId,
+								message: event.message,
+							});
+						}}
+					/>
 				</Box>
 			</Modal>
 			<Modal open={loginModalOpen} onClose={closeLoginModal}>
