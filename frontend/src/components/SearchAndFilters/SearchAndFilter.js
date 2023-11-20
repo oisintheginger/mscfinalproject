@@ -11,11 +11,43 @@ import FilterFields from "../CommonComp/FilterFields/FilterFields";
 import { useFormContext } from "react-hook-form";
 import { SEARCH_TERM } from "../../Utils/filter_constants";
 import ActiveTagsStack from "../ActiveTag/ActiveTagsStack";
+import { useMutation } from "react-query";
+import { API } from "aws-amplify";
 
 function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 	const methods = useFormContext();
+	
+
+	// Adding Save Search Functionality
+
+	function getEditedURL() {
+		const url = window.location.href;
+		const [baseUrl, queryString] = url.split('?');
+	
+		if (!queryString) {
+			return url;
+		}
+		const params = queryString.split('&').filter(param => !param.startsWith('page=1'));
+		const newQueryString = params.join('&');
+		return `${baseUrl}?${newQueryString}`;
+	}; // function to remove page=1&
+	
+	const handleSaveSearch = async () => {
+		try {
+			const editedUrl = getEditedURL();
+			console.log("Edited URL:", editedUrl);
+			alert("Search saved!");
+	
+		} catch (error) {
+			console.error("Error saving search:", error);
+			alert("Search save unsuccessful.");
+		}
+	};
+	
+	
+
 	return (
 		<Box sx={{ width: "100%", flexGrow: 1, height: "max-content" }}>
 			<Box>
@@ -79,6 +111,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 									fontSize: 2,
 								}}
 								startIcon={<BookmarkIcon />}
+								onClick={handleSaveSearch}
 							>
 								{above && (
 									<Typography variant="button" display={"block"}>
