@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,8 +40,11 @@ public class PropertiesController {
 
     @GetMapping("/batch")
     public ResponseEntity<Object> batchQVP(@RequestParam List<Long> ids) {
-        if (ids.isEmpty()) {
-            ResponseEntity.status(HttpStatus.OK).body("No properties returned because ids query param was empty");
+        System.out.println(ids);
+        if (CollectionUtils.isEmpty(ids)) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("The 'ids' parameter cannot be empty");
         }
         try {
             List<QuickViewProperty> result = propertyService.batchQVProperties(ids);
@@ -51,6 +55,11 @@ public class PropertiesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
     }
+
+//
+//        if (ids.equals("[]")) {
+//        ResponseEntity.status(HttpStatus.OK).body("No properties returned because ids query param was empty");
+//    }
 
     @GetMapping("/{id}")
     ResponseEntity<Object> findQVProperty(@PathVariable Long id) {
