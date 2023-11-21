@@ -80,21 +80,57 @@ public class DetailedProperty {
     @JsonProperty
     private Double emergency_score;
 
-//    @JsonProperty
-//    private Integer bankCount;
-//
-//    @JsonProperty
-//    private Integer barCount;
-//
-//    @JsonProperty
-//    private Integer beauty_salonCount;
-//
-//    @JsonProperty
-//    private Double bus_stationCount;
+    @JsonProperty
+    private Integer bankCount;
+
+    @JsonProperty
+    private Integer barCount;
+
+    @JsonProperty
+    private Integer beauty_salonCount;
+
+    @JsonProperty
+    private Integer bus_stationCount;
+
+    @JsonProperty
+    private Integer cafeCount;
+
+    @JsonProperty
+    private Integer fire_stationCount;
+
+    @JsonProperty
+    private Integer gymCount;
+
+    @JsonProperty
+    private Integer hospitalCount;
+
+    @JsonProperty
+    private Integer night_clubCount;
+
+    @JsonProperty
+    private Integer parkCount;
+
+    @JsonProperty
+    private Integer pharmacyCount;
+
+    @JsonProperty
+    private Integer police_stationCount;
+
+    @JsonProperty
+    private Integer restaurantCount;
+
+    @JsonProperty
+    private Integer supermarketCount;
+
+    @JsonProperty
+    private Integer train_stationCount;
+
+    @JsonProperty
+    private Integer transit_stationCount;
 
     public DetailedProperty() {}
 
-    public DetailedProperty(Long propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score) {
+    public DetailedProperty(Long propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score, Integer bankCount, Integer barCount, Integer beauty_salonCount, Integer bus_stationCount, Integer cafeCount, Integer fire_stationCount, Integer gymCount, Integer hospitalCount, Integer night_clubCount, Integer parkCount, Integer pharmacyCount, Integer police_stationCount, Integer restaurantCount, Integer supermarketCount, Integer train_stationCount, Integer transit_stationCount) {
         this.propertyId = propertyId;
         this.price = price;
         this.bedrooms = bedrooms;
@@ -118,5 +154,21 @@ public class DetailedProperty {
         this.fitness_score = fitness_score;
         this.leisure_score = leisure_score;
         this.emergency_score = emergency_score;
+        this.bankCount = bankCount;
+        this.barCount = barCount;
+        this.beauty_salonCount = beauty_salonCount;
+        this.bus_stationCount = bus_stationCount;
+        this.cafeCount = cafeCount;
+        this.fire_stationCount = fire_stationCount;
+        this.gymCount = gymCount;
+        this.hospitalCount = hospitalCount;
+        this.night_clubCount = night_clubCount;
+        this.parkCount = parkCount;
+        this.pharmacyCount = pharmacyCount;
+        this.police_stationCount = police_stationCount;
+        this.restaurantCount = restaurantCount;
+        this.supermarketCount = supermarketCount;
+        this.train_stationCount = train_stationCount;
+        this.transit_stationCount = transit_stationCount;
     }
 }
