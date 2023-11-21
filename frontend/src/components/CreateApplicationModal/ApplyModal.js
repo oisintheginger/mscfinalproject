@@ -17,9 +17,9 @@ function ApplyModal({ closeModal, submitFunction }) {
 	const methods = useForm({ defaultValues: { message: "" } });
 
 	const submitHandler = (e) => {
-		console.log(e);
 		submitFunction(e);
 	};
+
 	return (
 		<Box
 			display={"flex"}
@@ -52,7 +52,15 @@ function ApplyModal({ closeModal, submitFunction }) {
 					fullWidth={true}
 					multiline={true}
 					rows={6}
-					{...methods.register("message", {})}
+					error={methods.formState.errors.message}
+					helperText={methods.formState.errors.message?.message}
+					{...methods.register("message", {
+						required: "This Field Is Required",
+						maxLength: {
+							value: 500,
+							message: "Max 500 Characters Long",
+						},
+					})}
 				/>
 				<Button
 					onClick={methods.handleSubmit(submitHandler)}

@@ -2,7 +2,6 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
 import { useMutation } from "react-query";
 export function CreateApplicationMutation(
-	propertyId,
 	successCallback = () => {},
 	errorCallback = () => {}
 ) {
@@ -23,6 +22,9 @@ export function CreateApplicationMutation(
 					message: message,
 				},
 			});
+		},
+		onSuccess: () => {
+			successCallback();
 		},
 	});
 }

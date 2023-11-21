@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { ApplicationIcon } from "../../Icons/HMEIcons";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 export function ApplyButton({ action = () => {}, down = false }) {
 	return (
 		<Button
@@ -37,18 +38,21 @@ export function ViewApplication({ action = () => {}, down = false }) {
 			sx={{
 				maxWidth: "30vw",
 				transform: "translate(0px, 8px)",
-				backgroundColor: "darkTeal.main",
-
+				backgroundColor: "darkWhite.main",
+				borderColor: "darkTeal.main",
+				color: "darkTeal.main",
 				"&:hover": {
-					backgroundColor: "buttonHover.main",
-					color: "darkWhite.main",
+					backgroundColor: "lightGrey.main",
+					borderColor: "darkTeal.main",
+
+					color: "darkTeal.main",
 				},
 				marginRight: 2,
 				height: 45,
 			}}
-			endIcon={<ApplicationIcon fontSize="large" />}
+			endIcon={<ChevronRightIcon fontSize="large" />}
 		>
-			Apply Now
+			View Application
 		</Button>
 	);
 }

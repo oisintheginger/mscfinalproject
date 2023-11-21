@@ -6,6 +6,7 @@
 
 
 > [!afternoon] Afternoon
-> - working on adding/removing favorites (~6):
+> - working on adding/removing favorites (~7):
 > 	- Connecting with backend
 > 	- Changing the button based on whether already favorited or not
+> 	- beginning to send off applications

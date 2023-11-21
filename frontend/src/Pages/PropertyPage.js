@@ -38,7 +38,10 @@ import {
 	AddFavoriteButton,
 	RemoveFavoriteButton,
 } from "../components/PropertyDetailsPageButtons/FavoritesButtons";
-import { ApplyButton } from "../components/PropertyDetailsPageButtons/ApplyButton";
+import {
+	ApplyButton,
+	ViewApplication,
+} from "../components/PropertyDetailsPageButtons/ApplyButton";
 import { CreateApplicationMutation } from "../Utils/Mutations/ApplicationMutation/ApplicationMutation";
 
 function PropertyPage() {
@@ -81,13 +84,7 @@ function PropertyPage() {
 	const { isError, isLoading, error, data } = useQuery(
 		["propertydetails", propertyId],
 		() => {
-			return API.get("HMEBackend", `/api/properties/${propertyId}`, {
-				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
-				},
+			return API.get("HMEBackend", `/api/properties/details/${propertyId}`, {
 				response: true,
 				refreshOnWindowFocus: false,
 				queryStringParameters: {
@@ -99,23 +96,26 @@ function PropertyPage() {
 	);
 
 	const { mutate: addToFavorites } = AddToFavoritesMutation(propertyId, () => {
-		console.log(userData);
 		handleRefresh();
-		console.log(userData);
 	});
 
 	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
 		propertyId,
 		() => {
-			console.log(userData);
 			handleRefresh();
-			console.log(userData);
 		}
 	);
 
-	const { mutate: createApplication } = CreateApplicationMutation();
+	const { mutate: createApplication } =
+		CreateApplicationMutation(handleRefresh);
 
 	const isFavorited = userData?.favourites.includes(propertyId) || false;
+
+	const isApplied = userData?.applications.some((el) => {
+		return el.propertyId.toString() == propertyId;
+	});
+
+	console.log(isApplied);
 
 	return (
 		<>
@@ -152,16 +152,25 @@ function PropertyPage() {
 									justifyContent: "flex-end",
 								}}
 							>
-								<ApplyButton
-									action={() => {
-										if (route === "authenticated") {
-											openModal();
-										} else {
-											openLoginModal();
-										}
-									}}
-									down={down}
-								/>
+								{isApplied ? (
+									<ViewApplication
+										action={() => {
+											navigate("/applications");
+										}}
+										down={down}
+									/>
+								) : (
+									<ApplyButton
+										action={() => {
+											if (route === "authenticated") {
+												openModal();
+											} else {
+												openLoginModal();
+											}
+										}}
+										down={down}
+									/>
+								)}
 								{/* <Button
 									onClick={() => {
 										if (route === "authenticated") {
@@ -409,7 +418,6 @@ function PropertyPage() {
 						p: 4,
 					}}
 				>
-					{/* <Typography textAlign={"center"}>FILL IN DETAILS TO APPLY</Typography> */}
 					<ApplyModal
 						closeModal={closeModal}
 						submitFunction={(event) => {

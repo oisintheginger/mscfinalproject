@@ -56,17 +56,17 @@ function Applications() {
 	]);
 
 	const { isError, isLoading, error, data, refetch } = useQuery(
-		["userFavourites"],
+		["userApplications"],
 		() => {
-			return API.get("HMEBackend", `/api/user/favourites`, {
+			return API.get("HMEBackend", `/api/user/a`, {
 				headers: {
 					Authorization:
-						user?.getSignInUserSession().getAccessToken().jwtToken || null,
+						user?.getSignInUserSession().getAccessToken().getJwtToken() || null,
 				},
+				enabled: false,
 				response: true,
 				queryStringParameters: {
-					userId: user?.username || null,
-					page: pageNum,
+					userId: user?.username,
 				},
 				refetchOnWindowFocus: false,
 				selector: (data) => {
@@ -85,6 +85,7 @@ function Applications() {
 		date: "01/01/1970",
 		applicationId: 1,
 	};
+
 	useEffect(() => {
 		setInitialBreadcrumbLocation(
 			location.state?.previousUrl ? location.state.previousUrl : null
