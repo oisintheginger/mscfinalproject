@@ -39,9 +39,14 @@ public class PropertiesController {
 
     @GetMapping("/batch")
     public ResponseEntity<Object> batchQVP(@RequestParam List<Long> ids) {
+        if (ids.isEmpty()) {
+            ResponseEntity.status(HttpStatus.OK).body("No properties returned because ids query param was empty");
+        }
         try {
             List<QuickViewProperty> result = propertyService.batchQVProperties(ids);
             return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Property was not found");
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
