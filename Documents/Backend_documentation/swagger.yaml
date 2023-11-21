@@ -57,6 +57,8 @@ paths:
                   $ref: "#/components/schemas/QuickViewProperty"
         "400":
           description: returns a 400 bad request response
+        "404":
+          description: returns a 404 not found response
         "500":
           description: returns a 500 internal server error if errors occur with database operations
   /api/properties/{propertyId}:
