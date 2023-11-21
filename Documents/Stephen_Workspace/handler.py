@@ -15,7 +15,7 @@ def handler():
         # Creating a cursor
         with connection.cursor() as cursor:
             # Executing SQL query
-            cursor.execute('SELECT * FROM BusStations')
+            cursor.execute('SELECT * FROM service_scores')
 
             # Fetching all rows
             rows = cursor.fetchall()

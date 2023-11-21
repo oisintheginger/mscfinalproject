@@ -120,7 +120,23 @@ public class PropertyService {
                     ss.retail_score,
                     ss.fitness_score,
                     ss.leisure_score,
-                    ss.emergency_score
+                    ss.emergency_score,
+                    ss.bankCount,
+                    ss.barCount,
+                    ss.beauty_salonCount,
+                    ss.bus_stationCount,
+                    ss.cafeCount,
+                    ss.fire_stationCount,
+                    ss.gymCount,
+                    ss.hospitalCount,
+                    ss.night_clubCount,
+                    ss.parkCount,
+                    ss.pharmacyCount,
+                    ss.police_stationCount,
+                    ss.restaurantCount,
+                    ss.supermarketCount,
+                    ss.train_stationCount,
+                    ss.transit_stationCount
                 FROM
                     MainInformation mi
                         INNER JOIN

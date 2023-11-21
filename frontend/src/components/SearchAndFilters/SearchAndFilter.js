@@ -4,6 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { BookmarkIcon, FilterIcon } from "../../Icons/HMEIcons";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useState } from "react";
 import ActiveTag from "../ActiveTag/ActiveTag";
 import FilterFields from "../CommonComp/FilterFields/FilterFields";
@@ -11,11 +12,76 @@ import FilterFields from "../CommonComp/FilterFields/FilterFields";
 import { useFormContext } from "react-hook-form";
 import { SEARCH_TERM } from "../../Utils/filter_constants";
 import ActiveTagsStack from "../ActiveTag/ActiveTagsStack";
+import { useMutation } from "react-query";
+import { API } from "aws-amplify";
 
 function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 	const methods = useFormContext();
+	
+
+	//Adding Save Search Functionality
+
+
+	const { user } = useAuthenticator((context) => [
+		context.user,
+	]);
+
+	const postSaveSearch = async (queryParams) => {
+		const token = user?.getSignInUserSession().getAccessToken().jwtToken || null;
+		const searchData = queryParams;
+		return await API.post("HMEBackend", `/api/user/new/s`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+			response: true,
+			queryStringParameters: {
+				'searchString': searchData,
+			},
+		});
+	};
+	
+
+	const saveSearchMutation = useMutation(postSaveSearch, {
+		onSuccess: () => {
+			alert("Search saved!");
+		},
+		onError: (error) => {
+			console.error("Error saving search:", error);
+			alert("UNSUCCESSFUL");
+		},
+	});
+	
+	function getEditedURL() {
+		const url = window.location.href;
+		const [baseUrl, queryString] = url.split('?');
+	
+		if (!queryString) {
+			return url;
+		}
+		const params = queryString.split('&').filter(param => !param.startsWith('page=1'));
+		const newQueryString = params.join('&');
+		return `${newQueryString}`;
+	}; // function to remove page=1&
+	
+
+	const handleSaveSearch = () => {
+		try {
+			const editedUrl = getEditedURL();
+			const queryParams = new URLSearchParams(editedUrl).toString(); // Convert to a query string
+			// console.log("queryParams:", queryParams);
+	 		// alert("Search saved!");
+			saveSearchMutation.mutate(queryParams);
+		} catch (error) {
+			console.error("Error preparing search data:", error);
+			alert("Search save unsuccessful.");
+		}
+	};
+	
+	
+	
+
 	return (
 		<Box sx={{ width: "100%", flexGrow: 1, height: "max-content" }}>
 			<Box>
@@ -79,6 +145,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 									fontSize: 2,
 								}}
 								startIcon={<BookmarkIcon />}
+								onClick={handleSaveSearch}
 							>
 								{above && (
 									<Typography variant="button" display={"block"}>
