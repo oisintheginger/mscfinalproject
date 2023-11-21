@@ -158,7 +158,6 @@ function Applications() {
 	};
 
 	const OpenApplicationDetailsModal = (applicationId) => {
-		console.log(applicationId);
 		setApplicationDetailsModalOpen(true);
 		setApplicationToView(applicationId);
 	};

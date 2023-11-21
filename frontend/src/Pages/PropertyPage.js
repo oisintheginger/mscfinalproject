@@ -111,9 +111,10 @@ function PropertyPage() {
 
 	const isFavorited = userData?.favourites.includes(propertyId) || false;
 
-	const isApplied = userData?.applications.some((el) => {
-		return el.propertyId.toString() == propertyId;
-	});
+	const isApplied =
+		userData?.applications.some((el) => {
+			return el.propertyId.toString() == propertyId;
+		}) || false;
 
 	console.log(isApplied);
 

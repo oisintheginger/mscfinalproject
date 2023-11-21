@@ -24,24 +24,25 @@ function UserContextProvider({ children }) {
 			});
 		},
 		{
-			select: (data) => {
-				const ParseFavorites = (userObject) => {
-					const copy = cloneDeep(userObject);
-					copy.favourites = copy.favourites
-						.map((el) => {
-							return el.favourite;
-						})
-						.filter((el) => {
-							return el != "1";
-						});
-					return copy;
-				};
-				let out = ParseFavorites(data.data);
-				return out;
-			},
+			// select: (data) => {
+			// 	console.log(data);
+			// 	const ParseFavorites = (userObject) => {
+			// 		const copy = cloneDeep(userObject);
+			// 		copy.favourites = copy.favourites
+			// 			.map((el) => {
+			// 				return el.favourite;
+			// 			})
+			// 			.filter((el) => {
+			// 				return el != "1";
+			// 			});
+			// 		return copy;
+			// 	};
+			// 	let out = ParseFavorites(data.data);
+			// 	return out;
+			// },
 			enabled: false,
 			onError: (err) => {
-				console.log(err);
+				console.log("Error in user context", err);
 			},
 		}
 	);

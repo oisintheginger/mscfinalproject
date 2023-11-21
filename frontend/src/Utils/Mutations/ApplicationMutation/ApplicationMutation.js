@@ -26,6 +26,9 @@ export function CreateApplicationMutation(
 		onSuccess: () => {
 			successCallback();
 		},
+		onMutate: (d) => {
+			console.log(d);
+		},
 	});
 }
 
