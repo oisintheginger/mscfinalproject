@@ -1,194 +1,122 @@
 
 package msc.HME.binding;
 
-import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+
+@Getter
+@Setter
 public class DetailedProperty {
+
     @JsonProperty
-    private int propertyId;
+    private Long propertyId;
+
     @JsonProperty
-    private double price;
+    private Double price;
+
     @JsonProperty
-    private int bedrooms;
+    private Integer bedrooms;
+
     @JsonProperty
-    private int bathrooms;
+    private Integer bathrooms;
+
     @JsonProperty
     private String propertyType;
+
     @JsonProperty
-    private String address;
+    private String streetAddress;
+
     @JsonProperty
     private String zipcode;
+
     @JsonProperty
-    private String longitude;
+    private Double longitude;
+
     @JsonProperty
-    private String latitude;
+    private Double latitude;
+
     @JsonProperty
     private String description;
+
     @JsonProperty
-    private boolean petsAllowed;
-    @JsonProperty
-    private LocalDate lastUpdated;
+    private String[] petsAllowed;
+
     @JsonProperty
     private LocalDate datePosted;
 
     @JsonProperty
-    private int safetyScore;
-
-    @JsonProperty
-    private int servicesScore;
-
-    @JsonProperty
     private String[] images;
-    // private String atAGlanceFacts; maybe use a structured object or Map instead of a raw JSON string
+
+    @JsonProperty
+    private Double overallCrimeScore;
+
+    @JsonProperty
+    private Double servicesOverallScore;
+
+    @JsonProperty
+    private Integer servicesCount;
+
+    @JsonProperty
+    private Double finance_score;
+
+    @JsonProperty
+    private Double transportation_score;
+
+    @JsonProperty
+    private Double personal_care_score;
+
+    @JsonProperty
+    private Double retail_score;
+
+    @JsonProperty
+    private Double fitness_score;
+
+    @JsonProperty
+    private Double leisure_score;
+
+    @JsonProperty
+    private Double emergency_score;
+
+//    @JsonProperty
+//    private Integer bankCount;
+//
+//    @JsonProperty
+//    private Integer barCount;
+//
+//    @JsonProperty
+//    private Integer beauty_salonCount;
+//
+//    @JsonProperty
+//    private Double bus_stationCount;
 
     public DetailedProperty() {}
 
-    public DetailedProperty(int propertyId, double price, int bedrooms, int bathrooms, String propertyType, String address, String zipcode, String longitude, String latitude, String description, boolean petsAllowed, LocalDate lastUpdated, LocalDate datePosted, double TBDScore, String[] images) {
+    public DetailedProperty(Long propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score) {
         this.propertyId = propertyId;
         this.price = price;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
         this.propertyType = propertyType;
-        this.address = address;
+        this.streetAddress = streetAddress;
         this.zipcode = zipcode;
         this.longitude = longitude;
         this.latitude = latitude;
         this.description = description;
         this.petsAllowed = petsAllowed;
-        this.lastUpdated = lastUpdated;
         this.datePosted = datePosted;
-        this.safetyScore = safetyScore;
-        this.servicesScore = servicesScore;
         this.images = images;
-    }
-
-    public int getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(int propertyId) {
-        this.propertyId = propertyId;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getBedrooms() {
-        return bedrooms;
-    }
-
-    public void setBedrooms(int bedrooms) {
-        this.bedrooms = bedrooms;
-    }
-
-    public int getBathrooms() {
-        return bathrooms;
-    }
-
-    public void setBathrooms(int bathrooms) {
-        this.bathrooms = bathrooms;
-    }
-
-    public String getPropertyType() {
-        return propertyType;
-    }
-
-    public void setPropertyType(String propertyType) {
-        this.propertyType = propertyType;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isPetsAllowed() {
-        return petsAllowed;
-    }
-
-    public void setPetsAllowed(boolean petsAllowed) {
-        this.petsAllowed = petsAllowed;
-    }
-
-    public LocalDate getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(LocalDate lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-    public LocalDate getDatePosted() {
-        return datePosted;
-    }
-
-    public void setDatePosted(LocalDate datePosted) {
-        this.datePosted = datePosted;
-    }
-
-    public int getSafetyScore() {
-        return safetyScore;
-    }
-
-    public void setSafetyScore(int safetyScore) {
-        this.safetyScore = safetyScore;
-    }
-
-    public int getServicesScore() {
-        return servicesScore;
-    }
-
-    public void setServicesScore(int servicesScore) {
-        this.servicesScore = servicesScore;
-    }
-
-    public String[] getImages() {
-        return images;
-    }
-
-    public void setImages(String[] images) {
-        this.images = images;
+        this.overallCrimeScore = overallCrimeScore;
+        this.servicesOverallScore = servicesOverallScore;
+        this.servicesCount = servicesCount;
+        this.finance_score = finance_score;
+        this.transportation_score = transportation_score;
+        this.personal_care_score = personal_care_score;
+        this.retail_score = retail_score;
+        this.fitness_score = fitness_score;
+        this.leisure_score = leisure_score;
+        this.emergency_score = emergency_score;
     }
 }
-

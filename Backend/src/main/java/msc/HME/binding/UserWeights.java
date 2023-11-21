@@ -9,10 +9,10 @@ import lombok.Setter;
 public class UserWeights {
 
     @JsonProperty
-    private Integer entertainment;
+    private Integer leisure;
 
     @JsonProperty
-    private Integer pharmacies;
+    private Integer personal_care;
 
     @JsonProperty
     private Integer retail;
@@ -21,7 +21,7 @@ public class UserWeights {
     private Integer fitness;
 
     @JsonProperty
-    private Integer financial;
+    private Integer finance;
 
     @JsonProperty
     private Integer transportation;
@@ -32,12 +32,12 @@ public class UserWeights {
     public UserWeights() {
     }
 
-    public UserWeights(Integer entertainment, Integer pharmacies, Integer retail, Integer fitness, Integer financial, Integer transportation, Integer emergency) {
-        this.entertainment = entertainment;
-        this.pharmacies = pharmacies;
+    public UserWeights(Integer leisure, Integer personal_care, Integer retail, Integer fitness, Integer finance, Integer transportation, Integer emergency) {
+        this.leisure = leisure;
+        this.personal_care = personal_care;
         this.retail = retail;
         this.fitness = fitness;
-        this.financial = financial;
+        this.finance = finance;
         this.transportation = transportation;
         this.emergency = emergency;
     }
