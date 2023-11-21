@@ -8,8 +8,8 @@ export function CreateApplicationMutation(
 	const { user } = useAuthenticator((context) => [context.user]);
 
 	return useMutation({
-		mutationFn: (data) => {
-			return API.del("HMEBackend", "/api/user/remove/f", {
+		mutationFn: ({ propertyId, message }) => {
+			return API.post("HMEBackend", "/api/user/new/a", {
 				headers: {
 					Authorization:
 						"Bearer " +
@@ -18,19 +18,13 @@ export function CreateApplicationMutation(
 				},
 				response: true,
 				queryStringParameters: {
-					propertyId: data.propertyId,
+					propertyId: propertyId,
+					message: message,
 				},
 			});
 		},
-		onMutate: () => {
-			console.log("triggered");
-		},
-		onError: (err) => {
-			errorCallback(err);
-			console.log(err);
-		},
-		onSuccess: (data) => {
-			successCallback(data);
+		onSuccess: () => {
+			successCallback();
 		},
 	});
 }
@@ -43,7 +37,7 @@ export function DeleteApplicationMutation(
 
 	return useMutation({
 		mutationFn: ({ propertyId, message }) => {
-			return API.post("HMEBackend", "/api/user/new/a", {
+			return API.del("HMEBackend", "/api/user/remove/a", {
 				headers: {
 					Authorization:
 						"Bearer " +
