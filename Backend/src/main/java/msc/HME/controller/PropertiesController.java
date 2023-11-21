@@ -65,8 +65,7 @@ public class PropertiesController {
         DetailedProperty property = propertyService.getPropertyDetails(id);
         String userId = userService.validateJWT(request);
         if (userId!=null) {
-            // get personalised scores and change property scores through lambda function
-//            property.set blabla score
+            propertyService.getPersonalScores();
             System.out.println(userId);
         }
         return ResponseEntity.status(HttpStatus.OK).body(property);
