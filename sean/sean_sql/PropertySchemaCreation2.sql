@@ -879,3 +879,29 @@ CREATE TABLE user_service_scores (
 
 )
 
+DROP TABLE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
