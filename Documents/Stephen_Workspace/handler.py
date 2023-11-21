@@ -1,4 +1,5 @@
 import pymysql
+import pandas as pd
 
 #configuration value
 endpoint = open('endpoint.txt','r').read()
@@ -10,19 +11,66 @@ database_name = open('database_name.txt','r').read()
 connection = pymysql.connect(host=endpoint, user=username,passwd=password, db= database_name)
 
 
-def handler():
+# def handler():
+#     try:
+#         # Creating a cursor
+#         with connection.cursor() as cursor:
+#             # Executing SQL query
+#             cursor.execute('SELECT * FROM service_scores')
+
+#             # Fetching all rows
+#             rows = cursor.fetchall()
+
+#             # Processing the rows
+#             for row in rows:
+#                 print(row)  
+
+#     except Exception as e:
+#         print(f"Error: {e}")
+
+#     finally:
+#         # Closing the connection outside the try-except block to ensure it happens regardless of exceptions
+#         connection.close()
+
+# # Call the handler function 
+# handler()
+
+def handler(): #creating a function to create and view tags
     try:
         # Creating a cursor
         with connection.cursor() as cursor:
-            # Executing SQL query
-            cursor.execute('SELECT * FROM service_scores')
+            # Executing SQL query to fetch data from the service_scores table
+            query = 'SELECT * FROM service_scores'
+            cursor.execute(query)
 
-            # Fetching all rows
-            rows = cursor.fetchall()
+            # Fetching the results into a DataFrame
+            data = pd.DataFrame(cursor.fetchall(), columns=[desc[0] for desc in cursor.description])
 
-            # Processing the rows
-            for row in rows:
-                print(row)  
+            # Checking the data types of the columns
+            # print(data.dtypes)
+
+            # Checking for missing values in the columns
+            # print(data.isna().sum())
+
+            neighbourhoods = data['neighbourhoodID'].unique()
+
+            # Creating tags for each neighbourhood
+            for neighbourhood in neighbourhoods:
+                # Selecting data for the current neighbourhood
+                neighbourhood_data = data[data['neighbourhoodID'] == neighbourhood]
+
+                if not neighbourhood_data.empty:
+                    # Getting the three services with the highest z scores
+                    top_services = neighbourhood_data.filter(regex='_z_score').idxmax(axis=1).tolist()
+
+                    # Creating tags based on the three services with the highest z scores
+                    tags = ', '.join(top_services)
+
+                    # Adding a new 'tags' column to the DataFrame for printing
+                    data.loc[data['neighbourhoodID'] == neighbourhood, 'tags'] = tags
+
+            # Printing the DataFrame with the added 'tags' column
+            print(data[['neighbourhoodID', 'tags']])
 
     except Exception as e:
         print(f"Error: {e}")
@@ -31,5 +79,5 @@ def handler():
         # Closing the connection outside the try-except block to ensure it happens regardless of exceptions
         connection.close()
 
-# Call the handler function
+# Calling the function to create and view the tags
 handler()
