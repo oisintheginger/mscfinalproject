@@ -1,7 +1,9 @@
 package msc.HME.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import msc.HME.binding.*;
 import msc.HME.service.PropertyService;
+import msc.HME.service.UserService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -16,11 +18,11 @@ import java.util.List;
 public class PropertiesController {
 
     private final PropertyService propertyService;
-    private final JsonPlaceholderService jsonPlaceholderService;
+    private final UserService userService;
 
-    public PropertiesController(PropertyService qvpService, JsonPlaceholderService jsonPlaceholderService) {
+    public PropertiesController(PropertyService qvpService, UserService userService) {
         this.propertyService = qvpService;
-        this.jsonPlaceholderService = jsonPlaceholderService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -35,6 +37,16 @@ public class PropertiesController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @GetMapping("/batch")
+    public ResponseEntity<Object> batchQVP(@RequestParam List<Long> ids) {
+        try {
+            List<QuickViewProperty> result = propertyService.batchQVProperties(ids);
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+        }
+    }
+
     @GetMapping("/{id}")
     ResponseEntity<Object> findQVProperty(@PathVariable Long id) {
         try {
@@ -46,17 +58,18 @@ public class PropertiesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
     }
+    
 
     @GetMapping("/details/{id}")
-    ResponseEntity<DetailedProperty> findPropertyById(@PathVariable Integer id) {
-        if (id <= 0) {
-            return ResponseEntity.badRequest().build();
+    ResponseEntity<Object> findPropertyById(@PathVariable Integer id, HttpServletRequest request) {
+        DetailedProperty property = propertyService.getPropertyDetails(id);
+        String userId = userService.validateJWT(request);
+        if (userId!=null) {
+            // get personalised scores and change property scores through lambda function
+//            property.set blabla score
+            System.out.println(userId);
         }
-        DetailedProperty property = jsonPlaceholderService.loadDetailedProperty(id);
-        if (property == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(property);
+        return ResponseEntity.status(HttpStatus.OK).body(property);
     }
 
     @GetMapping("/locations")
