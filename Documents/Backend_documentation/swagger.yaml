@@ -10,7 +10,8 @@ servers:
 paths:
   /api/properties:
     get:
-      summary: returns a list with the first entry the total number of pages and the rest of quick view properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50
+      summary: returns quickviewproperties
+      description: a list with the first entry the total number of pages and the rest of quick view properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50
       parameters:
         - in: query
           name: page
@@ -35,6 +36,29 @@ paths:
           description: returns a 400 bad request response code (with a message)
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
+  /api/properties/batch:
+    get:
+      summary: returns batch quickviewproperties
+      description: batch method that takes a propertyId list and returns the corresponding QVProperties
+      parameters:
+        - in: query
+          name: ids
+          required: true
+          schema:
+            type: array
+      responses:
+        "200":
+          description: A list of quickviewproperties
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/QuickViewProperty"
+        "400":
+          description: returns a 400 bad request response
+        "500":
+          description: returns a 500 internal server error if errors occur with database operations
   /api/properties/{propertyId}:
     get:
       summary: returns quick view property of specific property id
@@ -143,7 +167,7 @@ paths:
             type: string
             example: options are w (weights), f (favourites), s (searches), a (applications)
         - in: query
-          name: search string
+          name: searchString
           required: false
           schema:
             type: string
@@ -234,12 +258,12 @@ paths:
             type: string
             example: options are w (weights), f (favourites), s (searches), a (applications)
         - in: query
-          name: search string
+          name: searchString
           required: false
           schema:
             type: string
         - in: query
-          name: newSearch string
+          name: newSearchString
           required: false
           schema:
             type: string
@@ -300,7 +324,7 @@ paths:
             type: string
             example: options are w (weights), f (favourites), s (searches)
         - in: query
-          name: search string
+          name: searchString
           required: false
           schema:
             type: string
@@ -341,19 +365,18 @@ components:
       type: object
       required:
         - propertyId
-        - geolocation
+        - longitude
+        - latitude
         - price
         - bathrooms
         - bedrooms
         - streetAddress
         - zipcode
-        - description
+        - overview
         - images
       properties:
         id:
-          type: integer
-          format: int64
-          example: 123456
+          type: number
         longitude:
           type: number
         latitude:
@@ -375,15 +398,49 @@ components:
           items:
             type: string
     DetailedProperty:
-      description: Details implemented right now in the mock data
       type: object
       required:
-        - id
+        - propertyId
+        - price
+        - bedrooms
+        - bathrooms
+        - propertyType
+        - streetAddress
+        - zipcode
+        - longitude
+        - latitude
+        - description
+        - datePosted
+        - images
+        - overallCrimeScore
+        - servicesOverallScore
+        - servicesCount
+        - finance_score
+        - transportation_score
+        - personal_care_score
+        - retail_score
+        - fitness_score
+        - leisure_score
+        - emergency_score
+        - bankCount
+        - barCount
+        - beauty_salonCount
+        - bus_stationCount
+        - cafeCount
+        - fire_stationCount
+        - gymCount
+        - hospitalCount
+        - night_clubCount
+        - parkCount
+        - pharmacyCount
+        - police_stationCount
+        - restaurantCount
+        - supermarketCount
+        - train_stationCount
+        - transit_stationCount
       properties:
         id:
-          type: integer
-          format: int64
-          example: 123456
+          type: number
         price:
           type: number
         bedrooms:
@@ -393,41 +450,88 @@ components:
         propertyType:
           type: string
           example: apartment
-        address:
+        streetAddress:
           type: string
-          example: 1424 Karen Spur
         zipcode:
           type: string
         longitude:
-          type: string
+          type: number
         latitude:
-          type: string
-        full_description:
+          type: number
+        description_:
           type: string
         petsAllowed:
-          type: boolean
-        lastUpdated:
           type: array
           items:
-            type: integer
-          example: [2023, 8, 30]
+            type: string
         datePosted:
-          type: array
-          items:
-            type: integer
-          example: [2023, 8, 30]
-        TBDScore:
-          type: number
+          type: object
         images:
           type: array
           items:
             type: string
+        overallCrimeScore:
+          type: number
+        servicesOverallScore:
+          type: number
+        servicesCount:
+          type: integer
+        finance_score:
+          type: number
+        transportation_score:
+          type: number
+        personal_care_score:
+          type: number
+        retail_score:
+          type: number
+        fitness_score:
+          type: number
+        leisure_score:
+          type: number
+        emergency_score:
+          type: number
+        bankCount:
+          type: integer
+        barCount:
+          type: integer
+        beauty_salonCount:
+          type: integer
+        bus_stationCount:
+          type: integer
+        cafeCount:
+          type: integer
+        fire_stationCount:
+          type: integer
+        gymCount:
+          type: integer
+        hospitalCount:
+          type: integer
+        night_clubCount:
+          type: integer
+        parkCount:
+          type: integer
+        pharmacyCount:
+          type: integer
+        police_stationCount:
+          type: integer
+        restaurantCount:
+          type: integer
+        supermarketCount:
+          type: integer
+        train_stationCount:
+          type: integer
+        transit_stationCount:
+          type: integer
     user:
       description: user details available in user table
       type: object
       required:
         - id
         - email
+        - searches
+        - favourites
+        - weights
+        - applications
       properties:
         id:
           type: string
@@ -442,8 +546,34 @@ components:
           items:
             type: object
         weights:
-          type: object
+          $ref: "#/components/schemas/userWeights"
         applications:
           type: array
           items:
             type: object
+    userWeights:
+      description: the personal user weights for the scoring system
+      type: object
+      required:
+        - leisure
+        - personal_care
+        - retail
+        - fitness
+        - finance
+        - transportation
+        - emergency
+      properties:
+        leisure:
+          type: integer
+        personal_care:
+          type: integer
+        retail:
+          type: integer
+        fitness:
+          type: integer
+        finance:
+          type: integer
+        transportation:
+          type: integer
+        emergency:
+          type: integer

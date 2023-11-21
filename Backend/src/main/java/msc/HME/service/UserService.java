@@ -32,17 +32,21 @@ public class UserService {
         if ( authHeader == null) {
             return null;
         }
-        String token = authHeader.split(" ")[1];  // not necessary in production ... I believe
+        String token = authHeader.split(" ")[1];
 
         DecodedJWT jwt = JWT.decode(token);
         String userId = jwt.getSubject();
         String issuer = jwt.getIssuer();
         Date expiresAt = jwt.getExpiresAt();
         Date now = new Date();
-
-        if (!Objects.equals(issuer, "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_VBubqBEr4") && (expiresAt.equals(now) || expiresAt.after(now))) {
+        System.out.println(issuer);
+        System.out.println(expiresAt);
+        System.out.println(now);
+        if (!Objects.equals(issuer, "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_VBubqBEr4") || expiresAt.equals(now) || now.after(expiresAt)) { // &&
+            System.out.println("expired");
             return null;
         } else {
+            System.out.println("not?");
             return userId;
         }
     }

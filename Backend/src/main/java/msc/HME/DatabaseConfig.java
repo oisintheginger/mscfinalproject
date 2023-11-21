@@ -15,14 +15,10 @@ public class DatabaseConfig {
     @Bean
     public DataSource dataSource() {
         HikariConfig hikariConfig = new HikariConfig();
-
         hikariConfig.setJdbcUrl("jdbc:mysql://myhmedb.cdc3elu6ufgt.eu-west-1.rds.amazonaws.com/hmedbmain");
         hikariConfig.setUsername(System.getenv("RDS_USER"));
         hikariConfig.setPassword(System.getenv("RDS_PW"));
-
-        // Set the maximum pool size
         hikariConfig.setMaximumPoolSize(1);
-        hikariConfig.setIdleTimeout(5 * 60 * 1000);
         return new HikariDataSource(hikariConfig);
     }
 
