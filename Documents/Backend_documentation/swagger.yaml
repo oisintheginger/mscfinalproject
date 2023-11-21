@@ -167,7 +167,7 @@ paths:
             type: string
             example: options are w (weights), f (favourites), s (searches), a (applications)
         - in: query
-          name: search string
+          name: searchString
           required: false
           schema:
             type: string
@@ -258,12 +258,12 @@ paths:
             type: string
             example: options are w (weights), f (favourites), s (searches), a (applications)
         - in: query
-          name: search string
+          name: searchString
           required: false
           schema:
             type: string
         - in: query
-          name: newSearch string
+          name: newSearchString
           required: false
           schema:
             type: string
@@ -324,7 +324,7 @@ paths:
             type: string
             example: options are w (weights), f (favourites), s (searches)
         - in: query
-          name: search string
+          name: searchString
           required: false
           schema:
             type: string
@@ -422,6 +422,22 @@ components:
         - fitness_score
         - leisure_score
         - emergency_score
+        - bankCount
+        - barCount
+        - beauty_salonCount
+        - bus_stationCount
+        - cafeCount
+        - fire_stationCount
+        - gymCount
+        - hospitalCount
+        - night_clubCount
+        - parkCount
+        - pharmacyCount
+        - police_stationCount
+        - restaurantCount
+        - supermarketCount
+        - train_stationCount
+        - transit_stationCount
       properties:
         id:
           type: number
@@ -474,6 +490,38 @@ components:
           type: number
         emergency_score:
           type: number
+        bankCount:
+          type: integer
+        barCount:
+          type: integer
+        beauty_salonCount:
+          type: integer
+        bus_stationCount:
+          type: integer
+        cafeCount:
+          type: integer
+        fire_stationCount:
+          type: integer
+        gymCount:
+          type: integer
+        hospitalCount:
+          type: integer
+        night_clubCount:
+          type: integer
+        parkCount:
+          type: integer
+        pharmacyCount:
+          type: integer
+        police_stationCount:
+          type: integer
+        restaurantCount:
+          type: integer
+        supermarketCount:
+          type: integer
+        train_stationCount:
+          type: integer
+        transit_stationCount:
+          type: integer
     user:
       description: user details available in user table
       type: object
