@@ -45,7 +45,7 @@ function ApplicationCard({
 				<CardMedia
 					component={"img"}
 					sx={{ height: { xs: "100px", md: "140px" } }}
-					image={data.thumbnail}
+					image={data.image}
 					alt="Image of Rental Listing"
 				/>
 			</CardActionArea>
@@ -53,7 +53,7 @@ function ApplicationCard({
 				<CardActionArea
 					onClick={(event) => {
 						event.preventDefault();
-						openApplicationDetails(data.propertyId);
+						openApplicationDetails(data.applicationId);
 					}}
 				>
 					<Stack>
@@ -73,7 +73,7 @@ function ApplicationCard({
 				<Divider />
 				<Box mt={2}>
 					<Stack justifyContent={"center"} alignItems={"center"}>
-						<Typography>{data.status?.toUpperCase()}</Typography>
+						<Typography>{data.status.toUpperCase()}</Typography>
 					</Stack>
 				</Box>
 			</CardContent>
