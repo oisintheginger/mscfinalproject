@@ -49,7 +49,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 		},
 		onError: (error) => {
 			console.error("Error saving search:", error);
-			alert("Search save unsuccessful.");
+			alert("UNSUCCESSFUL");
 		},
 	});
 	
