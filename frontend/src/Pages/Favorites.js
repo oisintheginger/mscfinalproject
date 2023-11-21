@@ -64,7 +64,9 @@ function Favorites() {
 			return API.get("HMEBackend", `/api/user/favourites`, {
 				headers: {
 					Authorization:
-						user?.getSignInUserSession().getAccessToken().jwtToken || null,
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
 				},
 				response: true,
 				queryStringParameters: {

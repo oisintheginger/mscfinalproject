@@ -37,7 +37,6 @@ function UserContextProvider({ children }) {
 					return copy;
 				};
 				let out = ParseFavorites(data.data);
-				console.log(out);
 				return out;
 			},
 			enabled: false,

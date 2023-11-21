@@ -61,18 +61,56 @@ function Applications() {
 			return API.get("HMEBackend", `/api/user/a`, {
 				headers: {
 					Authorization:
-						user?.getSignInUserSession().getAccessToken().getJwtToken() || null,
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
 				},
-				enabled: false,
-				response: true,
 				queryStringParameters: {
-					userId: user?.username,
-				},
-				refetchOnWindowFocus: false,
-				selector: (data) => {
-					return data.data;
+					userId: user?.username || null,
 				},
 			});
+		},
+		{
+			response: true,
+			refetchOnWindowFocus: false,
+			enabled: true,
+			selector: (data) => {
+				return data.data;
+			},
+			onSuccess: (data) => {
+				console.log(data);
+			},
+		}
+	);
+
+	const {
+		isError: detailsIsError,
+		isLoading: detailsIsLoading,
+		error: detailsError,
+		data: detailsData,
+		refetch: detailsRefetch,
+	} = useQuery(
+		["applicationDetails"],
+		() => {
+			return API.get("HMEBackend", `/api/properties/batch`, {
+				headers: {
+					Authorization:
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
+				},
+				queryStringParameters: {
+					ids: [],
+				},
+			});
+		},
+		{
+			response: true,
+			refetchOnWindowFocus: false,
+			selector: (data) => {
+				console.log(data.data);
+				return data.data;
+			},
 		}
 	);
 
