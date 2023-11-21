@@ -162,9 +162,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "3bcb0b867a62282a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/November/21st November Tuesday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 12
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -238,7 +250,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/November/20th November Monday.md",
+                "file": "Daily Diary/November/21st November Tuesday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -255,7 +267,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/November/20th November Monday.md",
+                "file": "Daily Diary/November/21st November Tuesday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -278,7 +290,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/November/20th November Monday.md"
+                "file": "Daily Diary/November/21st November Tuesday.md"
               }
             }
           }
@@ -300,10 +312,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c33f165a65c2721f",
+  "active": "3bcb0b867a62282a",
   "lastOpenFiles": [
-    "Daily Diary/November/16th November Thursday.md",
     "Daily Diary/November/20th November Monday.md",
+    "Daily Diary/November/21st November Tuesday.md",
+    "Daily Diary/November/16th November Thursday.md",
     "Daily Diary/November/14th November Tuesday.md",
     "Daily Diary/November/13th November Monday.md",
     "Daily Diary/November/18th November Saturday.md",
@@ -331,7 +344,6 @@
     "Daily Diary/November/7th November Tuesday.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Daily Diary/November/1st November 2023.md",
-    "Daily Diary/October/Tuesday 3rd October.md",
     "Master's Project/UX Work/User Testing/F1C7CC20",
     "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",

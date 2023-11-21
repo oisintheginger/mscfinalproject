@@ -68,15 +68,17 @@ function Favorites() {
 							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
 						null,
 				},
-				response: true,
-				queryStringParameters: {
-					userId: user?.username || null,
-					...methods.getValues(),
-				},
-				selector: (data) => {
-					return data.data;
-				},
 			});
+		},
+		{
+			response: true,
+			queryStringParameters: {
+				userId: user?.username || null,
+				...methods.getValues(),
+			},
+			selector: (data) => {
+				return data.data;
+			},
 		}
 	);
 
