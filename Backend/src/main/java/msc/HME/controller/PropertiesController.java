@@ -56,11 +56,6 @@ public class PropertiesController {
         }
     }
 
-//
-//        if (ids.equals("[]")) {
-//        ResponseEntity.status(HttpStatus.OK).body("No properties returned because ids query param was empty");
-//    }
-
     @GetMapping("/{id}")
     ResponseEntity<Object> findQVProperty(@PathVariable Long id) {
         try {
