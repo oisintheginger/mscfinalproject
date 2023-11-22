@@ -64,11 +64,13 @@ def handler(): #creating a function to create and view tags
 
                 if not neighbourhood_data.empty:
                     # Getting the three services with the highest z scores
+
                     # top_services = neighbourhood_data.filter(regex='_z_score(?!.*sum_z_scores)').idxmax(axis=1).tolist()
                     top_services = neighbourhood_data.filter(regex='_z_score(?!.*sum_z_scores)').apply(lambda x: x.nlargest(3).index.tolist(), axis=1)
 
                     # Converting the list of lists into a list of strings
                     top_services = [", ".join(str(item) for item in sublist) for sublist in top_services]
+
 
                     # Creating tags based on the three services with the highest z scores
                     tags = ', '.join(top_services)

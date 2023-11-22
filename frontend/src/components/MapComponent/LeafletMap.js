@@ -103,6 +103,11 @@ function HMEMap({ marks, points, setPoints, resetPage }) {
 								position={[data.latitude, data.longitude]}
 								icon={markerIcon}
 								key={key}
+								eventHandlers={{
+									click: () => {
+										console.log("marker clicked");
+									},
+								}}
 							>
 								<MapPropertyPopup
 									propertyId={data.propertyId}

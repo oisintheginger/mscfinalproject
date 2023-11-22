@@ -171,7 +171,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 
 	const mapFeatures = {
 		hospital: {
-			type: "hopsital",
+			type: "hospital",
 			state: useState(true),
 			icon: LeafletHospital,
 			menuIcon: <HospitalIcon fontSize="medium" />,

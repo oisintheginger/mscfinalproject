@@ -64,17 +64,21 @@ function Favorites() {
 			return API.get("HMEBackend", `/api/user/favourites`, {
 				headers: {
 					Authorization:
-						user?.getSignInUserSession().getAccessToken().jwtToken || null,
-				},
-				response: true,
-				queryStringParameters: {
-					userId: user?.username || null,
-					...methods.getValues(),
-				},
-				selector: (data) => {
-					return data.data;
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
 				},
 			});
+		},
+		{
+			response: true,
+			queryStringParameters: {
+				userId: user?.username || null,
+				...methods.getValues(),
+			},
+			selector: (data) => {
+				return data.data;
+			},
 		}
 	);
 
