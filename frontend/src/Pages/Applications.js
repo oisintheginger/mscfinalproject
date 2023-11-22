@@ -64,12 +64,15 @@ function Applications() {
 		{
 			response: true,
 			refetchOnWindowFocus: false,
-			enabled: false,
+			enabled: true,
 			select: (data) => {
 				return data;
 			},
 			onSuccess: (data) => {
-				// console.log(data);
+				console.log(data);
+			},
+			onError: (err) => {
+				console.log(err);
 			},
 		}
 	);
@@ -143,10 +146,8 @@ function Applications() {
 		}
 	}, [applicationData, isSuccess]);
 
-	const { pageNum, handlePageChange } = usePagination(
-		refetch,
-		setSearchParameters
-	);
+	const { pageNum, handlePageChange } = usePagination(() => {},
+	setSearchParameters);
 
 	const OpenConfirmDeleteModal = (applicationId) => {
 		setConfirmDeleteModalOpen(true);
@@ -157,15 +158,20 @@ function Applications() {
 		setApplicationToDelete(null);
 	};
 
-	const OpenApplicationDetailsModal = (applicationId) => {
+	const OpenApplicationDetailsModal = (message) => {
 		setApplicationDetailsModalOpen(true);
-		setApplicationToView(applicationId);
+		setApplicationToView(message);
 	};
 	const CloseApplicationDetailsModal = () => {
 		setApplicationDetailsModalOpen(false);
 		setApplicationToView(null);
 	};
 
+	const paginatedResults = detailsData?.slice(
+		0 + 9 * (pageNum - 1),
+		9 + 9 * (pageNum - 1)
+	);
+	console.log(paginatedResults);
 	return (
 		<>
 			<PageTemplate
@@ -186,8 +192,8 @@ function Applications() {
 					</Grid>
 				) : (
 					<Grid container spacing={2} width={"100%"}>
-						{detailsData &&
-							detailsData.map((data, key) => {
+						{paginatedResults &&
+							paginatedResults.map((data, key) => {
 								return (
 									<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
 										<ApplicationCard
@@ -201,7 +207,7 @@ function Applications() {
 					</Grid>
 				)}
 				<Pagination
-					count={10}
+					count={Math.floor(detailsData?.length / 9) + 1}
 					boundaryCount={1}
 					siblingCount={1}
 					variant="outlined"
@@ -286,10 +292,10 @@ function Applications() {
 				>
 					<Stack spacing={2}>
 						<Typography textAlign={"center"} variant="h2">
-							APPLICATION NAME
+							Your Application
 						</Typography>
 						<Typography textAlign={"center"} variant="body1">
-							APPLICATION MESSAGE
+							{applicationToView}
 						</Typography>
 						<Grid container spacing={1}>
 							<Grid item xs={6} sm={6} md={6} lg={6}></Grid>
