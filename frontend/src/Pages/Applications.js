@@ -206,7 +206,7 @@ function Applications() {
 					</Grid>
 				)}
 				<Pagination
-					count={detailsData?.length % 9}
+					count={(detailsData?.length % 9) - 1}
 					boundaryCount={1}
 					siblingCount={1}
 					variant="outlined"
