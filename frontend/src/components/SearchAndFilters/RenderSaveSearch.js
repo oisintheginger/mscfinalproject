@@ -12,61 +12,72 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import {Grid, Typography, Divider, IconButton, Stack} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { useQuery } from "react-query";
+import { API } from "aws-amplify";
 import { searchData as initialSearchData } from "../../MockData/SearchData";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export default function RenderSaveSearch() {
-	const [searchData, setSearchData] = useState([]);
+	const {user} = useAuthenticator((context)=>[context.user]);
 	const navigator = useNavigate();
-	const location = useLocation();
-	useEffect(() => {
-		setSearchData(initialSearchData);
-	}, []);
-
-	const handleDelete = (indexToDelete) => {
-		const newData = searchData.filter((_, index) => index !== indexToDelete);
-		setSearchData(newData);
+	
+	const parseSearchString = (searchString) => {
+		// Replace the plus encoded with %2B or space encoded as %20 back to the actual plus sign or space for URLSearchParams
+		const correctedString = searchString.replace(/%2B/g, '+').replace(/%20/g, ' ');
+		const params = new URLSearchParams(correctedString);
+		const search = params.get('searchString') || '';
+		const minPrice = params.get('Min Price') || ''; // Ensure the parameter name matches exactly as in the URL
+		const maxPrice = params.get('Max Price') || ''; // Ensure the parameter name matches exactly as in the URL
+		return { search, minPrice, maxPrice };
 	};
+	
+
+	const fetchSearchData = async () =>{
+		const token = user?.getSignInUserSession().getAccessToken().jwtToken || null;
+		if (!token) throw new Error("Authentication token not available");
+
+		const response = await API.get("HMEBackend","/api/user/s",{
+			headers:{Authorization: `Bearer ${token}`}
+		});
+		return response;
+	};
+
+	const {data: searchData, isLoading, isError, error} = useQuery("userSearch", fetchSearchData);
+
+	if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>An error has occurred: {error.message}</div>;
+
+	
 
 	/// the handleDelete doesn't actually delete from the SearchData.js -> when you reload the page, it's still there.
 
 	return (
-		<div>
-			{searchData.map((name, index) => (
-				<Paper elevation={2} sx={{ border: 1, borderColor: "divider", p: 2, my: 1 }}>
-					<Grid container spacing={2} alignItems="center">
-    					<Grid item xs={4}>
-        					<Typography variant="h6" onClick={() => {
-            					navigator({
-                					pathname: "/browse",
-               						search: "?",
-            					});
-        						}} sx={{ cursor: "pointer" }}>
-            					{name.searchName}
-        					</Typography>
-    					</Grid>
-    					<Grid item xs={3}>
-        					<Typography>
-            					Min Price: {name.minPrice}
-        					</Typography>
-    					</Grid>
-    					<Grid item xs={3}>
-        					<Typography>
-            					Max Price: {name.maxPrice}
-        					</Typography>
-    					</Grid>
-    					<Grid item xs={2} justifyContent={"flex-end"}>
-        					<IconButton onClick={() => handleDelete(index)}>
-            					<DeleteIcon />
-        					</IconButton>
-						</Grid>
-					</Grid>
-				</Paper>
-            	))}
-				<Pagination
-					style={{ display: "flex", justifyContent: "center" }}
-					count={10}
-				/>
-		</div>
-	);
+        <div>
+            {searchData?.map((item, index) => {
+                const { search, minPrice, maxPrice } = parseSearchString(item.search);
+                return (
+                    <Paper elevation={2} sx={{ border: 1, borderColor: "divider", p: 2, my: 1 }} key={index}>
+                        <Grid container spacing={2} alignItems="center">
+                            <Grid item xs={3}>
+                                <Typography variant="h6" sx={{ cursor: "pointer" }} onClick={() => navigator("/browse")}>
+                                    {search}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Typography>Min Price: {minPrice}</Typography>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Typography>Max Price: {maxPrice}</Typography>
+                            </Grid>
+                            <Grid item xs={3} justifyContent={"flex-end"}>
+                                <IconButton onClick={() => console.log("Deleted")}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                );
+            })}
+        </div>
+    );
 }
