@@ -276,3 +276,42 @@ Stephen: Gathering the businesses dataset around the properties
 - Charlotte: We got this.
 - Fenna: Well done everyone, things are coming together now :) 
 - Oisin: 
+
+
+## Week 9: 13/11/2023 - 19/11/2023
+
+### What Went Well:
+- Nishant: Received scores as more data this will help recommendation system more robust.
+- Sean: Wrote a lambda return function for the weighted z scores, function ready to be integrated into the backend.
+- Stephen: We started coding for the tagging system locally and connected to the database
+- Charlotte: User Evaluation report/ presentation
+- Fenna: Good productive work done on all fronts. 
+- Oisin: User Eval was good
+
+
+
+### What Could Be Improved:
+- Nishant: Starting to integrate soon all the aspects
+- Sean: The weighted z scores need some qualitative feedback from users. We realised that this is something that needs to be put into the user evaluation report
+- Stephen: Addressing expert feedback from supervisors
+- Charlotte: Should have added everything to the user eval no matter how significant. I think all user evaluation no matter how small needs to be added into the user evaluation folder in the one drive, that way we can track it all and edit it for the final report.
+- Fenna: Probably should have had more people working on the user evaluation submission. 
+- Oisin: Comms and coordination around errors and issues with DB
+
+
+### Action Items for Next Week:
+- Nishant: Integrate all the elements of the scoring an recommendation system to backend.
+- Sean: Finish the property scoring system, will help stephen integrating the tagging system, and Nishant with the KNN recommendation system.
+- Stephen:Working on the tagging system on the database
+- Charlotte: Continue connecting with endpoints.
+- Fenna: Just keep swimming. (hopefully we don’t drown)
+- Oisin: Don’t die before submission/Connecting work
+
+
+### Additional Comments:
+- Nishant: N/A
+- Sean: N/A
+- Stephen: N/A
+- Charlotte: We’re moving along nicely.
+- Fenna: Well done everyone, we got this :)
+- Oisin: N/A
