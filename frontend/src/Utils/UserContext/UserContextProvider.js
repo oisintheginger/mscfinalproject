@@ -34,7 +34,7 @@ function UserContextProvider({ children }) {
 						});
 					return copy;
 				};
-				let out = ParseFavorites(data.data);
+				let out = ParseFavorites(data);
 				return out;
 			},
 			enabled: false,

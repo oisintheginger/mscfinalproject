@@ -116,8 +116,6 @@ function PropertyPage() {
 			return el.propertyId.toString() == propertyId;
 		}) || false;
 
-	console.log(isApplied);
-
 	return (
 		<>
 			{isLoading ? (

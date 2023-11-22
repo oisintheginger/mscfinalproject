@@ -31,6 +31,7 @@ function ApplicationCard({
 
 	const navigate = useNavigate();
 	const location = useLocation();
+	console.log(data);
 
 	return !data ? (
 		<></>
@@ -86,7 +87,7 @@ function ApplicationCard({
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();
-								navigate("/property/" + data.applicationId, {
+								navigate("/property/" + data.propertyId, {
 									state: { previousUrl: location.pathname },
 								});
 							}}
