@@ -171,7 +171,6 @@ function Applications() {
 		0 + 9 * (pageNum - 1),
 		9 + 9 * (pageNum - 1)
 	);
-	console.log(paginatedResults);
 	return (
 		<>
 			<PageTemplate
