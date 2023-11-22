@@ -29,6 +29,126 @@ function Applications() {
 
 	const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = useState(false);
 	const [applicationToDelete, setApplicationToDelete] = useState(null);
+
+	const [applicationDetailsModalOpen, setApplicationDetailsModalOpen] =
+		useState(false);
+	const [applicationToView, setApplicationToView] = useState(null);
+
+	const { route, user } = useAuthenticator((context) => [
+		context.route,
+		context.user,
+	]);
+
+	const {
+		isError,
+		isLoading,
+		isSuccess,
+		error,
+		data: applicationData,
+		refetch,
+	} = useQuery(
+		["userApplications"],
+		() => {
+			return API.get("HMEBackend", `/api/user/a`, {
+				headers: {
+					Authorization:
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
+				},
+				queryStringParameters: {
+					userId: user?.username || null,
+				},
+			});
+		},
+		{
+			response: true,
+			refetchOnWindowFocus: false,
+			enabled: true,
+			select: (data) => {
+				return data;
+			},
+			onSuccess: (data) => {
+				console.log(data);
+			},
+			onError: (err) => {
+				console.log(err);
+			},
+		}
+	);
+
+	const applicationPropIds = applicationData?.map((el) => {
+		return el.propertyId.toString();
+	});
+
+	const {
+		isError: detailsIsError,
+		isLoading: detailsIsLoading,
+		error: detailsError,
+		data: detailsData,
+		refetch: detailsRefetch,
+	} = useQuery(
+		["propertyQuickViews"],
+		() => {
+			return API.get("HMEBackend", `/api/properties/batch`, {
+				headers: {
+					Authorization:
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
+				},
+				queryStringParameters: {
+					ids: applicationPropIds,
+				},
+			});
+		},
+		{
+			response: true,
+			enabled: false,
+			refetchOnWindowFocus: false,
+			select: (rawData) => {
+				let out = [
+					...rawData.map((el) => {
+						let appDet = applicationData.find((app) => {
+							return app.propertyId == el.propertyId;
+						});
+						return {
+							...el,
+							message: appDet.message,
+							price: el.price,
+							address: el.streetAddress,
+							thumbnail: el.images[0],
+							status: "pending",
+						};
+					}),
+				];
+
+				return out;
+			},
+			onSuccess: (data) => {
+				console.log(data);
+			},
+			onError: (err) => {
+				console.log(err);
+			},
+		}
+	);
+
+	useEffect(() => {
+		setInitialBreadcrumbLocation(
+			location.state?.previousUrl ? location.state.previousUrl : null
+		);
+	}, []);
+
+	useEffect(() => {
+		if (isSuccess) {
+			detailsRefetch();
+		}
+	}, [applicationData, isSuccess]);
+
+	const { pageNum, handlePageChange } = usePagination(() => {},
+	setSearchParameters);
+
 	const OpenConfirmDeleteModal = (applicationId) => {
 		setConfirmDeleteModalOpen(true);
 		setApplicationToDelete(applicationId);
@@ -38,64 +158,20 @@ function Applications() {
 		setApplicationToDelete(null);
 	};
 
-	const [applicationDetailsModalOpen, setApplicationDetailsModalOpen] =
-		useState(false);
-	const [applicationToView, setApplicationToView] = useState(null);
-	const OpenApplicationDetailsModal = (applicationId) => {
+	const OpenApplicationDetailsModal = (message) => {
 		setApplicationDetailsModalOpen(true);
-		setApplicationToView(applicationId);
+		setApplicationToView(message);
 	};
 	const CloseApplicationDetailsModal = () => {
 		setApplicationDetailsModalOpen(false);
 		setApplicationToView(null);
 	};
 
-	const { route, user } = useAuthenticator((context) => [
-		context.route,
-		context.user,
-	]);
-
-	const { isError, isLoading, error, data, refetch } = useQuery(
-		["userFavourites"],
-		() => {
-			return API.get("HMEBackend", `/api/user/favourites`, {
-				headers: {
-					Authorization:
-						user?.getSignInUserSession().getAccessToken().jwtToken || null,
-				},
-				response: true,
-				queryStringParameters: {
-					userId: user?.username || null,
-					page: pageNum,
-				},
-				refetchOnWindowFocus: false,
-				selector: (data) => {
-					return data.data;
-				},
-			});
-		}
+	const paginatedResults = detailsData?.slice(
+		0 + 9 * (pageNum - 1),
+		9 + 9 * (pageNum - 1)
 	);
-
-	const testData = {
-		price: 4319,
-		address: "1234, Arroyo Avenue, Albequrque, New Mexico",
-		status: "Pending",
-		image:
-			"https://photos.zillowstatic.com/fp/e3819b051b082ceecf67c8c86e47360f-p_e.jpg",
-		date: "01/01/1970",
-		applicationId: 1,
-	};
-	useEffect(() => {
-		setInitialBreadcrumbLocation(
-			location.state?.previousUrl ? location.state.previousUrl : null
-		);
-	}, []);
-
-	const { pageNum, handlePageChange } = usePagination(
-		refetch,
-		setSearchParameters
-	);
-
+	console.log(paginatedResults);
 	return (
 		<>
 			<PageTemplate
@@ -104,33 +180,34 @@ function Applications() {
 				prevPage={initialBreadcrumbLocation}
 			>
 				<Divider />
-				{isLoading ? (
+				{isLoading || detailsIsLoading ? (
 					<Grid container spacing={2} width={"100%"}>
 						{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
 							return (
 								<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-									<SkeletonCard data={testData} />
+									<SkeletonCard />
 								</Grid>
 							);
 						})}
 					</Grid>
 				) : (
 					<Grid container spacing={2} width={"100%"}>
-						{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
-							return (
-								<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-									<ApplicationCard
-										data={testData}
-										openConfirmDelete={OpenConfirmDeleteModal}
-										openApplicationDetails={OpenApplicationDetailsModal}
-									/>
-								</Grid>
-							);
-						})}
+						{paginatedResults &&
+							paginatedResults.map((data, key) => {
+								return (
+									<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+										<ApplicationCard
+											data={data}
+											openConfirmDelete={OpenConfirmDeleteModal}
+											openApplicationDetails={OpenApplicationDetailsModal}
+										/>
+									</Grid>
+								);
+							})}
 					</Grid>
 				)}
 				<Pagination
-					count={10}
+					count={Math.floor(detailsData?.length / 9) + 1}
 					boundaryCount={1}
 					siblingCount={1}
 					variant="outlined"
@@ -182,7 +259,6 @@ function Applications() {
 									variant="outlined"
 									fullWidth
 									onClick={() => {
-										console.log("Deleted: " + applicationToDelete);
 										CloseConfirmDeleteModal();
 										refetch();
 									}}
@@ -216,10 +292,10 @@ function Applications() {
 				>
 					<Stack spacing={2}>
 						<Typography textAlign={"center"} variant="h2">
-							APPLICATION NAME
+							Your Application
 						</Typography>
 						<Typography textAlign={"center"} variant="body1">
-							APPLICATION MESSAGE
+							{applicationToView}
 						</Typography>
 						<Grid container spacing={1}>
 							<Grid item xs={6} sm={6} md={6} lg={6}></Grid>
