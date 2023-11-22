@@ -59,9 +59,12 @@ def handler(): #creating a function to create and view tags
                 # Selecting data for the current neighbourhood
                 neighbourhood_data = data[data['neighbourhoodID'] == neighbourhood]
 
+                # Dropping the sum_z_scores column from the neighbourhood_data DataFrame
+                neighbourhood_data = neighbourhood_data.drop('sum_z_scores', axis=1)
+
                 if not neighbourhood_data.empty:
                     # Getting the three services with the highest z scores
-                    top_services = neighbourhood_data.filter(regex='_z_score').idxmax(axis=1).tolist()
+                    top_services = neighbourhood_data.filter(regex='_z_score(?!.*sum_z_scores)').idxmax(axis=1).tolist()
 
                     # Creating tags based on the three services with the highest z scores
                     tags = ', '.join(top_services)
