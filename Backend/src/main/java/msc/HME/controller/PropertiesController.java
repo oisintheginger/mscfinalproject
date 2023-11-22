@@ -30,7 +30,9 @@ public class PropertiesController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "50") int size) { // default size hard coded for now
         List<QuickViewProperty> properties = propertyService.getAllQVProperties();
-        List<QuickViewProperty> paginatedProperties = properties.subList((page-1)*size, (page-1)*size+(size-1));
+        int startIndex = (page - 1) * size;
+        int endIndex = Math.min(startIndex + size, properties.size());
+        List<QuickViewProperty> paginatedProperties = properties.subList(startIndex, endIndex);
         // to ensure the total pages is always rounded up this is used: (numerator + denominator - 1) / denominator
         int totalPages = (properties.size() + size-1)/size;
         QVPResponse result = new QVPResponse(totalPages, paginatedProperties);
