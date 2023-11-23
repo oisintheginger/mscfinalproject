@@ -183,14 +183,14 @@ public class PropertyService {
     }
 
     // access scores lambda function to retrieve personal services score per neighbourhood
-    public void getPersonalScores(String userId) {
+    public void getPersonalScores(String userId, String propertyId) {
 
         try (LambdaClient lambdaClient = LambdaClient.builder()
                 .region(Region.of("eu-west-1"))
                 .build()) {
 
             String functionName = "UpdateUserScores";
-            String payload = "{\"id\": \"" + userId + "\"}";
+            String payload = "{\"id\": \"" + userId + "\", \"propertyID\": \" " + propertyId + "\"}";
 
             InvokeRequest request = InvokeRequest.builder()
                     .functionName(functionName)

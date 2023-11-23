@@ -74,7 +74,7 @@ public class PropertiesController {
         DetailedProperty property = propertyService.getPropertyDetails(id);
         String userId = userService.validateJWT(request);
         if (userId!=null) {
-            propertyService.getPersonalScores(userId);
+            propertyService.getPersonalScores(userId, id.toString());
             System.out.println(userId);
         }
         return ResponseEntity.status(HttpStatus.OK).body(property);
