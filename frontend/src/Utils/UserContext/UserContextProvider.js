@@ -42,7 +42,7 @@ function UserContextProvider({ children }) {
 				console.log("Error in user context", err);
 			},
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 		}
 	);

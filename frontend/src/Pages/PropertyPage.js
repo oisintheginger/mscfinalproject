@@ -92,7 +92,16 @@ function PropertyPage() {
 				},
 			});
 		},
-		{ staleTime: 500000, refetchOnMount: true }
+		{
+			staleTime: 500000,
+			refetchOnMount: true,
+			select: (data) => {
+				return data.data;
+			},
+			onSuccess: (data) => {
+				console.log(data);
+			},
+		}
 	);
 
 	const { mutate: addToFavorites } = AddToFavoritesMutation(propertyId, () => {
@@ -125,7 +134,7 @@ function PropertyPage() {
 			) : (
 				<PageTemplate
 					pageTitle={
-						data?.data.bedrooms + " Bed "
+						data?.bedrooms + " Bed "
 						// capitalize(data?.data.propertyType)
 					}
 					prevPage={
@@ -135,7 +144,7 @@ function PropertyPage() {
 				>
 					<Box //WRAPPER BOX FOR STICKY BUTTON
 					>
-						<Carousel propData={data?.data.images} />
+						<Carousel propData={data?.images} />
 						{!down && (
 							<Stack //APPLY NOW BUTTON
 								width={"100%"}
@@ -225,7 +234,7 @@ function PropertyPage() {
 									alignItems={"flex-end"}
 								>
 									<Typography variant="propertyPrice">
-										{`$ ${data?.data.price}/mon`}
+										{`$ ${data?.price}/mon`}
 									</Typography>
 								</Stack>
 								<Stack //ADDRESS + VIEW ON MAP BUTTON
@@ -234,7 +243,7 @@ function PropertyPage() {
 									spacing={3}
 								>
 									<Typography variant="propertyAddress">
-										{`${data?.data.streetAddress}, ${data?.data.zipcode}`}
+										{`${data?.streetAddress}, ${data?.zipcode}`}
 									</Typography>
 									<ButtonStyled
 										endIcon={<MapIcon />}
@@ -256,11 +265,9 @@ function PropertyPage() {
 									{/* <PropertyQuickInfoTag
 									// label={capitalize(data?.data.propertyType)}
 									/> */}
+									<PropertyQuickInfoTag label={"Bedrooms " + data?.bedrooms} />
 									<PropertyQuickInfoTag
-										label={"Bedrooms " + data?.data.bedrooms}
-									/>
-									<PropertyQuickInfoTag
-										label={"Bathrooms " + data?.data.bathrooms}
+										label={"Bathrooms " + data?.bathrooms}
 									/>
 								</Stack>
 								<Stack
@@ -301,7 +308,7 @@ function PropertyPage() {
 						>
 							<Stack mt={5} spacing={6}>
 								<PageSection sectionTitle="Description">
-									<Typography variant="body1">{data?.data.overview}</Typography>
+									<Typography variant="body1">{data?.description}</Typography>
 								</PageSection>
 								<PropertyScoresComponent inputData={MockScores} />
 								<PageSection
@@ -310,7 +317,7 @@ function PropertyPage() {
 									id="map"
 								>
 									<PropertyDetailMap
-										center={[data?.data.latitude, data?.data.longitude]}
+										center={[data?.latitude, data?.longitude]}
 										ref={mapRef}
 									/>
 								</PageSection>
