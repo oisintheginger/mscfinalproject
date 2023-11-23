@@ -12,9 +12,10 @@ import {
 	useTheme,
 	useMediaQuery,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import ButtonOutlined from "../../Button/ButtonOutlined";
 import {
-	DeleteIcon,
 	EditApplicationIcon,
 	NextCarouselIcon,
 } from "../../../../Icons/HMEIcons";
@@ -39,13 +40,13 @@ function ApplicationCard({
 			<CardActionArea
 				onClick={(event) => {
 					event.preventDefault();
-					openApplicationDetails(data.applicationId);
+					openApplicationDetails(data.message);
 				}}
 			>
 				<CardMedia
 					component={"img"}
 					sx={{ height: { xs: "100px", md: "140px" } }}
-					image={data.image}
+					image={data.thumbnail}
 					alt="Image of Rental Listing"
 				/>
 			</CardActionArea>
@@ -53,7 +54,7 @@ function ApplicationCard({
 				<CardActionArea
 					onClick={(event) => {
 						event.preventDefault();
-						openApplicationDetails(data.applicationId);
+						openApplicationDetails(data.message);
 					}}
 				>
 					<Stack>
@@ -73,7 +74,7 @@ function ApplicationCard({
 				<Divider />
 				<Box mt={2}>
 					<Stack justifyContent={"center"} alignItems={"center"}>
-						<Typography>{data.status.toUpperCase()}</Typography>
+						<Typography>{data.status?.toUpperCase()}</Typography>
 					</Stack>
 				</Box>
 			</CardContent>
@@ -86,7 +87,7 @@ function ApplicationCard({
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();
-								navigate("/property/" + data.applicationId, {
+								navigate("/property/" + data.propertyId, {
 									state: { previousUrl: location.pathname },
 								});
 							}}
@@ -96,6 +97,7 @@ function ApplicationCard({
 					</Grid>
 					<Grid item xs={4} sm={4} md={4} lg={4}>
 						<ButtonOutlined
+							disabled
 							fullWidth
 							endIcon={down ? <></> : <EditApplicationIcon />}
 							variant="outlined"
@@ -106,7 +108,8 @@ function ApplicationCard({
 					<Grid item xs={4} sm={4} md={4} lg={4}>
 						<DeleteButton
 							fullWidth
-							endIcon={down ? <></> : <DeleteIcon />}
+							disabled
+							endIcon={down ? <></> : <DeleteIcon fontSize="large" />}
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();
