@@ -21,38 +21,99 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 
 import CloseIcon from "@mui/icons-material/Close";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-const Options = [
+import { useQuery } from "react-query";
+import { API } from "aws-amplify";
+import { useAuthenticator } from "@aws-amplify/ui-react-core";
+import {
+	UpdateWeightMutation,
+	UpdateWeightsMutation,
+} from "../../Utils/Mutations/ProfileMutation/ProfileMutation";
+import ButtonStyled from "../CommonComp/Button/ButtonStyled";
+
+const OptionDict = {
+	finance: {
+		key: "finance",
+		id: "Financial",
+		icon: <AccountBalanceIcon fontSize="large" />,
+		facilities: "Banks",
+	},
+	transportation: {
+		key: "transportation",
+		id: "Transportation",
+		icon: <CommuteIcon fontSize="large" />,
+		facilities: "Buses, Trains, and Transit Stations",
+	},
+	personal_care: {
+		key: "personal_care",
+		id: "Personal Care",
+		icon: <LocalPharmacyIcon fontSize="large" />,
+		facilities: "Pharmacies and Beauty Salons",
+	},
+	retail: {
+		key: "retail",
+		id: "Retail",
+		icon: <PointOfSaleIcon fontSize="large" />,
+		facilities: "Supermarkets",
+	},
+	fitness: {
+		key: "fitness",
+		id: "Fitness",
+		icon: <FitnessCenterIcon fontSize="large" />,
+		facilities: "Gyms",
+	},
+	leisure: {
+		key: "leisure",
+		id: "Leisure",
+		icon: <NightlifeIcon fontSize="large" />,
+		facilities: "Cafés, Restaurants, Nightclubs, Bars, Parks",
+	},
+	emergency: {
+		key: "emergency",
+		id: "Emergency",
+		icon: <LocalPoliceIcon fontSize="large" />,
+		facilities: "Police & Fire Stations, and Hospitals",
+	},
+};
+
+const DefaultOptions = [
 	{
+		key: "finance",
 		id: "Financial",
 		icon: <AccountBalanceIcon fontSize="large" />,
 		facilities: "Banks",
 	},
 	{
+		key: "transportation",
 		id: "Transportation",
 		icon: <CommuteIcon fontSize="large" />,
 		facilities: "Buses, Trains, and Transit Stations",
 	},
 	{
-		id: "Pharmacies",
+		key: "personal_care",
+		id: "Personal Care",
 		icon: <LocalPharmacyIcon fontSize="large" />,
-		facilities: "Pharmacies",
+		facilities: "Pharmacies and Beauty Salons",
 	},
 	{
+		key: "retail",
 		id: "Retail",
 		icon: <PointOfSaleIcon fontSize="large" />,
 		facilities: "Supermarkets",
 	},
 	{
+		key: "fitness",
 		id: "Fitness",
 		icon: <FitnessCenterIcon fontSize="large" />,
 		facilities: "Gyms",
 	},
 	{
-		id: "Entertainment",
+		key: "leisure",
+		id: "Leisure",
 		icon: <NightlifeIcon fontSize="large" />,
-		facilities: "Cafés, Restaurants, and Nightclubs",
+		facilities: "Cafés, Restaurants, Nightclubs, Bars, Parks",
 	},
 	{
+		key: "emergency",
 		id: "Emergency",
 		icon: <LocalPoliceIcon fontSize="large" />,
 		facilities: "Police & Fire Stations, and Hospitals",
@@ -123,7 +184,51 @@ function OptionList(options) {
 }
 
 function UserWeights() {
-	const [state, setState] = useState({ options: Options });
+	const [state, setState] = useState({ options: DefaultOptions });
+
+	const { route, user } = useAuthenticator((context) => [
+		context.route,
+		context.user,
+	]);
+
+	const { refetch: weightsRefetch, data: weightsData } = useQuery(
+		["UserWeights"],
+		() => {
+			return API.get("HMEBackend", "/api/user/w", {
+				headers: {
+					Authorization:
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
+				},
+				queryStringParameters: {
+					userId: user?.username || null,
+				},
+			});
+		},
+		{
+			refetchOnWindowFocus: false,
+			onSuccess: (data) => {
+				const nullsPresent = Object.keys(data).some((el) => {
+					return data[el] == null;
+				});
+				if (nullsPresent) {
+					setState({ options: DefaultOptions });
+					return;
+				}
+				let newOptionsList = new Array(7);
+				Object.keys(data).map((el) => {
+					newOptionsList[7 - data[el]] = OptionDict[el];
+				});
+
+				setState({ options: newOptionsList });
+			},
+		}
+	);
+
+	const { mutate: updateWeights } = UpdateWeightsMutation((data) => {
+		weightsRefetch();
+	});
 
 	const reorder = (list, startIndex, endIndex) => {
 		const result = Array.from(list);
@@ -146,39 +251,86 @@ function UserWeights() {
 			result.source.index,
 			result.destination.index
 		);
+
 		setState({ options });
+		console.log(state.options);
 	}
 
 	return (
-		<Box mt={2} width={300}>
-			<Paper elevation={4}>
-				<Stack p={1} justifyContent={"center"} spacing={1}>
-					<Typography textAlign={"center"} variant="weightsIndicator">
-						{"Most Important".toUpperCase()}
-					</Typography>
-					<DragDropContext onDragEnd={onDragEnd}>
-						<Droppable droppableId="droppable">
-							{(provided) => (
-								<Stack
-									component={"div"}
-									spacing={1}
-									justifyContent={"center"}
-									alignItems={"center"}
-									ref={provided.innerRef}
-									{...provided.droppableProps}
-								>
-									<OptionList options={state.options} />
-									{provided.placeholder}
-								</Stack>
-							)}
-						</Droppable>
-					</DragDropContext>
-					<Typography textAlign={"center"} variant="weightsIndicator">
-						{"Least Important".toUpperCase()}
-					</Typography>
-				</Stack>
-			</Paper>
-		</Box>
+		<Stack alignItems={"center"} spacing={2}>
+			<ButtonStyled
+				onClick={() => {
+					updateWeights({
+						leisure:
+							7 -
+							state.options.findIndex((el) => {
+								return el.key == "leisure";
+							}),
+						personal_care:
+							7 -
+							state.options.findIndex((el) => {
+								return el.key == "personal_care";
+							}),
+						retail:
+							7 -
+							state.options.findIndex((el) => {
+								return el.key == "retail";
+							}),
+						finance:
+							7 -
+							state.options.findIndex((el) => {
+								return el.key == "finance";
+							}),
+						transportation:
+							7 -
+							state.options.findIndex((el) => {
+								return el.key == "transportation";
+							}),
+						fitness:
+							7 -
+							state.options.findIndex((el) => {
+								return el.key == "fitness";
+							}),
+						emergency:
+							7 -
+							state.options.findIndex((el) => {
+								return el.key == "emergency";
+							}),
+					});
+				}}
+			>
+				SUBMIT Changes
+			</ButtonStyled>
+			<Box mt={2} width={300}>
+				<Paper elevation={4}>
+					<Stack p={1} justifyContent={"center"} spacing={1}>
+						<Typography textAlign={"center"} variant="weightsIndicator">
+							{"Most Important".toUpperCase()}
+						</Typography>
+						<DragDropContext onDragEnd={onDragEnd}>
+							<Droppable droppableId="droppable">
+								{(provided) => (
+									<Stack
+										component={"div"}
+										spacing={1}
+										justifyContent={"center"}
+										alignItems={"center"}
+										ref={provided.innerRef}
+										{...provided.droppableProps}
+									>
+										<OptionList options={state.options} />
+										{provided.placeholder}
+									</Stack>
+								)}
+							</Droppable>
+						</DragDropContext>
+						<Typography textAlign={"center"} variant="weightsIndicator">
+							{"Least Important".toUpperCase()}
+						</Typography>
+					</Stack>
+				</Paper>
+			</Box>
+		</Stack>
 	);
 }
 export default UserWeights;

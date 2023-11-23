@@ -174,9 +174,45 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "c3ca394c03234377",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/November/22nd November Wednesday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "1680501db333decc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/November/22nd November Wednesday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4d87914d5b9887d3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/November/23rd November Thursday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 13
+        "currentTab": 16
       }
     ],
     "direction": "vertical"
@@ -250,7 +286,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/November/21st November Tuesday.md",
+                "file": "Daily Diary/November/23rd November Thursday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -267,7 +303,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/November/21st November Tuesday.md",
+                "file": "Daily Diary/November/23rd November Thursday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -290,7 +326,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/November/21st November Tuesday.md"
+                "file": "Daily Diary/November/23rd November Thursday.md"
               }
             }
           }
@@ -312,10 +348,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3bcb0b867a62282a",
+  "active": "4d87914d5b9887d3",
   "lastOpenFiles": [
-    "Daily Diary/November/20th November Monday.md",
+    "Daily Diary/November/22nd November Wednesday.md",
+    "Daily Diary/November/23rd November Thursday.md",
     "Daily Diary/November/21st November Tuesday.md",
+    "Daily Diary/November/20th November Monday.md",
     "Daily Diary/November/16th November Thursday.md",
     "Daily Diary/November/14th November Tuesday.md",
     "Daily Diary/November/13th November Monday.md",
@@ -341,9 +379,7 @@
     "Daily Diary/October/Wednesday 4th October.md",
     "Daily Diary/October/Monday 2nd October.md",
     "Daily Diary/November/11th November Saturday.md",
-    "Daily Diary/November/7th November Tuesday.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
-    "Daily Diary/November/1st November 2023.md",
     "Master's Project/UX Work/User Testing/F1C7CC20",
     "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",
