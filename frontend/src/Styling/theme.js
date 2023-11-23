@@ -111,6 +111,26 @@ const theme = createTheme({
 			fontSize: 30,
 			fontWeight: 600,
 		},
+		individualScoreLabel: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 20,
+			fontWeight: 500,
+		},
+		individualScoreValue: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 30,
+			fontWeight: 800,
+		},
+		crimeScoreValue: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 56,
+			fontWeight: 800,
+		},
+		crimeScoreDescription: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 22,
+			fontWeight: 400,
+		},
 		mapPopupName: {
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 18,
