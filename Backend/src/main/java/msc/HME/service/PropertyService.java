@@ -1,12 +1,20 @@
 package msc.HME.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import msc.HME.binding.DetailedProperty;
 import msc.HME.binding.GeoLocation;
+import msc.HME.binding.PersonalScoresResponse;
 import msc.HME.binding.QuickViewProperty;
+import msc.HME.mapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
+import software.amazon.awssdk.core.SdkBytes;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.lambda.LambdaClient;
+import software.amazon.awssdk.services.lambda.model.InvokeRequest;
+import software.amazon.awssdk.services.lambda.model.InvokeResponse;
 
 import java.util.Collections;
 import java.util.List;
@@ -175,7 +183,30 @@ public class PropertyService {
     }
 
     // access scores lambda function to retrieve personal services score per neighbourhood
-    public void getPersonalScores() {
+    public void getPersonalScores(String userId) {
 
+        try (LambdaClient lambdaClient = LambdaClient.builder()
+                .region(Region.of("eu-west-1"))
+                .build()) {
+
+            String functionName = "UpdateUserScores";
+            String payload = "{\"id\": \"" + userId + "\"}";
+
+            InvokeRequest request = InvokeRequest.builder()
+                    .functionName(functionName)
+                    .payload(SdkBytes.fromUtf8String(payload))
+                    .build();
+
+            InvokeResponse response = lambdaClient.invoke(request);
+
+            String responseString = response.payload().asUtf8String();
+            System.out.println(responseString);
+
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            PersonalScoresResponse result = objectMapper.readValue(responseString, PersonalScoresResponse.class);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
