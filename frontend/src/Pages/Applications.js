@@ -126,10 +126,10 @@ function Applications() {
 				return out;
 			},
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 			onError: (err) => {
-				console.log(err);
+				// console.log(err);
 			},
 		}
 	);
@@ -171,7 +171,6 @@ function Applications() {
 		0 + 9 * (pageNum - 1),
 		9 + 9 * (pageNum - 1)
 	);
-	console.log(paginatedResults);
 	return (
 		<>
 			<PageTemplate
@@ -207,7 +206,7 @@ function Applications() {
 					</Grid>
 				)}
 				<Pagination
-					count={Math.floor(detailsData?.length / 9) + 1}
+					count={(detailsData?.length % 9) - 1}
 					boundaryCount={1}
 					siblingCount={1}
 					variant="outlined"
