@@ -43,6 +43,7 @@ import {
 	ViewApplication,
 } from "../components/PropertyDetailsPageButtons/ApplyButton";
 import { CreateApplicationMutation } from "../Utils/Mutations/ApplicationMutation/ApplicationMutation";
+import { ColorGradeFunc } from "../Utils/ColorGradientFunc";
 
 function PropertyPage() {
 	const location = useLocation();
@@ -403,9 +404,65 @@ function PropertyPage() {
 								<PropertyScoresComponent inputData={data.serviceScores} />
 								<PageSection
 									background={false}
-									sectionTitle="Map View"
-									id="map"
+									sectionTitle="Crime Safety Rating"
 								>
+									<Stack
+										width={"100%"}
+										justifyContent={"center"}
+										alignItems={"center"}
+									>
+										<Stack
+											pl={3}
+											pr={3}
+											pb={1}
+											pt={1}
+											alignItems={"center"}
+											direction={"column"}
+											spacing={1}
+										>
+											<Typography noWrap variant="crimeScoreValue">
+												{data.overallCrimeScore?.toFixed(1) + " / 5"}
+											</Typography>
+											<Box
+												display={"flex"}
+												flexDirection={"row"}
+												justifyContent={"flex-start"}
+												alignItems={"center"}
+												sx={{}}
+												width={"100%"}
+												borderRadius={2}
+												overflow={"clip"}
+												bgcolor={"#e6e6e6"}
+												mt={1}
+											>
+												<Box
+													width={`${100 * (data?.overallCrimeScore / 5)}%`}
+													height={"40px"}
+													sx={{
+														background: ColorGradeFunc(
+															data?.overallCrimeScore,
+															5
+														),
+														opacity: "100%",
+													}}
+													display={"flex"}
+													flexDirection={"row"}
+													alignItems={"center"}
+													pr={3}
+												/>
+											</Box>
+											<Typography
+												textAlign={"center"}
+												variant="crimeScoreDescription"
+											>
+												{
+													"A higher crime safety score indicates a lower crime rate"
+												}
+											</Typography>
+										</Stack>
+									</Stack>
+								</PageSection>
+								<PageSection background={false} sectionTitle="Map View">
 									<PropertyDetailMap
 										center={[data?.latitude, data?.longitude]}
 										ref={mapRef}
