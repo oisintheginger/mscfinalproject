@@ -74,11 +74,11 @@ public class UserController {
                                               @RequestParam(required = false ) String searchString,
                                               @RequestParam(required = false ) String propertyId,
                                               @RequestParam(required = false ) String message,
-                                              @RequestParam(required = false ) String entertainment,
-                                              @RequestParam(required = false ) String pharmacies,
+                                              @RequestParam(required = false ) String leisure,
+                                              @RequestParam(required = false ) String personal_care,
                                               @RequestParam(required = false ) String retail,
                                               @RequestParam(required = false ) String fitness,
-                                              @RequestParam(required = false ) String financial,
+                                              @RequestParam(required = false ) String finance,
                                               @RequestParam(required = false ) String transportation,
                                               @RequestParam(required = false ) String emergency)
     {
@@ -96,8 +96,8 @@ public class UserController {
             } else if (Objects.equals(resource, "a")  && !propertyId.isBlank() && !message.isBlank()) {
                 userService.addApplication(id, propertyId, message);
                 return ResponseEntity.status(HttpStatus.OK).body("Application was added");
-            } else if (Objects.equals(resource, "w")) {
-                userService.updateWeights(id, entertainment, pharmacies, retail, fitness, financial, transportation, emergency);
+            } else if (Objects.equals(resource, "w")  && leisure != null && personal_care != null && retail != null && fitness != null && finance != null && transportation != null && emergency != null) {
+                userService.updateWeights(id, leisure, personal_care, retail, fitness, finance, transportation, emergency);
                 return ResponseEntity.status(HttpStatus.OK).body("Weights were added");
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
@@ -130,11 +130,11 @@ public class UserController {
     public ResponseEntity<Object> updateResources(@PathVariable String resource, HttpServletRequest request,
                                                   @RequestParam(required = false) String searchString,
                                                   @RequestParam(required = false) String newSearchString,
-                                                  @RequestParam(required = false ) String entertainment,
-                                                  @RequestParam(required = false ) String pharmacies,
+                                                  @RequestParam(required = false ) String leisure,
+                                                  @RequestParam(required = false ) String personal_care,
                                                   @RequestParam(required = false ) String retail,
                                                   @RequestParam(required = false ) String fitness,
-                                                  @RequestParam(required = false ) String financial,
+                                                  @RequestParam(required = false ) String finance,
                                                   @RequestParam(required = false ) String transportation,
                                                   @RequestParam(required = false ) String emergency) {
         String id = userService.validateJWT(request);
@@ -146,8 +146,8 @@ public class UserController {
                 userService.addSearch(id, newSearchString);
                 userService.removeSearch(id, searchString);
                 return ResponseEntity.status(HttpStatus.OK).body("Search was updated");
-            } else if (Objects.equals(resource, "w") && entertainment != null && pharmacies != null && retail != null && fitness != null && financial != null && transportation != null && emergency != null) {
-                userService.updateWeights(id, entertainment, pharmacies, retail, fitness, financial, transportation, emergency);
+            } else if (Objects.equals(resource, "w") && leisure != null && personal_care != null && retail != null && fitness != null && finance != null && transportation != null && emergency != null) {
+                userService.updateWeights(id, leisure, personal_care, retail, fitness, finance, transportation, emergency);
                 return ResponseEntity.status(HttpStatus.OK).body("Weights were updated");
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
