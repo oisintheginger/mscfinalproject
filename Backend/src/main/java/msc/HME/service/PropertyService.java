@@ -173,4 +173,9 @@ public class PropertyService {
                 """;
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(GeoLocation.class));
     }
+
+    // access scores lambda function to retrieve personal services score per neighbourhood
+    public void getPersonalScores() {
+
+    }
 }
