@@ -1,30 +1,30 @@
 export const MockScores = [
 	{
-		id: "transportation",
+		id: "transportation_score",
 		score: 5,
 	},
 	{
-		id: "emergency",
+		id: "emergency_score",
 		score: 3,
 	},
 	{
-		id: "pharmacies",
+		id: "personal_care_score",
 		score: 5,
 	},
 	{
-		id: "financial",
+		id: "finance_score",
 		score: 2,
 	},
 	{
-		id: "retail",
+		id: "retail_score",
 		score: 5,
 	},
 	{
-		id: "fitness",
+		id: "fitness_score",
 		score: 1,
 	},
 	{
-		id: "entertainment",
+		id: "leisure_score",
 		score: 5,
 	},
 ];
