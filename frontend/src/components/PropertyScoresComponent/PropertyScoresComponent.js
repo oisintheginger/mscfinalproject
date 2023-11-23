@@ -168,25 +168,14 @@ function Rating({ scoreData }) {
 				)}
 			</Box>
 			<Collapse in={descriptionOpen}>
-				<Box mt={2} pl={2} pr={2} overflow={"auto"}>
+				<Box mt={2} mb={1} pl={2} pr={2} overflow={"auto"}>
 					<Stack
 						direction={"row"}
 						spacing={2}
 						justifyContent={{ xs: "flex-start", md: "space-evenly" }}
 					>
 						{Object.keys(scoreData?.counts)?.map((el, ind) => {
-							console.log(
-								ind % 2 == 1 && ind < Object.keys(scoreData?.counts)?.length - 1
-							);
-							return (
-								<>
-									{countScoreDisplayMap[el](scoreData?.counts[el])}
-									{ind % 2 == 1 &&
-										ind < Object.keys(scoreData?.counts)?.length - 1 && (
-											<Divider orientation="vertical" variant="middle" />
-										)}
-								</>
-							);
+							return countScoreDisplayMap[el](scoreData?.counts[el]);
 						})}
 					</Stack>
 				</Box>
