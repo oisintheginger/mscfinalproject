@@ -18,6 +18,11 @@ import { searchData as initialSearchData } from "../../MockData/SearchData";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export default function RenderSaveSearch() {
+	
+	const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+	
 	const {user} = useAuthenticator((context)=>[context.user]);
 	const navigator = useNavigate();
 	
@@ -48,12 +53,24 @@ export default function RenderSaveSearch() {
     if (isError) return <div>An error has occurred: {error.message}</div>;
 
 	
+	
+	
 
 	/// the handleDelete doesn't actually delete from the SearchData.js -> when you reload the page, it's still there.
 
+	// pagination
+	const handleChangePage = (event, newPage) => {
+        setCurrentPage(newPage);
+    };
+
+	const currentData = searchData?.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+	
 	return (
         <div>
-            {searchData?.map((item, index) => {
+            {currentData?.map((item, index) => {
                 const { search, minPrice, maxPrice } = parseSearchString(item.search);
                 return (
                     <Paper elevation={2} sx={{ border: 1, borderColor: "divider", p: 2, my: 1 }} key={index}>
@@ -78,6 +95,13 @@ export default function RenderSaveSearch() {
                     </Paper>
                 );
             })}
+			<Pagination
+                sx={{ mt: 2 }} 
+                count={Math.ceil(searchData?.length / itemsPerPage)}
+                page={currentPage}
+                onChange={handleChangePage}
+                color="primary"
+            />
         </div>
     );
 }
