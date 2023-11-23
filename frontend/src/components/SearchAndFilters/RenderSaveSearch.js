@@ -92,7 +92,7 @@ export default function RenderSaveSearch() {
             {currentData?.map((item, index) => {
                 const { search, minPrice, maxPrice } = parseSearchString(item.search);
                 // clickable card
-				
+				const navigateToSearch = () => {
 					// Construct the search query using item properties
 					const searchParams = new URLSearchParams({
 						searchString: search,
@@ -101,10 +101,8 @@ export default function RenderSaveSearch() {
 						
 					});
 					const searchString = searchParams.toString();
-					const navigateToSearch = () => {
-						navigator(`/browse?${searchString}`);
 					
-					
+					navigator(`/browse?${searchString}`);
 				};
 				return (
 					<ButtonBase
