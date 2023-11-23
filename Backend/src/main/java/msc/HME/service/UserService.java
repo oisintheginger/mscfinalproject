@@ -167,16 +167,17 @@ public class UserService {
         }
     }
 
-    public void updateWeights(String id, String entertainment, String pharmacies, String retail, String fitness, String financial, String transportation, String emergency) {
+    public void updateWeights(String id, String leisure, String personal_care, String retail, String fitness, String finance, String transportation, String emergency) {
         String sql = """
                 UPDATE user
-                SET weights = JSON_REPLACE(weights, '$', JSON_ARRAY(JSON_OBJECT('entertainment', ?), JSON_OBJECT('pharmacies', ?), JSON_OBJECT('retail', ?), JSON_OBJECT('fitness', ?), JSON_OBJECT('financial', ?), JSON_OBJECT('transportation', ?), JSON_OBJECT('emergency', ?)))
+                SET weights = JSON_REPLACE(weights, '$', JSON_ARRAY(JSON_OBJECT('leisure', ?), JSON_OBJECT('personal_care', ?), JSON_OBJECT('retail', ?), JSON_OBJECT('fitness', ?), JSON_OBJECT('finance', ?), JSON_OBJECT('transportation', ?), JSON_OBJECT('emergency', ?)))
                 WHERE id = ?
                 """;
-        int rows = jdbcTemplate.update(sql, entertainment, pharmacies, retail, fitness, financial, transportation, emergency, id);
+        int rows = jdbcTemplate.update(sql, leisure, personal_care, retail, fitness, finance, transportation, emergency, id);
         if (rows == 0) {
             throw new NoSuchElementException();
         }
+
     }
 
     public ResponseEntity<Object> updateEmail(String id, String email) {

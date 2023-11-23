@@ -96,7 +96,7 @@ public class UserController {
             } else if (Objects.equals(resource, "a")  && !propertyId.isBlank() && !message.isBlank()) {
                 userService.addApplication(id, propertyId, message);
                 return ResponseEntity.status(HttpStatus.OK).body("Application was added");
-            } else if (Objects.equals(resource, "w")) {
+            } else if (Objects.equals(resource, "w")  && leisure != null && personal_care != null && retail != null && fitness != null && finance != null && transportation != null && emergency != null) {
                 userService.updateWeights(id, leisure, personal_care, retail, fitness, finance, transportation, emergency);
                 return ResponseEntity.status(HttpStatus.OK).body("Weights were added");
             } else {
