@@ -9,6 +9,12 @@ const theme = createTheme({
 		darkTeal: {
 			main: "#05363D",
 		},
+		darkRed: {
+			main: "#3d0507",
+		},
+		lightRed: {
+			main: "#f0e4e4",
+		},
 		buttonHover: {
 			main: "#034b54",
 		},
@@ -17,6 +23,9 @@ const theme = createTheme({
 		},
 		darkWhite: {
 			main: "#e4f0ec",
+		},
+		lightGrey: {
+			main: "#d3deda",
 		},
 		greyDark: {
 			main: "#2E3637",

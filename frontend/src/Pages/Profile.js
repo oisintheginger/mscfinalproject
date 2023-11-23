@@ -16,9 +16,10 @@ import { NextCarouselIcon } from "../Icons/HMEIcons";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import UserWeights from "../components/UserWeightsComponent/UserWeights";
+import { useContext } from "react";
+import { UserContext } from "../Utils/UserContext/UserContext";
 
 function Profile() {
-	const { route } = useAuthenticator((context) => [context.route]);
 	const navigator = useNavigate();
 	const location = useLocation();
 	return (

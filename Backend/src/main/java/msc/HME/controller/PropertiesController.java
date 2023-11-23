@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,9 +42,17 @@ public class PropertiesController {
 
     @GetMapping("/batch")
     public ResponseEntity<Object> batchQVP(@RequestParam List<Long> ids) {
+        System.out.println(ids);
+        if (CollectionUtils.isEmpty(ids)) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("The 'ids' parameter cannot be empty");
+        }
         try {
             List<QuickViewProperty> result = propertyService.batchQVProperties(ids);
             return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Property was not found");
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
@@ -67,8 +76,7 @@ public class PropertiesController {
         DetailedProperty property = propertyService.getPropertyDetails(id);
         String userId = userService.validateJWT(request);
         if (userId!=null) {
-            // get personalised scores and change property scores through lambda function
-//            property.set blabla score
+            propertyService.getPersonalScores();
             System.out.println(userId);
         }
         return ResponseEntity.status(HttpStatus.OK).body(property);

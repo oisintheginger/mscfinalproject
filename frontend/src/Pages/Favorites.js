@@ -22,11 +22,12 @@ import { useQuery } from "react-query";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
+import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
 
 function Favorites() {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
-	const [filtersOpen, setFiltersOpen] = useState(false);
+	// const [filtersOpen, setFiltersOpen] = useState(false);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 
 	const [pageNum, setPageNum] = useState(1);
@@ -47,38 +48,110 @@ function Favorites() {
 		context.user,
 	]);
 
-	const filterSubmit = (formdata) => {
-		setSearchParameters((params) => {
-			Object.keys(formdata).forEach((key) => {
-				params.set(key, methods.getValues(key));
-			});
-			return params;
-		});
-		methods.reset({}, { keepValues: true });
-		refetch();
-	};
+	// const filterSubmit = (formdata) => {
+	// 	setSearchParameters((params) => {
+	// 		Object.keys(formdata).forEach((key) => {
+	// 			params.set(key, methods.getValues(key));
+	// 		});
+	// 		return params;
+	// 	});
+	// 	methods.reset({}, { keepValues: true });
+	// 	refetch();
+	// };
 
-	const { isError, isLoading, error, data, refetch } = useQuery(
+	const {
+		isSuccess,
+		isError,
+		isLoading,
+		error,
+		data: favoriteData,
+		refetch,
+	} = useQuery(
 		["userFavourites"],
 		() => {
-			return API.get("HMEBackend", `/api/user/favourites`, {
+			return API.get("HMEBackend", `/api/user/f`, {
 				headers: {
 					Authorization:
-						user?.getSignInUserSession().getAccessToken().jwtToken || null,
-				},
-				response: true,
-				queryStringParameters: {
-					userId: user?.username || null,
-					...methods.getValues(),
-				},
-				selector: (data) => {
-					return data.data;
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
 				},
 			});
+		},
+		{
+			response: true,
+			queryStringParameters: {
+				userId: user?.username || null,
+				...methods.getValues(),
+			},
+			selector: (data) => {
+				const out = [
+					...data.data?.map((el) => {
+						return el.favourite;
+					}),
+				];
+				return out;
+			},
+			onSuccess: (data) => {
+				// console.log(data);
+			},
 		}
 	);
 
-	methods.customSubmitBehavior = filterSubmit;
+	const favoriteIds = favoriteData
+		?.map((el) => {
+			return el.favourite.toString();
+		})
+		.filter((el) => {
+			return el != "1";
+		});
+
+	// console.log(favoriteIds);
+
+	const {
+		isError: detailsIsError,
+		isLoading: detailsIsLoading,
+		error: detailsError,
+		data: detailsData,
+		refetch: detailsRefetch,
+	} = useQuery(
+		["favoriteQuickViews"],
+		() => {
+			return API.get("HMEBackend", `/api/properties/batch`, {
+				headers: {
+					Authorization:
+						"Bearer " +
+							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
+				},
+				queryStringParameters: {
+					ids: favoriteIds,
+				},
+			});
+		},
+		{
+			response: true,
+			enabled: false,
+			refetchOnWindowFocus: false,
+			select: (data) => {
+				return data;
+			},
+			onSuccess: (data) => {
+				console.log(data);
+			},
+			onError: (err) => {
+				// console.log(err);
+			},
+		}
+	);
+
+	useEffect(() => {
+		if (isSuccess) {
+			detailsRefetch();
+		}
+	}, [favoriteData, isSuccess]);
+
+	// methods.customSubmitBehavior = filterSubmit;
 
 	useEffect(() => {
 		setInitialBreadcrumbLocation(
@@ -95,13 +168,18 @@ function Favorites() {
 		return () => {};
 	}, [pageNum]);
 
+	const paginatedResults = detailsData?.slice(
+		0 + 9 * (pageNum - 1),
+		9 + 9 * (pageNum - 1)
+	);
+
 	return (
 		<PageTemplate
 			pageTitle="My Favorites"
 			currPageBreadcrumb={"My Favorites"}
 			prevPage={initialBreadcrumbLocation}
 		>
-			<Button
+			{/* <Button
 				variant="outlined"
 				color="darkTeal"
 				sx={{
@@ -126,13 +204,13 @@ function Favorites() {
 						Filter
 					</Typography>
 				)}
-			</Button>
-			<FormProvider {...methods}>
+			</Button> */}
+			{/* <FormProvider {...methods}>
 				<FilterFields
 					filtersOpen={filtersOpen}
 					setFiltersOpen={setFiltersOpen}
 				/>
-			</FormProvider>
+			</FormProvider> */}
 			<Divider />
 			<Box
 				minHeight={"45vh"}
@@ -153,11 +231,20 @@ function Favorites() {
 				) : isError ? (
 					<p>Error</p>
 				) : (
-					<ResultsGrid propertyData={data} displayTitle="RESULTS" />
+					<Grid container spacing={2} width={"100%"}>
+						{paginatedResults &&
+							paginatedResults.map((data, key) => {
+								return (
+									<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+										<PropertyCard data={data} />
+									</Grid>
+								);
+							})}
+					</Grid>
 				)}
 			</Box>
 			<Pagination
-				count={10}
+				count={(detailsData?.length % 9) - 1}
 				boundaryCount={1}
 				siblingCount={1}
 				variant="outlined"

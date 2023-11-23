@@ -3,6 +3,7 @@ import { UserContext } from "./UserContext";
 import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import cloneDeep from "clone-deep";
 function UserContextProvider({ children }) {
 	const { route, user } = useAuthenticator((context) => [
 		context.route,
@@ -14,22 +15,34 @@ function UserContextProvider({ children }) {
 			return API.get("HMEBackend", `/api/user`, {
 				headers: {
 					Authorization:
-						user.getSignInUserSession().getAccessToken().getJwtToken() || null,
-				},
-				response: true,
-				enabled: false,
-				queryStringParameters: {
-					userId: user.username || null,
+						"Bearer " +
+							user.getSignInUserSession().getAccessToken().getJwtToken() ||
+						null,
 				},
 			});
 		},
 		{
 			select: (data) => {
-				return data.data;
+				const ParseFavorites = (userObject) => {
+					const copy = cloneDeep(userObject);
+					copy.favourites = copy.favourites
+						.map((el) => {
+							return el.favourite;
+						})
+						.filter((el) => {
+							return el != "1";
+						});
+					return copy;
+				};
+				let out = ParseFavorites(data);
+				return out;
 			},
 			enabled: false,
 			onError: (err) => {
-				console.log(err);
+				console.log("Error in user context", err);
+			},
+			onSuccess: (data) => {
+				// console.log(data);
 			},
 		}
 	);
