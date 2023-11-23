@@ -16,12 +16,12 @@ export default function RenderSaveSearch() {
 	const queryClient = useQueryClient();
 	
 	const parseSearchString = (searchString) => {
-		// Replace the plus encoded with %2B or space encoded as %20 back to the actual plus sign or space for URLSearchParams
+		// Replacing %2B or space encoded as %20 back to the actual plus sign or space for URLSearchParams
 		const correctedString = searchString.replace(/%2B/g, '+').replace(/%20/g, ' ');
 		const params = new URLSearchParams(correctedString);
 		const search = params.get('searchString') || '';
-		const minPrice = params.get('Min Price') || ''; // Ensure the parameter name matches exactly as in the URL
-		const maxPrice = params.get('Max Price') || ''; // Ensure the parameter name matches exactly as in the URL
+		const minPrice = params.get('Min Price') || ''; 
+		const maxPrice = params.get('Max Price') || ''; 
 		return { search, minPrice, maxPrice };
 	};
 	
@@ -71,8 +71,8 @@ export default function RenderSaveSearch() {
 			alert("UNSUCCESSFUL DELETION")
         }
     };
+
 	//Pagination
-	
     const itemsPerPage = 5;
 	const handleChangePage = (event, newPage) => {
         setCurrentPage(newPage);
