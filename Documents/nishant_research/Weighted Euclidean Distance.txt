@@ -1,0 +1,24 @@
+Weighted Euclidean Distance
+
+The concept of "weighted" Euclidean distance involves giving different weights to different features according to their importance. This can be particularly useful if some features are more important than others in determining the similarity between data points.
+
+In a real estate context, you might decide that the number of bedrooms and bathrooms is more important than other features, and thus you want these features to have a larger influence on the distance calculation.
+
+Implementing Weighted Euclidean Distance
+
+Scikit-learn’s NearestNeighbors does not natively support weighted Euclidean distance directly through a parameter, but you can simulate it by scaling the features according to their importance. Here’s how you can do it:
+
+Assign Weights to Features: Decide on the importance of each feature and assign a weight to it. Higher weights should be assigned to more important features.
+
+Manually Scale Features: Multiply each feature by its corresponding weight. This manual scaling will give more importance to certain features in the Euclidean distance calculation.
+
+# Example: Assigning weights (these are arbitrary and should be chosen based on your specific needs)
+weights = {'bedrooms': 2, 'bathrooms': 2, 'other_feature1': 1, 'other_feature2': 1, ...}
+
+# Apply weights
+for feature, weight in weights.items():
+    df_final_encoded[feature] *= weight
+
+
+knn = NearestNeighbors()
+knn.fit(df_final_encoded)
