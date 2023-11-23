@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Pagination } from "@mui/material";
+import { Pagination, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
@@ -48,6 +48,9 @@ export default function RenderSaveSearch() {
 
 	if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>An error has occurred: {error.message}</div>;
+	if (searchData?.length === 0) {
+        return <div>You have no saved searches</div>; //If search data empty
+    }
 
 	
 
@@ -111,13 +114,14 @@ export default function RenderSaveSearch() {
                     </Paper>
                 );
             })}
-			<Pagination
-                sx={{ mt: 2 }} // Add some spacing at the bottom
-                count={Math.ceil(searchData?.length / itemsPerPage)}
-                page={currentPage}
-                onChange={handleChangePage}
-                color="primary"
-            />
+			<Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', mt: 2 }}>
+                <Pagination
+                    count={Math.ceil(searchData?.length / itemsPerPage)}
+                    page={currentPage}
+                    onChange={handleChangePage}
+                    color="primary"
+                />
+            </Box>
         </div>
         
     );
