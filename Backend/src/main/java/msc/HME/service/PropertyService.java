@@ -1,12 +1,15 @@
 package msc.HME.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import msc.HME.binding.DetailedProperty;
 import msc.HME.binding.GeoLocation;
 import msc.HME.binding.PersonalScoresResponse;
 import msc.HME.binding.QuickViewProperty;
-import msc.HME.mapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -183,30 +186,26 @@ public class PropertyService {
     }
 
     // access scores lambda function to retrieve personal services score per neighbourhood
-    public void getPersonalScores(String userId, String propertyId) {
+    public List<PersonalScoresResponse> getPersonalScores(String userId, String propertyId) throws JsonProcessingException {
 
-        try (LambdaClient lambdaClient = LambdaClient.builder()
+        LambdaClient lambdaClient = LambdaClient.builder()
                 .region(Region.of("eu-west-1"))
-                .build()) {
+                .build();
 
-            String functionName = "UpdateUserScores";
-            String payload = "{\"id\": \"" + userId + "\", \"propertyID\": \" " + propertyId + "\"}";
+        String functionName = "UpdateUserScores";
+        String payload = "{\"id\": \"" + userId + "\", \"propertyID\": \" " + propertyId + "\"}";
 
-            InvokeRequest request = InvokeRequest.builder()
-                    .functionName(functionName)
-                    .payload(SdkBytes.fromUtf8String(payload))
-                    .build();
+        InvokeRequest request = InvokeRequest.builder()
+                .functionName(functionName)
+                .payload(SdkBytes.fromUtf8String(payload))
+                .build();
 
-            InvokeResponse response = lambdaClient.invoke(request);
+        InvokeResponse response = lambdaClient.invoke(request);
 
-            String responseString = response.payload().asUtf8String();
-            System.out.println(responseString);
+        String responseString = response.payload().asUtf8String();
 
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            PersonalScoresResponse result = objectMapper.readValue(responseString, PersonalScoresResponse.class);
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        TypeReference<List<PersonalScoresResponse>> typeRef = new TypeReference<>() {};
+        return objectMapper.readValue(responseString, typeRef);
     }
 }

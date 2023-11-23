@@ -1,5 +1,6 @@
 package msc.HME.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletRequest;
 import msc.HME.binding.*;
 import msc.HME.service.PropertyService;
@@ -70,14 +71,25 @@ public class PropertiesController {
     
 
     @GetMapping("/details/{id}")
-    ResponseEntity<Object> findPropertyById(@PathVariable Integer id, HttpServletRequest request) {
-        DetailedProperty property = propertyService.getPropertyDetails(id);
-        String userId = userService.validateJWT(request);
-        if (userId!=null) {
-            propertyService.getPersonalScores(userId, id.toString());
-            System.out.println(userId);
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(property);
+    ResponseEntity<Object> findPropertyById(@PathVariable Integer id, HttpServletRequest request) throws JsonProcessingException {
+//        try {
+            DetailedProperty property = propertyService.getPropertyDetails(id);
+            String userId = userService.validateJWT(request);
+            if (userId != null) {
+                PersonalScoresResponse scores = propertyService.getPersonalScores(userId, id.toString()).get(0);
+                property.setEmergency_score(scores.getEmergency_score());
+                property.setFitness_score(scores.getFitness_score());
+                property.setRetail_score(scores.getRetail_score());
+                property.setLeisure_score(scores.getLeisure_score());
+                property.setFinance_score(scores.getFinance_score());
+                property.setTransportation_score(scores.getTransportation_score());
+                property.setPersonal_care_score(scores.getPersonal_care_score());
+                property.setServicesOverallScore(scores.getOverall_score());
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(property);
+//        } catch (JsonProcessingException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+//        } // to do: Error handling
     }
 
     @GetMapping("/locations")
