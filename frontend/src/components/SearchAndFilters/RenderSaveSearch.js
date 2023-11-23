@@ -1,20 +1,12 @@
 import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Pagination, Box, ButtonBase } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useLocation } from "react-router-dom";
-import {Grid, Typography, Divider, IconButton, Stack} from "@mui/material";
+import {Grid, Typography, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useQuery, useQueryClient } from "react-query";
 import { API } from "aws-amplify";
-import { searchData as initialSearchData } from "../../MockData/SearchData";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export default function RenderSaveSearch() {
@@ -67,13 +59,16 @@ export default function RenderSaveSearch() {
                 headers: { Authorization: `Bearer ${token}` },
                 response: true,
                 queryStringParameters: {
-                    searchString // This should be the actual search string you want to delete
+                    searchString 
                 }
             });
             // After deletion, refetch the search data
             queryClient.invalidateQueries("userSearch");
+			alert("Successfully deleted");
+
         } catch (error) {
             console.error("Failed to delete:", error);
+			alert("UNSUCCESSFUL DELETION")
         }
     };
 	//Pagination
