@@ -25,8 +25,8 @@ export function UpdateWeightsMutation(
 						null,
 				},
 				queryStringParameters: {
-					entertainment: leisure,
-					pharmacies: personal_care,
+					leisure: leisure,
+					personal_care: personal_care,
 					retail: retail,
 					fitness: fitness,
 					finance: finance,

@@ -29,7 +29,53 @@ import {
 	UpdateWeightsMutation,
 } from "../../Utils/Mutations/ProfileMutation/ProfileMutation";
 import ButtonStyled from "../CommonComp/Button/ButtonStyled";
-const Options = [
+
+const OptionDict = {
+	finance: {
+		key: "finance",
+		id: "Financial",
+		icon: <AccountBalanceIcon fontSize="large" />,
+		facilities: "Banks",
+	},
+	transportation: {
+		key: "transportation",
+		id: "Transportation",
+		icon: <CommuteIcon fontSize="large" />,
+		facilities: "Buses, Trains, and Transit Stations",
+	},
+	personal_care: {
+		key: "personal_care",
+		id: "Personal Care",
+		icon: <LocalPharmacyIcon fontSize="large" />,
+		facilities: "Pharmacies and Beauty Salons",
+	},
+	retail: {
+		key: "retail",
+		id: "Retail",
+		icon: <PointOfSaleIcon fontSize="large" />,
+		facilities: "Supermarkets",
+	},
+	fitness: {
+		key: "fitness",
+		id: "Fitness",
+		icon: <FitnessCenterIcon fontSize="large" />,
+		facilities: "Gyms",
+	},
+	leisure: {
+		key: "leisure",
+		id: "Leisure",
+		icon: <NightlifeIcon fontSize="large" />,
+		facilities: "Cafés, Restaurants, Nightclubs, Bars, Parks",
+	},
+	emergency: {
+		key: "emergency",
+		id: "Emergency",
+		icon: <LocalPoliceIcon fontSize="large" />,
+		facilities: "Police & Fire Stations, and Hospitals",
+	},
+};
+
+const DefaultOptions = [
 	{
 		key: "finance",
 		id: "Financial",
@@ -138,7 +184,7 @@ function OptionList(options) {
 }
 
 function UserWeights() {
-	const [state, setState] = useState({ options: Options });
+	const [state, setState] = useState({ options: DefaultOptions });
 
 	const { route, user } = useAuthenticator((context) => [
 		context.route,
@@ -167,14 +213,21 @@ function UserWeights() {
 					return data[el] == null;
 				});
 				if (nullsPresent) {
-					setState({ options: Options });
+					setState({ options: DefaultOptions });
+					return;
 				}
+				let newOptionsList = new Array(7);
+				Object.keys(data).map((el) => {
+					newOptionsList[7 - data[el]] = OptionDict[el];
+				});
+
+				setState({ options: newOptionsList });
 			},
 		}
 	);
 
 	const { mutate: updateWeights } = UpdateWeightsMutation((data) => {
-		console.log(data);
+		weightsRefetch();
 	});
 
 	const reorder = (list, startIndex, endIndex) => {
