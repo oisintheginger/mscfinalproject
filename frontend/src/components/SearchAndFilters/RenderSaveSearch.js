@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Pagination, Box } from "@mui/material";
+import { Pagination, Box, ButtonBase } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
@@ -91,8 +91,28 @@ export default function RenderSaveSearch() {
         <div>
             {currentData?.map((item, index) => {
                 const { search, minPrice, maxPrice } = parseSearchString(item.search);
-                return (
-                    <Paper elevation={2} sx={{ border: 1, borderColor: "divider", p: 2, my: 1 }} key={index}>
+                // clickable card
+				
+					// Construct the search query using item properties
+					const searchParams = new URLSearchParams({
+						searchString: search,
+						'Min Price': minPrice,
+						'Max Price': maxPrice,
+						
+					});
+					const searchString = searchParams.toString();
+					const navigateToSearch = () => {
+						navigator(`/browse?${searchString}`);
+					
+					
+				};
+				return (
+					<ButtonBase
+						component="div" 
+						sx={{ width: '100%'}} 
+						onClick={navigateToSearch}
+						key={index}>
+                    <Paper elevation={2} sx={{width: '100%', border: 1, borderColor: "divider", p: 2, my: 1 }} key={index}>
                         <Grid container spacing={2} alignItems="center">
                             <Grid item xs={3}>
                                 <Typography variant="h6" sx={{ cursor: "pointer" }} onClick={() => navigator("/browse")}>
@@ -106,12 +126,16 @@ export default function RenderSaveSearch() {
                                 <Typography>Max Price: {maxPrice}</Typography>
                             </Grid>
                             <Grid item xs={3} justifyContent={"flex-end"}>
-                                <IconButton onClick={() => handleDelete(item.search)}>
-                                    <DeleteIcon />
-                                </IconButton>
+							<IconButton onClick={(event) => {
+    								event.stopPropagation(); // Prevents the ButtonBase onClick from being triggered
+    								handleDelete(item.search);
+								}}>
+    							<DeleteIcon />
+							</IconButton>
                             </Grid>
                         </Grid>
                     </Paper>
+					</ButtonBase>
                 );
             })}
 			<Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', mt: 2 }}>
