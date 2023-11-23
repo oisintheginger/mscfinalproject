@@ -404,7 +404,7 @@ function PropertyPage() {
 								<PropertyScoresComponent inputData={data.serviceScores} />
 								<PageSection
 									background={false}
-									sectionTitle="Crime Safety Rating"
+									sectionTitle="Neighborhood Crime Safety Rating"
 								>
 									<Stack
 										width={"100%"}
