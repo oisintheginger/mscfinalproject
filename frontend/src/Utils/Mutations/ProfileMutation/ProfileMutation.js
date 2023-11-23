@@ -29,7 +29,7 @@ export function UpdateWeightsMutation(
 					pharmacies: personal_care,
 					retail: retail,
 					fitness: fitness,
-					financial: finance,
+					finance: finance,
 					transportation: transportation,
 					emergency: emergency,
 				},
