@@ -61,7 +61,6 @@ public class UserControllerTest {
 
     @Test
     public void findResource_search_200() {
-        // Arrange
         String userId = "validUserId";
         String resource = "s"; // Example resource
         List<Search> mockResource = new ArrayList<>();
@@ -70,39 +69,75 @@ public class UserControllerTest {
         when(userService.validateJWT(request)).thenReturn(userId);
         when(userService.findSearches(userId)).thenReturn(mockResource);
 
-        // Act
         ResponseEntity<Object> response = userController.findResource(resource, request);
 
-        // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(mockResource, response.getBody());
 
-        // Verify
         verify(userService).validateJWT(request);
         verify(userService).findSearches(userId);
     }
 
     @Test
     public void findResource_fave_200() {
-        // Arrange
         String userId = "validUserId";
-        String resource = "f"; // Favourites resource
+        String resource = "f";
         List<Favourite> mockResource = new ArrayList<>();
         mockResource.add(new Favourite());
         when(request.getHeader(anyString())).thenReturn("validToken");
         when(userService.validateJWT(request)).thenReturn(userId);
-        when(userService.findFaves(userId)).thenReturn(mockResource); // Corrected to use findFaves
+        when(userService.findFaves(userId)).thenReturn(mockResource);
 
-        // Act
         ResponseEntity<Object> response = userController.findResource(resource, request);
 
-        // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(mockResource, response.getBody());
 
-        // Verify
         verify(userService).validateJWT(request);
-        verify(userService).findFaves(userId); // Corrected to use findFaves
+        verify(userService).findFaves(userId);
     }
+
+    @Test
+    public void findResource_application_200() {
+        String userId = "validUserId";
+        String resource = "a";
+        List<Enquiry> mockResource = new ArrayList<>();
+        mockResource.add(new Enquiry());
+        when(request.getHeader(anyString())).thenReturn("validToken");
+        when(userService.validateJWT(request)).thenReturn(userId);
+        when(userService.findApplication(userId)).thenReturn(mockResource);
+
+        ResponseEntity<Object> response = userController.findResource(resource, request);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(mockResource, response.getBody());
+
+        verify(userService).validateJWT(request);
+        verify(userService).findApplication(userId);
+    }
+
+    @Test
+    public void findResource_weights_200() {
+        String userId = "validUserId";
+        String resource = "w";
+        UserWeights mockResource = new UserWeights();
+        when(request.getHeader(anyString())).thenReturn("validToken");
+        when(userService.validateJWT(request)).thenReturn(userId);
+        when(userService.findWeights(userId)).thenReturn(mockResource);
+
+        ResponseEntity<Object> response = userController.findResource(resource, request);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(mockResource, response.getBody());
+
+        verify(userService).validateJWT(request);
+        verify(userService).findWeights(userId);
+    }
+
+    // addResource
+    // updateEmail
+    // updateResources
+    // removeResources
+    // removeUser
 
 }
