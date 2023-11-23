@@ -866,42 +866,50 @@ ALTER TABLE service_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neig
 
 UPDATE service_scores AS a JOIN Neighbourhoods AS n ON a.service_score_ID = n.neighbourhoodID  SET a.neighbourhoodID = n.neighbourhoodID;
 
+SELECT * FROM MainInformation mi 
 #####
 
-SELECT * FROM Neighbourhoods n 
+DESCRIBE user
+
+SELECT * FROM user u
+
+SELECT GROUP_CONCAT(column_name) 
+    FROM information_schema.columns 
+    WHERE table_name = 'service_scores' 
+        AND LOWER(column_name) NOT LIKE '%count%'
+
+SELECT a.neighbourhoodID
+FROM MainInformation mi
+JOIN Addresses a ON mi.addressID = a.addressID
+WHERE mi.propertyID = '36428890';
 
 
-SELECT * From `user` u 
+SELECT a.neighbourhoodID FROM MainInformation mi JOIN Addresses a ON mi.addressID = a.addressID WHERE mi.propertyID = 36429513
 
-DESCRIBE `user` 
+DROP TABLE user_interactions 
 
-CREATE TABLE user_service_scores (
+CREATE TABLE user_interactions (
+    user_interaction_id INT AUTO_INCREMENT, 
+    propertyID INT NOT NULL,
+    id varchar(36) NOT NULL,
+    click_count INT NOT NULL,
+    
+    PRIMARY KEY (user_interaction_id),
+    FOREIGN KEY (id) REFERENCES user(id)
+);
 
-)
+INSERT INTO user_interactions (propertyID, id, click_count)
+SELECT
+    mi.propertyID,
+    u.id AS id,  -- Assuming 'id' is the column in the users table that you want to use as user_id
+    0 AS click_count -- Assuming an initial click count of 0 for existing users
+FROM
+    user u
+CROSS JOIN
+    MainInformation mi;
+   
+SELECT * FROM user_interactions 
 
-DROP TABLE 
+DESCRIBE user_interactions
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT COUNT(*) AS row_count FROM user_interactions;
