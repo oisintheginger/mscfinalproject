@@ -12,27 +12,24 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import {Grid, Typography, Divider, IconButton, Stack} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { API } from "aws-amplify";
 import { searchData as initialSearchData } from "../../MockData/SearchData";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export default function RenderSaveSearch() {
-	
-	const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
-
-	
 	const {user} = useAuthenticator((context)=>[context.user]);
 	const navigator = useNavigate();
+	const [currentPage, setCurrentPage] = useState(1);
+	const queryClient = useQueryClient();
 	
 	const parseSearchString = (searchString) => {
-		
+		// Replace the plus encoded with %2B or space encoded as %20 back to the actual plus sign or space for URLSearchParams
 		const correctedString = searchString.replace(/%2B/g, '+').replace(/%20/g, ' ');
 		const params = new URLSearchParams(correctedString);
 		const search = params.get('searchString') || '';
-		const minPrice = params.get('Min Price') || '';
-		const maxPrice = params.get('Max Price') || ''; 
+		const minPrice = params.get('Min Price') || ''; // Ensure the parameter name matches exactly as in the URL
+		const maxPrice = params.get('Max Price') || ''; // Ensure the parameter name matches exactly as in the URL
 		return { search, minPrice, maxPrice };
 	};
 	
@@ -53,12 +50,32 @@ export default function RenderSaveSearch() {
     if (isError) return <div>An error has occurred: {error.message}</div>;
 
 	
-	
-	
 
-	/// the handleDelete doesn't actually delete from the SearchData.js -> when you reload the page, it's still there.
+	//Deletion
+	const handleDelete = async (searchString) => {
+        const token = user?.getSignInUserSession().getAccessToken().jwtToken || null;
+        if (!token) {
+            console.error("Authentication token not available.");
+            return;
+        }
 
-	// pagination
+        try {
+            await API.del("HMEBackend", "/api/user/remove/s", {
+                headers: { Authorization: `Bearer ${token}` },
+                response: true,
+                queryStringParameters: {
+                    searchString // This should be the actual search string you want to delete
+                }
+            });
+            // After deletion, refetch the search data
+            queryClient.invalidateQueries("userSearch");
+        } catch (error) {
+            console.error("Failed to delete:", error);
+        }
+    };
+	//Pagination
+	
+    const itemsPerPage = 5;
 	const handleChangePage = (event, newPage) => {
         setCurrentPage(newPage);
     };
@@ -67,7 +84,6 @@ export default function RenderSaveSearch() {
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
-	
 	return (
         <div>
             {currentData?.map((item, index) => {
@@ -87,7 +103,7 @@ export default function RenderSaveSearch() {
                                 <Typography>Max Price: {maxPrice}</Typography>
                             </Grid>
                             <Grid item xs={3} justifyContent={"flex-end"}>
-                                <IconButton onClick={() => console.log("Deleted")}>
+                                <IconButton onClick={() => handleDelete(item.search)}>
                                     <DeleteIcon />
                                 </IconButton>
                             </Grid>
@@ -96,12 +112,13 @@ export default function RenderSaveSearch() {
                 );
             })}
 			<Pagination
-                sx={{ mt: 2 }} 
+                sx={{ mt: 2 }} // Add some spacing at the bottom
                 count={Math.ceil(searchData?.length / itemsPerPage)}
                 page={currentPage}
                 onChange={handleChangePage}
                 color="primary"
             />
         </div>
+        
     );
 }
