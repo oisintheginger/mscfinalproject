@@ -206,7 +206,7 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 						zoom={12}
 						scrollWheelZoom={true}
 					>
-						{/* <Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
+						<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
 							<Button
 								sx={{
 									transform: "translate(-10px, 10px)",
@@ -225,7 +225,7 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 									JUMP TO RESULTS
 								</Typography>
 							</Button>
-						</Stack> */}
+						</Stack>
 						<HMEMap
 							marks={propertyData || []}
 							points={points}
