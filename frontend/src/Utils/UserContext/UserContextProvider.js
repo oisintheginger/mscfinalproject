@@ -9,10 +9,8 @@ import { Auth } from "aws-amplify";
 const getAccessToken = async () => {
 	try {
 		const session = await Auth.currentSession();
-
 		return session?.getAccessToken().getJwtToken();
 	} catch (err) {
-		console.log(err);
 		return null;
 	}
 };
