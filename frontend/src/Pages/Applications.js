@@ -1,6 +1,6 @@
 import PageTemplate from "./PageTemplate";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ApplicationCard from "../components/CommonComp/Cards/ApplicationCard/ApplicationCard";
 import {
 	Grid,
@@ -19,6 +19,7 @@ import ButtonOutlined from "../components/CommonComp/Button/ButtonOutlined";
 import DeleteButton from "../components/CommonComp/Button/DeleteButton";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "../Utils/usePagination/usePagination";
+import { UserContext } from "../Utils/UserContext/UserContext";
 
 function Applications() {
 	const location = useLocation();
@@ -38,6 +39,7 @@ function Applications() {
 		context.route,
 		context.user,
 	]);
+	const { getAccessToken } = useContext(UserContext);
 
 	const {
 		isError,
@@ -48,13 +50,11 @@ function Applications() {
 		refetch,
 	} = useQuery(
 		["userApplications"],
-		() => {
+		async () => {
+			const accessToken = await getAccessToken();
 			return API.get("HMEBackend", `/api/user/a`, {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 				queryStringParameters: {
 					userId: user?.username || null,
@@ -63,6 +63,7 @@ function Applications() {
 		},
 		{
 			response: true,
+			refetchOnMount: true,
 			refetchOnWindowFocus: false,
 			enabled: true,
 			select: (data) => {
@@ -106,6 +107,7 @@ function Applications() {
 			response: true,
 			enabled: false,
 			refetchOnWindowFocus: false,
+			refetchOnMount: true,
 			select: (rawData) => {
 				let out = [
 					...rawData.map((el) => {
@@ -144,7 +146,7 @@ function Applications() {
 		if (isSuccess) {
 			detailsRefetch();
 		}
-	}, [applicationData, isSuccess]);
+	}, [applicationData, isLoading, isSuccess]);
 
 	const { pageNum, handlePageChange } = usePagination(() => {},
 	setSearchParameters);

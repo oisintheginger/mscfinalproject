@@ -3,18 +3,17 @@ import { API } from "aws-amplify";
 import { useMutation } from "react-query";
 export function CreateApplicationMutation(
 	successCallback = () => {},
-	errorCallback = () => {}
+	errorCallback = () => {},
+	getAccessToken = () => {}
 ) {
 	const { user } = useAuthenticator((context) => [context.user]);
 
 	return useMutation({
-		mutationFn: ({ propertyId, message }) => {
+		mutationFn: async ({ propertyId, message }) => {
+			const accessToken = await getAccessToken();
 			return API.post("HMEBackend", "/api/user/new/a", {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 				response: true,
 				queryStringParameters: {

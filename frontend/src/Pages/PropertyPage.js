@@ -116,7 +116,8 @@ function PropertyPage() {
 
 	const propertyId = location.pathname.split("/")[2];
 
-	const { userData, handleRefresh, route } = useContext(UserContext);
+	const { userData, handleRefresh, route, getAccessToken } =
+		useContext(UserContext);
 	const { user } = useAuthenticator((context) => [context.user]);
 	const mapRef = useRef(null);
 
@@ -279,7 +280,8 @@ function PropertyPage() {
 	const { mutate: addToFavorites } = AddToFavoritesMutation(
 		propertyId,
 		successAddFavorites,
-		errorAddFavorites
+		errorAddFavorites,
+		getAccessToken
 	);
 
 	const successRemoveFavorites = () => {
@@ -294,7 +296,8 @@ function PropertyPage() {
 	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
 		propertyId,
 		successRemoveFavorites,
-		errorRemoveFavorites
+		errorRemoveFavorites,
+		getAccessToken
 	);
 
 	const successCreateApplication = () => {
@@ -308,7 +311,8 @@ function PropertyPage() {
 	};
 	const { mutate: createApplication } = CreateApplicationMutation(
 		successCreateApplication,
-		errorCreateApplication
+		errorCreateApplication,
+		getAccessToken
 	);
 
 	const isFavorited = userData?.favourites.includes(propertyId) || false;

@@ -20,7 +20,8 @@ import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useQuery } from "react-query";
 import { useSearchParams, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { UserContext } from "../Utils/UserContext/UserContext";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
 
@@ -47,7 +48,7 @@ function Favorites() {
 		context.route,
 		context.user,
 	]);
-
+	const { getAccessToken } = useContext(UserContext);
 	// const filterSubmit = (formdata) => {
 	// 	setSearchParameters((params) => {
 	// 		Object.keys(formdata).forEach((key) => {
@@ -68,17 +69,16 @@ function Favorites() {
 		refetch,
 	} = useQuery(
 		["userFavourites"],
-		() => {
+		async () => {
+			const accessToken = await getAccessToken();
 			return API.get("HMEBackend", `/api/user/f`, {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 			});
 		},
 		{
+			refetchOnMount: true,
 			response: true,
 			queryStringParameters: {
 				userId: user?.username || null,
@@ -149,7 +149,7 @@ function Favorites() {
 		if (isSuccess) {
 			detailsRefetch();
 		}
-	}, [favoriteData, isSuccess]);
+	}, [favoriteData, isLoading, isSuccess]);
 
 	// methods.customSubmitBehavior = filterSubmit;
 
