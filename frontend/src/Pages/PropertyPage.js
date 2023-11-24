@@ -270,31 +270,6 @@ function PropertyPage() {
 										down={down}
 									/>
 								)}
-								{/* <Button
-									onClick={() => {
-										if (route === "authenticated") {
-											openModal();
-										} else {
-											openLoginModal();
-										}
-									}}
-									variant="outlined"
-									sx={{
-										maxWidth: "30vw",
-										transform: "translate(0px, 8px)",
-										backgroundColor: "darkTeal.main",
-
-										"&:hover": {
-											backgroundColor: "buttonHover.main",
-											color: "darkWhite.main",
-										},
-										marginRight: 2,
-										height: 45,
-									}}
-									endIcon={<ApplicationIcon />}
-								>
-									Apply Now
-								</Button> */}
 								{isFavorited ? (
 									<RemoveFavoriteButton
 										action={() => {
@@ -398,7 +373,7 @@ function PropertyPage() {
 						<Box //PAGE SECTIONS
 						>
 							<Stack mt={5} spacing={6}>
-								<PageSection sectionTitle="Description">
+								<PageSection sectionTitle="Description" background={false}>
 									<Typography variant="body1">{data?.description}</Typography>
 								</PageSection>
 								<PropertyScoresComponent inputData={data.serviceScores} />
