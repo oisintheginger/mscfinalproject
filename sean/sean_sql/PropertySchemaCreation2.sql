@@ -894,9 +894,12 @@ CREATE TABLE user_interactions (
     id varchar(36) NOT NULL,
     click_count INT NOT NULL,
     
-    PRIMARY KEY (user_interaction_id),
-    FOREIGN KEY (id) REFERENCES user(id)
+    PRIMARY KEY (user_interaction_id)
 );
+
+ALTER TABLE user_interactions
+ADD CONSTRAINT fk_user_interactions_user
+FOREIGN KEY (id) REFERENCES user(id);
 
 INSERT INTO user_interactions (propertyID, id, click_count)
 SELECT
@@ -906,9 +909,11 @@ SELECT
 FROM
     user u
 CROSS JOIN
-    MainInformation mi;
-   
-SELECT * FROM user_interactions 
+    MainInformation mi
+ORDER BY
+    u.id;  -- Order by user ID
+
+SELECT * FROM user_interactions;
 
 DESCRIBE user_interactions
 
