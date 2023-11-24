@@ -19,18 +19,17 @@ import {
 	Typography,
 	Grid,
 	Pagination,
+	IconButton,
 } from "@mui/material";
 import SkeletonCard from "../CommonComp/Cards/SkeletonCard/SkeletonCard";
 import { darkTeal } from "../../Styling/styleConstants";
 
 import { useSearchParams } from "react-router-dom";
-import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
 import { useEffect, useState } from "react";
 import ResultGrid from "../ResultsGrid/ResultsGrid";
 import { API } from "aws-amplify";
-import { useQueries, useQuery } from "react-query";
-import MapResultsGrid from "../MapResultsGrid/MapResultsGrid";
-import MapPropertyPopup from "../MapPopup/MapPropertyPopup";
+import { useQuery } from "react-query";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 function HMEMap({
 	marks,
@@ -130,7 +129,7 @@ function HMEMap({
 }
 
 function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
-	const [points, setPoints] = useState([]);
+	const [points, setPoints] = useState(propertyData ? propertyData : []);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 
 	const [pageNum, setPageNum] = useState(
@@ -249,7 +248,13 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 					})}
 				</Grid>
 			) : isError ? (
-				<p>error:{}</p>
+				<IconButton
+					onClick={() => {
+						refetch();
+					}}
+				>
+					<RefreshIcon fontSize="large" />
+				</IconButton>
 			) : (
 				<>
 					<ResultGrid id={"results"} propertyData={data} />
