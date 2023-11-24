@@ -10,8 +10,6 @@ export function AddToFavoritesMutation(
 	errorCallback = () => {},
 	getAccessToken = () => {}
 ) {
-	const { user } = useAuthenticator((context) => [context.user]);
-
 	return useMutation({
 		mutationFn: async () => {
 			const accessToken = await getAccessToken();
@@ -41,7 +39,6 @@ export function RemoveFromFavoritesMutation(
 	errorCallback = () => {},
 	getAccessToken = () => {}
 ) {
-	const { user } = useAuthenticator((context) => [context.user]);
 	return useMutation({
 		mutationFn: async () => {
 			const accessToken = await getAccessToken();
