@@ -90,13 +90,12 @@ function Applications() {
 		refetch: detailsRefetch,
 	} = useQuery(
 		["propertyQuickViews"],
-		() => {
+		async () => {
+			const accessToken = await getAccessToken();
+
 			return API.get("HMEBackend", `/api/properties/batch`, {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 				queryStringParameters: {
 					ids: applicationPropIds,
