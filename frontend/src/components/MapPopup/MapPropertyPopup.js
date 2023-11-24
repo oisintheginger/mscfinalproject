@@ -18,25 +18,36 @@ import { useNavigate, useLocation } from "react-router-dom";
 import SkeletonCard from "../CommonComp/Cards/SkeletonCard/SkeletonCard";
 import { Popup } from "react-leaflet";
 
-function MapPropertyPopup({ propertyId, position }) {
-	const { isLoading, isError, isSuccess, data, error, refetch } = useQuery(
-		["map-popup", propertyId],
-		() => {
-			return API.get("HMEBackend", `/api/properties/${propertyId}`, {
-				headers: {},
-				response: true,
-			});
-		},
-		{ select: (data) => data.data }
-	);
+function MapPropertyPopup({ propertyId, position, openDrawerHandler }) {
+	// const { isLoading, isError, isSuccess, data, error, refetch } = useQuery(
+	// 	["map-popup", propertyId],
+	// 	() => {
+	// 		return API.get("HMEBackend", `/api/properties/${propertyId}`, {
+	// 			headers: {},
+	// 			response: true,
+	// 		});
+	// 	},
+	// 	{
+	// 		select: (data) => data.data,
+	// 		refetchOnMount: false,
+	// 		refetchOnWindowFocus: false,
+	// 	}
+	// );
 
 	return (
-		<Popup position={position}>
-			{isLoading || isError ? (
+		<Popup
+			position={position}
+			eventHandlers={{
+				mousedown: () => {
+					console.log("clicked popup");
+				},
+			}}
+		>
+			{/* {isLoading || isError ? (
 				<SkeletonCard />
 			) : (
 				<PropertyCard data={data} inPopup={true} />
-			)}
+			)} */}
 		</Popup>
 	);
 }
