@@ -4,227 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "e90ccd6311c7e51d",
+        "id": "c30b7ea464aa2f6f",
         "type": "tabs",
         "children": [
           {
-            "id": "719d7bcf6b49ba51",
+            "id": "2121f4dbc27e5041",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/October/Friday 6th October.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8eb90d077a01ad45",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md",
-                "mode": "preview",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "57854068fdf210d7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/October/Monday 16th October.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c77f3e6e729a8c4a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/October/Tuesday 3rd October.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c7a876d0be375c33",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/1st November 2023.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "97ab786ad2478a7e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/2nd November 2023.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "1fc3c2f790106274",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/6th November Monday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ef936b31ccf075c9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/7th November Tuesday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "56b48df5b4a5cdff",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/7th November Tuesday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ce37c8b2379e2121",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/11th November Saturday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "46f2d2bf4ba649bd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/October/Wednesday 4th October.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e3b8b04c7960771d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/October/Saturday 14th October.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c33f165a65c2721f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/20th November Monday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3bcb0b867a62282a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/21st November Tuesday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c3ca394c03234377",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/22nd November Wednesday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "1680501db333decc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/22nd November Wednesday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4d87914d5b9887d3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/23rd November Thursday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "905315628fe86f12",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/24th November Friday.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 17
+        ]
       }
     ],
     "direction": "vertical"
@@ -298,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/November/24th November Friday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -315,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/November/24th November Friday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -337,9 +126,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Daily Diary/November/24th November Friday.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -360,10 +147,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "905315628fe86f12",
+  "active": "2121f4dbc27e5041",
   "lastOpenFiles": [
-    "Daily Diary/November/23rd November Thursday.md",
     "Daily Diary/November/24th November Friday.md",
+    "Daily Diary/November/23rd November Thursday.md",
     "Daily Diary/November/22nd November Wednesday.md",
     "Daily Diary/November/21st November Tuesday.md",
     "Daily Diary/November/20th November Monday.md",

@@ -10,6 +10,9 @@ import {
 	Chip,
 	Paper,
 	Modal,
+	Snackbar,
+	Alert,
+	Slide,
 } from "@mui/material";
 import { ApplicationIcon, FavoriteIcon, MapIcon } from "../Icons/HMEIcons";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
@@ -22,14 +25,13 @@ import Carousel from "../components/Carousel/Carousel";
 import { useContext, useEffect, useRef, useState } from "react";
 import ApplyModal from "../components/CreateApplicationModal/ApplyModal";
 
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { Authenticator, View } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import PropertyScoresComponent from "../components/PropertyScoresComponent/PropertyScoresComponent";
-import { MockScores } from "../MockData/PropertyScoresMockData";
 import {
 	AddToFavoritesMutation,
 	RemoveFromFavoritesMutation,
@@ -44,6 +46,69 @@ import {
 } from "../components/PropertyDetailsPageButtons/ApplyButton";
 import { CreateApplicationMutation } from "../Utils/Mutations/ApplicationMutation/ApplicationMutation";
 import { ColorGradeFunc } from "../Utils/ColorGradientFunc";
+import StarOutline from "@mui/icons-material/StarOutline";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+
+const AlertMap = {
+	added_favorite: (
+		<Alert
+			severity={"success"}
+			variant="filled"
+			icon={<StarOutline fontSize="medium" />}
+			sx={{ alignItems: "center" }}
+		>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Added To Favorites
+			</Typography>
+		</Alert>
+	),
+	removed_favorite: (
+		<Alert
+			severity={"success"}
+			variant="filled"
+			icon={<DeleteOutlineOutlinedIcon fontSize="medium" />}
+			sx={{ alignItems: "center" }}
+		>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Removed From Favorites
+			</Typography>
+		</Alert>
+	),
+	created_application: (
+		<Alert
+			severity={"success"}
+			variant="filled"
+			icon={<DescriptionOutlinedIcon fontSize="medium" />}
+			sx={{ alignItems: "center" }}
+		>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Created Application
+			</Typography>
+		</Alert>
+	),
+	error_added_favorite: (
+		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Error Adding to Favorites
+			</Typography>
+		</Alert>
+	),
+	error_removing_favorite: (
+		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Error Removing Favorites
+			</Typography>
+		</Alert>
+	),
+	error_application: (
+		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Error Creating Application
+			</Typography>
+		</Alert>
+	),
+};
 
 function PropertyPage() {
 	const location = useLocation();
@@ -60,6 +125,13 @@ function PropertyPage() {
 
 	const [modalOpen, setModalOpen] = useState(false);
 	const [loginModalOpen, setLoginModalOpen] = useState(false);
+
+	const [snackbarAlertOpen, setSnackbarAlertOpen] = useState(false);
+	const [alert, setAlert] = useState(<></>);
+
+	const handleSnackbarClose = () => {
+		setSnackbarAlertOpen(false);
+	};
 
 	const openModal = () => {
 		setModalOpen(true);
@@ -195,19 +267,49 @@ function PropertyPage() {
 		}
 	);
 
-	const { mutate: addToFavorites } = AddToFavoritesMutation(propertyId, () => {
+	const successAddFavorites = () => {
 		handleRefresh();
-	});
-
-	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+		setAlert(AlertMap.added_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const errorAddFavorites = () => {
+		setAlert(AlertMap.error_added_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const { mutate: addToFavorites } = AddToFavoritesMutation(
 		propertyId,
-		() => {
-			handleRefresh();
-		}
+		successAddFavorites,
+		errorAddFavorites
 	);
 
-	const { mutate: createApplication } =
-		CreateApplicationMutation(handleRefresh);
+	const successRemoveFavorites = () => {
+		handleRefresh();
+		setAlert(AlertMap.removed_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const errorRemoveFavorites = () => {
+		setAlert(AlertMap.error_removing_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+		propertyId,
+		successRemoveFavorites,
+		errorRemoveFavorites
+	);
+
+	const successCreateApplication = () => {
+		handleRefresh();
+		setAlert(AlertMap.created_application);
+		setSnackbarAlertOpen(true);
+	};
+	const errorCreateApplication = () => {
+		setAlert(AlertMap.error_application);
+		setSnackbarAlertOpen(true);
+	};
+	const { mutate: createApplication } = CreateApplicationMutation(
+		successCreateApplication,
+		errorCreateApplication
+	);
 
 	const isFavorited = userData?.favourites.includes(propertyId) || false;
 
@@ -224,10 +326,7 @@ function PropertyPage() {
 				<p>Error:{"Something Went Wrong"}</p>
 			) : (
 				<PageTemplate
-					pageTitle={
-						data?.bedrooms + " Bed "
-						// capitalize(data?.data.propertyType)
-					}
+					pageTitle={data?.bedrooms + " Bed "}
 					prevPage={
 						location.state?.previousUrl ? location.state.previousUrl : null
 					}
@@ -529,6 +628,18 @@ function PropertyPage() {
 					</Box>
 				</PageTemplate>
 			)}
+			<Snackbar
+				open={snackbarAlertOpen}
+				autoHideDuration={3000}
+				onClose={handleSnackbarClose}
+				TransitionComponent={Slide}
+				anchorOrigin={{
+					vertical: down ? "top" : "bottom",
+					horizontal: "center",
+				}}
+			>
+				{alert}
+			</Snackbar>
 			<Modal open={modalOpen} onClose={closeModal} sx={{ width: "98%" }}>
 				<Box
 					sx={{

@@ -9,7 +9,6 @@ export function AddFavoriteButton({ action = () => {}, down = false }) {
 			variant="outlined"
 			sx={{
 				maxWidth: down ? "100vw" : "30vw",
-				transform: "translate(0px, 8px)",
 				backgroundColor: "white",
 				color: "darkTeal.main",
 				borderColor: "darkTeal.main",

@@ -56,6 +56,7 @@ const theme = createTheme({
 			fontSize: 24,
 			fontFamily: '"Urbanist", sans-serif',
 		},
+		alertToast: { fontSize: 18, fontFamily: '"Urbanist", sans-serif' },
 		button: { fontWeight: 700 },
 		landingPage: {
 			fontFamily: '"Urbanist", sans-serif',

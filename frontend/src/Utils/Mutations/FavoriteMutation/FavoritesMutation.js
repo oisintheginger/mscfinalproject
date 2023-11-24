@@ -26,12 +26,9 @@ export function AddToFavoritesMutation(
 				},
 			});
 		},
-		onMutate: () => {
-			console.log("triggered");
-		},
+		onMutate: () => {},
 		onError: (err) => {
 			errorCallback(err);
-			console.log(err);
 		},
 		onSuccess: (data) => {
 			successCallback(data);
@@ -60,12 +57,9 @@ export function RemoveFromFavoritesMutation(
 				},
 			});
 		},
-		onMutate: () => {
-			console.log("triggered");
-		},
+		onMutate: () => {},
 		onError: (err) => {
 			errorCallback(err);
-			console.log(err);
 		},
 		onSuccess: (data) => {
 			successCallback(data);
