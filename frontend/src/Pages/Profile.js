@@ -23,6 +23,14 @@ import { FetchFavoritesHook } from "../Utils/DataFetching/FetchFavoritesHook";
 import ApplicationCard from "../components/CommonComp/Cards/ApplicationCard/ApplicationCard";
 import { useState } from "react";
 import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
+import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
+import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
+import {
+	FetchSavedSearchesHook,
+	useFetchSavedSearchesHook,
+} from "../Utils/DataFetching/FetchSavedSearchesHook";
+import { SearchCard } from "../components/SearchCard/SearchCard";
+import { parseSearchString } from "../Utils/ParseSearchString";
 
 function Profile() {
 	const navigator = useNavigate();
@@ -41,20 +49,26 @@ function Profile() {
 	};
 
 	const {
-		detailsIsLoading,
+		detailsIsLoading: applicationDetailsLoading,
+		detailsError: applicationDetailsIsError,
 		detailsData: applicationsData,
-		isLoading: applicationsLoading,
-		refetch: applicationsRefetch,
 	} = FetchApplicationsHook();
 	const {
 		detailsData: favoritesDetailData,
-		isError: favoritesError,
-		isLoading: favoritesLoading,
-		isSuccess: favoritesSuccess,
-		detailsRefetch: favoritesDetailRefetch,
-		favoriteData: favoritesData,
-		refetch: favoritesRefetch,
+		detailsIsError: favoritesDetailsIsError,
+		detailsIsLoading: favoritesDetailsIsLoading,
 	} = FetchFavoritesHook();
+
+	const {
+		savedSearchesData,
+		savedSearchesIsLoading,
+		savedSearchesIsError,
+		savedSearchesError,
+		savedSearchesRefetch,
+	} = useFetchSavedSearchesHook();
+
+	console.log(savedSearchesIsLoading);
+	console.log(savedSearchesData);
 
 	return (
 		<>
@@ -75,46 +89,100 @@ function Profile() {
 							<CardCarousel propData={propertyData} />
 						</Container>
 					</PageSection>
-					<PageSection
-						background={false}
-						sectionTitle="My Favorites"
-						action={() => {
-							navigator("/favorites", {
-								state: { previousUrl: location.pathname },
-							});
-						}}
-					>
-						<Container>
-							<CardCarousel propData={favoritesDetailData?.slice(0, 9)}>
-								{favoritesDetailData?.map((data, index) => (
-									<Box p={1} key={index}>
-										<PropertyCard data={data} />
-									</Box>
-								))}
-							</CardCarousel>
-						</Container>
+					<PageSection background={false} sectionTitle="My Favorites">
+						{favoritesDetailsIsLoading ? (
+							<Grid container>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+							</Grid>
+						) : favoritesDetailsIsError ? (
+							<>Error</>
+						) : (
+							<>
+								<Grid container>
+									{favoritesDetailData?.slice(0, 4).map((data, index) => (
+										<Grid item p={1} key={index} xs={12} sm={6} md={3}>
+											<PropertyCard data={data} />
+										</Grid>
+									))}
+								</Grid>
+								<Box
+									width={"100%"}
+									display={"flex"}
+									flexDirection={"column"}
+									alignItems={"center"}
+								>
+									<ButtonStyled
+										onClick={() => {
+											navigator("/favorites?page=1", {
+												state: { previousUrl: location.pathname },
+											});
+										}}
+									>
+										View More On My Favorites
+									</ButtonStyled>
+								</Box>
+							</>
+						)}
 					</PageSection>
-					<PageSection
-						background={false}
-						sectionTitle="My Applications"
-						action={() => {
-							navigator("/applications", {
-								state: { previousUrl: location.pathname },
-							});
-						}}
-					>
-						<Container>
-							<CardCarousel>
-								{applicationsData?.map((data, index) => (
-									<Box p={1} key={index}>
-										<ApplicationCard
-											data={data}
-											openApplicationDetails={OpenApplicationDetailsModal}
-										/>
-									</Box>
-								))}
-							</CardCarousel>
-						</Container>
+					<PageSection background={false} sectionTitle="My Applications">
+						{applicationDetailsLoading ? (
+							<Grid container>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+								<Grid item p={1} xs={12} sm={6} md={3}>
+									<SkeletonCard />
+								</Grid>
+							</Grid>
+						) : applicationDetailsIsError ? (
+							<>Error</>
+						) : (
+							<>
+								<Grid container>
+									{applicationsData?.slice(0, 4).map((data, index) => (
+										<Grid item p={1} key={index} xs={12} sm={6} md={3}>
+											<ApplicationCard
+												data={data}
+												openApplicationDetails={OpenApplicationDetailsModal}
+											/>
+										</Grid>
+									))}
+								</Grid>
+								<Box
+									width={"100%"}
+									display={"flex"}
+									flexDirection={"column"}
+									alignItems={"center"}
+								>
+									<ButtonStyled
+										onClick={() => {
+											navigator("/applications?page=1", {
+												state: { previousUrl: location.pathname },
+											});
+										}}
+									>
+										View More On My Applications
+									</ButtonStyled>
+								</Box>
+							</>
+						)}
 					</PageSection>
 					<PageSection
 						background={false}
@@ -125,6 +193,22 @@ function Profile() {
 							});
 						}}
 					>
+						{/* <Stack>
+							{savedSearchesData?.map((el, ind) => {
+								const { search, minPrice, maxPrice } = parseSearchString(
+									el.search
+								);
+
+								return (
+									<SearchCard
+										search={search}
+										minPrice={minPrice}
+										maxPrice={maxPrice}
+										key={ind}
+									/>
+								);
+							})}
+						</Stack>
 						<Container>
 							<CardCarousel>
 								{applicationsData?.slice(0, 9)?.map((data, index) => (
@@ -133,7 +217,7 @@ function Profile() {
 									</Box>
 								))}
 							</CardCarousel>
-						</Container>
+						</Container> */}
 					</PageSection>
 				</Stack>
 			</PageTemplate>

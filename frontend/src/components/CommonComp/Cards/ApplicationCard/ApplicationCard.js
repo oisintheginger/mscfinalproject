@@ -51,14 +51,8 @@ function ApplicationCard({
 					image={data.thumbnail}
 					alt="Image of Rental Listing"
 				/>
-			</CardActionArea>
-			<CardContent>
-				<CardActionArea
-					onClick={(event) => {
-						event.preventDefault();
-						openApplicationDetails(data.message);
-					}}
-				>
+
+				<CardContent>
 					<Stack>
 						<Stack
 							direction={"row"}
@@ -72,14 +66,14 @@ function ApplicationCard({
 							{data.address}
 						</Typography>
 					</Stack>
-				</CardActionArea>
-				<Divider />
-				<Box mt={2}>
-					<Stack justifyContent={"center"} alignItems={"center"}>
-						<Typography>{data.status?.toUpperCase()}</Typography>
-					</Stack>
-				</Box>
-			</CardContent>
+					<Divider />
+					<Box mt={2}>
+						<Stack justifyContent={"center"} alignItems={"center"}>
+							<Typography>{data.status?.toUpperCase()}</Typography>
+						</Stack>
+					</Box>
+				</CardContent>
+			</CardActionArea>
 			<CardActions>
 				<Grid container justifyContent={"center"} spacing={1}>
 					<Grid item xs={4} sm={4} md={4} lg={4}>

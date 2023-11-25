@@ -45,8 +45,11 @@ function Applications() {
 		);
 	}, []);
 
-	const { pageNum, handlePageChange } = usePagination(() => {},
-	setSearchParameters);
+	const { pageNum, handlePageChange } = usePagination(
+		() => {},
+		setSearchParameters,
+		searchParameters
+	);
 
 	const OpenConfirmDeleteModal = (applicationId) => {
 		setConfirmDeleteModalOpen(true);

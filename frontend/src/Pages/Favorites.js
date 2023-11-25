@@ -65,6 +65,9 @@ function Favorites() {
 	}, []);
 
 	useEffect(() => {
+		if (searchParameters.get("page") != null) {
+			return;
+		}
 		setSearchParameters((params) => {
 			params.set("page", pageNum);
 			return params;

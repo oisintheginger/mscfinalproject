@@ -76,7 +76,7 @@ export function FetchFavoritesHook() {
 				return data;
 			},
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 			onError: (err) => {
 				// console.log(err);
@@ -92,10 +92,12 @@ export function FetchFavoritesHook() {
 
 	return {
 		detailsData,
+		detailsRefetch,
+		detailsIsLoading: detailsIsLoading || isLoading,
+		detailsIsError: detailsIsError || isError,
 		isError,
 		isLoading,
 		isSuccess,
-		detailsRefetch,
 		favoriteData,
 		refetch,
 	};

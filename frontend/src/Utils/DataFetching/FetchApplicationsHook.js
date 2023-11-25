@@ -2,7 +2,7 @@ import { API } from "aws-amplify";
 import { useContext, useEffect } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { UserContext } from "../UserContext/UserContext";
-import { useQuery } from "react-query";
+import { isError, useQuery } from "react-query";
 
 export function FetchApplicationsHook() {
 	const { user } = useAuthenticator((context) => [context.user]);
@@ -11,6 +11,7 @@ export function FetchApplicationsHook() {
 	const {
 		isLoading,
 		isSuccess,
+		isError,
 		data: applicationData,
 		refetch,
 	} = useQuery(
@@ -35,7 +36,7 @@ export function FetchApplicationsHook() {
 				return data;
 			},
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 			onError: (err) => {
 				console.log(err);
@@ -51,6 +52,8 @@ export function FetchApplicationsHook() {
 		isLoading: detailsIsLoading,
 		data: detailsData,
 		refetch: detailsRefetch,
+		isSuccess: detailsSuccess,
+		isError: detailsIsError,
 	} = useQuery(
 		["propertyQuickViews"],
 		async () => {
@@ -93,7 +96,7 @@ export function FetchApplicationsHook() {
 				// console.log(data);
 			},
 			onError: (err) => {
-				// console.log(err);
+				console.log(err);
 			},
 		}
 	);
@@ -104,13 +107,15 @@ export function FetchApplicationsHook() {
 	}, [applicationData, isLoading, isSuccess]);
 
 	return {
-		detailsIsLoading,
+		detailsIsLoading: detailsIsLoading || isLoading,
+		detailsError: detailsIsError || isError,
 		detailsData,
+		detailsSuccess,
+		detailsRefetch,
 		isLoading,
 		isSuccess,
 		applicationData,
 		applicationPropIds,
-		detailsRefetch,
 		refetch,
 	};
 }

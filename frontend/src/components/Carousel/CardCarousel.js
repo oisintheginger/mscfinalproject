@@ -68,7 +68,7 @@ function SamplePrevArrow(props) {
 
 const CardCarousel = ({ children }) => {
 	const theme = useTheme();
-	const below = useMediaQuery(theme.breakpoints.down("sm"));
+	const below = useMediaQuery(theme.breakpoints.down("md"));
 	const settings = {
 		className: "center",
 		infinite: true,

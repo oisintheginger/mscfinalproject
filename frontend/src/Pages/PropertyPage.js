@@ -357,7 +357,7 @@ function PropertyPage() {
 								{isApplied ? (
 									<ViewApplication
 										action={() => {
-											navigate("/applications");
+											navigate("/applications?page=1");
 										}}
 										down={down}
 									/>
