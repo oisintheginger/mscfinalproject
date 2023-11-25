@@ -66,7 +66,7 @@ function SamplePrevArrow(props) {
 	);
 }
 
-const CardCarousel = ({ propData }) => {
+const CardCarousel = ({ children }) => {
 	const theme = useTheme();
 	const below = useMediaQuery(theme.breakpoints.down("sm"));
 	const settings = {
@@ -84,15 +84,7 @@ const CardCarousel = ({ propData }) => {
 		prevArrow: below ? null : <SamplePrevArrow />,
 	};
 
-	return (
-		<Slider {...settings}>
-			{propData?.map((data, index) => (
-				<Box p={1} key={index}>
-					<PropertyCard data={data} />
-				</Box>
-			))}
-		</Slider>
-	);
+	return <Slider {...settings}>{children}</Slider>;
 };
 
 export default CardCarousel;

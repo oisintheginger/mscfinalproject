@@ -8,7 +8,7 @@ import {
 	IconButton,
 	Grid,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CommuteIcon from "@mui/icons-material/Commute";
@@ -24,11 +24,9 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react-core";
-import {
-	UpdateWeightMutation,
-	UpdateWeightsMutation,
-} from "../../Utils/Mutations/ProfileMutation/ProfileMutation";
+import { UpdateWeightsMutation } from "../../Utils/Mutations/ProfileMutation/ProfileMutation";
 import ButtonStyled from "../CommonComp/Button/ButtonStyled";
+import { UserContext } from "../../Utils/UserContext/UserContext";
 
 const OptionDict = {
 	finance: {
@@ -191,15 +189,15 @@ function UserWeights() {
 		context.user,
 	]);
 
+	const { getAccessToken } = useContext(UserContext);
+
 	const { refetch: weightsRefetch, data: weightsData } = useQuery(
 		["UserWeights"],
-		() => {
+		async () => {
+			const accessToken = await getAccessToken();
 			return API.get("HMEBackend", "/api/user/w", {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 				queryStringParameters: {
 					userId: user?.username || null,

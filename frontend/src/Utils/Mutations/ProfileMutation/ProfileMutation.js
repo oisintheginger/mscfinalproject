@@ -1,12 +1,13 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
+import { useContext } from "react";
 import { useMutation } from "react-query";
+import { UserContext } from "../../UserContext/UserContext";
 export function UpdateWeightsMutation(
 	successCallback = () => {},
-	errorCallback = () => {},
-	getAccessToken = () => {}
+	errorCallback = () => {}
 ) {
-	const { user } = useAuthenticator((context) => [context.user]);
+	const { getAccessToken } = useContext(UserContext);
 
 	return useMutation({
 		mutationFn: async ({
