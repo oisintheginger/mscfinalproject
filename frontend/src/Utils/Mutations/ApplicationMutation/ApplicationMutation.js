@@ -1,12 +1,14 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
 import { useMutation } from "react-query";
+
+import { useContext } from "react";
+import { UserContext } from "../../UserContext/UserContext";
 export function CreateApplicationMutation(
 	successCallback = () => {},
-	errorCallback = () => {},
-	getAccessToken = () => {}
+	errorCallback = () => {}
 ) {
-	const { user } = useAuthenticator((context) => [context.user]);
+	const { getAccessToken } = useContext(UserContext);
 
 	return useMutation({
 		mutationFn: async ({ propertyId, message }) => {

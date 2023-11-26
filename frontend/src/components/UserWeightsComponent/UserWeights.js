@@ -181,7 +181,10 @@ function OptionList(options) {
 	);
 }
 
-function UserWeights() {
+function UserWeights({
+	successWeightsUpdateAlert = () => {},
+	errorWeightsUpdateAlert = () => {},
+}) {
 	const [state, setState] = useState({ options: DefaultOptions });
 
 	const { route, user } = useAuthenticator((context) => [
@@ -224,9 +227,15 @@ function UserWeights() {
 		}
 	);
 
-	const { mutate: updateWeights } = UpdateWeightsMutation((data) => {
-		weightsRefetch();
-	});
+	const { mutate: updateWeights } = UpdateWeightsMutation(
+		(data) => {
+			successWeightsUpdateAlert();
+			weightsRefetch();
+		},
+		() => {
+			errorWeightsUpdateAlert();
+		}
+	);
 
 	const reorder = (list, startIndex, endIndex) => {
 		const result = Array.from(list);

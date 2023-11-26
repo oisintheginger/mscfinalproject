@@ -81,32 +81,41 @@ function Applications() {
 				prevPage={initialBreadcrumbLocation}
 			>
 				<Divider />
-				{isLoading || detailsIsLoading ? (
-					<Grid container spacing={2} width={"100%"}>
-						{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
-							return (
-								<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-									<SkeletonCard />
-								</Grid>
-							);
-						})}
-					</Grid>
-				) : (
-					<Grid container spacing={2} width={"100%"}>
-						{paginatedResults &&
-							paginatedResults.map((data, key) => {
+				<Box
+					minHeight={"50vh"}
+					width={"100%"}
+					display={"flex"}
+					justifyContent={"center"}
+				>
+					{isLoading || detailsIsLoading ? (
+						<Grid container spacing={2} width={"100%"}>
+							{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
 								return (
 									<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-										<ApplicationCard
-											data={data}
-											openConfirmDelete={OpenConfirmDeleteModal}
-											openApplicationDetails={OpenApplicationDetailsModal}
-										/>
+										<SkeletonCard />
 									</Grid>
 								);
 							})}
-					</Grid>
-				)}
+						</Grid>
+					) : paginatedResults?.length > 0 ? (
+						<Grid container spacing={2} width={"100%"}>
+							{paginatedResults &&
+								paginatedResults.map((data, key) => {
+									return (
+										<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+											<ApplicationCard
+												data={data}
+												openConfirmDelete={OpenConfirmDeleteModal}
+												openApplicationDetails={OpenApplicationDetailsModal}
+											/>
+										</Grid>
+									);
+								})}
+						</Grid>
+					) : (
+						<Typography>Go out and apply for rentals!</Typography>
+					)}
+				</Box>
 				<Pagination
 					count={Math.ceil(detailsData?.length / 9) || 10}
 					boundaryCount={1}

@@ -33,14 +33,12 @@ export function FetchApplicationsHook() {
 			refetchOnWindowFocus: false,
 			enabled: true,
 			select: (data) => {
-				return data;
+				return data.filter((el) => {
+					return el.propertyId !== 1;
+				});
 			},
-			onSuccess: (data) => {
-				// console.log(data);
-			},
-			onError: (err) => {
-				console.log(err);
-			},
+			onSuccess: (data) => {},
+			onError: (err) => {},
 		}
 	);
 
@@ -101,7 +99,7 @@ export function FetchApplicationsHook() {
 		}
 	);
 	useEffect(() => {
-		if (isSuccess) {
+		if (isSuccess && applicationPropIds?.length > 0) {
 			detailsRefetch();
 		}
 	}, [applicationData, isLoading, isSuccess]);

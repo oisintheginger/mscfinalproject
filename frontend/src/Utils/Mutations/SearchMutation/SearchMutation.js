@@ -6,11 +6,11 @@ import { useMutation } from "react-query";
 export function RemoveFromSaveSearchMutation({
 	successCallback = () => {},
 	errorCallback = () => {},
-	search,
 }) {
 	const { getAccessToken } = useContext(UserContext);
+
 	return useMutation({
-		mutationFn: async () => {
+		mutationFn: async (search) => {
 			const accessToken = await getAccessToken();
 			return API.del("HMEBackend", "/api/user/remove/s", {
 				headers: {

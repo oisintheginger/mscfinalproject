@@ -31,17 +31,7 @@ export function FetchFavoritesHook() {
 		{
 			refetchOnMount: true,
 			response: true,
-			selector: (data) => {
-				const out = [
-					...data.data?.map((el) => {
-						return el.favourite;
-					}),
-				];
-				return out;
-			},
-			onSuccess: (data) => {
-				// console.log(data);
-			},
+			onSuccess: (data) => {},
 		}
 	);
 
@@ -85,7 +75,7 @@ export function FetchFavoritesHook() {
 	);
 
 	useEffect(() => {
-		if (isSuccess) {
+		if (isSuccess && favoriteIds?.length > 0) {
 			detailsRefetch();
 		}
 	}, [favoriteData, isLoading, isSuccess]);

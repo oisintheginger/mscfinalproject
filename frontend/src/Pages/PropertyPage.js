@@ -13,14 +13,14 @@ import {
 	Snackbar,
 	Alert,
 	Slide,
+	useTheme,
+	useMediaQuery,
 } from "@mui/material";
 import { ApplicationIcon, FavoriteIcon, MapIcon } from "../Icons/HMEIcons";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 import PropertyQuickInfoTag from "../components/PropertyQuickInfoTag/PropertyQuickInfoTag";
 import PageSection from "../components/CommonComp/PageSection/PageSection";
 import PropertyDetailMap from "../components/MapComponent/PropertyDetailMap";
-
-import { useTheme, useMediaQuery } from "@mui/material";
 import Carousel from "../components/Carousel/Carousel";
 import { useContext, useEffect, useRef, useState } from "react";
 import ApplyModal from "../components/CreateApplicationModal/ApplyModal";
@@ -50,65 +50,7 @@ import StarOutline from "@mui/icons-material/StarOutline";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
-const AlertMap = {
-	added_favorite: (
-		<Alert
-			severity={"success"}
-			variant="filled"
-			icon={<StarOutline fontSize="medium" />}
-			sx={{ alignItems: "center" }}
-		>
-			<Typography variant="alertToast" sx={{ color: "white" }}>
-				Added To Favorites
-			</Typography>
-		</Alert>
-	),
-	removed_favorite: (
-		<Alert
-			severity={"success"}
-			variant="filled"
-			icon={<DeleteOutlineOutlinedIcon fontSize="medium" />}
-			sx={{ alignItems: "center" }}
-		>
-			<Typography variant="alertToast" sx={{ color: "white" }}>
-				Removed From Favorites
-			</Typography>
-		</Alert>
-	),
-	created_application: (
-		<Alert
-			severity={"success"}
-			variant="filled"
-			icon={<DescriptionOutlinedIcon fontSize="medium" />}
-			sx={{ alignItems: "center" }}
-		>
-			<Typography variant="alertToast" sx={{ color: "white" }}>
-				Created Application
-			</Typography>
-		</Alert>
-	),
-	error_added_favorite: (
-		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
-			<Typography variant="alertToast" sx={{ color: "white" }}>
-				Error Adding to Favorites
-			</Typography>
-		</Alert>
-	),
-	error_removing_favorite: (
-		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
-			<Typography variant="alertToast" sx={{ color: "white" }}>
-				Error Removing Favorites
-			</Typography>
-		</Alert>
-	),
-	error_application: (
-		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
-			<Typography variant="alertToast" sx={{ color: "white" }}>
-				Error Creating Application
-			</Typography>
-		</Alert>
-	),
-};
+import AlertMap from "../Utils/AlertMap";
 
 function PropertyPage() {
 	const location = useLocation();

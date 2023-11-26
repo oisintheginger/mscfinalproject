@@ -9,6 +9,10 @@ import {
 	Container,
 	Modal,
 	Grid,
+	Snackbar,
+	Slide,
+	useTheme,
+	useMediaQuery,
 } from "@mui/material";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import CardCarousel from "../components/Carousel/CardCarousel";
@@ -31,10 +35,31 @@ import {
 } from "../Utils/DataFetching/FetchSavedSearchesHook";
 import { SearchCard } from "../components/SearchCard/SearchCard";
 import { parseSearchString } from "../Utils/ParseSearchString";
+import DeleteButton from "../components/CommonComp/Button/DeleteButton";
+import ButtonOutlined from "../components/CommonComp/Button/ButtonOutlined";
+import { DeleteAccountMutation } from "../Utils/Mutations/DeleteAccountMutation/DeleteAccountMutation";
+import SnackbarAlertMap from "../Utils/AlertMap";
+import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 
 function Profile() {
 	const navigator = useNavigate();
 	const location = useLocation();
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("md"));
+
+	const [snackbarAlertOpen, setSnackbarAlertOpen] = useState(false);
+	const [alert, setAlert] = useState(<></>);
+	const handleSnackbarClose = () => {
+		setSnackbarAlertOpen(false);
+	};
+	const successUpdateWeights = () => {
+		setAlert(SnackbarAlertMap.adjusted_weights);
+		setSnackbarAlertOpen(true);
+	};
+	const errorUpdateWeights = () => {
+		setAlert(SnackbarAlertMap.error_adjusted_weights);
+		setSnackbarAlertOpen(true);
+	};
 
 	const [applicationDetailsModalOpen, setApplicationDetailsModalOpen] =
 		useState(false);
@@ -48,6 +73,14 @@ function Profile() {
 		setApplicationToView(null);
 	};
 
+	const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = useState(false);
+	const OpenConfirmDeleteModal = () => {
+		setConfirmDeleteModalOpen(true);
+	};
+	const CloseConfirmDeleteModal = () => {
+		setConfirmDeleteModalOpen(false);
+	};
+
 	const {
 		detailsIsLoading: applicationDetailsLoading,
 		detailsError: applicationDetailsIsError,
@@ -58,7 +91,6 @@ function Profile() {
 		detailsIsError: favoritesDetailsIsError,
 		detailsIsLoading: favoritesDetailsIsLoading,
 	} = FetchFavoritesHook();
-
 	const {
 		savedSearchesData,
 		savedSearchesIsLoading,
@@ -67,9 +99,9 @@ function Profile() {
 		savedSearchesRefetch,
 	} = useFetchSavedSearchesHook();
 
-	console.log(savedSearchesIsLoading);
-	console.log(savedSearchesData);
+	const { mutate: deleteAccount } = DeleteAccountMutation();
 
+	const { signOut } = useAuthenticator((context) => [context.signOut]);
 	return (
 		<>
 			<PageTemplate pageTitle="My Profile" currPageBreadcrumb={"Profile"}>
@@ -81,7 +113,10 @@ function Profile() {
 							}
 						</Typography>
 						<Box display={"flex"} justifyContent={"center"}>
-							<UserWeights />
+							<UserWeights
+								successWeightsUpdateAlert={successUpdateWeights}
+								errorWeightsUpdateAlert={errorUpdateWeights}
+							/>
 						</Box>
 					</PageSection>
 					<PageSection background={false} sectionTitle="Recommended for Me">
@@ -193,34 +228,39 @@ function Profile() {
 							});
 						}}
 					>
-						{/* <Stack>
-							{savedSearchesData?.map((el, ind) => {
-								const { search, minPrice, maxPrice } = parseSearchString(
-									el.search
-								);
+						{savedSearchesIsLoading ? (
+							<LoadingSpinner />
+						) : savedSearchesIsError ? (
+							<>error</>
+						) : (
+							<Stack>
+								{savedSearchesData?.map((el, ind) => {
+									const { search, minPrice, maxPrice } = parseSearchString(
+										el.search
+									);
 
-								return (
-									<SearchCard
-										search={search}
-										minPrice={minPrice}
-										maxPrice={maxPrice}
-										key={ind}
-									/>
-								);
-							})}
-						</Stack>
-						<Container>
-							<CardCarousel>
-								{applicationsData?.slice(0, 9)?.map((data, index) => (
-									<Box p={1} key={index}>
-										<PropertyCard data={data} />
-									</Box>
-								))}
-							</CardCarousel>
-						</Container> */}
+									return (
+										<SearchCard
+											search={search}
+											minPrice={minPrice}
+											maxPrice={maxPrice}
+											key={ind}
+											totalSearch={el.search}
+											savedSearchRefresh={savedSearchesRefetch}
+										/>
+									);
+								})}
+							</Stack>
+						)}
+					</PageSection>
+					<PageSection sectionTitle="My Account" background={false}>
+						<DeleteButton onClick={OpenConfirmDeleteModal}>
+							DELETE ACCOUNT
+						</DeleteButton>
 					</PageSection>
 				</Stack>
 			</PageTemplate>
+			<Snackbar></Snackbar>
 			<Modal
 				open={applicationDetailsModalOpen}
 				onClose={CloseApplicationDetailsModal}
@@ -255,6 +295,74 @@ function Profile() {
 					</Stack>
 				</Box>
 			</Modal>
+			<Modal open={confirmDeleteModalOpen} onClose={CloseConfirmDeleteModal}>
+				<Box
+					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						width: {
+							xs: "90vw",
+							md: "45vw",
+						},
+						bgcolor: "background.paper",
+						borderRadius: 1,
+						boxShadow: 24,
+						p: 4,
+					}}
+				>
+					<Stack spacing={2}>
+						<Typography textAlign={"center"} variant="h2">
+							CONFIRM DELETE ACCOUNT
+						</Typography>
+						<Typography textAlign={"center"} variant="body1">
+							Are you sure you want to delete your account? You will lose all
+							your data.
+						</Typography>
+						<Grid container spacing={1}>
+							<Grid item xs={6} sm={6} md={6} lg={6}>
+								<ButtonOutlined
+									variant="outlined"
+									fullWidth
+									onClick={() => {
+										CloseConfirmDeleteModal();
+										console.log("taken back");
+									}}
+								>
+									No, take me back.
+								</ButtonOutlined>
+							</Grid>
+							<Grid item xs={6} sm={6} md={6} lg={6}>
+								<DeleteButton
+									variant="outlined"
+									fullWidth
+									onClick={async () => {
+										await deleteAccount();
+										await signOut();
+										CloseConfirmDeleteModal();
+										console.log("confirmed delete");
+									}}
+								>
+									CONFIRM ACCOUNT DELETION
+								</DeleteButton>
+							</Grid>
+						</Grid>
+					</Stack>
+				</Box>
+			</Modal>
+			<Snackbar
+				open={snackbarAlertOpen}
+				autoHideDuration={3000}
+				onClose={handleSnackbarClose}
+				TransitionComponent={Slide}
+				anchorOrigin={{
+					vertical: down ? "top" : "bottom",
+					horizontal: "center",
+				}}
+			>
+				{alert}
+			</Snackbar>
 		</>
 	);
 }

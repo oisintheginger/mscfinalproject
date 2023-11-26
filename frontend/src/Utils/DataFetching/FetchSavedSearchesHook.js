@@ -5,10 +5,6 @@ import { useQuery } from "react-query";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export function useFetchSavedSearchesHook() {
-	const { route, user } = useAuthenticator((context) => [
-		context.route,
-		context.user,
-	]);
 	const { getAccessToken } = useContext(UserContext);
 
 	const { data, isLoading, isError, error, refetch } = useQuery(
@@ -23,9 +19,9 @@ export function useFetchSavedSearchesHook() {
 		},
 		{
 			onSuccess: (data) => {
-				console.log("success", data);
+				// console.log("success", data);
 			},
-			selector: (data) => {
+			select: (data) => {
 				return data;
 			},
 			response: true,
@@ -34,7 +30,9 @@ export function useFetchSavedSearchesHook() {
 	);
 
 	return {
-		savedSearchesData: data,
+		savedSearchesData: data?.filter((el) => {
+			return el.search != "1";
+		}),
 		savedSearchesIsLoading: isLoading,
 		savedSearchesIsError: isError,
 		savedSearchesError: error,

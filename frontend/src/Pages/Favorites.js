@@ -121,7 +121,7 @@ function Favorites() {
 			</FormProvider> */}
 			<Divider />
 			<Box
-				minHeight={"45vh"}
+				minHeight={"50vh"}
 				width={"100%"}
 				display={"flex"}
 				justifyContent={"center"}
@@ -138,7 +138,7 @@ function Favorites() {
 					</Grid>
 				) : isError ? (
 					<p>Error</p>
-				) : (
+				) : paginatedResults?.length ? (
 					<Grid container spacing={2} width={"100%"}>
 						{paginatedResults &&
 							paginatedResults.map((data, key) => {
@@ -149,6 +149,10 @@ function Favorites() {
 								);
 							})}
 					</Grid>
+				) : (
+					<Typography>
+						Go Browse and Add New Listings to your Favorites!
+					</Typography>
 				)}
 			</Box>
 			<Pagination
