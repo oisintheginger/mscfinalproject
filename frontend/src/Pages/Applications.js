@@ -25,6 +25,9 @@ import { FetchApplicationsHook } from "../Utils/DataFetching/FetchApplicationsHo
 function Applications() {
 	const location = useLocation();
 	const [searchParameters, setSearchParameters] = useSearchParams();
+	const [pageNum, setPageNum] = useState(
+		searchParameters.get("page") ? parseInt(searchParameters.get("page")) : 1
+	);
 
 	const [initialBreadcrumbLocation, setInitialBreadcrumbLocation] =
 		useState(null);
@@ -45,11 +48,34 @@ function Applications() {
 		);
 	}, []);
 
-	const { pageNum, handlePageChange } = usePagination(
-		() => {},
-		setSearchParameters,
-		searchParameters
-	);
+	const handlePageChange = (event, val) => {
+		event.preventDefault();
+		setPageNum(val);
+	};
+
+	useEffect(() => {
+		if (searchParameters.get("page") != null) return;
+		setSearchParameters((params) => {
+			params.set("page", pageNum);
+			return params;
+		});
+		refetch();
+		return () => {};
+	}, []);
+
+	useEffect(() => {
+		setSearchParameters((params) => {
+			params.set("page", pageNum);
+			return params;
+		});
+		refetch();
+		return () => {};
+	}, [pageNum]);
+
+	useEffect(() => {
+		setPageNum(parseInt(searchParameters.get("page")));
+		refetch();
+	}, [searchParameters]);
 
 	const OpenConfirmDeleteModal = (applicationId) => {
 		setConfirmDeleteModalOpen(true);

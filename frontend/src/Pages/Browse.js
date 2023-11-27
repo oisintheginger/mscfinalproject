@@ -40,16 +40,6 @@ function Browse() {
 	const [filtersOpen, setFiltersOpen] = useState(false);
 
 	useEffect(() => {
-		if (searchParameters.get("page") != null) return;
-		setSearchParameters((params) => {
-			params.set("page", pageNum);
-			return params;
-		});
-		refetch();
-		return () => [];
-	}, [pageNum]);
-
-	useEffect(() => {
 		if (searchParameters.has(SEARCH_TERM)) {
 			methods.setValue(SEARCH_TERM, searchParameters.get(SEARCH_TERM));
 		}
@@ -116,7 +106,7 @@ function Browse() {
 			});
 		},
 		{
-			staleTime: 30000,
+			staleTime: 0,
 			refetchOnMount: true,
 			enabled: mapEnabled,
 			onSuccess: (res) => {
@@ -128,6 +118,29 @@ function Browse() {
 	useEffect(() => {
 		mapRefetch();
 	}, searchParameters);
+
+	useEffect(() => {
+		if (searchParameters.get("page") != null) return;
+		setSearchParameters((params) => {
+			params.set("page", pageNum);
+			return params;
+		});
+		return () => {};
+	}, []);
+
+	useEffect(() => {
+		setSearchParameters((params) => {
+			params.set("page", pageNum);
+			return params;
+		});
+		refetch();
+		return () => {};
+	}, [pageNum]);
+
+	useEffect(() => {
+		setPageNum(parseInt(searchParameters.get("page")));
+		refetch();
+	}, [searchParameters]);
 
 	return (
 		<>

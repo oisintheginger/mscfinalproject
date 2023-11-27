@@ -30,6 +30,7 @@ export function FetchFavoritesHook() {
 		},
 		{
 			refetchOnMount: true,
+			staleTime: 0,
 			response: true,
 			onSuccess: (data) => {},
 		}

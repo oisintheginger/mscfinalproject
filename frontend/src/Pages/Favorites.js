@@ -32,7 +32,9 @@ function Favorites() {
 	// const [filtersOpen, setFiltersOpen] = useState(false);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 
-	const [pageNum, setPageNum] = useState(1);
+	const [pageNum, setPageNum] = useState(
+		searchParameters.get("page") ? parseInt(searchParameters.get("page")) : 1
+	);
 	const handlePageChange = (event, val) => {
 		event.preventDefault();
 		setPageNum(val);
@@ -74,12 +76,22 @@ function Favorites() {
 		});
 		refetch();
 		return () => {};
+	}, []);
+	useEffect(() => {
+		setSearchParameters((params) => {
+			params.set("page", pageNum);
+			return params;
+		});
+		refetch();
+		return () => {};
 	}, [pageNum]);
 
-	const paginatedResults = detailsData?.slice(
-		0 + 9 * (pageNum - 1),
-		9 + 9 * (pageNum - 1)
-	);
+	useEffect(() => {
+		setPageNum(parseInt(searchParameters.get("page")));
+		refetch();
+	}, [searchParameters]);
+
+	const paginatedResults = detailsData?.slice(9 * (pageNum - 1), 9 * pageNum);
 
 	return (
 		<PageTemplate

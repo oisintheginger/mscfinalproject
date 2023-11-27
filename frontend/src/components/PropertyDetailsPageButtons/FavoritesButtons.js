@@ -8,7 +8,7 @@ export function AddFavoriteButton({ action = () => {}, down = false }) {
 		<Button
 			variant="outlined"
 			sx={{
-				maxWidth: down ? "100vw" : "30vw",
+				maxWidth: down ? "100vw" : "20vw",
 				transform: down ? "" : "translate(0px, 8px)",
 				backgroundColor: "white",
 				color: "darkTeal.main",
@@ -38,7 +38,7 @@ export function RemoveFavoriteButton({ action = () => {}, down = false }) {
 	const [hovering, setHovering] = useState(false);
 	const style = down
 		? {
-				minWidth: "150px",
+				width: down ? "100%" : "20vw",
 				backgroundColor: "lightRed.main",
 				color: "darkRed.main",
 				borderColor: "darkRed.main",
@@ -54,7 +54,7 @@ export function RemoveFavoriteButton({ action = () => {}, down = false }) {
 		  }
 		: {
 				maxWidth: "30vw",
-				minWidth: "150px",
+				width: down ? "100%" : "15vw",
 				backgroundColor: "white",
 				transform: "translate(0px, 8px)",
 				color: "darkTeal.main",

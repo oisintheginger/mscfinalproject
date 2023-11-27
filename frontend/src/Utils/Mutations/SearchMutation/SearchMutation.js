@@ -23,7 +23,7 @@ export function RemoveFromSaveSearchMutation({
 			});
 		},
 		onMutate: (mut) => {
-			console.log(mut);
+			// console.log(mut);
 		},
 		onError: (err) => {
 			errorCallback(err);
@@ -32,4 +32,31 @@ export function RemoveFromSaveSearchMutation({
 			successCallback(data);
 		},
 	});
+}
+export function DeleteHandlerConstructor({
+	successCallback = () => {},
+	errorCallback = () => {},
+}) {
+	const { getAccessToken } = useContext(UserContext);
+	return async (searchString) => {
+		const token = await getAccessToken();
+		if (!token) {
+			console.error("Authentication token not available.");
+			return;
+		}
+
+		try {
+			await API.del("HMEBackend", "/api/user/remove/s", {
+				headers: { Authorization: `Bearer ${token}` },
+				response: true,
+				queryStringParameters: {
+					searchString,
+				},
+			});
+			successCallback();
+		} catch (error) {
+			errorCallback();
+			console.error("Failed to delete:", error);
+		}
+	};
 }

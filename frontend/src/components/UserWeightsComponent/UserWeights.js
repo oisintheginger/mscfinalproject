@@ -186,6 +186,7 @@ function UserWeights({
 	errorWeightsUpdateAlert = () => {},
 }) {
 	const [state, setState] = useState({ options: DefaultOptions });
+	const [submitEnabled, setSubmitEnabled] = useState(false);
 
 	const { route, user } = useAuthenticator((context) => [
 		context.route,
@@ -231,6 +232,7 @@ function UserWeights({
 		(data) => {
 			successWeightsUpdateAlert();
 			weightsRefetch();
+			setSubmitEnabled(false);
 		},
 		() => {
 			errorWeightsUpdateAlert();
@@ -260,6 +262,7 @@ function UserWeights({
 		);
 
 		setState({ options });
+		setSubmitEnabled(true);
 		console.log(state.options);
 	}
 
@@ -305,6 +308,7 @@ function UserWeights({
 							}),
 					});
 				}}
+				disabled={!submitEnabled}
 			>
 				SUBMIT Changes
 			</ButtonStyled>

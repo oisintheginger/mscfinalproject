@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Utils/UserContext/UserContext";
 import { useQuery, useQueryClient } from "react-query";
 import { API } from "aws-amplify";
+import { useNavigate } from "react-router-dom";
 
 export function SearchCard({
 	search,
@@ -20,7 +21,9 @@ export function SearchCard({
 	maxPrice,
 	totalSearch,
 	saveSearchRefresh = () => {},
+	handleDelete,
 }) {
+	const navigator = useNavigate();
 	const navigateToSearch = () => {
 		const searchParams = new URLSearchParams({
 			searchString: search,
@@ -31,15 +34,6 @@ export function SearchCard({
 
 		navigator(`/browse?${searchString}`);
 	};
-	const queryClient = useQueryClient();
-
-	const { getAccessToken } = useContext(UserContext);
-	const { mutate: handleDelete } = RemoveFromSaveSearchMutation({
-		successCallback: () => {
-			console.log("success delete search");
-			saveSearchRefresh();
-		},
-	});
 
 	return (
 		<ButtonBase
@@ -77,9 +71,9 @@ export function SearchCard({
 							justifyContent={"flex-end"}
 						>
 							<IconButton
-								onClick={(event) => {
+								onClick={async (event) => {
 									event.stopPropagation(); // Prevents the ButtonBase onClick from being triggered
-									handleDelete(totalSearch);
+									await handleDelete(totalSearch);
 								}}
 							>
 								<DeleteIcon />
