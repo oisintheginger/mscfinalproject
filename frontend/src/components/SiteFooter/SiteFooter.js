@@ -58,7 +58,7 @@ function SiteFooter() {
 						Terms and Conditions
 					</Typography>
 				</Link>
-				<Link component={RRDLink} to={"/"} color={fontDark} underline="hover">
+				<Link component={RRDLink} to={"/FAQ"} color={fontDark} underline="hover">
 					<Typography textAlign={"center"} fontSize={15}>
 						FAQ
 					</Typography>
