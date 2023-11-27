@@ -67,43 +67,44 @@ function PropertyCard({ data, key, inPopup = false }) {
 						</>
 					}
 				/>
+
+				<CardContent>
+					<Stack
+						direction="row"
+						spacing={1}
+						sx={{
+							overflowX: "auto",
+							whiteSpace: "nowrap",
+							"&::-webkit-scrollbar": { display: "none" },
+						}}
+					>
+						<Chip
+							label="SECURE"
+							sx={{
+								backgroundColor: "secureChip.main",
+								color: "white",
+								fontWeight: 600,
+							}}
+						/>
+						<Chip
+							label="NIGHTLIFE"
+							sx={{
+								backgroundColor: "nightlifeChip.main",
+								color: "white",
+								fontWeight: 600,
+							}}
+						/>
+						<Chip
+							label="GYMS"
+							sx={{
+								backgroundColor: "gymsChip.main",
+								color: "white",
+								fontWeight: 600,
+							}}
+						/>
+					</Stack>
+				</CardContent>
 			</CardActionArea>
-			<CardContent>
-				<Stack
-					direction="row"
-					spacing={1}
-					sx={{
-						overflowX: "auto",
-						whiteSpace: "nowrap",
-						"&::-webkit-scrollbar": { display: "none" },
-					}}
-				>
-					<Chip
-						label="SECURE"
-						sx={{
-							backgroundColor: "secureChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-					<Chip
-						label="NIGHTLIFE"
-						sx={{
-							backgroundColor: "nightlifeChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-					<Chip
-						label="GYMS"
-						sx={{
-							backgroundColor: "gymsChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-				</Stack>
-			</CardContent>
 		</Card>
 	);
 }

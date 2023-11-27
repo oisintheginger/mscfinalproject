@@ -10,26 +10,28 @@ import {
 	Chip,
 	Paper,
 	Modal,
+	Snackbar,
+	Alert,
+	Slide,
+	useTheme,
+	useMediaQuery,
 } from "@mui/material";
 import { ApplicationIcon, FavoriteIcon, MapIcon } from "../Icons/HMEIcons";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 import PropertyQuickInfoTag from "../components/PropertyQuickInfoTag/PropertyQuickInfoTag";
 import PageSection from "../components/CommonComp/PageSection/PageSection";
 import PropertyDetailMap from "../components/MapComponent/PropertyDetailMap";
-
-import { useTheme, useMediaQuery } from "@mui/material";
 import Carousel from "../components/Carousel/Carousel";
 import { useContext, useEffect, useRef, useState } from "react";
 import ApplyModal from "../components/CreateApplicationModal/ApplyModal";
 
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { Authenticator, View } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import PropertyScoresComponent from "../components/PropertyScoresComponent/PropertyScoresComponent";
-import { MockScores } from "../MockData/PropertyScoresMockData";
 import {
 	AddToFavoritesMutation,
 	RemoveFromFavoritesMutation,
@@ -43,6 +45,12 @@ import {
 	ViewApplication,
 } from "../components/PropertyDetailsPageButtons/ApplyButton";
 import { CreateApplicationMutation } from "../Utils/Mutations/ApplicationMutation/ApplicationMutation";
+import { ColorGradeFunc } from "../Utils/ColorGradientFunc";
+import StarOutline from "@mui/icons-material/StarOutline";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+
+import AlertMap from "../Utils/AlertMap";
 
 function PropertyPage() {
 	const location = useLocation();
@@ -50,7 +58,8 @@ function PropertyPage() {
 
 	const propertyId = location.pathname.split("/")[2];
 
-	const { userData, handleRefresh, route } = useContext(UserContext);
+	const { userData, handleRefresh, route, getAccessToken } =
+		useContext(UserContext);
 	const { user } = useAuthenticator((context) => [context.user]);
 	const mapRef = useRef(null);
 
@@ -59,6 +68,13 @@ function PropertyPage() {
 
 	const [modalOpen, setModalOpen] = useState(false);
 	const [loginModalOpen, setLoginModalOpen] = useState(false);
+
+	const [snackbarAlertOpen, setSnackbarAlertOpen] = useState(false);
+	const [alert, setAlert] = useState(<></>);
+
+	const handleSnackbarClose = () => {
+		setSnackbarAlertOpen(false);
+	};
 
 	const openModal = () => {
 		setModalOpen(true);
@@ -96,7 +112,97 @@ function PropertyPage() {
 			staleTime: 500000,
 			refetchOnMount: true,
 			select: (data) => {
-				return data.data;
+				let addedScores = {
+					...data.data,
+					serviceScores: [
+						{
+							id: "transportation_score",
+							displayTitle: "Transportation Score",
+							description: ``,
+							color: "#626d78",
+							score: parseFloat(data.data.transportation_score.toFixed(1)),
+							counts: {
+								bus_stationCount: data.data.bus_stationCount,
+								transit_stationCount: data.data.transit_stationCount,
+								train_stationCount: data.data.train_stationCount,
+							},
+						},
+						{
+							id: "emergency_score",
+							displayTitle: "Emergency Score",
+							description:
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
+							color: "#3b5880",
+							score: parseFloat(data.data.emergency_score.toFixed(1)),
+							counts: {
+								police_stationCount: data.data.police_stationCount,
+								fire_stationCount: data.data.fire_stationCount,
+								hospitalCount: data.data.hospitalCount,
+							},
+						},
+						{
+							id: "personal_care_score",
+							displayTitle: "Personal Care Score",
+							description:
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
+							color: "#713e73",
+							score: parseFloat(data.data.personal_care_score.toFixed(1)),
+							counts: {
+								pharmacyCount: data.data.pharmacyCount,
+								beauty_salonCount: data.data.beauty_salonCount,
+							},
+						},
+						{
+							id: "finance_score",
+							displayTitle: "Finance Score",
+							description:
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
+							color: "#5e3b7d",
+							score: parseFloat(data.data.finance_score.toFixed(1)),
+							counts: {
+								bankCount: data.data.bankCount,
+							},
+						},
+						{
+							id: "retail_score",
+							displayTitle: "Retail Scores",
+							description:
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
+							color: "#417a41",
+							score: parseFloat(data.data.retail_score.toFixed(1)),
+							counts: {
+								supermarketCount: data.data.supermarketCount,
+							},
+						},
+						{
+							id: "fitness_score",
+							displayTitle: "Fitness Score",
+							description:
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
+							color: "#8a593a",
+							score: parseFloat(data.data.fitness_score.toFixed(1)),
+							counts: {
+								gymCount: data.data.gymCount,
+							},
+						},
+						{
+							id: "leisure_score",
+							displayTitle: "Leisure Score",
+							description:
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
+							color: "#663031",
+							score: parseFloat(data.data.leisure_score.toFixed(1)),
+							counts: {
+								restaurantCount: data.data.restaurantCount,
+								night_clubCount: data.data.night_clubCount,
+								cafeCount: data.data.cafeCount,
+								parkCount: data.data.parkCount,
+								barCount: data.data.barCount,
+							},
+						},
+					],
+				};
+				return addedScores;
 			},
 			onSuccess: (data) => {
 				console.log(data);
@@ -104,19 +210,52 @@ function PropertyPage() {
 		}
 	);
 
-	const { mutate: addToFavorites } = AddToFavoritesMutation(propertyId, () => {
+	const successAddFavorites = () => {
 		handleRefresh();
-	});
-
-	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+		setAlert(AlertMap.added_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const errorAddFavorites = () => {
+		setAlert(AlertMap.error_added_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const { mutate: addToFavorites } = AddToFavoritesMutation(
 		propertyId,
-		() => {
-			handleRefresh();
-		}
+		successAddFavorites,
+		errorAddFavorites,
+		getAccessToken
 	);
 
-	const { mutate: createApplication } =
-		CreateApplicationMutation(handleRefresh);
+	const successRemoveFavorites = () => {
+		handleRefresh();
+		setAlert(AlertMap.removed_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const errorRemoveFavorites = () => {
+		setAlert(AlertMap.error_removing_favorite);
+		setSnackbarAlertOpen(true);
+	};
+	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+		propertyId,
+		successRemoveFavorites,
+		errorRemoveFavorites,
+		getAccessToken
+	);
+
+	const successCreateApplication = () => {
+		handleRefresh();
+		setAlert(AlertMap.created_application);
+		setSnackbarAlertOpen(true);
+	};
+	const errorCreateApplication = () => {
+		setAlert(AlertMap.error_application);
+		setSnackbarAlertOpen(true);
+	};
+	const { mutate: createApplication } = CreateApplicationMutation(
+		successCreateApplication,
+		errorCreateApplication,
+		getAccessToken
+	);
 
 	const isFavorited = userData?.favourites.includes(propertyId) || false;
 
@@ -133,10 +272,7 @@ function PropertyPage() {
 				<p>Error:{"Something Went Wrong"}</p>
 			) : (
 				<PageTemplate
-					pageTitle={
-						data?.bedrooms + " Bed "
-						// capitalize(data?.data.propertyType)
-					}
+					pageTitle={data?.bedrooms + " Bed "}
 					prevPage={
 						location.state?.previousUrl ? location.state.previousUrl : null
 					}
@@ -163,7 +299,7 @@ function PropertyPage() {
 								{isApplied ? (
 									<ViewApplication
 										action={() => {
-											navigate("/applications");
+											navigate("/applications?page=1");
 										}}
 										down={down}
 									/>
@@ -179,31 +315,6 @@ function PropertyPage() {
 										down={down}
 									/>
 								)}
-								{/* <Button
-									onClick={() => {
-										if (route === "authenticated") {
-											openModal();
-										} else {
-											openLoginModal();
-										}
-									}}
-									variant="outlined"
-									sx={{
-										maxWidth: "30vw",
-										transform: "translate(0px, 8px)",
-										backgroundColor: "darkTeal.main",
-
-										"&:hover": {
-											backgroundColor: "buttonHover.main",
-											color: "darkWhite.main",
-										},
-										marginRight: 2,
-										height: 45,
-									}}
-									endIcon={<ApplicationIcon />}
-								>
-									Apply Now
-								</Button> */}
 								{isFavorited ? (
 									<RemoveFavoriteButton
 										action={() => {
@@ -307,15 +418,71 @@ function PropertyPage() {
 						<Box //PAGE SECTIONS
 						>
 							<Stack mt={5} spacing={6}>
-								<PageSection sectionTitle="Description">
+								<PageSection sectionTitle="Description" background={false}>
 									<Typography variant="body1">{data?.description}</Typography>
 								</PageSection>
-								<PropertyScoresComponent inputData={MockScores} />
+								<PropertyScoresComponent inputData={data.serviceScores} />
 								<PageSection
 									background={false}
-									sectionTitle="Map View"
-									id="map"
+									sectionTitle="Neighborhood Crime Safety Rating"
 								>
+									<Stack
+										width={"100%"}
+										justifyContent={"center"}
+										alignItems={"center"}
+									>
+										<Stack
+											pl={3}
+											pr={3}
+											pb={1}
+											pt={1}
+											alignItems={"center"}
+											direction={"column"}
+											spacing={1}
+										>
+											<Typography noWrap variant="crimeScoreValue">
+												{data.overallCrimeScore?.toFixed(1) + " / 5"}
+											</Typography>
+											<Box
+												display={"flex"}
+												flexDirection={"row"}
+												justifyContent={"flex-start"}
+												alignItems={"center"}
+												sx={{}}
+												width={"100%"}
+												borderRadius={2}
+												overflow={"clip"}
+												bgcolor={"#e6e6e6"}
+												mt={1}
+											>
+												<Box
+													width={`${100 * (data?.overallCrimeScore / 5)}%`}
+													height={"40px"}
+													sx={{
+														background: ColorGradeFunc(
+															data?.overallCrimeScore,
+															5
+														),
+														opacity: "100%",
+													}}
+													display={"flex"}
+													flexDirection={"row"}
+													alignItems={"center"}
+													pr={3}
+												/>
+											</Box>
+											<Typography
+												textAlign={"center"}
+												variant="crimeScoreDescription"
+											>
+												{
+													"A higher crime safety score indicates a lower crime rate"
+												}
+											</Typography>
+										</Stack>
+									</Stack>
+								</PageSection>
+								<PageSection background={false} sectionTitle="Map View">
 									<PropertyDetailMap
 										center={[data?.latitude, data?.longitude]}
 										ref={mapRef}
@@ -407,6 +574,18 @@ function PropertyPage() {
 					</Box>
 				</PageTemplate>
 			)}
+			<Snackbar
+				open={snackbarAlertOpen}
+				autoHideDuration={3000}
+				onClose={handleSnackbarClose}
+				TransitionComponent={Slide}
+				anchorOrigin={{
+					vertical: down ? "top" : "bottom",
+					horizontal: "center",
+				}}
+			>
+				{alert}
+			</Snackbar>
 			<Modal open={modalOpen} onClose={closeModal} sx={{ width: "98%" }}>
 				<Box
 					sx={{

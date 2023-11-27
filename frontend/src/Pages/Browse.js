@@ -5,6 +5,8 @@ import {
 	ToggleButtonGroup,
 	Box,
 	Grid,
+	Drawer,
+	SwipeableDrawer,
 } from "@mui/material";
 import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
@@ -38,6 +40,7 @@ function Browse() {
 	const [filtersOpen, setFiltersOpen] = useState(false);
 
 	useEffect(() => {
+		if (searchParameters.get("page") != null) return;
 		setSearchParameters((params) => {
 			params.set("page", pageNum);
 			return params;
@@ -127,57 +130,59 @@ function Browse() {
 	}, searchParameters);
 
 	return (
-		<PageTemplate pageTitle="Browse" currPageBreadcrumb={"Browse"}>
-			<FormProvider {...methods}>
-				<SearchAndFilters
-					filtersOpen={filtersOpen}
-					setFiltersOpen={setFiltersOpen}
-				/>
-			</FormProvider>
-			<Divider />
-			<ListMapToggle setMapEnabled={setMapEnabled} mapEnabled={mapEnabled} />
-
-			{mapEnabled ? (
-				<MapBrowsing
-					mapData={mapData}
-					refetch={mapRefetch}
-					mapIsLoading={mapIsLoading}
-					mapIsSuccess={mapIsSuccess}
-					mapIsError={mapIsError}
-					mapError={mapError}
-				/>
-			) : isLoading ? (
-				<Grid container spacing={2} width={"100%"} mt={0.5}>
-					{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
-						return (
-							<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-								<SkeletonCard />
-							</Grid>
-						);
-					})}
-				</Grid>
-			) : isError ? (
-				<p>error:{error.request.status}</p>
-			) : (
-				<>
-					<ResultGrid
-						propertyData={data?.data.properties ? data?.data.properties : []}
-						id={"results"}
+		<>
+			<PageTemplate pageTitle="Browse" currPageBreadcrumb={"Browse"}>
+				<FormProvider {...methods}>
+					<SearchAndFilters
+						filtersOpen={filtersOpen}
+						setFiltersOpen={setFiltersOpen}
 					/>
-					{isSuccess && (
-						<Pagination
-							count={totalPages - 1}
-							boundaryCount={1}
-							siblingCount={1}
-							variant="outlined"
-							sx={{ alignSelf: "center" }}
-							page={pageNum}
-							onChange={handlePageChange}
+				</FormProvider>
+				<Divider />
+				<ListMapToggle setMapEnabled={setMapEnabled} mapEnabled={mapEnabled} />
+
+				{mapEnabled ? (
+					<MapBrowsing
+						mapData={mapData}
+						refetch={mapRefetch}
+						mapIsLoading={mapIsLoading}
+						mapIsSuccess={mapIsSuccess}
+						mapIsError={mapIsError}
+						mapError={mapError}
+					/>
+				) : isLoading ? (
+					<Grid container spacing={2} width={"100%"} mt={0.5}>
+						{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
+							return (
+								<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+									<SkeletonCard />
+								</Grid>
+							);
+						})}
+					</Grid>
+				) : isError ? (
+					<p>error:{error.request.status}</p>
+				) : (
+					<>
+						<ResultGrid
+							propertyData={data?.data.properties ? data?.data.properties : []}
+							id={"results"}
 						/>
-					)}
-				</>
-			)}
-		</PageTemplate>
+						{isSuccess && (
+							<Pagination
+								count={totalPages - 1}
+								boundaryCount={1}
+								siblingCount={1}
+								variant="outlined"
+								sx={{ alignSelf: "center" }}
+								page={pageNum}
+								onChange={handlePageChange}
+							/>
+						)}
+					</>
+				)}
+			</PageTemplate>
+		</>
 	);
 }
 

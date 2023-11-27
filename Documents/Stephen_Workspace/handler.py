@@ -1,5 +1,6 @@
 import pymysql
 import pandas as pd
+import numpy as np
 
 #configuration value
 endpoint = open('endpoint.txt','r').read()
@@ -108,6 +109,9 @@ def handler():
             for neighbourhood in neighbourhoods:
                 # Selecting data for the current neighbourhood
                 neighbourhood_data = data[data['neighbourhoodID'] == neighbourhood]
+
+                # Calculate the threshold as the 90th percentile of z scores
+                threshold = np.percentile(neighbourhood_data['mapped_values_sigmoid'], 90)
 
                 if not neighbourhood_data.empty:
                     # Getting the crime score for the neighbourhood

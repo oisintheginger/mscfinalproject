@@ -21,6 +21,7 @@ import {
 } from "../../../../Icons/HMEIcons";
 import DeleteButton from "../../Button/DeleteButton";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 function ApplicationCard({
 	data,
@@ -29,6 +30,7 @@ function ApplicationCard({
 }) {
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
+	const ref = useRef(null);
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -36,7 +38,7 @@ function ApplicationCard({
 	return !data ? (
 		<></>
 	) : (
-		<Card elevation={4}>
+		<Card elevation={4} ref={ref}>
 			<CardActionArea
 				onClick={(event) => {
 					event.preventDefault();
@@ -49,14 +51,8 @@ function ApplicationCard({
 					image={data.thumbnail}
 					alt="Image of Rental Listing"
 				/>
-			</CardActionArea>
-			<CardContent>
-				<CardActionArea
-					onClick={(event) => {
-						event.preventDefault();
-						openApplicationDetails(data.message);
-					}}
-				>
+
+				<CardContent>
 					<Stack>
 						<Stack
 							direction={"row"}
@@ -70,20 +66,26 @@ function ApplicationCard({
 							{data.address}
 						</Typography>
 					</Stack>
-				</CardActionArea>
-				<Divider />
-				<Box mt={2}>
-					<Stack justifyContent={"center"} alignItems={"center"}>
-						<Typography>{data.status?.toUpperCase()}</Typography>
-					</Stack>
-				</Box>
-			</CardContent>
+					<Divider />
+					<Box mt={2}>
+						<Stack justifyContent={"center"} alignItems={"center"}>
+							<Typography>{data.status?.toUpperCase()}</Typography>
+						</Stack>
+					</Box>
+				</CardContent>
+			</CardActionArea>
 			<CardActions>
 				<Grid container justifyContent={"center"} spacing={1}>
 					<Grid item xs={4} sm={4} md={4} lg={4}>
 						<ButtonOutlined
 							fullWidth
-							endIcon={down ? <></> : <NextCarouselIcon />}
+							endIcon={
+								down || ref.current?.clientWidth < 300 ? (
+									<></>
+								) : (
+									<NextCarouselIcon />
+								)
+							}
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();
@@ -99,7 +101,13 @@ function ApplicationCard({
 						<ButtonOutlined
 							disabled
 							fullWidth
-							endIcon={down ? <></> : <EditApplicationIcon />}
+							endIcon={
+								down || ref.current?.clientWidth < 300 ? (
+									<></>
+								) : (
+									<EditApplicationIcon />
+								)
+							}
 							variant="outlined"
 						>
 							Edit
@@ -109,7 +117,13 @@ function ApplicationCard({
 						<DeleteButton
 							fullWidth
 							disabled
-							endIcon={down ? <></> : <DeleteIcon fontSize="large" />}
+							endIcon={
+								down || ref.current?.clientWidth < 300 ? (
+									<></>
+								) : (
+									<DeleteIcon fontSize="large" />
+								)
+							}
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();

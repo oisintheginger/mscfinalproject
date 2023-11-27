@@ -7,18 +7,15 @@ import { UserContext } from "../../UserContext/UserContext";
 export function AddToFavoritesMutation(
 	propertyId,
 	successCallback = () => {},
-	errorCallback = () => {}
+	errorCallback = () => {},
+	getAccessToken = () => {}
 ) {
-	const { user } = useAuthenticator((context) => [context.user]);
-
 	return useMutation({
-		mutationFn: () => {
+		mutationFn: async () => {
+			const accessToken = await getAccessToken();
 			return API.post("HMEBackend", "/api/user/new/f", {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 				response: true,
 				queryStringParameters: {
@@ -26,12 +23,9 @@ export function AddToFavoritesMutation(
 				},
 			});
 		},
-		onMutate: () => {
-			console.log("triggered");
-		},
+		onMutate: () => {},
 		onError: (err) => {
 			errorCallback(err);
-			console.log(err);
 		},
 		onSuccess: (data) => {
 			successCallback(data);
@@ -42,17 +36,15 @@ export function AddToFavoritesMutation(
 export function RemoveFromFavoritesMutation(
 	propertyId,
 	successCallback = () => {},
-	errorCallback = () => {}
+	errorCallback = () => {},
+	getAccessToken = () => {}
 ) {
-	const { user } = useAuthenticator((context) => [context.user]);
 	return useMutation({
-		mutationFn: () => {
+		mutationFn: async () => {
+			const accessToken = await getAccessToken();
 			return API.del("HMEBackend", "/api/user/remove/f", {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 				response: true,
 				queryStringParameters: {
@@ -60,12 +52,9 @@ export function RemoveFromFavoritesMutation(
 				},
 			});
 		},
-		onMutate: () => {
-			console.log("triggered");
-		},
+		onMutate: () => {},
 		onError: (err) => {
 			errorCallback(err);
-			console.log(err);
 		},
 		onSuccess: (data) => {
 			successCallback(data);
