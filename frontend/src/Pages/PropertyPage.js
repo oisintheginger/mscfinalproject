@@ -264,7 +264,6 @@ function PropertyPage() {
 			return el.propertyId.toString() == propertyId;
 		}) || false;
 
-	console.log(data);
 	return (
 		<>
 			{isLoading ? (
