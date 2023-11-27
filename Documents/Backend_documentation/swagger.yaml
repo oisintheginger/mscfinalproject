@@ -81,15 +81,15 @@ paths:
           description: is returned when the property was not found
         "500":
           description: is returned when database access error occured
-  /api/properties/details/{propertyId}:
+  /api/properties/details/{id}:
     get:
-      summary: returns details of a specific property (still placeholder data)
+      summary: returns details of a specific property including (personal) property scores
       parameters:
         - in: path
-          name: propertyId
+          name: id
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         "200":
           description: A DetailedPropery object
@@ -97,8 +97,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DetailedProperty"
-        "400":
-          description: returns a 400 bad request response code (with a message)
         "404":
           description: returns a 404 not found response code
         "500":
