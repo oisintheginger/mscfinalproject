@@ -99,7 +99,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/DetailedProperty"
         "404":
-          description: returns a 404 not found response code
+          description: returns a 404 not found response code. The message will detail whether the property could not be found or the click data could not be updated.
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
   /api/properties/locations:
@@ -347,7 +347,7 @@ paths:
           description: returns 500 internal server error with specific error in the body
   /api/user/remove:
     delete:
-      summary: removes user from cognito and user table
+      summary: removes user from cognito, user table and clickdata table
       responses:
         "200":
           description: returns 200 OK response with message
