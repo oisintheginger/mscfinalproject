@@ -17,6 +17,7 @@ import software.amazon.awssdk.services.lambda.model.InvokeResponse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class PropertyService {
@@ -201,8 +202,20 @@ public class PropertyService {
         String[] splitResponse = responseString.split("[:,}]");
         List<Double> result = new ArrayList<>();
         for(int i = 5; i < splitResponse.length; i += 2) {
-            result.add(Double.valueOf(splitResponse[i]));
+            result.add(Double.valueOf(splitResponse[i].trim()));
         }
         return result;
+    }
+
+    public void registerClick(String userId, Integer propertyId) {
+        String sql = """
+            UPDATE user_interactions
+            SET click_count = click_count + 1
+            WHERE propertyID = ? AND id = ?;
+                """;
+        int rows = jdbcTemplate.update(sql, propertyId, userId);
+        if (rows == 0) {
+            throw new NoSuchElementException();
+        }
     }
 }
