@@ -4,12 +4,13 @@
     
 }
 a {
-    color: #F3FCFF;
+    color: #fafcfc;
 }
 
 body{
     padding: 0px;
     margin: 0px;
+    background-color: #fafcfc;
 }
 
 .leaflet-container{

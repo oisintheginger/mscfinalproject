@@ -19,20 +19,25 @@ import {
 	Typography,
 	Grid,
 	Pagination,
+	IconButton,
 } from "@mui/material";
 import SkeletonCard from "../CommonComp/Cards/SkeletonCard/SkeletonCard";
 import { darkTeal } from "../../Styling/styleConstants";
 
 import { useSearchParams } from "react-router-dom";
-import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
 import { useEffect, useState } from "react";
 import ResultGrid from "../ResultsGrid/ResultsGrid";
 import { API } from "aws-amplify";
-import { useQueries } from "react-query";
-import MapResultsGrid from "../MapResultsGrid/MapResultsGrid";
-import MapPropertyPopup from "../MapPopup/MapPropertyPopup";
+import { useQuery } from "react-query";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
-function HMEMap({ marks, points, setPoints, resetPage }) {
+function HMEMap({
+	marks,
+	points,
+	setPoints,
+	resetPage,
+	markerClickHandler = () => {},
+}) {
 	const FilterPoints = (points, map, setPointsState) => {
 		setPointsState(
 			points
@@ -106,13 +111,14 @@ function HMEMap({ marks, points, setPoints, resetPage }) {
 								eventHandlers={{
 									click: () => {
 										console.log("marker clicked");
+										markerClickHandler(data.propertyId);
 									},
 								}}
 							>
-								<MapPropertyPopup
+								{/* <MapPropertyPopup
 									propertyId={data.propertyId}
 									position={[data.latitude, data.longitude]}
-								/>
+								/> */}
 								{/* <PropertyCard data={data} inPopup={true} /> */}
 							</Marker>
 						);
@@ -122,39 +128,46 @@ function HMEMap({ marks, points, setPoints, resetPage }) {
 	);
 }
 
-function LeafletMap({ propertyData }) {
-	const [points, setPoints] = useState([]);
+function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
+	const [points, setPoints] = useState(propertyData ? propertyData : []);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 
 	const [pageNum, setPageNum] = useState(
 		searchParameters.get("page") ? parseInt(searchParameters.get("page")) : 1
 	);
 
-	const listRender = points.filter((v, ind) => {
-		return ind < 9 * pageNum && ind >= 9 * (pageNum - 1);
-	});
+	const listRender = points
+		.map((el) => el.propertyId)
+		.filter((v, ind) => {
+			return ind < 9 * pageNum && ind >= 9 * (pageNum - 1);
+		});
 
 	const handlePageChange = (event, val) => {
 		event.preventDefault();
 		setPageNum(val);
 	};
 
-	// const pointQuickViews = useQueries([
-	// 	...listRender?.map((point, ind) => {
-	// 		return {
-	// 			queryKey: ["Points", point.ind],
-	// 			queryFn: () => {
-	// 				return API.get(
-	// 					"HMEBackend",
-	// 					`/api/properties/${point.propertyId}`,
-	// 					{}
-	// 				);
-	// 			},
-	// 			enabled: false,
-	// 			refetchOnWindowFocus: false,
-	// 		};
-	// 	}),
-	// ]);
+	const { isLoading, isError, isSuccess, data, error, refetch } = useQuery(
+		["MapResults"],
+		() => {
+			return API.get("HMEBackend", `/api/properties/batch`, {
+				headers: {},
+				queryStringParameters: {
+					ids: listRender,
+				},
+				response: true,
+			});
+		},
+		{
+			enabled: false,
+			select: (data) => data.data,
+			refetchOnMount: false,
+			refetchOnWindowFocus: false,
+			onSuccess: (data) => {
+				console.log(data);
+			},
+		}
+	);
 
 	useEffect(() => {
 		setPageNum(1);
@@ -165,19 +178,17 @@ function LeafletMap({ propertyData }) {
 			params.set("page", pageNum);
 			return params;
 		});
-		// pointQuickViews.forEach((el) => {
-		// 	el.refetch();
-		// });
+		refetch();
 		return () => {};
 	}, [pageNum]);
 
 	const mapResetPage = () => {
-		// setPageNum(1);
+		setPageNum(1);
 	};
 
-	// const mapResultsLoading = pointQuickViews.some((el) => {
-	// 	return el.isLoading;
-	// });
+	useEffect(() => {
+		refetch();
+	}, [points]);
 
 	return (
 		<Stack spacing={3} direction={"column"}>
@@ -195,7 +206,7 @@ function LeafletMap({ propertyData }) {
 						zoom={12}
 						scrollWheelZoom={true}
 					>
-						{/* <Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
+						<Stack direction={"row"} width={"100%"} justifyContent={"flex-end"}>
 							<Button
 								sx={{
 									transform: "translate(-10px, 10px)",
@@ -214,29 +225,19 @@ function LeafletMap({ propertyData }) {
 									JUMP TO RESULTS
 								</Typography>
 							</Button>
-						</Stack> */}
+						</Stack>
 						<HMEMap
 							marks={propertyData || []}
 							points={points}
 							setPoints={setPoints}
 							resetPage={mapResetPage}
+							markerClickHandler={markerClickHandler}
 						/>
 					</MapContainer>
 				)}
 			</Box>
-			{/* {!mapResultsLoading && (
-				<MapResultsGrid properties={pointQuickViews.map((el) => el.data)} />
-			)} */}
-			{/* <Pagination
-				count={Math.floor(points?.length / 9 - 1) || 10}
-				boundaryCount={1}
-				siblingCount={1}
-				variant="outlined"
-				sx={{ alignSelf: "center" }}
-				page={pageNum}
-				onChange={handlePageChange}
-			/> */}
-			{/* {isLoading ? (
+
+			{isLoading ? (
 				<Grid container spacing={2} width={"100%"} mt={0.5}>
 					{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
 						return (
@@ -247,13 +248,19 @@ function LeafletMap({ propertyData }) {
 					})}
 				</Grid>
 			) : isError ? (
-				<p>error:{}</p>
+				<IconButton
+					onClick={() => {
+						refetch();
+					}}
+				>
+					<RefreshIcon fontSize="large" />
+				</IconButton>
 			) : (
 				<>
-					<ResultGrid id={"results"} propertyData={ListData} />
+					<ResultGrid id={"results"} propertyData={data} />
 					{isSuccess && (
 						<Pagination
-							count={totalPages - 1}
+							count={Math.ceil(points?.length / 9) || 10}
 							boundaryCount={1}
 							siblingCount={1}
 							variant="outlined"
@@ -263,7 +270,7 @@ function LeafletMap({ propertyData }) {
 						/>
 					)}
 				</>
-			)} */}
+			)}
 		</Stack>
 	);
 }

@@ -1,14 +1,16 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
+import { useContext } from "react";
 import { useMutation } from "react-query";
+import { UserContext } from "../../UserContext/UserContext";
 export function UpdateWeightsMutation(
 	successCallback = () => {},
 	errorCallback = () => {}
 ) {
-	const { user } = useAuthenticator((context) => [context.user]);
+	const { getAccessToken } = useContext(UserContext);
 
 	return useMutation({
-		mutationFn: ({
+		mutationFn: async ({
 			leisure,
 			personal_care,
 			retail,
@@ -17,12 +19,10 @@ export function UpdateWeightsMutation(
 			fitness,
 			emergency,
 		}) => {
+			const accessToken = await getAccessToken();
 			return API.patch("HMEBackend", "/api/user/update/w", {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 				queryStringParameters: {
 					leisure: leisure,
