@@ -26,8 +26,11 @@ export function CreateApplicationMutation(
 		onSuccess: () => {
 			successCallback();
 		},
+		onError: () => {
+			errorCallback();
+		},
 		onMutate: (d) => {
-			console.log(d);
+			// console.log(d);
 		},
 	});
 }
