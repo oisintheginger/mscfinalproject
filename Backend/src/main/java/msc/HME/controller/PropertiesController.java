@@ -1,6 +1,5 @@
 package msc.HME.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletRequest;
 import msc.HME.binding.*;
 import msc.HME.service.PropertyService;
