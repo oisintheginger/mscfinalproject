@@ -23,7 +23,7 @@ export function RemoveFromSaveSearchMutation({
 			});
 		},
 		onMutate: (mut) => {
-			console.log(mut);
+			// console.log(mut);
 		},
 		onError: (err) => {
 			errorCallback(err);

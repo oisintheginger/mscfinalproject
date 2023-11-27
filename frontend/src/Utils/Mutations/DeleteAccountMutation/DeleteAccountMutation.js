@@ -6,23 +6,26 @@ import { UserContext } from "../../UserContext/UserContext";
 
 export function DeleteAccountMutation() {
 	const { getAccessToken } = useContext(UserContext);
+	const { signOut } = useAuthenticator((context) => [context.signOut]);
+
 	// console.log(search);
 	return useMutation({
-		mutationFn: async ({ search }) => {
+		mutationFn: async () => {
 			const accessToken = await getAccessToken();
-			return API.del("HMEBackend", "/api/user/remove/dsgisbnglsdnfhsgbsfdg", {
+			return API.del("HMEBackend", "/api/user/remove", {
 				headers: {
 					Authorization: "Bearer " + accessToken || null,
 				},
-				response: true,
 			});
 		},
 		onError: (err) => {
 			console.log(err);
 		},
 		onMutate: (inp) => {
-			console.log(inp);
+			// console.log(inp);
 		},
-		onSuccess: () => {},
+		onSuccess: () => {
+			// signOut();
+		},
 	});
 }

@@ -233,24 +233,42 @@ function Profile() {
 						) : savedSearchesIsError ? (
 							<>error</>
 						) : (
-							<Stack>
-								{savedSearchesData?.map((el, ind) => {
-									const { search, minPrice, maxPrice } = parseSearchString(
-										el.search
-									);
+							<>
+								<Stack>
+									{savedSearchesData?.slice(0, 3).map((el, ind) => {
+										const { search, minPrice, maxPrice } = parseSearchString(
+											el.search
+										);
 
-									return (
-										<SearchCard
-											search={search}
-											minPrice={minPrice}
-											maxPrice={maxPrice}
-											key={ind}
-											totalSearch={el.search}
-											savedSearchRefresh={savedSearchesRefetch}
-										/>
-									);
-								})}
-							</Stack>
+										return (
+											<SearchCard
+												search={search}
+												minPrice={minPrice}
+												maxPrice={maxPrice}
+												key={ind}
+												totalSearch={el.search}
+												savedSearchRefresh={savedSearchesRefetch}
+											/>
+										);
+									})}
+								</Stack>
+								<Box
+									width={"100%"}
+									display={"flex"}
+									flexDirection={"column"}
+									alignItems={"center"}
+								>
+									<ButtonStyled
+										onClick={() => {
+											navigator("/savedsearches?page=1", {
+												state: { previousUrl: location.pathname },
+											});
+										}}
+									>
+										View More On My Saved Searches
+									</ButtonStyled>
+								</Box>
+							</>
 						)}
 					</PageSection>
 					<PageSection sectionTitle="My Account" background={false}>
@@ -337,11 +355,9 @@ function Profile() {
 								<DeleteButton
 									variant="outlined"
 									fullWidth
-									onClick={async () => {
-										await deleteAccount();
-										await signOut();
+									onClick={() => {
+										deleteAccount();
 										CloseConfirmDeleteModal();
-										console.log("confirmed delete");
 									}}
 								>
 									CONFIRM ACCOUNT DELETION

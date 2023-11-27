@@ -20,6 +20,7 @@ export function SearchCard({
 	maxPrice,
 	totalSearch,
 	saveSearchRefresh = () => {},
+	handleDelete,
 }) {
 	const navigateToSearch = () => {
 		const searchParams = new URLSearchParams({
@@ -31,15 +32,13 @@ export function SearchCard({
 
 		navigator(`/browse?${searchString}`);
 	};
-	const queryClient = useQueryClient();
 
-	const { getAccessToken } = useContext(UserContext);
-	const { mutate: handleDelete } = RemoveFromSaveSearchMutation({
-		successCallback: () => {
-			console.log("success delete search");
-			saveSearchRefresh();
-		},
-	});
+	// const { mutate: handleDelete } = RemoveFromSaveSearchMutation({
+	// 	successCallback: () => {
+	// 		console.log("success delete search");
+	// 		saveSearchRefresh();
+	// 	},
+	// });
 
 	return (
 		<ButtonBase
@@ -77,9 +76,9 @@ export function SearchCard({
 							justifyContent={"flex-end"}
 						>
 							<IconButton
-								onClick={(event) => {
+								onClick={async (event) => {
 									event.stopPropagation(); // Prevents the ButtonBase onClick from being triggered
-									handleDelete(totalSearch);
+									await handleDelete(totalSearch);
 								}}
 							>
 								<DeleteIcon />
