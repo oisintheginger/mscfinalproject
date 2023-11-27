@@ -94,8 +94,6 @@ public class PropertiesController {
                 }
             }
             return ResponseEntity.status(HttpStatus.OK).body(property);
-        } catch (JsonProcessingException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
