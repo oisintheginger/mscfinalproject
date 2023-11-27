@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import HelpIcon from '@mui/icons-material/Help';
 import {
 	AppBar,
 	Box,
@@ -16,6 +17,8 @@ import {
 	Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import Popover from "@mui/material/Popover";
+
 import Drawer from "@mui/material/Drawer";
 import { useNavigate, Link as RRDLink, useLocation } from "react-router-dom";
 import "./NavLayout.css";
@@ -45,6 +48,10 @@ function NavLayout() {
 
 	const [modalOpen, setModalOpen] = useState(false);
 	const location = useLocation();
+	const [anchorEl, setAnchorEl] = useState(null);
+
+	
+
 
 	const toggleDrawer = (open) => (event) => {
 		if (
@@ -77,6 +84,17 @@ function NavLayout() {
 		signOut();
 	};
 
+
+	// Popover
+	const handlePopoverOpen = (event) => {
+		setAnchorEl(event.currentTarget);
+		};
+	
+		const handlePopoverClose = () => {
+		setAnchorEl(null);
+		};
+	
+		const open = Boolean(anchorEl);
 	return (
 		<>
 			<Box sx={{ flexGrow: 1, width: "100%", backgroundColor: "primary.main" }}>
@@ -111,16 +129,49 @@ function NavLayout() {
 							sx={{
 								cursor: "pointer",
 								height: "36px",
-								position: "relative",
-								top: "0%",
-								right: "50%",
-								transform: "translate(50%, 0%)",
+								flexGrow: 0,
+								alignSelf:"center",
 							}}
 							alt="Housing Made Easy Logo"
 							onClick={() => navigate("/")}
-						/>
+						>
+							
+						</Box>
+						<Button
+						size="large"
+						aria-label="help"
+						onClick={handlePopoverOpen}
+						sx={{ color: fontDark, height: "100%" }}
+						>
+							<HelpIcon/>
+						</Button>
+						<Popover 
+            				open={open}  
+            				anchorEl={anchorEl}
+            				onClose={handlePopoverClose}
+            				anchorOrigin={{
+                			vertical: 'bottom',
+                			horizontal: 'left'}}
+        				>
+            			<Box sx={{ display: 'flex', alignItems: 'center', p: 1 }}>
+                			<Typography
+                    			sx={{ flexGrow: 1, cursor: "pointer",fontSize: 18, textShadow: "1px 1px 2px gray", color:"blue"  }}
+                    			onClick={() => navigate("/FAQ")}
+                			>
+                    				Click HERE for help
+                			</Typography>
+                			<IconButton
+                    			aria-label="close"
+                    			size="small"
+                    			onClick={handlePopoverClose}
+                			>
+                    			<CloseIcon />
+                			</IconButton>
+            			</Box>
+        			</Popover>
 					</Toolbar>
 				</AppBar>
+				
 				<Drawer
 					anchor="left"
 					open={drawerOpen}
