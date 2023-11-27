@@ -1,5 +1,6 @@
 import PageTemplate from "./PageTemplate";
 import { Paper, Box, Typography, Divider } from "@mui/material";
+import YouTubeVideo from "./Youtube links/YouTubeVideo";
 
 function FAQPage () {
 
@@ -13,7 +14,7 @@ function FAQPage () {
 						<Typography variant="h2">Using the website</Typography>
 						<Divider />
 						<Typography variant="body2">
-							The following YouTube video demonstrates Housing Made Easy.
+							<YouTubeVideo videoId="ghaVrwo1_ok" />
 						</Typography>
 					</Box>
                     <Box mt={5}>
