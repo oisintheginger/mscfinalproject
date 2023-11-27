@@ -43,10 +43,27 @@ public class LambdaHandler implements RequestHandler<Object, Object> {
             insertStatement.setString(6, "[{\"propertyId\": \"1\", \"message\": \"1\"}]");
             int result = insertStatement.executeUpdate();
 
-            if (result < 0) {
+            if (result == 0) {
                 logger.log(String.valueOf(ResponseEntity
                         .status(HttpStatus.SERVICE_UNAVAILABLE)
-                        .body("Database is currently unavailable")));
+                        .body("Could not add user to database")));
+            }
+
+            PreparedStatement clickStatement = conn.prepareStatement("""
+                INSERT INTO user_interactions (propertyID, id, click_count)
+                SELECT
+                    mi.propertyID,
+                    ?,
+                    0 AS click_count
+                FROM
+                    MainInformation mi;
+            """);
+            clickStatement.setString(1, data.get(0));
+            int res = clickStatement.executeUpdate();
+            if (res == 0) {
+                logger.log(String.valueOf(ResponseEntity
+                        .status(HttpStatus.SERVICE_UNAVAILABLE)
+                        .body("Could not add user click entries to database")));
             }
         } catch (SQLException e) {
             logger.log(String.valueOf(e));
