@@ -39,14 +39,9 @@ public class UserService {
         String issuer = jwt.getIssuer();
         Date expiresAt = jwt.getExpiresAt();
         Date now = new Date();
-        System.out.println(issuer);
-        System.out.println(expiresAt);
-        System.out.println(now);
         if (!Objects.equals(issuer, "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_VBubqBEr4") || expiresAt.equals(now) || now.after(expiresAt)) { // &&
-            System.out.println("expired");
             return null;
         } else {
-            System.out.println("not?");
             return userId;
         }
     }

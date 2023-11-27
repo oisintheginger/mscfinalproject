@@ -71,13 +71,31 @@ public class PropertiesController {
 
     @GetMapping("/details/{id}")
     ResponseEntity<Object> findPropertyById(@PathVariable Integer id, HttpServletRequest request) {
-        DetailedProperty property = propertyService.getPropertyDetails(id);
-        String userId = userService.validateJWT(request);
-        if (userId!=null) {
-            propertyService.getPersonalScores();
-            System.out.println(userId);
+        try {
+            DetailedProperty property = propertyService.getPropertyDetails(id);
+            if (property == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Property not found");
+            }
+            String userId = userService.validateJWT(request);
+            if (userId != null) {
+                List<Double> scores = propertyService.getPersonalScores(userId, id.toString());
+                if (scores != null && scores.size() == 8) {
+                    property.setEmergency_score(scores.get(0));
+                    property.setFinance_score(scores.get(1));
+                    property.setFitness_score(scores.get(2));
+                    property.setLeisure_score(scores.get(3));
+                    property.setPersonal_care_score(scores.get(4));
+                    property.setRetail_score(scores.get(5));
+                    property.setTransportation_score(scores.get(6));
+                    property.setServicesOverallScore(scores.get(7));
+                } else {
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Invalid scores data");
+                }
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(property);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.OK).body(property);
     }
 
     @GetMapping("/locations")
