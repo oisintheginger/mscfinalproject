@@ -25,6 +25,7 @@ export function useFetchSavedSearchesHook() {
 				return data;
 			},
 			response: true,
+			staleTime: 0,
 			refetchOnMount: true,
 		}
 	);

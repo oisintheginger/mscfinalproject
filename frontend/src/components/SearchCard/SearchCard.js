@@ -35,13 +35,6 @@ export function SearchCard({
 		navigator(`/browse?${searchString}`);
 	};
 
-	// const { mutate: handleDelete } = RemoveFromSaveSearchMutation({
-	// 	successCallback: () => {
-	// 		console.log("success delete search");
-	// 		saveSearchRefresh();
-	// 	},
-	// });
-
 	return (
 		<ButtonBase
 			component="div"

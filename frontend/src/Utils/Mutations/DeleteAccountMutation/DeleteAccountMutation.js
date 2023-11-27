@@ -22,10 +22,9 @@ export function DeleteAccountMutation() {
 			console.log(err);
 		},
 		onMutate: (inp) => {
+			// signOut();
 			// console.log(inp);
 		},
-		onSuccess: () => {
-			// signOut();
-		},
+		onSuccess: () => {},
 	});
 }

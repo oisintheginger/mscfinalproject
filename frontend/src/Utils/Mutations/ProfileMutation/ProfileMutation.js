@@ -36,6 +36,7 @@ export function UpdateWeightsMutation(
 			});
 		},
 		onSuccess: (data) => {
+			console.log("success updating weights");
 			successCallback(data);
 		},
 		onMutate: (d) => {

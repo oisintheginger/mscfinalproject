@@ -1,11 +1,19 @@
-import { Box, TextField, Typography, ButtonGroup, Stack } from "@mui/material";
+import {
+	Box,
+	TextField,
+	Typography,
+	ButtonGroup,
+	Stack,
+	Snackbar,
+	Slide,
+} from "@mui/material";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
 import { BookmarkIcon, FilterIcon } from "../../Icons/HMEIcons";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ActiveTag from "../ActiveTag/ActiveTag";
 import FilterFields from "../CommonComp/FilterFields/FilterFields";
 
@@ -14,22 +22,30 @@ import { SEARCH_TERM } from "../../Utils/filter_constants";
 import ActiveTagsStack from "../ActiveTag/ActiveTagsStack";
 import { useMutation } from "react-query";
 import { API } from "aws-amplify";
+import { UserContext } from "../../Utils/UserContext/UserContext";
+import SnackbarAlertMap from "../../Utils/AlertMap";
+import { useSearchParams } from "react-router-dom";
 
 function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
+	const down = useMediaQuery(theme.breakpoints.down("md"));
+	const [searchParameters, setSearchParameters] = useSearchParams();
+
+	const [saveSearchEnabled, setSaveSearchEnabled] = useState(false);
+
+	const [snackbarAlertOpen, setSnackbarAlertOpen] = useState(false);
+	const [alert, setAlert] = useState(<></>);
+	const handleSnackbarClose = () => {
+		setSnackbarAlertOpen(false);
+	};
+
 	const methods = useFormContext();
-	
 
-	//Adding Save Search Functionality
-
-
-	const { user } = useAuthenticator((context) => [
-		context.user,
-	]);
+	const { getAccessToken } = useContext(UserContext);
 
 	const postSaveSearch = async (queryParams) => {
-		const token = user?.getSignInUserSession().getAccessToken().jwtToken || null;
+		const token = await getAccessToken();
 		const searchData = queryParams;
 		return await API.post("HMEBackend", `/api/user/new/s`, {
 			headers: {
@@ -37,50 +53,63 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 			},
 			response: true,
 			queryStringParameters: {
-				'searchString': searchData,
+				searchString: searchData,
 			},
 		});
 	};
-	
+
+	const successSaveSearch = () => {
+		setAlert(SnackbarAlertMap.save_search);
+		setSnackbarAlertOpen(true);
+	};
+	const errorSaveSearch = () => {
+		setAlert(SnackbarAlertMap.error_save_search);
+		setSnackbarAlertOpen(true);
+	};
 
 	const saveSearchMutation = useMutation(postSaveSearch, {
 		onSuccess: () => {
-			alert("Search saved!");
+			successSaveSearch();
+			// alert("Search saved!");
 		},
 		onError: (error) => {
 			console.error("Error saving search:", error);
-			alert("UNSUCCESSFUL");
+			errorSaveSearch();
+			// alert("UNSUCCESSFUL");
 		},
 	});
-	
+
 	function getEditedURL() {
 		const url = window.location.href;
-		const [baseUrl, queryString] = url.split('?');
-	
+		const [baseUrl, queryString] = url.split("?");
+
 		if (!queryString) {
 			return url;
 		}
-		const params = queryString.split('&').filter(param => !param.startsWith('page=1'));
-		const newQueryString = params.join('&');
+		const params = queryString
+			.split("&")
+			.filter((param) => !param.startsWith("page=1"));
+		const newQueryString = params.join("&");
 		return `${newQueryString}`;
-	}; // function to remove page=1&
-	
+	} // function to remove page=1&
 
 	const handleSaveSearch = () => {
 		try {
 			const editedUrl = getEditedURL();
 			const queryParams = new URLSearchParams(editedUrl).toString(); // Convert to a query string
 			// console.log("queryParams:", queryParams);
-	 		// alert("Search saved!");
+			// alert("Search saved!");
 			saveSearchMutation.mutate(queryParams);
 		} catch (error) {
 			console.error("Error preparing search data:", error);
-			alert("Search save unsuccessful.");
 		}
 	};
-	
-	
-	
+
+	useEffect(() => {
+		if (searchParameters.get("Bathrooms") != null) {
+			setSaveSearchEnabled(true);
+		}
+	}, [searchParameters]);
 
 	return (
 		<Box sx={{ width: "100%", flexGrow: 1, height: "max-content" }}>
@@ -143,12 +172,25 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 									height: "55px",
 									justifyContent: { xs: "center", sm: "start" },
 									fontSize: 2,
+									"&:disabled": {
+										color: "#bfbfbf",
+										backgroundColor: "#e6e6e6",
+									},
 								}}
+								disabled={!saveSearchEnabled}
 								startIcon={<BookmarkIcon />}
 								onClick={handleSaveSearch}
 							>
 								{above && (
-									<Typography variant="button" display={"block"}>
+									<Typography
+										variant="button"
+										display={"block"}
+										sx={
+											!saveSearchEnabled && {
+												color: "#bfbfbf",
+											}
+										}
+									>
 										Save Search
 									</Typography>
 								)}
@@ -162,6 +204,18 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 				/>
 			</Box>
 			<ActiveTagsStack filtersOpen={filtersOpen} />
+			<Snackbar
+				open={snackbarAlertOpen}
+				autoHideDuration={3000}
+				onClose={handleSnackbarClose}
+				TransitionComponent={Slide}
+				anchorOrigin={{
+					vertical: down ? "top" : "bottom",
+					horizontal: "center",
+				}}
+			>
+				{alert}
+			</Snackbar>
 		</Box>
 	);
 }

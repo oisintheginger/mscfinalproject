@@ -264,6 +264,7 @@ function PropertyPage() {
 			return el.propertyId.toString() == propertyId;
 		}) || false;
 
+	console.log(data);
 	return (
 		<>
 			{isLoading ? (
@@ -320,6 +321,7 @@ function PropertyPage() {
 										action={() => {
 											removeFromFavorites();
 										}}
+										down={down}
 									/>
 								) : (
 									<AddFavoriteButton
@@ -538,16 +540,25 @@ function PropertyPage() {
 										direction={{ xs: "column", sm: "row" }}
 										alignItems={"center"}
 									>
-										<ApplyButton
-											action={() => {
-												if (route === "authenticated") {
-													openModal();
-												} else {
-													openLoginModal();
-												}
-											}}
-											down={down}
-										/>
+										{isApplied ? (
+											<ViewApplication
+												action={() => {
+													navigate("/applications?page=1");
+												}}
+												down={down}
+											/>
+										) : (
+											<ApplyButton
+												action={() => {
+													if (route === "authenticated") {
+														openModal();
+													} else {
+														openLoginModal();
+													}
+												}}
+												down={down}
+											/>
+										)}
 										{isFavorited ? (
 											<RemoveFavoriteButton
 												down={down}

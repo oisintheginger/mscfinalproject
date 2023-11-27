@@ -9,8 +9,8 @@ export function ApplyButton({ action = () => {}, down = false }) {
 			}}
 			variant="outlined"
 			sx={{
-				maxWidth: down ? "100vw" : "30vw",
-				transform: "translate(0px, 8px)",
+				width: down ? "100%" : "20vw",
+				transform: down ? "" : "translate(0px, 8px)",
 				backgroundColor: "darkTeal.main",
 
 				"&:hover": {
@@ -36,8 +36,8 @@ export function ViewApplication({ action = () => {}, down = false }) {
 			}}
 			variant="outlined"
 			sx={{
-				maxWidth: "30vw",
-				transform: "translate(0px, 8px)",
+				width: down ? "100%" : "20vw",
+				transform: down ? "" : "translate(0px, 8px)",
 				backgroundColor: "darkWhite.main",
 				borderColor: "darkTeal.main",
 				color: "darkTeal.main",
