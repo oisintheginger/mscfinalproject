@@ -20,9 +20,11 @@ import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useQuery } from "react-query";
 import { useSearchParams, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { UserContext } from "../Utils/UserContext/UserContext";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
+import { FetchFavoritesHook } from "../Utils/DataFetching/FetchFavoritesHook";
 
 function Favorites() {
 	const theme = useTheme();
@@ -40,14 +42,9 @@ function Favorites() {
 	const [initialBreadcrumbLocation, setInitialBreadcrumbLocation] =
 		useState(null);
 
-	const methods = useForm({
-		defaultValues: { ...DEFAULT_FAVORITE_FILTER_VALUES },
-	});
-	const { route, user } = useAuthenticator((context) => [
-		context.route,
-		context.user,
-	]);
-
+	// const methods = useForm({
+	// 	defaultValues: { ...DEFAULT_FAVORITE_FILTER_VALUES },
+	// });
 	// const filterSubmit = (formdata) => {
 	// 	setSearchParameters((params) => {
 	// 		Object.keys(formdata).forEach((key) => {
@@ -59,99 +56,7 @@ function Favorites() {
 	// 	refetch();
 	// };
 
-	const {
-		isSuccess,
-		isError,
-		isLoading,
-		error,
-		data: favoriteData,
-		refetch,
-	} = useQuery(
-		["userFavourites"],
-		() => {
-			return API.get("HMEBackend", `/api/user/f`, {
-				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
-				},
-			});
-		},
-		{
-			response: true,
-			queryStringParameters: {
-				userId: user?.username || null,
-				...methods.getValues(),
-			},
-			selector: (data) => {
-				const out = [
-					...data.data?.map((el) => {
-						return el.favourite;
-					}),
-				];
-				return out;
-			},
-			onSuccess: (data) => {
-				// console.log(data);
-			},
-		}
-	);
-
-	const favoriteIds = favoriteData
-		?.map((el) => {
-			return el.favourite.toString();
-		})
-		.filter((el) => {
-			return el != "1";
-		});
-
-	// console.log(favoriteIds);
-
-	const {
-		isError: detailsIsError,
-		isLoading: detailsIsLoading,
-		error: detailsError,
-		data: detailsData,
-		refetch: detailsRefetch,
-	} = useQuery(
-		["favoriteQuickViews"],
-		() => {
-			return API.get("HMEBackend", `/api/properties/batch`, {
-				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
-				},
-				queryStringParameters: {
-					ids: favoriteIds,
-				},
-			});
-		},
-		{
-			response: true,
-			enabled: false,
-			refetchOnWindowFocus: false,
-			select: (data) => {
-				return data;
-			},
-			onSuccess: (data) => {
-				console.log(data);
-			},
-			onError: (err) => {
-				// console.log(err);
-			},
-		}
-	);
-
-	useEffect(() => {
-		if (isSuccess) {
-			detailsRefetch();
-		}
-	}, [favoriteData, isSuccess]);
-
-	// methods.customSubmitBehavior = filterSubmit;
+	const { detailsData, isError, isLoading, refetch } = FetchFavoritesHook();
 
 	useEffect(() => {
 		setInitialBreadcrumbLocation(
@@ -160,6 +65,9 @@ function Favorites() {
 	}, []);
 
 	useEffect(() => {
+		if (searchParameters.get("page") != null) {
+			return;
+		}
 		setSearchParameters((params) => {
 			params.set("page", pageNum);
 			return params;
@@ -213,7 +121,7 @@ function Favorites() {
 			</FormProvider> */}
 			<Divider />
 			<Box
-				minHeight={"45vh"}
+				minHeight={"50vh"}
 				width={"100%"}
 				display={"flex"}
 				justifyContent={"center"}
@@ -230,7 +138,7 @@ function Favorites() {
 					</Grid>
 				) : isError ? (
 					<p>Error</p>
-				) : (
+				) : paginatedResults?.length ? (
 					<Grid container spacing={2} width={"100%"}>
 						{paginatedResults &&
 							paginatedResults.map((data, key) => {
@@ -241,6 +149,10 @@ function Favorites() {
 								);
 							})}
 					</Grid>
+				) : (
+					<Typography>
+						Go Browse and Add New Listings to your Favorites!
+					</Typography>
 				)}
 			</Box>
 			<Pagination

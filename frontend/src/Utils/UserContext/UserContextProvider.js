@@ -4,6 +4,16 @@ import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import cloneDeep from "clone-deep";
+import { Auth } from "aws-amplify";
+
+const getAccessToken = async () => {
+	try {
+		const session = await Auth.currentSession();
+		return session?.getAccessToken().getJwtToken();
+	} catch (err) {
+		return null;
+	}
+};
 function UserContextProvider({ children }) {
 	const { route, user } = useAuthenticator((context) => [
 		context.route,
@@ -11,13 +21,11 @@ function UserContextProvider({ children }) {
 	]);
 	const { data, refetch } = useQuery(
 		"user",
-		() => {
+		async () => {
+			const accessToken = await getAccessToken();
 			return API.get("HMEBackend", `/api/user`, {
 				headers: {
-					Authorization:
-						"Bearer " +
-							user.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
+					Authorization: "Bearer " + accessToken || null,
 				},
 			});
 		},
@@ -61,7 +69,12 @@ function UserContextProvider({ children }) {
 
 	return (
 		<UserContext.Provider
-			value={{ userData: data, handleRefresh: handleRefresh, route }}
+			value={{
+				userData: data,
+				handleRefresh: handleRefresh,
+				route,
+				getAccessToken,
+			}}
 		>
 			{children}
 		</UserContext.Provider>

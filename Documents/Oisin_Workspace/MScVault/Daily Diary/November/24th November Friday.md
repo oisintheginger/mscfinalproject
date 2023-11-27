@@ -8,7 +8,9 @@
 
 
 > [!afternoon] Afternoon
-> - Fixing Map Browsing + Remaking Map Browse Popup (~4 hours):
+> - Fixing Map Browsing + Remaking Map Browse Popup (~3 hours):
 > 	- just fixing browsing by map
 > 	- changing popup to a modal when clicking on a property location.
 > - Emailing Andrea + Demo Recording (~.75 hours)
+> - Toast Alerts for Property Details Page (favoriting/applying success/error) (~3 hours)
+> - Fixing Authentication Issue on Frontend (~1.5 hours)

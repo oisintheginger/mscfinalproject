@@ -40,6 +40,7 @@ function Browse() {
 	const [filtersOpen, setFiltersOpen] = useState(false);
 
 	useEffect(() => {
+		if (searchParameters.get("page") != null) return;
 		setSearchParameters((params) => {
 			params.set("page", pageNum);
 			return params;
@@ -180,7 +181,6 @@ function Browse() {
 						)}
 					</>
 				)}
-				
 			</PageTemplate>
 		</>
 	);

@@ -1,6 +1,6 @@
 import PageTemplate from "./PageTemplate";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ApplicationCard from "../components/CommonComp/Cards/ApplicationCard/ApplicationCard";
 import {
 	Grid,
@@ -19,6 +19,8 @@ import ButtonOutlined from "../components/CommonComp/Button/ButtonOutlined";
 import DeleteButton from "../components/CommonComp/Button/DeleteButton";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "../Utils/usePagination/usePagination";
+import { UserContext } from "../Utils/UserContext/UserContext";
+import { FetchApplicationsHook } from "../Utils/DataFetching/FetchApplicationsHook";
 
 function Applications() {
 	const location = useLocation();
@@ -34,105 +36,8 @@ function Applications() {
 		useState(false);
 	const [applicationToView, setApplicationToView] = useState(null);
 
-	const { route, user } = useAuthenticator((context) => [
-		context.route,
-		context.user,
-	]);
-
-	const {
-		isError,
-		isLoading,
-		isSuccess,
-		error,
-		data: applicationData,
-		refetch,
-	} = useQuery(
-		["userApplications"],
-		() => {
-			return API.get("HMEBackend", `/api/user/a`, {
-				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
-				},
-				queryStringParameters: {
-					userId: user?.username || null,
-				},
-			});
-		},
-		{
-			response: true,
-			refetchOnWindowFocus: false,
-			enabled: true,
-			select: (data) => {
-				return data;
-			},
-			onSuccess: (data) => {
-				console.log(data);
-			},
-			onError: (err) => {
-				console.log(err);
-			},
-		}
-	);
-
-	const applicationPropIds = applicationData?.map((el) => {
-		return el.propertyId.toString();
-	});
-
-	const {
-		isError: detailsIsError,
-		isLoading: detailsIsLoading,
-		error: detailsError,
-		data: detailsData,
-		refetch: detailsRefetch,
-	} = useQuery(
-		["propertyQuickViews"],
-		() => {
-			return API.get("HMEBackend", `/api/properties/batch`, {
-				headers: {
-					Authorization:
-						"Bearer " +
-							user?.getSignInUserSession().getAccessToken().getJwtToken() ||
-						null,
-				},
-				queryStringParameters: {
-					ids: applicationPropIds,
-				},
-			});
-		},
-		{
-			response: true,
-			enabled: false,
-			refetchOnWindowFocus: false,
-			select: (rawData) => {
-				let out = [
-					...rawData.map((el) => {
-						let appDet = applicationData.find((app) => {
-							return app.propertyId == el.propertyId;
-						});
-						return {
-							...el,
-							message: appDet.message,
-							price: el.price,
-							address: el.streetAddress,
-							thumbnail: el.images[0],
-							status: "pending",
-						};
-					}),
-				];
-
-				return out;
-			},
-			onSuccess: (data) => {
-				// console.log(data);
-			},
-			onError: (err) => {
-				// console.log(err);
-			},
-		}
-	);
+	const { detailsIsLoading, detailsData, isLoading, refetch } =
+		FetchApplicationsHook();
 
 	useEffect(() => {
 		setInitialBreadcrumbLocation(
@@ -140,14 +45,11 @@ function Applications() {
 		);
 	}, []);
 
-	useEffect(() => {
-		if (isSuccess) {
-			detailsRefetch();
-		}
-	}, [applicationData, isSuccess]);
-
-	const { pageNum, handlePageChange } = usePagination(() => {},
-	setSearchParameters);
+	const { pageNum, handlePageChange } = usePagination(
+		() => {},
+		setSearchParameters,
+		searchParameters
+	);
 
 	const OpenConfirmDeleteModal = (applicationId) => {
 		setConfirmDeleteModalOpen(true);
@@ -179,32 +81,41 @@ function Applications() {
 				prevPage={initialBreadcrumbLocation}
 			>
 				<Divider />
-				{isLoading || detailsIsLoading ? (
-					<Grid container spacing={2} width={"100%"}>
-						{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
-							return (
-								<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-									<SkeletonCard />
-								</Grid>
-							);
-						})}
-					</Grid>
-				) : (
-					<Grid container spacing={2} width={"100%"}>
-						{paginatedResults &&
-							paginatedResults.map((data, key) => {
+				<Box
+					minHeight={"50vh"}
+					width={"100%"}
+					display={"flex"}
+					justifyContent={"center"}
+				>
+					{isLoading || detailsIsLoading ? (
+						<Grid container spacing={2} width={"100%"}>
+							{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
 								return (
 									<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-										<ApplicationCard
-											data={data}
-											openConfirmDelete={OpenConfirmDeleteModal}
-											openApplicationDetails={OpenApplicationDetailsModal}
-										/>
+										<SkeletonCard />
 									</Grid>
 								);
 							})}
-					</Grid>
-				)}
+						</Grid>
+					) : paginatedResults?.length > 0 ? (
+						<Grid container spacing={2} width={"100%"}>
+							{paginatedResults &&
+								paginatedResults.map((data, key) => {
+									return (
+										<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+											<ApplicationCard
+												data={data}
+												openConfirmDelete={OpenConfirmDeleteModal}
+												openApplicationDetails={OpenApplicationDetailsModal}
+											/>
+										</Grid>
+									);
+								})}
+						</Grid>
+					) : (
+						<Typography>Go out and apply for rentals!</Typography>
+					)}
+				</Box>
 				<Pagination
 					count={Math.ceil(detailsData?.length / 9) || 10}
 					boundaryCount={1}
