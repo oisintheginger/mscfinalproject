@@ -25,7 +25,7 @@ import UserWeights from "../components/UserWeightsComponent/UserWeights";
 import { FetchApplicationsHook } from "../Utils/DataFetching/FetchApplicationsHook";
 import { FetchFavoritesHook } from "../Utils/DataFetching/FetchFavoritesHook";
 import ApplicationCard from "../components/CommonComp/Cards/ApplicationCard/ApplicationCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
@@ -40,12 +40,17 @@ import ButtonOutlined from "../components/CommonComp/Button/ButtonOutlined";
 import { DeleteAccountMutation } from "../Utils/Mutations/DeleteAccountMutation/DeleteAccountMutation";
 import SnackbarAlertMap from "../Utils/AlertMap";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
+import { UserContext } from "../Utils/UserContext/UserContext";
+import { API } from "aws-amplify";
+import { DeleteHandlerConstructor } from "../Utils/Mutations/SearchMutation/SearchMutation";
 
 function Profile() {
 	const navigator = useNavigate();
 	const location = useLocation();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
+
+	const { getAccessToken } = useContext(UserContext);
 
 	const [snackbarAlertOpen, setSnackbarAlertOpen] = useState(false);
 	const [alert, setAlert] = useState(<></>);
@@ -102,6 +107,32 @@ function Profile() {
 	const { mutate: deleteAccount } = DeleteAccountMutation();
 
 	const { signOut } = useAuthenticator((context) => [context.signOut]);
+
+	// const handleDelete = async (searchString) => {
+	// 	const token = await getAccessToken();
+	// 	if (!token) {
+	// 		console.error("Authentication token not available.");
+	// 		return;
+	// 	}
+	const successDeleteSearch = () => {
+		setAlert(SnackbarAlertMap.delete_search);
+		setSnackbarAlertOpen(true);
+	};
+	const errorDeleteSearch = () => {
+		setAlert(SnackbarAlertMap.error_delete_search);
+		setSnackbarAlertOpen(true);
+	};
+
+	const handleDeleteSearch = DeleteHandlerConstructor({
+		successCallback: () => {
+			successDeleteSearch();
+			savedSearchesRefetch();
+		},
+		errorCallback: () => {
+			errorDeleteSearch();
+		},
+	});
+
 	return (
 		<>
 			<PageTemplate pageTitle="My Profile" currPageBreadcrumb={"Profile"}>
@@ -151,22 +182,28 @@ function Profile() {
 										</Grid>
 									))}
 								</Grid>
-								<Box
-									width={"100%"}
-									display={"flex"}
-									flexDirection={"column"}
-									alignItems={"center"}
-								>
-									<ButtonStyled
-										onClick={() => {
-											navigator("/favorites?page=1", {
-												state: { previousUrl: location.pathname },
-											});
-										}}
+								{favoritesDetailData?.length > 0 ? (
+									<Box
+										width={"100%"}
+										display={"flex"}
+										flexDirection={"column"}
+										alignItems={"center"}
 									>
-										View More On My Favorites
-									</ButtonStyled>
-								</Box>
+										<ButtonStyled
+											onClick={() => {
+												navigator("/favorites?page=1", {
+													state: { previousUrl: location.pathname },
+												});
+											}}
+										>
+											View More On My Favorites
+										</ButtonStyled>
+									</Box>
+								) : (
+									<Typography textAlign={"center"}>
+										No Favorites. Start Browsing!
+									</Typography>
+								)}
 							</>
 						)}
 					</PageSection>
@@ -200,61 +237,84 @@ function Profile() {
 										</Grid>
 									))}
 								</Grid>
-								<Box
-									width={"100%"}
-									display={"flex"}
-									flexDirection={"column"}
-									alignItems={"center"}
-								>
-									<ButtonStyled
-										onClick={() => {
-											navigator("/applications?page=1", {
-												state: { previousUrl: location.pathname },
-											});
-										}}
+								{applicationsData?.length > 0 ? (
+									<Box
+										width={"100%"}
+										display={"flex"}
+										flexDirection={"column"}
+										alignItems={"center"}
 									>
-										View More On My Applications
-									</ButtonStyled>
-								</Box>
+										<ButtonStyled
+											onClick={() => {
+												navigator("/applications?page=1", {
+													state: { previousUrl: location.pathname },
+												});
+											}}
+										>
+											View More On My Applications
+										</ButtonStyled>
+									</Box>
+								) : (
+									<Typography textAlign={"center"}>
+										No Applications. Start Browsing!
+									</Typography>
+								)}
 							</>
 						)}
 					</PageSection>
-					<PageSection
-						background={false}
-						sectionTitle="My Saved Searches"
-						action={() => {
-							navigator("/savedsearches", {
-								state: { previousUrl: location.pathname },
-							});
-						}}
-					>
+					<PageSection background={false} sectionTitle="My Saved Searches">
 						{savedSearchesIsLoading ? (
 							<LoadingSpinner />
 						) : savedSearchesIsError ? (
-							<>error</>
+							<>Error</>
 						) : (
-							<Stack>
-								{savedSearchesData?.map((el, ind) => {
-									const { search, minPrice, maxPrice } = parseSearchString(
-										el.search
-									);
+							<>
+								<Stack>
+									{savedSearchesData?.slice(0, 3).map((el, ind) => {
+										const { search, minPrice, maxPrice } = parseSearchString(
+											el.search
+										);
 
-									return (
-										<SearchCard
-											search={search}
-											minPrice={minPrice}
-											maxPrice={maxPrice}
-											key={ind}
-											totalSearch={el.search}
-											savedSearchRefresh={savedSearchesRefetch}
-										/>
-									);
-								})}
-							</Stack>
+										return (
+											<SearchCard
+												search={search}
+												minPrice={minPrice}
+												maxPrice={maxPrice}
+												key={ind}
+												totalSearch={el.search}
+												savedSearchRefresh={savedSearchesRefetch}
+												handleDelete={handleDeleteSearch}
+											/>
+										);
+									})}
+								</Stack>
+								{savedSearchesData?.length > 0 ? (
+									<Box
+										width={"100%"}
+										display={"flex"}
+										flexDirection={"column"}
+										alignItems={"center"}
+									>
+										<ButtonStyled
+											onClick={() => {
+												navigator("/savedsearches?page=1", {
+													state: { previousUrl: location.pathname },
+												});
+											}}
+										>
+											View More On My Saved Searches
+										</ButtonStyled>
+									</Box>
+								) : (
+									<Typography textAlign={"center"}>
+										No Saved Searches. Start Browsing!
+									</Typography>
+								)}
+							</>
 						)}
 					</PageSection>
 					<PageSection sectionTitle="My Account" background={false}>
-						<DeleteButton onClick={OpenConfirmDeleteModal}>
+						<DeleteButton onClick={OpenConfirmDeleteModal} disabled>
 							DELETE ACCOUNT
 						</DeleteButton>
 					</PageSection>
@@ -338,10 +398,7 @@ function Profile() {
 									variant="outlined"
 									fullWidth
 									onClick={async () => {
-										await deleteAccount();
-										await signOut();
-										CloseConfirmDeleteModal();
-										console.log("confirmed delete");
+										deleteAccount();
 									}}
 								>
 									CONFIRM ACCOUNT DELETION

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import HelpIcon from '@mui/icons-material/Help';
+import HelpIcon from "@mui/icons-material/Help";
 import {
 	AppBar,
 	Box,
@@ -15,6 +15,7 @@ import {
 	Divider,
 	Container,
 	Button,
+	Tooltip,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Popover from "@mui/material/Popover";
@@ -50,9 +51,6 @@ function NavLayout() {
 	const location = useLocation();
 	const [anchorEl, setAnchorEl] = useState(null);
 
-	
-
-
 	const toggleDrawer = (open) => (event) => {
 		if (
 			event.type === "keydown" &&
@@ -84,17 +82,16 @@ function NavLayout() {
 		signOut();
 	};
 
-
 	// Popover
 	const handlePopoverOpen = (event) => {
 		setAnchorEl(event.currentTarget);
-		};
-	
-		const handlePopoverClose = () => {
+	};
+
+	const handlePopoverClose = () => {
 		setAnchorEl(null);
-		};
-	
-		const open = Boolean(anchorEl);
+	};
+
+	const open = Boolean(anchorEl);
 	return (
 		<>
 			<Box sx={{ flexGrow: 1, width: "100%", backgroundColor: "primary.main" }}>
@@ -130,48 +127,49 @@ function NavLayout() {
 								cursor: "pointer",
 								height: "36px",
 								flexGrow: 0,
-								alignSelf:"center",
+								alignSelf: "center",
 							}}
 							alt="Housing Made Easy Logo"
 							onClick={() => navigate("/")}
+						></Box>
+						<Tooltip title={"Click here to visit our FAQ page"}>
+							<Button
+								size="large"
+								aria-label="help"
+								onClick={() => navigate("/FAQ")}
+								sx={{ color: fontDark, height: "100%" }}
+							>
+								<HelpIcon />
+							</Button>
+						</Tooltip>
+						<Popover
+							open={open}
+							anchorEl={anchorEl}
+							onClose={handlePopoverClose}
+							anchorOrigin={{
+								vertical: "bottom",
+								horizontal: "left",
+							}}
 						>
-							
-						</Box>
-						<Button
-						size="large"
-						aria-label="help"
-						onClick={handlePopoverOpen}
-						sx={{ color: fontDark, height: "100%" }}
-						>
-							<HelpIcon/>
-						</Button>
-						<Popover 
-            				open={open}  
-            				anchorEl={anchorEl}
-            				onClose={handlePopoverClose}
-            				anchorOrigin={{
-                			vertical: 'bottom',
-                			horizontal: 'left'}}
-        				>
-            			<Box sx={{ display: 'flex', alignItems: 'center', p: 1 }}>
-                			<Typography
-                    			sx={{ flexGrow: 1, cursor: "pointer",fontSize: 18, textShadow: "1px 1px 2px gray", color:"blue"  }}
-                    			onClick={() => navigate("/FAQ")}
-                			>
-                    				Click HERE for help
-                			</Typography>
-                			<IconButton
-                    			aria-label="close"
-                    			size="small"
-                    			onClick={handlePopoverClose}
-                			>
-                    			<CloseIcon />
-                			</IconButton>
-            			</Box>
-        			</Popover>
+							<Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
+								<Typography
+									sx={{ cursor: "pointer" }}
+									onClick={() => navigate("/FAQ")}
+								>
+									Click HERE for help
+								</Typography>
+								<IconButton
+									aria-label="close"
+									size="small"
+									onClick={handlePopoverClose}
+								>
+									<CloseIcon fontSize="small" />
+								</IconButton>
+							</Box>
+						</Popover>
 					</Toolbar>
 				</AppBar>
-				
+
 				<Drawer
 					anchor="left"
 					open={drawerOpen}

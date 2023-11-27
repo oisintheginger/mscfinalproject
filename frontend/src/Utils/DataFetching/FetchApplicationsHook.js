@@ -31,6 +31,7 @@ export function FetchApplicationsHook() {
 			response: true,
 			refetchOnMount: true,
 			refetchOnWindowFocus: false,
+			staleTime: 0,
 			enabled: true,
 			select: (data) => {
 				return data.filter((el) => {

@@ -4,7 +4,7 @@ import StarOutline from "@mui/icons-material/StarOutline";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
-
+import SearchIcon from "@mui/icons-material/Search";
 const SnackbarAlertMap = {
 	added_favorite: (
 		<Alert
@@ -54,6 +54,37 @@ const SnackbarAlertMap = {
 			</Typography>
 		</Alert>
 	),
+	save_search: (
+		<Alert
+			severity={"success"}
+			variant="filled"
+			icon={<SearchIcon fontSize="medium" />}
+			sx={{ alignItems: "center" }}
+		>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Successfully Saved Search
+			</Typography>
+		</Alert>
+	),
+	error_save_search: (
+		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Error Saving Search
+			</Typography>
+		</Alert>
+	),
+	delete_search: (
+		<Alert
+			severity={"success"}
+			variant="filled"
+			icon={<DeleteOutlineOutlinedIcon fontSize="medium" />}
+			sx={{ alignItems: "center" }}
+		>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Successfully Deleted Search
+			</Typography>
+		</Alert>
+	),
 	error_added_favorite: (
 		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
 			<Typography variant="alertToast" sx={{ color: "white" }}>
@@ -79,6 +110,13 @@ const SnackbarAlertMap = {
 		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
 			<Typography variant="alertToast" sx={{ color: "white" }}>
 				Error Updating Weights
+			</Typography>
+		</Alert>
+	),
+	error_delete_search: (
+		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Error Deleting Search
 			</Typography>
 		</Alert>
 	),

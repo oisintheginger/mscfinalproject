@@ -13,6 +13,10 @@ const ButtonStyled = styled(Button)({
 		color: "white",
 		backgroundColor: buttonHover,
 	},
+	"&:disabled": {
+		color: "greyDark",
+		backgroundColor: "#d3deda",
+	},
 });
 
 export default ButtonStyled;
