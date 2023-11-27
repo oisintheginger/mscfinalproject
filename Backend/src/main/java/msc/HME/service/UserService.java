@@ -39,7 +39,7 @@ public class UserService {
         String issuer = jwt.getIssuer();
         Date expiresAt = jwt.getExpiresAt();
         Date now = new Date();
-        if (!Objects.equals(issuer, "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_VBubqBEr4") || expiresAt.equals(now) || now.after(expiresAt)) { // &&
+        if (!Objects.equals(issuer, "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_VBubqBEr4") || expiresAt.equals(now) || now.after(expiresAt)) { 
             return null;
         } else {
             return userId;
@@ -203,7 +203,13 @@ public class UserService {
             String sql = "DELETE FROM user WHERE id=?";
             int rows = jdbcTemplate.update(sql, id);
             if (rows == 0) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be completely removed");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be removed from user table");
+            }
+            //delete from user_interactions table
+            String sql2 = "DELETE FROM user WHERE id=?";
+            int rows2 = jdbcTemplate.update(sql2, id);
+            if (rows2 == 0) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be removed from user transactions table");
             }
         }
         return result;
