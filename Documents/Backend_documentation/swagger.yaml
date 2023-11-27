@@ -61,15 +61,16 @@ paths:
           description: returns a 404 not found response
         "500":
           description: returns a 500 internal server error if errors occur with database operations
-  /api/properties/{propertyId}:
+  /api/properties/{id}:
     get:
       summary: returns quick view property of specific property id
+      description: the method includes (personal) scores and retention of click data
       parameters:
         - in: path
-          name: propertyId
+          name: id
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         "200":
           description: returns a quickviewproperty object
