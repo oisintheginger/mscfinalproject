@@ -25,7 +25,7 @@ import UserWeights from "../components/UserWeightsComponent/UserWeights";
 import { FetchApplicationsHook } from "../Utils/DataFetching/FetchApplicationsHook";
 import { FetchFavoritesHook } from "../Utils/DataFetching/FetchFavoritesHook";
 import ApplicationCard from "../components/CommonComp/Cards/ApplicationCard/ApplicationCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
@@ -40,12 +40,16 @@ import ButtonOutlined from "../components/CommonComp/Button/ButtonOutlined";
 import { DeleteAccountMutation } from "../Utils/Mutations/DeleteAccountMutation/DeleteAccountMutation";
 import SnackbarAlertMap from "../Utils/AlertMap";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
+import { UserContext } from "../Utils/UserContext/UserContext";
+import { API } from "aws-amplify";
 
 function Profile() {
 	const navigator = useNavigate();
 	const location = useLocation();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
+
+	const { getAccessToken } = useContext(UserContext);
 
 	const [snackbarAlertOpen, setSnackbarAlertOpen] = useState(false);
 	const [alert, setAlert] = useState(<></>);
@@ -102,6 +106,28 @@ function Profile() {
 	const { mutate: deleteAccount } = DeleteAccountMutation();
 
 	const { signOut } = useAuthenticator((context) => [context.signOut]);
+
+	const handleDelete = async (searchString) => {
+		const token = await getAccessToken();
+		if (!token) {
+			console.error("Authentication token not available.");
+			return;
+		}
+
+		try {
+			await API.del("HMEBackend", "/api/user/remove/s", {
+				headers: { Authorization: `Bearer ${token}` },
+				response: true,
+				queryStringParameters: {
+					searchString,
+				},
+			});
+			savedSearchesRefetch();
+		} catch (error) {
+			console.error("Failed to delete:", error);
+		}
+	};
+
 	return (
 		<>
 			<PageTemplate pageTitle="My Profile" currPageBreadcrumb={"Profile"}>
@@ -248,26 +274,33 @@ function Profile() {
 												key={ind}
 												totalSearch={el.search}
 												savedSearchRefresh={savedSearchesRefetch}
+												handleDelete={handleDelete}
 											/>
 										);
 									})}
 								</Stack>
-								<Box
-									width={"100%"}
-									display={"flex"}
-									flexDirection={"column"}
-									alignItems={"center"}
-								>
-									<ButtonStyled
-										onClick={() => {
-											navigator("/savedsearches?page=1", {
-												state: { previousUrl: location.pathname },
-											});
-										}}
+								{savedSearchesData?.length > 0 ? (
+									<Box
+										width={"100%"}
+										display={"flex"}
+										flexDirection={"column"}
+										alignItems={"center"}
 									>
-										View More On My Saved Searches
-									</ButtonStyled>
-								</Box>
+										<ButtonStyled
+											onClick={() => {
+												navigator("/savedsearches?page=1", {
+													state: { previousUrl: location.pathname },
+												});
+											}}
+										>
+											View More On My Saved Searches
+										</ButtonStyled>
+									</Box>
+								) : (
+									<Typography textAlign={"center"}>
+										No Saved Searches. Start Browsing!
+									</Typography>
+								)}
 							</>
 						)}
 					</PageSection>

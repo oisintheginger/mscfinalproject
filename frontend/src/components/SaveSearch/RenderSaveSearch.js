@@ -10,6 +10,7 @@ import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { SearchCard } from "../SearchCard/SearchCard";
 import { useSearchParams } from "react-router-dom";
+import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
 
 export default function RenderSaveSearch({
 	savedSearchesData = null,
@@ -126,39 +127,52 @@ export default function RenderSaveSearch({
 	}, [searchParameters]);
 
 	return (
-		<>
-			<Box minHeight={"60vh"}>
-				<Stack>
-					{paginatedSearches?.map((el, ind) => {
-						const { search, minPrice, maxPrice } = parseSearchString(el.search);
+		<Box minHeight={"55vh"}>
+			{savedSearchesIsLoading ? (
+				<LoadingSpinner />
+			) : savedSearchesIsError ? (
+				<>error</>
+			) : savedSearchesData?.length > 0 ? (
+				<>
+					<Box minHeight={"60vh"}>
+						<Stack>
+							{paginatedSearches?.map((el, ind) => {
+								const { search, minPrice, maxPrice } = parseSearchString(
+									el.search
+								);
 
-						return (
-							<SearchCard
-								search={search}
-								minPrice={minPrice}
-								maxPrice={maxPrice}
-								key={ind}
-								totalSearch={el.search}
-								handleDelete={handleDelete}
-								savedSearchRefresh={(data) => {
-									console.log(data);
-									savedSearchesRefetch();
-									queryClient.invalidateQueries("userSearches");
-								}}
-							/>
-						);
-					})}
-				</Stack>
-			</Box>
-			<Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-				<Pagination
-					count={Math.ceil(savedSearchesData?.length / itemsPerPage)}
-					page={pageNum}
-					onChange={handleChangePage}
-					variant="outlined"
-				/>
-			</Box>
-
+								return (
+									<SearchCard
+										search={search}
+										minPrice={minPrice}
+										maxPrice={maxPrice}
+										key={ind}
+										totalSearch={el.search}
+										handleDelete={handleDelete}
+										savedSearchRefresh={(data) => {
+											console.log(data);
+											savedSearchesRefetch();
+											queryClient.invalidateQueries("userSearches");
+										}}
+									/>
+								);
+							})}
+						</Stack>
+					</Box>
+					<Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+						<Pagination
+							count={Math.ceil(savedSearchesData?.length / itemsPerPage)}
+							page={pageNum}
+							onChange={handleChangePage}
+							variant="outlined"
+						/>
+					</Box>
+				</>
+			) : (
+				<Typography textAlign={"center"}>
+					No Saved Searches. Start Browsing!
+				</Typography>
+			)}
 			{/* <div>
 				{currentData?.map((item, index) => {
 					const { search, minPrice, maxPrice } = parseSearchString(item.search);
@@ -239,6 +253,6 @@ export default function RenderSaveSearch({
 					/>
 				</Box>
 			</div> */}
-		</>
+		</Box>
 	);
 }

@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Utils/UserContext/UserContext";
 import { useQuery, useQueryClient } from "react-query";
 import { API } from "aws-amplify";
+import { useNavigate } from "react-router-dom";
 
 export function SearchCard({
 	search,
@@ -22,6 +23,7 @@ export function SearchCard({
 	saveSearchRefresh = () => {},
 	handleDelete,
 }) {
+	const navigator = useNavigate();
 	const navigateToSearch = () => {
 		const searchParams = new URLSearchParams({
 			searchString: search,
