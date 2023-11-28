@@ -82,7 +82,7 @@ paths:
           description: is returned when database access error occured
   /api/properties/details/{id}:
     get:
-      summary: returns details of a specific property including (personal) property scores
+      summary: returns details of a specific property including not personal scores and clickdata
       parameters:
         - in: path
           name: id
@@ -119,22 +119,6 @@ paths:
                 $ref: "#/components/schemas/PersonalScores"
         "404":
           description: returns a 404 not found response code. The message will detail that the user could not be found.
-        "500":
-          description: returns a 500 internal server error. the body contains the specific error exception.
-  /api/properties/details/click/{id}:
-    get:
-      summary: retains the users click behaviour
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: returns 200 ok code with a body message
-        "404":
-          description: returns a 404 not found response code. The message will detail that click data could not be updated.
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
   /api/properties/locations:
