@@ -135,6 +135,25 @@ paths:
                   type: object
         "500":
           description: returns a list with objects containing property id, longitude and latitude
+  /api/properties/eval/{id}:
+    post:
+      summary: retains the user evaluation
+      description: retains the user evaluation of a property recommendation in the database
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: returns 200 Ok response with a message
+        "400":
+          description: returns a 400 bad request response
+        "404":
+          description: returns a 404 not found response
+        "500":
+          description: returns a 500 internal server error if errors occur with database operations
   /api/user:
     get:
       summary: returns user info for given user id (authorisation header)

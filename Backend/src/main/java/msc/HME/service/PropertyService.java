@@ -119,7 +119,6 @@ public class PropertyService {
                     GROUP_CONCAT(img.propertyURL) AS images,
                     
                     czs.mapped_values_sigmoid AS overallCrimeScore,
-                                
                     ss.overall_score AS servicesOverallScore,
                     ss.sum_count AS servicesCount,
                     ss.finance_score,
@@ -209,11 +208,24 @@ public class PropertyService {
 
     public void registerClick(String userId, Integer propertyId) {
         String sql = """
-            UPDATE user_interactions
+            
+                UPDATE user_interactions
             SET click_count = click_count + 1
             WHERE propertyID = ? AND id = ?;
                 """;
         int rows = jdbcTemplate.update(sql, propertyId, userId);
+        if (rows == 0) {
+            throw new NoSuchElementException();
+        }
+    }
+
+    public void registerEval(Integer propertyId, String userId, Integer eval) {
+        String sql = """
+                INSERT INTO user_feedbacks (propertyID, id, feedback)
+                VALUES (?, ?, ?)
+                ON DUPLICATE KEY UPDATE feedback = ?;
+                """;
+        int rows = jdbcTemplate.update(sql, propertyId, userId, eval, eval);
         if (rows == 0) {
             throw new NoSuchElementException();
         }
