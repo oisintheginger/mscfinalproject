@@ -119,7 +119,6 @@ public class PropertyService {
                     GROUP_CONCAT(img.propertyURL) AS images,
                     
                     czs.mapped_values_sigmoid AS overallCrimeScore,
-                                
                     ss.overall_score AS servicesOverallScore,
                     ss.sum_count AS servicesCount,
                     ss.finance_score,
