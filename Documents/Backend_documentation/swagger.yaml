@@ -29,9 +29,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/QuickViewProperty"
+                type: object
         "400":
           description: returns a 400 bad request response code (with a message)
         "500":
@@ -99,7 +97,44 @@ paths:
               schema:
                 $ref: "#/components/schemas/DetailedProperty"
         "404":
-          description: returns a 404 not found response code. The message will detail whether the property could not be found or the click data could not be updated.
+          description: returns a 404 not found response code. The message will detail that the property could not be found.
+        "500":
+          description: returns a 500 internal server error. the body contains the specific error exception.
+  /api/properties/details/scores/{id}:
+    get:
+      summary: returns personal scores
+      description: returns personal scores for specific propertyId for a user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A Personal scores object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonalScores"
+        "404":
+          description: returns a 404 not found response code. The message will detail that the user could not be found.
+        "500":
+          description: returns a 500 internal server error. the body contains the specific error exception.
+  /api/properties/details/click/{id}:
+    get:
+      summary: retains the users click behaviour
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: returns 200 ok code with a body message
+        "404":
+          description: returns a 404 not found response code. The message will detail that click data could not be updated.
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
   /api/properties/locations:

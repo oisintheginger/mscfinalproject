@@ -94,9 +94,49 @@ public class PropertiesController {
                 } else {
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Invalid scores data");
                 }
-                propertyService.registerClick(userId, id);
             }
             return ResponseEntity.status(HttpStatus.OK).body(property);
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Click data could not be stored");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("details/scores/{id}")
+    ResponseEntity<Object> findScoresById(@PathVariable Integer id, HttpServletRequest request) {
+        try {
+            PersonalScores PDscores;
+            String userId = userService.validateJWT(request);
+            if (userId == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User was not found");
+            } else {
+                List<Double> scores = propertyService.getPersonalScores(userId, id.toString());
+                if (scores != null && scores.size() == 8) {
+                    PDscores = new PersonalScores(scores.get(7), scores.get(1), scores.get(6),scores.get(4), scores.get(5), scores.get(2), scores.get(3), scores.get(0));
+                } else {
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Invalid scores data");
+                }
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(PDscores);
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Click data could not be stored");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+
+
+    @PostMapping("details/click/{id}")
+    ResponseEntity<Object> registerClick(@PathVariable Integer id, HttpServletRequest request) {
+        try {
+            String userId = userService.validateJWT(request);
+            if (userId == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User was not found");
+            } else {
+                propertyService.registerClick(userId, id);
+                return ResponseEntity.status(HttpStatus.OK).body("Click was registered");
+            }
         } catch(NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Click data could not be stored");
         } catch (Exception e) {
