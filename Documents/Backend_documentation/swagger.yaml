@@ -394,6 +394,7 @@ components:
         - zipcode
         - overview
         - images
+        - tags
       properties:
         id:
           type: number
@@ -414,6 +415,10 @@ components:
         overview:
           type: string
         images:
+          type: array
+          items:
+            type: string
+        tags:
           type: array
           items:
             type: string
@@ -458,6 +463,7 @@ components:
         - supermarketCount
         - train_stationCount
         - transit_stationCount
+        - tags
       properties:
         id:
           type: number
@@ -542,6 +548,10 @@ components:
           type: integer
         transit_stationCount:
           type: integer
+        tags:
+          type: array
+          items:
+            type: string
     user:
       description: user details available in user table
       type: object
