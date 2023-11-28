@@ -239,6 +239,9 @@ public class UserService {
                 WHERE
                         id = ?
                 """;
-        jdbcTemplate.update(sql, propertyId, id);
+        int rows = jdbcTemplate.update(sql, propertyId, id);
+        if (rows == 0) {
+            throw new NoSuchElementException();
+        }
     }
 }

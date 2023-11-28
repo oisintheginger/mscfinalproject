@@ -1,6 +1,7 @@
 package msc.HME.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.ws.rs.QueryParam;
 import msc.HME.binding.*;
 import msc.HME.service.PropertyService;
 import msc.HME.service.UserService;
@@ -120,6 +121,24 @@ public class PropertiesController {
             return ResponseEntity.ok(locations);
         } catch (DataAccessException e) {
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accessing the Database");
+        }
+    }
+
+    @PostMapping("/eval/{id}")
+    ResponseEntity<Object> registerEval(@PathVariable Integer id, HttpServletRequest request, @RequestParam Integer feedback){
+        try {
+            String userId = userService.validateJWT(request);
+            if (userId == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            }
+            propertyService.registerEval(id, userId, feedback);
+            return ResponseEntity.status(HttpStatus.OK).body("User feedback was registered");
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Unable to register feedback");
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error: Database access issue");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error: Unexpected error occurred");
         }
     }
 
