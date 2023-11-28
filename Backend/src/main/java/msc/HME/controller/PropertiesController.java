@@ -12,6 +12,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -31,7 +32,9 @@ public class PropertiesController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "50") int size) { // default size hard coded for now
         List<QuickViewProperty> properties = propertyService.getAllQVProperties();
-        List<QuickViewProperty> paginatedProperties = properties.subList((page-1)*size, (page-1)*size+(size-1));
+        int startIndex = (page - 1) * size;
+        int endIndex = Math.min(startIndex + size, properties.size());
+        List<QuickViewProperty> paginatedProperties = properties.subList(startIndex, endIndex);
         // to ensure the total pages is always rounded up this is used: (numerator + denominator - 1) / denominator
         int totalPages = (properties.size() + size-1)/size;
         QVPResponse result = new QVPResponse(totalPages, paginatedProperties);
@@ -78,21 +81,34 @@ public class PropertiesController {
             }
             String userId = userService.validateJWT(request);
             if (userId != null) {
+                propertyService.registerClick(userId, id);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(property);
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Click data could not be stored");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("details/scores/{id}")
+    ResponseEntity<Object> findScoresById(@PathVariable Integer id, HttpServletRequest request) {
+        try {
+            PersonalScores PDscores;
+            String userId = userService.validateJWT(request);
+            if (userId == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User was not found");
+            } else {
                 List<Double> scores = propertyService.getPersonalScores(userId, id.toString());
                 if (scores != null && scores.size() == 8) {
-                    property.setEmergency_score(scores.get(0));
-                    property.setFinance_score(scores.get(1));
-                    property.setFitness_score(scores.get(2));
-                    property.setLeisure_score(scores.get(3));
-                    property.setPersonal_care_score(scores.get(4));
-                    property.setRetail_score(scores.get(5));
-                    property.setTransportation_score(scores.get(6));
-                    property.setServicesOverallScore(scores.get(7));
+                    PDscores = new PersonalScores(scores.get(7), scores.get(1), scores.get(6),scores.get(4), scores.get(5), scores.get(2), scores.get(3), scores.get(0));
                 } else {
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Invalid scores data");
                 }
             }
-            return ResponseEntity.status(HttpStatus.OK).body(property);
+            return ResponseEntity.status(HttpStatus.OK).body(PDscores);
+        } catch(NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Click data could not be stored");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }

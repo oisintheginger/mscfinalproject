@@ -29,9 +29,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/QuickViewProperty"
+                type: object
         "400":
           description: returns a 400 bad request response code (with a message)
         "500":
@@ -61,15 +59,16 @@ paths:
           description: returns a 404 not found response
         "500":
           description: returns a 500 internal server error if errors occur with database operations
-  /api/properties/{propertyId}:
+  /api/properties/{id}:
     get:
       summary: returns quick view property of specific property id
+      description: the method includes (personal) scores and retention of click data
       parameters:
         - in: path
-          name: propertyId
+          name: id
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         "200":
           description: returns a quickviewproperty object
@@ -83,7 +82,7 @@ paths:
           description: is returned when database access error occured
   /api/properties/details/{id}:
     get:
-      summary: returns details of a specific property including (personal) property scores
+      summary: returns details of a specific property including not personal scores and clickdata
       parameters:
         - in: path
           name: id
@@ -98,7 +97,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/DetailedProperty"
         "404":
-          description: returns a 404 not found response code
+          description: returns a 404 not found response code. The message will detail that the property could not be found.
+        "500":
+          description: returns a 500 internal server error. the body contains the specific error exception.
+  /api/properties/details/scores/{id}:
+    get:
+      summary: returns personal scores
+      description: returns personal scores for specific propertyId for a user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A Personal scores object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonalScores"
+        "404":
+          description: returns a 404 not found response code. The message will detail that the user could not be found.
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
   /api/properties/locations:
@@ -346,7 +366,7 @@ paths:
           description: returns 500 internal server error with specific error in the body
   /api/user/remove:
     delete:
-      summary: removes user from cognito and user table
+      summary: removes user from cognito, user table and clickdata table
       responses:
         "200":
           description: returns 200 OK response with message
