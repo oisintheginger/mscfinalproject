@@ -43,7 +43,7 @@ function App() {
 					</UserContextProvider>
 				</Authenticator.Provider>
 			</ThemeProvider>
-			<ReactQueryDevtools isOpen={false} position={"bottom-right"} />
+			{/* <ReactQueryDevtools isOpen={false} position={"bottom-right"} /> */}
 		</QueryClientProvider>
 	);
 }
