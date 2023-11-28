@@ -43,7 +43,6 @@ public class PropertiesController {
 
     @GetMapping("/batch")
     public ResponseEntity<Object> batchQVP(@RequestParam List<Long> ids) {
-        System.out.println(ids);
         if (CollectionUtils.isEmpty(ids)) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
