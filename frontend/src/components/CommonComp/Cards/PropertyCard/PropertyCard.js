@@ -1,10 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import { Grid } from "@mui/material";
+import {
+	Grid,
+	ListItemIcon,
+	ListItemText,
+	Menu,
+	MenuItem,
+	MenuList,
+	Popover,
+	Box,
+	Tooltip,
+	Divider,
+} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Stack, Chip, Typography, CardActionArea } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -12,7 +23,10 @@ import { UserContext } from "../../../../Utils/UserContext/UserContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AddToFavoritesMutation } from "../../../../Utils/Mutations/FavoriteMutation/FavoritesMutation";
-
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ButtonOutlined from "../../Button/ButtonOutlined";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
 	return <IconButton {...other} />;
@@ -24,7 +38,14 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-function PropertyCard({ data, key, inPopup = false }) {
+function PropertyCard({
+	data,
+	key,
+	inPopup = false,
+	recommendationCard = false,
+	customHeader = null,
+	children,
+}) {
 	const { userData, handleRefresh, route } = useContext(UserContext);
 	const [expanded, setExpanded] = useState(false);
 
@@ -48,10 +69,9 @@ function PropertyCard({ data, key, inPopup = false }) {
 	const isFavorited =
 		userData?.favourites.includes(data?.propertyId.toString()) || false;
 
-	// console.log(isFavorited);
-
 	return (
 		<Card elevation={inPopup ? 0 : 6} sx={{ height: "100%" }}>
+			{children}
 			<CardActionArea
 				onClick={() =>
 					navigator("/property/" + data.propertyId, {

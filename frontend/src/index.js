@@ -22,6 +22,12 @@ Amplify.configure({
 				service: "lambda",
 				region: "eu-west-1",
 			},
+			{
+				name: "PersonalScoresAPI",
+				endpoint: "https://jt3mygqld8.execute-api.eu-west-1.amazonaws.com/Prod",
+				service: "lambda",
+				region: "eu-west-1",
+			},
 		],
 	},
 });

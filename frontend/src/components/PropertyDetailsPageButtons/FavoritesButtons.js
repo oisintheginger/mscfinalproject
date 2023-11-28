@@ -1,36 +1,38 @@
-import { Button, Box } from "@mui/material";
+import { Button, Box, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useState } from "react";
 export function AddFavoriteButton({ action = () => {}, down = false }) {
 	return (
-		<Button
-			variant="outlined"
-			sx={{
-				maxWidth: down ? "100vw" : "20vw",
-				transform: down ? "" : "translate(0px, 8px)",
-				backgroundColor: "white",
-				color: "darkTeal.main",
-				borderColor: "darkTeal.main",
-				borderWidth: 1,
-				"&:hover": {
-					backgroundColor: "darkWhite.main",
+		<Tooltip title={"Add to your Favorites"}>
+			<Button
+				variant="outlined"
+				sx={{
+					maxWidth: down ? "100vw" : "20vw",
+					transform: down ? "" : "translate(0px, 8px)",
+					backgroundColor: "white",
 					color: "darkTeal.main",
 					borderColor: "darkTeal.main",
 					borderWidth: 1,
-				},
-				marginRight: 2,
-				height: 45,
-			}}
-			fullWidth={down}
-			endIcon={<FavoriteBorderIcon fontSize="large" />}
-			onClick={() => {
-				action();
-			}}
-		>
-			Favorite
-		</Button>
+					"&:hover": {
+						backgroundColor: "darkWhite.main",
+						color: "darkTeal.main",
+						borderColor: "darkTeal.main",
+						borderWidth: 1,
+					},
+					marginRight: 2,
+					height: 45,
+				}}
+				fullWidth={down}
+				endIcon={<FavoriteBorderIcon fontSize="large" />}
+				onClick={() => {
+					action();
+				}}
+			>
+				Favorite
+			</Button>
+		</Tooltip>
 	);
 }
 
@@ -71,26 +73,28 @@ export function RemoveFavoriteButton({ action = () => {}, down = false }) {
 		  };
 
 	return (
-		<Button
-			variant="outlined"
-			sx={style}
-			endIcon={
-				hovering || down ? (
-					<DeleteIcon fontSize="large" />
-				) : (
-					<CheckIcon fontSize="large" />
-				)
-			}
-			fullWidth={down}
-			onMouseEnter={() => setHovering(true)}
-			onMouseLeave={() => {
-				setHovering(false);
-			}}
-			onClick={() => {
-				action();
-			}}
-		>
-			{hovering || down ? "Remove" : "Favorited"}
-		</Button>
+		<Tooltip title={"Remove from your Favorites"}>
+			<Button
+				variant="outlined"
+				sx={style}
+				endIcon={
+					hovering || down ? (
+						<DeleteIcon fontSize="large" />
+					) : (
+						<CheckIcon fontSize="large" />
+					)
+				}
+				fullWidth={down}
+				onMouseEnter={() => setHovering(true)}
+				onMouseLeave={() => {
+					setHovering(false);
+				}}
+				onClick={() => {
+					action();
+				}}
+			>
+				{hovering || down ? "Remove" : "Favorited"}
+			</Button>
+		</Tooltip>
 	);
 }

@@ -53,7 +53,7 @@ function Browse() {
 				response: true,
 				queryStringParameters: {
 					page: pageNum,
-					size: 10,
+					size: 9,
 					...methods.getValues(),
 				},
 			});
@@ -125,7 +125,7 @@ function Browse() {
 			params.set("page", pageNum);
 			return params;
 		});
-		return () => {};
+		return () => [];
 	}, []);
 
 	useEffect(() => {
@@ -134,7 +134,7 @@ function Browse() {
 			return params;
 		});
 		refetch();
-		return () => {};
+		return () => [];
 	}, [pageNum]);
 
 	useEffect(() => {

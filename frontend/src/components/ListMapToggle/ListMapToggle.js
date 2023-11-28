@@ -1,4 +1,10 @@
-import { Box, Stack, ToggleButtonGroup, Typography } from "@mui/material";
+import {
+	Box,
+	Stack,
+	ToggleButtonGroup,
+	Tooltip,
+	Typography,
+} from "@mui/material";
 import StyledToggle from "../CommonComp/Button/StyledToggle";
 import { MapIcon, ListIcon } from "../../Icons/HMEIcons";
 function ListMapToggle({ mapEnabled, setMapEnabled }) {
@@ -20,28 +26,32 @@ function ListMapToggle({ mapEnabled, setMapEnabled }) {
 						onChange={handleToggle}
 						color="primary"
 					>
-						<StyledToggle value={LIST} selected={mapEnabled === LIST}>
-							<Stack direction={"row"} spacing={2}>
-								<Typography
-									variant="button"
-									sx={{ color: mapEnabled == LIST ? "white" : "black" }}
-								>
-									LIST
-								</Typography>
-								<ListIcon sx={{ marginLeft: 4 }} />
-							</Stack>
-						</StyledToggle>
-						<StyledToggle value={MAP} selected={mapEnabled === MAP}>
-							<Stack direction={"row"} spacing={2}>
-								<Typography
-									variant="button"
-									sx={{ color: mapEnabled == MAP ? "white" : "black" }}
-								>
-									Map
-								</Typography>
-								<MapIcon sx={{ marginLeft: 4 }} />
-							</Stack>
-						</StyledToggle>
+						<Tooltip title={"Open List View"}>
+							<StyledToggle value={LIST} selected={mapEnabled === LIST}>
+								<Stack direction={"row"} spacing={2}>
+									<Typography
+										variant="button"
+										sx={{ color: mapEnabled == LIST ? "white" : "black" }}
+									>
+										LIST
+									</Typography>
+									<ListIcon sx={{ marginLeft: 4 }} />
+								</Stack>
+							</StyledToggle>
+						</Tooltip>
+						<Tooltip title={"Open Map View"}>
+							<StyledToggle value={MAP} selected={mapEnabled === MAP}>
+								<Stack direction={"row"} spacing={2}>
+									<Typography
+										variant="button"
+										sx={{ color: mapEnabled == MAP ? "white" : "black" }}
+									>
+										Map
+									</Typography>
+									<MapIcon sx={{ marginLeft: 4 }} />
+								</Stack>
+							</StyledToggle>
+						</Tooltip>
 					</ToggleButtonGroup>
 				</Stack>
 			</Stack>
