@@ -157,7 +157,6 @@ function PropertyPage() {
 			return el.propertyId.toString() == propertyId;
 		}) || false;
 
-	console.log(overallScore);
 	return (
 		<>
 			{isLoading ? (
@@ -316,6 +315,63 @@ function PropertyPage() {
 								<PageSection sectionTitle="Description" background={false}>
 									<Typography variant="body1">{data?.description}</Typography>
 								</PageSection>
+								{overallScore && (
+									<PageSection sectionTitle="Overall Match" background={false}>
+										<Stack
+											width={"100%"}
+											justifyContent={"center"}
+											alignItems={"center"}
+										>
+											<Stack
+												pl={3}
+												pr={3}
+												pb={1}
+												pt={1}
+												alignItems={"center"}
+												direction={"column"}
+												spacing={1}
+												maxWidth={"100%"}
+											>
+												<Typography noWrap variant="crimeScoreValue">
+													{overallScore?.toFixed(1) + " / 5"}
+												</Typography>
+												<Box
+													display={"flex"}
+													flexDirection={"row"}
+													justifyContent={"flex-start"}
+													alignItems={"center"}
+													sx={{}}
+													width={"100%"}
+													borderRadius={2}
+													overflow={"clip"}
+													bgcolor={"#e6e6e6"}
+													mt={1}
+												>
+													<Box
+														width={`${100 * (overallScore / 5)}%`}
+														height={"40px"}
+														sx={{
+															background: ColorGradeFunc(overallScore || 0, 5),
+															opacity: "100%",
+														}}
+														display={"flex"}
+														flexDirection={"row"}
+														alignItems={"center"}
+														pr={3}
+													/>
+												</Box>
+												<Typography variant="body1">
+													The overall match score is based on data collected
+													from your personal interactions with the site and your
+													personal user weights.
+												</Typography>
+												<Typography variant="body1">
+													You can adjust your weights on the 'My Profile' Page
+												</Typography>
+											</Stack>
+										</Stack>
+									</PageSection>
+								)}
 								<PropertyScoresComponent inputData={data.serviceScores} />
 								<PageSection
 									background={false}
@@ -357,7 +413,7 @@ function PropertyPage() {
 														height={"40px"}
 														sx={{
 															background: ColorGradeFunc(
-																data?.overallCrimeScore,
+																5 - data?.overallCrimeScore,
 																5
 															),
 															opacity: "100%",
