@@ -40,7 +40,9 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 				formatted = JSON.parse(formatted);
 				return formatted;
 			},
-			onSuccess: (data) => {},
+			onSuccess: (data) => {
+				console.log(data);
+			},
 			staleTime: 0,
 		}
 	);
