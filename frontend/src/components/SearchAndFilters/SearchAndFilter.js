@@ -6,6 +6,7 @@ import {
 	Stack,
 	Snackbar,
 	Slide,
+	Tooltip,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -138,63 +139,67 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 					</Grid>
 					<Grid xs={12} md={4}>
 						<ButtonGroup fullWidth>
-							<Button
-								variant="outlined"
-								color="darkTeal"
-								sx={{
-									height: "55px",
-									justifyContent: { xs: "center", sm: "start" },
-								}}
-								startIcon={<FilterIcon />}
-								onClick={(event) => {
-									if (filtersOpen) {
-										methods.handleSubmit(
-											methods.customSubmitBehavior
-												? methods.customSubmitBehavior
-												: () => {
-														console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
-												  }
-										)(event);
-									}
-									setFiltersOpen((prev) => !prev);
-								}}
-							>
-								{above && (
-									<Typography variant="button" display={"block"}>
-										Filter
-									</Typography>
-								)}
-							</Button>
-							<Button
-								variant="outlined"
-								color="darkTeal"
-								sx={{
-									height: "55px",
-									justifyContent: { xs: "center", sm: "start" },
-									fontSize: 2,
-									"&:disabled": {
-										color: "#bfbfbf",
-										backgroundColor: "#e6e6e6",
-									},
-								}}
-								disabled={!saveSearchEnabled}
-								startIcon={<BookmarkIcon />}
-								onClick={handleSaveSearch}
-							>
-								{above && (
-									<Typography
-										variant="button"
-										display={"block"}
-										sx={
-											!saveSearchEnabled && {
-												color: "#bfbfbf",
-											}
+							<Tooltip title={"Open and Edit Search Filters"}>
+								<Button
+									variant="outlined"
+									color="darkTeal"
+									sx={{
+										height: "55px",
+										justifyContent: { xs: "center", sm: "start" },
+									}}
+									startIcon={<FilterIcon />}
+									onClick={(event) => {
+										if (filtersOpen) {
+											methods.handleSubmit(
+												methods.customSubmitBehavior
+													? methods.customSubmitBehavior
+													: () => {
+															console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+													  }
+											)(event);
 										}
-									>
-										Save Search
-									</Typography>
-								)}
-							</Button>
+										setFiltersOpen((prev) => !prev);
+									}}
+								>
+									{above && (
+										<Typography variant="button" display={"block"}>
+											Filter
+										</Typography>
+									)}
+								</Button>
+							</Tooltip>
+							<Tooltip title={"Save Search for Browsing Later"}>
+								<Button
+									variant="outlined"
+									color="darkTeal"
+									sx={{
+										height: "55px",
+										justifyContent: { xs: "center", sm: "start" },
+										fontSize: 2,
+										"&:disabled": {
+											color: "#bfbfbf",
+											backgroundColor: "#e6e6e6",
+										},
+									}}
+									disabled={!saveSearchEnabled}
+									startIcon={<BookmarkIcon />}
+									onClick={handleSaveSearch}
+								>
+									{above && (
+										<Typography
+											variant="button"
+											display={"block"}
+											sx={
+												!saveSearchEnabled && {
+													color: "#bfbfbf",
+												}
+											}
+										>
+											Save Search
+										</Typography>
+									)}
+								</Button>
+							</Tooltip>
 						</ButtonGroup>
 					</Grid>
 				</Grid>

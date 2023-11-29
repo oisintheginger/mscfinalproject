@@ -10,6 +10,7 @@ import {
 	useTheme,
 	useMediaQuery,
 	Link,
+	Tooltip,
 } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { forwardRef } from "react";
@@ -146,23 +147,25 @@ function MapTile({ location, services }) {
 function RecenterButton({ center }) {
 	const map = useMap();
 	return (
-		<IconButton
-			sx={{
-				zIndex: 900,
-				backgroundColor: "darkTeal.main",
-				color: "white",
-				mt: 1,
-				mr: 1,
-				"&:hover": { backgroundColor: "buttonHover.main" },
-				width: "max-content",
-			}}
-			onClick={(e) => {
-				e.preventDefault();
-				map?.flyTo(center);
-			}}
-		>
-			<MyLocationIcon fontSize="large" />
-		</IconButton>
+		<Tooltip title="Recenter Map on Property Location">
+			<IconButton
+				sx={{
+					zIndex: 900,
+					backgroundColor: "darkTeal.main",
+					color: "white",
+					mt: 1,
+					mr: 1,
+					"&:hover": { backgroundColor: "buttonHover.main" },
+					width: "max-content",
+				}}
+				onClick={(e) => {
+					e.preventDefault();
+					map?.flyTo(center);
+				}}
+			>
+				<MyLocationIcon fontSize="large" />
+			</IconButton>
+		</Tooltip>
 	);
 }
 

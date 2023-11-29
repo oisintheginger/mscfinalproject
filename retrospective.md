@@ -315,3 +315,39 @@ Stephen: Gathering the businesses dataset around the properties
 - Charlotte: We’re moving along nicely.
 - Fenna: Well done everyone, we got this :)
 - Oisin: N/A
+
+---
+
+## Week 10 : 20/11/2023 - 26/11/2023
+
+### What Went Well:
+- Nishant Knn model is working locally, team is making good progress on the front end and the recommender systems, and backend is ensuring everything is connected.
+- Sean: Finished the user collaborative filtering system, uploaded to lambda and connected to database
+- Stephen: Initial plans for creating the Tag system was explored and presented
+- Charlotte: Team coming together for the final weeks of coding.
+- Fenna: necessary team communication for last features
+- Oisin: Good collaboration between Frontend Team and Backend Team
+
+### What Could Be Improved:
+- Nishant: Speed on the integration and pack everything this week.
+- Sean: Dealing with external packages on aws lambda
+- Stephen: Presentation slide with more images
+- Charlotte: Better communication on recommendation system will be finalised.
+- Fenna: Clarity on recommendation system
+- Oisin: ^^^
+
+### Action Items for Next Week:
+- Nishant: Test all the system together, and correct bits and pieces.
+- Sean: Start and finish one more recommendation system, help with KNN, and user testing. 
+- Stephen: Creating tags for all the properties
+- Charlotte: User testing and minor fixes for the website.
+- Fenna: Implementation of tags, personal_scores, recommendation system and click data. 
+- Oisin: Final connecting stuff
+
+### Additional Comments:
+- Nishant: N/A
+- Sean: we are the dream team
+- Stephen: hopefully the final report is not as tasking as the interim report
+- Charlotte: [insert hype statement]
+- Fenna: Way toooo go team let’s goooo
+- Oisin: I’m really trying to not have a stroke

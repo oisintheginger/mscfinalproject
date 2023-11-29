@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -128,9 +129,12 @@ public class DetailedProperty {
     @JsonProperty
     private Integer transit_stationCount;
 
+    @JsonProperty
+    private List<String> tags;
+
     public DetailedProperty() {}
 
-    public DetailedProperty(Long propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score, Integer bankCount, Integer barCount, Integer beauty_salonCount, Integer bus_stationCount, Integer cafeCount, Integer fire_stationCount, Integer gymCount, Integer hospitalCount, Integer night_clubCount, Integer parkCount, Integer pharmacyCount, Integer police_stationCount, Integer restaurantCount, Integer supermarketCount, Integer train_stationCount, Integer transit_stationCount) {
+    public DetailedProperty(Long propertyId, Double price, Integer bedrooms, Integer bathrooms, String propertyType, String streetAddress, String zipcode, Double longitude, Double latitude, String description, String[] petsAllowed, LocalDate datePosted, String[] images, Double overallCrimeScore, Double servicesOverallScore, Integer servicesCount, Double finance_score, Double transportation_score, Double personal_care_score, Double retail_score, Double fitness_score, Double leisure_score, Double emergency_score, Integer bankCount, Integer barCount, Integer beauty_salonCount, Integer bus_stationCount, Integer cafeCount, Integer fire_stationCount, Integer gymCount, Integer hospitalCount, Integer night_clubCount, Integer parkCount, Integer pharmacyCount, Integer police_stationCount, Integer restaurantCount, Integer supermarketCount, Integer train_stationCount, Integer transit_stationCount, List<String> tags) {
         this.propertyId = propertyId;
         this.price = price;
         this.bedrooms = bedrooms;
@@ -170,5 +174,6 @@ public class DetailedProperty {
         this.supermarketCount = supermarketCount;
         this.train_stationCount = train_stationCount;
         this.transit_stationCount = transit_stationCount;
+        this.tags = tags;
     }
 }

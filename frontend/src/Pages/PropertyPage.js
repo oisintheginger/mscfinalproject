@@ -15,6 +15,7 @@ import {
 	Slide,
 	useTheme,
 	useMediaQuery,
+	Tooltip,
 } from "@mui/material";
 import { ApplicationIcon, FavoriteIcon, MapIcon } from "../Icons/HMEIcons";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
@@ -51,6 +52,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
 import AlertMap from "../Utils/AlertMap";
+import { FetchPropertyDetailsHook } from "../Utils/DataFetching/FetchPropertyDetailsHook";
 
 function PropertyPage() {
 	const location = useLocation();
@@ -96,119 +98,10 @@ function PropertyPage() {
 			setLoginModalOpen(false);
 		}
 	}, [route]);
-
-	const { isError, isLoading, error, data } = useQuery(
-		["propertydetails", propertyId],
-		() => {
-			return API.get("HMEBackend", `/api/properties/details/${propertyId}`, {
-				response: true,
-				refreshOnWindowFocus: false,
-				queryStringParameters: {
-					userId: user?.username || null,
-				},
-			});
-		},
-		{
-			staleTime: 500000,
-			refetchOnMount: true,
-			select: (data) => {
-				let addedScores = {
-					...data.data,
-					serviceScores: [
-						{
-							id: "transportation_score",
-							displayTitle: "Transportation Score",
-							description: ``,
-							color: "#626d78",
-							score: parseFloat(data.data.transportation_score.toFixed(1)),
-							counts: {
-								bus_stationCount: data.data.bus_stationCount,
-								transit_stationCount: data.data.transit_stationCount,
-								train_stationCount: data.data.train_stationCount,
-							},
-						},
-						{
-							id: "emergency_score",
-							displayTitle: "Emergency Score",
-							description:
-								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#3b5880",
-							score: parseFloat(data.data.emergency_score.toFixed(1)),
-							counts: {
-								police_stationCount: data.data.police_stationCount,
-								fire_stationCount: data.data.fire_stationCount,
-								hospitalCount: data.data.hospitalCount,
-							},
-						},
-						{
-							id: "personal_care_score",
-							displayTitle: "Personal Care Score",
-							description:
-								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#713e73",
-							score: parseFloat(data.data.personal_care_score.toFixed(1)),
-							counts: {
-								pharmacyCount: data.data.pharmacyCount,
-								beauty_salonCount: data.data.beauty_salonCount,
-							},
-						},
-						{
-							id: "finance_score",
-							displayTitle: "Finance Score",
-							description:
-								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#5e3b7d",
-							score: parseFloat(data.data.finance_score.toFixed(1)),
-							counts: {
-								bankCount: data.data.bankCount,
-							},
-						},
-						{
-							id: "retail_score",
-							displayTitle: "Retail Scores",
-							description:
-								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#417a41",
-							score: parseFloat(data.data.retail_score.toFixed(1)),
-							counts: {
-								supermarketCount: data.data.supermarketCount,
-							},
-						},
-						{
-							id: "fitness_score",
-							displayTitle: "Fitness Score",
-							description:
-								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#8a593a",
-							score: parseFloat(data.data.fitness_score.toFixed(1)),
-							counts: {
-								gymCount: data.data.gymCount,
-							},
-						},
-						{
-							id: "leisure_score",
-							displayTitle: "Leisure Score",
-							description:
-								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#663031",
-							score: parseFloat(data.data.leisure_score.toFixed(1)),
-							counts: {
-								restaurantCount: data.data.restaurantCount,
-								night_clubCount: data.data.night_clubCount,
-								cafeCount: data.data.cafeCount,
-								parkCount: data.data.parkCount,
-								barCount: data.data.barCount,
-							},
-						},
-					],
-				};
-				return addedScores;
-			},
-			onSuccess: (data) => {
-				console.log(data);
-			},
-		}
-	);
+	const { isError, isLoading, error, data, overallScore } =
+		FetchPropertyDetailsHook({
+			propertyId: propertyId,
+		});
 
 	const successAddFavorites = () => {
 		handleRefresh();
@@ -272,7 +165,7 @@ function PropertyPage() {
 				<p>Error:{"Something Went Wrong"}</p>
 			) : (
 				<PageTemplate
-					pageTitle={data?.bedrooms + " Bed "}
+					pageTitle={data?.bedrooms + " Bed " + data?.propertyType}
 					prevPage={
 						location.state?.previousUrl ? location.state.previousUrl : null
 					}
@@ -340,7 +233,7 @@ function PropertyPage() {
 							width={"100%"}
 						>
 							<Stack spacing={2}>
-								<Stack // PRICE + FAVORITE BUTTON
+								<Stack // PRICE
 									direction={"row"}
 									spacing={1}
 									alignItems={"flex-end"}
@@ -375,7 +268,7 @@ function PropertyPage() {
 									spacing={1}
 								>
 									{/* <PropertyQuickInfoTag
-									// label={capitalize(data?.data.propertyType)}
+									// label={capitalize(data?.propertyType)}
 									/> */}
 									<PropertyQuickInfoTag label={"Bedrooms " + data?.bedrooms} />
 									<PropertyQuickInfoTag
@@ -422,66 +315,137 @@ function PropertyPage() {
 								<PageSection sectionTitle="Description" background={false}>
 									<Typography variant="body1">{data?.description}</Typography>
 								</PageSection>
+								{overallScore && (
+									<PageSection sectionTitle="Overall Match" background={false}>
+										<Stack
+											width={"100%"}
+											justifyContent={"center"}
+											alignItems={"center"}
+										>
+											<Stack
+												pl={3}
+												pr={3}
+												pb={1}
+												pt={1}
+												alignItems={"center"}
+												direction={"column"}
+												spacing={1}
+												maxWidth={"100%"}
+											>
+												<Typography noWrap variant="crimeScoreValue">
+													{overallScore?.toFixed(1) + " / 5"}
+												</Typography>
+												<Box
+													display={"flex"}
+													flexDirection={"row"}
+													justifyContent={"flex-start"}
+													alignItems={"center"}
+													sx={{}}
+													width={"100%"}
+													borderRadius={2}
+													overflow={"clip"}
+													bgcolor={"#e6e6e6"}
+													mt={1}
+												>
+													<Box
+														width={`${100 * (overallScore / 5)}%`}
+														height={"40px"}
+														sx={{
+															background: ColorGradeFunc(overallScore || 0, 5),
+															opacity: "100%",
+														}}
+														display={"flex"}
+														flexDirection={"row"}
+														alignItems={"center"}
+														pr={3}
+													/>
+												</Box>
+												<Typography variant="body1">
+													The overall match score is based on data collected
+													from your personal interactions with the site and your
+													personal user weights.
+												</Typography>
+												<Typography variant="body1">
+													You can adjust your weights on the 'My Profile' Page
+												</Typography>
+											</Stack>
+										</Stack>
+									</PageSection>
+								)}
 								<PropertyScoresComponent inputData={data.serviceScores} />
 								<PageSection
 									background={false}
 									sectionTitle="Neighborhood Crime Safety Rating"
 								>
-									<Stack
-										width={"100%"}
-										justifyContent={"center"}
-										alignItems={"center"}
-									>
+									{data?.overallCrimeScore ? (
 										<Stack
-											pl={3}
-											pr={3}
-											pb={1}
-											pt={1}
+											width={"100%"}
+											justifyContent={"center"}
 											alignItems={"center"}
-											direction={"column"}
-											spacing={1}
 										>
-											<Typography noWrap variant="crimeScoreValue">
-												{data.overallCrimeScore?.toFixed(1) + " / 5"}
-											</Typography>
-											<Box
-												display={"flex"}
-												flexDirection={"row"}
-												justifyContent={"flex-start"}
+											<Stack
+												pl={3}
+												pr={3}
+												pb={1}
+												pt={1}
 												alignItems={"center"}
-												sx={{}}
-												width={"100%"}
-												borderRadius={2}
-												overflow={"clip"}
-												bgcolor={"#e6e6e6"}
-												mt={1}
+												direction={"column"}
+												spacing={1}
+												maxWidth={"100%"}
 											>
+												<Typography noWrap variant="crimeScoreValue">
+													{data?.overallCrimeScore?.toFixed(1) + " / 5"}
+												</Typography>
 												<Box
-													width={`${100 * (data?.overallCrimeScore / 5)}%`}
-													height={"40px"}
-													sx={{
-														background: ColorGradeFunc(
-															data?.overallCrimeScore,
-															5
-														),
-														opacity: "100%",
-													}}
 													display={"flex"}
 													flexDirection={"row"}
+													justifyContent={"flex-start"}
 													alignItems={"center"}
-													pr={3}
-												/>
-											</Box>
-											<Typography
-												textAlign={"center"}
-												variant="crimeScoreDescription"
-											>
-												{
-													"A higher crime safety score indicates a lower crime rate"
-												}
-											</Typography>
+													sx={{}}
+													width={"100%"}
+													borderRadius={2}
+													overflow={"clip"}
+													bgcolor={"#e6e6e6"}
+													mt={1}
+												>
+													<Box
+														width={`${100 * (data?.overallCrimeScore / 5)}%`}
+														height={"40px"}
+														sx={{
+															background: ColorGradeFunc(
+																5 - data?.overallCrimeScore,
+																5
+															),
+															opacity: "100%",
+														}}
+														display={"flex"}
+														flexDirection={"row"}
+														alignItems={"center"}
+														pr={3}
+													/>
+												</Box>
+												<Typography
+													textAlign={"center"}
+													variant="crimeScoreDescription"
+												>
+													{
+														"A higher crime safety score indicates a lower crime rate"
+													}
+												</Typography>
+											</Stack>
 										</Stack>
-									</Stack>
+									) : (
+										<Box>
+											<Typography variant="body1" textAlign={"center"}>
+												We do not seem to have any neighbourhood crime rating
+												for this property.
+											</Typography>
+											<Typography variant="body1" textAlign={"center"}>
+												Don't worry we're working on it! For now, save it to
+												your favorites so you can revisit it later.
+											</Typography>
+										</Box>
+									)}
 								</PageSection>
 								<PageSection background={false} sectionTitle="Map View">
 									<PropertyDetailMap
