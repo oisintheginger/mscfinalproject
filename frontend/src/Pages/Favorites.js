@@ -28,7 +28,7 @@ import { FetchFavoritesHook } from "../Utils/DataFetching/FetchFavoritesHook";
 
 function Favorites() {
 	const theme = useTheme();
-	const above = useMediaQuery(theme.breakpoints.up("sm"));
+	const down = useMediaQuery(theme.breakpoints.down("sm"));
 	// const [filtersOpen, setFiltersOpen] = useState(false);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 
@@ -133,10 +133,11 @@ function Favorites() {
 			</FormProvider> */}
 			<Divider />
 			<Box
-				minHeight={"50vh"}
+				minHeight={"55vh"}
 				width={"100%"}
 				display={"flex"}
-				justifyContent={"center"}
+				justifyContent={"flex-start"}
+				flexDirection={"column"}
 			>
 				{isLoading ? (
 					<Grid container spacing={2} width={"100%"} mt={0.5}>
@@ -151,31 +152,34 @@ function Favorites() {
 				) : isError ? (
 					<p>Error</p>
 				) : paginatedResults?.length ? (
-					<Grid container spacing={2} width={"100%"}>
-						{paginatedResults &&
-							paginatedResults.map((data, key) => {
-								return (
-									<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-										<PropertyCard data={data} />
-									</Grid>
-								);
-							})}
-					</Grid>
+					<>
+						<Grid container spacing={2} width={"100%"} mb={1}>
+							{paginatedResults &&
+								paginatedResults.map((data, key) => {
+									return (
+										<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+											<PropertyCard data={data} />
+										</Grid>
+									);
+								})}
+						</Grid>
+						<Pagination
+							count={Math.ceil(detailsData?.length / 9) || 10}
+							boundaryCount={1}
+							siblingCount={down ? 1 : 3}
+							variant="outlined"
+							sx={{ alignSelf: "center" }}
+							page={pageNum}
+							onChange={handlePageChange}
+							size={down ? "small" : "medium"}
+						/>
+					</>
 				) : (
-					<Typography>
+					<Typography textAlign={"center"}>
 						Go Browse and Add New Listings to your Favorites!
 					</Typography>
 				)}
 			</Box>
-			<Pagination
-				count={Math.ceil(detailsData?.length / 9) || 10}
-				boundaryCount={1}
-				siblingCount={1}
-				variant="outlined"
-				sx={{ alignSelf: "center" }}
-				page={pageNum}
-				onChange={handlePageChange}
-			/>
 		</PageTemplate>
 	);
 }

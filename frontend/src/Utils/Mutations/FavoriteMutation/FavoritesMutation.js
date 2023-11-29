@@ -1,15 +1,17 @@
 import { API } from "aws-amplify";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useContext } from "react";
 import { UserContext } from "../../UserContext/UserContext";
+import { FETCH_FAVORITES_QUERY_KEY } from "../../QueryConstants/QueryKeyConstants";
 
 export function AddToFavoritesMutation(
 	propertyId,
 	successCallback = () => {},
-	errorCallback = () => {},
-	getAccessToken = () => {}
+	errorCallback = () => {}
 ) {
+	const queryClient = useQueryClient();
+	const { getAccessToken } = useContext(UserContext);
 	return useMutation({
 		mutationFn: async () => {
 			const accessToken = await getAccessToken();
@@ -23,24 +25,28 @@ export function AddToFavoritesMutation(
 				},
 			});
 		},
-		onMutate: () => {},
+		onMutate: (mut) => {
+			console.log(mut);
+		},
 		onError: (err) => {
 			errorCallback(err);
 		},
 		onSuccess: (data) => {
 			successCallback(data);
+			queryClient.invalidateQueries({ queryKey: [FETCH_FAVORITES_QUERY_KEY] });
 		},
 	});
 }
 
 export function RemoveFromFavoritesMutation(
-	propertyId,
 	successCallback = () => {},
-	errorCallback = () => {},
-	getAccessToken = () => {}
+	errorCallback = () => {}
 ) {
+	const { getAccessToken } = useContext(UserContext);
+	const queryClient = useQueryClient();
+
 	return useMutation({
-		mutationFn: async () => {
+		mutationFn: async (propId) => {
 			const accessToken = await getAccessToken();
 			return API.del("HMEBackend", "/api/user/remove/f", {
 				headers: {
@@ -48,16 +54,19 @@ export function RemoveFromFavoritesMutation(
 				},
 				response: true,
 				queryStringParameters: {
-					propertyId: propertyId,
+					propertyId: propId,
 				},
 			});
 		},
-		onMutate: () => {},
+		onMutate: (mut) => {
+			console.log(mut);
+		},
 		onError: (err) => {
 			errorCallback(err);
 		},
 		onSuccess: (data) => {
 			successCallback(data);
+			queryClient.invalidateQueries({ queryKey: [FETCH_FAVORITES_QUERY_KEY] });
 		},
 	});
 }

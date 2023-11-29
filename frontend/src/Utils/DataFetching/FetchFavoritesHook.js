@@ -3,9 +3,11 @@ import { UserContext } from "../UserContext/UserContext";
 import { API } from "aws-amplify";
 import { useQuery } from "react-query";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import { FETCH_FAVORITES_QUERY_KEY } from "../QueryConstants/QueryKeyConstants";
 
 export function FetchFavoritesHook() {
 	const { getAccessToken } = useContext(UserContext);
+
 	const { route, user } = useAuthenticator((context) => [
 		context.route,
 		context.user,
@@ -19,7 +21,7 @@ export function FetchFavoritesHook() {
 		data: favoriteData,
 		refetch,
 	} = useQuery(
-		["userFavourites"],
+		[FETCH_FAVORITES_QUERY_KEY],
 		async () => {
 			const accessToken = await getAccessToken();
 			return API.get("HMEBackend", `/api/user/f`, {

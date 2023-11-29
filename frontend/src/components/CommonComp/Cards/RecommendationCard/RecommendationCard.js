@@ -18,6 +18,7 @@ import { useState, useRef } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import { SendRecommendationFeedback } from "../../../../Utils/Mutations/RecommendationMutation/RecommendationMutation";
 
 export function RecommendationCard({ data }) {
 	const handleMenuClose = () => {
@@ -28,6 +29,16 @@ export function RecommendationCard({ data }) {
 	const [anchor, setCurrentAnchor] = useState(null);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const anchorRef = useRef();
+
+	const { mutate: sendFeedback } = SendRecommendationFeedback(
+		data?.propertyId,
+		(data) => {
+			console.log(data);
+		},
+		(err) => {
+			console.log(err);
+		}
+	);
 
 	return (
 		<PropertyCard data={data}>
@@ -65,7 +76,11 @@ export function RecommendationCard({ data }) {
 					</Box>
 					<MenuList>
 						{/* I like */}
-						<MenuItem>
+						<MenuItem
+							onClick={() => {
+								sendFeedback(2);
+							}}
+						>
 							<Stack spacing={1} direction={"row"}>
 								<ListItemIcon>
 									<ThumbUpOffAltIcon fontSize="medium" />
@@ -74,7 +89,11 @@ export function RecommendationCard({ data }) {
 							</Stack>
 						</MenuItem>
 						{/* I Dislike */}
-						<MenuItem>
+						<MenuItem
+							onClick={() => {
+								sendFeedback(1);
+							}}
+						>
 							<Stack spacing={1} direction={"row"}>
 								<ListItemIcon>
 									<ThumbDownOffAltIcon fontSize="medium" />
