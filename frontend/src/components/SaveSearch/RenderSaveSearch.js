@@ -8,6 +8,7 @@ import {
 	Snackbar,
 	useTheme,
 	useMediaQuery,
+	Divider,
 } from "@mui/material";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
@@ -34,6 +35,7 @@ export default function RenderSaveSearch({
 	const [searchParameters, setSearchParameters] = useSearchParams();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
+	const downPagination = useMediaQuery(theme.breakpoints.down("sm"));
 
 	const [snackbarAlertOpen, setSnackbarAlertOpen] = useState(false);
 	const [alert, setAlert] = useState(<></>);
@@ -113,8 +115,15 @@ export default function RenderSaveSearch({
 		savedSearchesRefetch();
 	}, [searchParameters]);
 
+	useEffect(() => {
+		if (Math.ceil(savedSearchesData?.length / itemsPerPage) < pageNum) {
+			setPageNum(Math.ceil(savedSearchesData?.length / itemsPerPage));
+		}
+	}, [savedSearchesData]);
+
 	return (
 		<>
+			<Divider />
 			<Box minHeight={"55vh"}>
 				{savedSearchesIsLoading ? (
 					<LoadingSpinner />
@@ -154,9 +163,12 @@ export default function RenderSaveSearch({
 						>
 							<Pagination
 								count={Math.ceil(savedSearchesData?.length / itemsPerPage)}
+								boundaryCount={1}
+								siblingCount={downPagination ? 1 : 3}
 								page={pageNum}
 								onChange={handleChangePage}
 								variant="outlined"
+								size={downPagination ? "small" : "medium"}
 							/>
 						</Box>
 					</>
