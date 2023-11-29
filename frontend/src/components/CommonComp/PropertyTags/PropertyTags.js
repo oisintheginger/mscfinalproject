@@ -19,7 +19,7 @@ const TagMap = {
 			color: "#033f61",
 		},
 
-		icon: <SecurityIcon fontSize="small" color="#00572b" />,
+		icon: <SecurityIcon fontSize="medium" color="#00572b" />,
 	},
 	finance: {
 		label: "Finance",
@@ -28,7 +28,7 @@ const TagMap = {
 			color: "#00572b",
 			bgcolor: "#e4f0ea",
 		},
-		icon: <AccountBalanceIcon fontSize="small" color="#00572b" />,
+		icon: <AccountBalanceIcon fontSize="medium" color="#00572b" />,
 	},
 	transportation: {
 		label: "Transport",
@@ -37,7 +37,7 @@ const TagMap = {
 			color: "#296601",
 			bgcolor: "#ebf2e6",
 		},
-		icon: <CommuteIcon fontSize="small" color="#296601" />,
+		icon: <CommuteIcon fontSize="medium" color="#296601" />,
 	},
 	personal_care: {
 		label: "Personal Care",
@@ -46,7 +46,7 @@ const TagMap = {
 			color: "#666900",
 			bgcolor: "#fafaeb",
 		},
-		icon: <LocalPharmacyIcon fontSize="small" color="#296601" />,
+		icon: <LocalPharmacyIcon fontSize="medium" color="#296601" />,
 	},
 	retail: {
 		label: "Retail",
@@ -55,7 +55,7 @@ const TagMap = {
 			color: "#00515c",
 			bgcolor: "#e9f5f7",
 		},
-		icon: <PointOfSaleIcon fontSize="small" color="#296601" />,
+		icon: <PointOfSaleIcon fontSize="medium" color="#296601" />,
 	},
 	fitness: {
 		label: "Fitness",
@@ -64,7 +64,7 @@ const TagMap = {
 			color: "#803301",
 			bgcolor: "#f2ece9",
 		},
-		icon: <FitnessCenterIcon fontSize="small" color="#296601" />,
+		icon: <FitnessCenterIcon fontSize="medium" color="#296601" />,
 	},
 	leisure: {
 		label: "Leisure",
@@ -73,7 +73,7 @@ const TagMap = {
 			color: "#261145",
 			bgcolor: "#f0ebf7",
 		},
-		icon: <NightlifeIcon fontSize="small" color="#296601" />,
+		icon: <NightlifeIcon fontSize="medium" color="#296601" />,
 	},
 	"emergency services": {
 		label: "Emergency Services",
@@ -82,7 +82,7 @@ const TagMap = {
 			color: "#780c00",
 			bgcolor: "#faeae8",
 		},
-		icon: <LocalPoliceIcon fontSize="small" color="#296601" />,
+		icon: <LocalPoliceIcon fontSize="medium" color="#296601" />,
 	},
 	"Sufficient Amenities": {
 		label: "Amenities",
@@ -91,7 +91,7 @@ const TagMap = {
 			color: "#610058",
 			bgcolor: "#f5e9f4",
 		},
-		icon: <LocalLaundryServiceIcon fontSize="small" color="#296601" />,
+		icon: <LocalLaundryServiceIcon fontSize="medium" color="#296601" />,
 	},
 };
 
