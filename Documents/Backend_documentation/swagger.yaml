@@ -415,8 +415,12 @@ paths:
                 type: array
                 items:
                   type: integer
-        "400":
-        "500":
+        "401":
+          description: returns 401 unauthorised
+        "404":
+          description: returns bad request message
+        "503":
+          description: returns service unavailable message if the kNN model can't be accessed
 
 components:
   schemas:
