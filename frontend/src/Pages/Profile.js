@@ -43,6 +43,7 @@ import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinn
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { API } from "aws-amplify";
 import { DeleteHandlerConstructor } from "../Utils/Mutations/SearchMutation/SearchMutation";
+import { RecommendedCarousel } from "../components/RecommendedCarousel/RecommendedCarousel";
 
 function Profile() {
 	const navigator = useNavigate();
@@ -151,9 +152,7 @@ function Profile() {
 						</Box>
 					</PageSection>
 					<PageSection background={false} sectionTitle="Recommended for Me">
-						<Container>
-							<CardCarousel propData={propertyData} />
-						</Container>
+						<RecommendedCarousel />
 					</PageSection>
 					<PageSection background={false} sectionTitle="My Favorites">
 						{favoritesDetailsIsLoading ? (

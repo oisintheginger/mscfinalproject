@@ -28,6 +28,12 @@ Amplify.configure({
 				service: "lambda",
 				region: "eu-west-1",
 			},
+			{
+				name: "RecommendedAPI",
+				endpoint: "https://kcxecfvcyg.execute-api.eu-west-1.amazonaws.com/Prod",
+				service: "lambda",
+				region: "eu-west-1",
+			},
 		],
 	},
 });
