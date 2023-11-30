@@ -44,6 +44,8 @@ paths:
           required: true
           schema:
             type: array
+            items:
+              type: integer
       responses:
         "200":
           description: A list of quickviewproperties
@@ -100,27 +102,27 @@ paths:
           description: returns a 404 not found response code. The message will detail that the property could not be found.
         "500":
           description: returns a 500 internal server error. the body contains the specific error exception.
-  /api/properties/details/scores/{id}:
-    get:
-      summary: returns personal scores
-      description: returns personal scores for specific propertyId for a user
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: A Personal scores object
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PersonalScores"
-        "404":
-          description: returns a 404 not found response code. The message will detail that the user could not be found.
-        "500":
-          description: returns a 500 internal server error. the body contains the specific error exception.
+  # /api/properties/details/scores/{id}:
+  #   get:
+  #     summary: returns personal scores
+  #     description: returns personal scores for specific propertyId for a user
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         required: true
+  #         schema:
+  #           type: integer
+  #     responses:
+  #       "200":
+  #         description: A Personal scores object
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #       "404":
+  #         description: returns a 404 not found response code. The message will detail that the user could not be found.
+  #       "500":
+  #         description: returns a 500 internal server error. the body contains the specific error exception.
   /api/properties/locations:
     get:
       summary: returns all property ids with longitude and latitude
@@ -193,6 +195,8 @@ paths:
             application/json:
               schema:
                 type: array
+                items:
+                  type: object
         "400":
           description: returns 400 bad request if the type of resource is not correctly put in
         "401":
@@ -408,7 +412,7 @@ paths:
       summary: returns kNN recs
       responses:
         "200":
-          description: A list of recommend property ids
+          description: A list of recommended property ids
           content:
             application/json:
               schema:
