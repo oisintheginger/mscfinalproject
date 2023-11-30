@@ -10,6 +10,8 @@ import {
 	Stack,
 	Pagination,
 	Divider,
+	useTheme,
+	useMediaQuery,
 } from "@mui/material";
 import { useQuery } from "react-query";
 import { useAuthenticator } from "@aws-amplify/ui-react";
@@ -24,6 +26,8 @@ import { FetchApplicationsHook } from "../Utils/DataFetching/FetchApplicationsHo
 
 function Applications() {
 	const location = useLocation();
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("sm"));
 	const [searchParameters, setSearchParameters] = useSearchParams();
 	const [pageNum, setPageNum] = useState(
 		searchParameters.get("page") ? parseInt(searchParameters.get("page")) : 1
@@ -111,7 +115,8 @@ function Applications() {
 					minHeight={"50vh"}
 					width={"100%"}
 					display={"flex"}
-					justifyContent={"center"}
+					justifyContent={"flex-start"}
+					flexDirection={"column"}
 				>
 					{isLoading || detailsIsLoading ? (
 						<Grid container spacing={2} width={"100%"}>
@@ -124,33 +129,38 @@ function Applications() {
 							})}
 						</Grid>
 					) : paginatedResults?.length > 0 ? (
-						<Grid container spacing={2} width={"100%"}>
-							{paginatedResults &&
-								paginatedResults.map((data, key) => {
-									return (
-										<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
-											<ApplicationCard
-												data={data}
-												openConfirmDelete={OpenConfirmDeleteModal}
-												openApplicationDetails={OpenApplicationDetailsModal}
-											/>
-										</Grid>
-									);
-								})}
-						</Grid>
+						<>
+							<Grid container spacing={2} width={"100%"} mb={1}>
+								{paginatedResults &&
+									paginatedResults.map((data, key) => {
+										return (
+											<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
+												<ApplicationCard
+													data={data}
+													openConfirmDelete={OpenConfirmDeleteModal}
+													openApplicationDetails={OpenApplicationDetailsModal}
+												/>
+											</Grid>
+										);
+									})}
+							</Grid>
+							<Pagination
+								count={Math.ceil(detailsData?.length / 9) || 10}
+								boundaryCount={1}
+								siblingCount={down ? 1 : 3}
+								variant="outlined"
+								sx={{ alignSelf: "center" }}
+								page={pageNum}
+								onChange={handlePageChange}
+								size={down ? "small" : "medium"}
+							/>
+						</>
 					) : (
-						<Typography>Go out and apply for rentals!</Typography>
+						<Typography textAlign={"center"}>
+							Go out and apply for rentals!
+						</Typography>
 					)}
 				</Box>
-				<Pagination
-					count={Math.ceil(detailsData?.length / 9) || 10}
-					boundaryCount={1}
-					siblingCount={1}
-					variant="outlined"
-					sx={{ alignSelf: "center" }}
-					page={pageNum}
-					onChange={handlePageChange}
-				/>
 			</PageTemplate>
 			<Modal open={confirmDeleteModalOpen} onClose={CloseConfirmDeleteModal}>
 				<Box

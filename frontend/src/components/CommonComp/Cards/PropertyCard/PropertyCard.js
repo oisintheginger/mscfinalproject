@@ -22,11 +22,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "../../../../Utils/UserContext/UserContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { AddToFavoritesMutation } from "../../../../Utils/Mutations/FavoriteMutation/FavoritesMutation";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ButtonOutlined from "../../Button/ButtonOutlined";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import {
+	AddToFavoritesMutation,
+	RemoveFromFavoritesMutation,
+} from "../../../../Utils/Mutations/FavoriteMutation/FavoritesMutation";
+import { PropertyTags } from "../../PropertyTags/PropertyTags";
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
 	return <IconButton {...other} />;
@@ -38,14 +38,7 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-function PropertyCard({
-	data,
-	key,
-	inPopup = false,
-	recommendationCard = false,
-	customHeader = null,
-	children,
-}) {
+function PropertyCard({ data, key, inPopup = false, children }) {
 	const { userData, handleRefresh, route } = useContext(UserContext);
 	const [expanded, setExpanded] = useState(false);
 
@@ -65,9 +58,20 @@ function PropertyCard({
 			console.log(err);
 		}
 	);
+	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+		data?.propertyId,
+		() => {
+			handleRefresh();
+		},
+		(err) => {
+			console.log(err);
+		}
+	);
 
 	const isFavorited =
 		userData?.favourites.includes(data?.propertyId.toString()) || false;
+
+	console.log(isFavorited);
 
 	return (
 		<Card elevation={inPopup ? 0 : 6} sx={{ height: "100%" }}>
@@ -111,7 +115,7 @@ function PropertyCard({
 							<IconButton
 								onClick={(e) => {
 									e.stopPropagation();
-									// addToFavorites();
+									addToFavorites(data.propertyId.toString());
 								}}
 							>
 								<FavoriteIcon fontSize="large" />
@@ -120,7 +124,7 @@ function PropertyCard({
 							<IconButton
 								onClick={async (e) => {
 									e.stopPropagation();
-									await addToFavorites();
+									await removeFromFavorites(data.propertyId.toString());
 								}}
 							>
 								<FavoriteBorderIcon fontSize="large" />
@@ -128,40 +132,7 @@ function PropertyCard({
 						)}
 					</Grid> */}
 				</Grid>
-				<Stack
-					direction="row"
-					spacing={1}
-					sx={{
-						overflowX: "auto",
-						whiteSpace: "nowrap",
-						"&::-webkit-scrollbar": { display: "none" },
-					}}
-				>
-					<Chip
-						label="SECURE"
-						sx={{
-							backgroundColor: "secureChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-					<Chip
-						label="NIGHTLIFE"
-						sx={{
-							backgroundColor: "nightlifeChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-					<Chip
-						label="GYMS"
-						sx={{
-							backgroundColor: "gymsChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-				</Stack>
+				<PropertyTags tags={data?.tags} />
 			</CardContent>
 		</Card>
 	);

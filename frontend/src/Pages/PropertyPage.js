@@ -53,6 +53,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
 import AlertMap from "../Utils/AlertMap";
 import { FetchPropertyDetailsHook } from "../Utils/DataFetching/FetchPropertyDetailsHook";
+import { PropertyTags } from "../components/CommonComp/PropertyTags/PropertyTags";
 
 function PropertyPage() {
 	const location = useLocation();
@@ -211,7 +212,7 @@ function PropertyPage() {
 								{isFavorited ? (
 									<RemoveFavoriteButton
 										action={() => {
-											removeFromFavorites();
+											removeFromFavorites(propertyId);
 										}}
 										down={down}
 									/>
@@ -219,7 +220,7 @@ function PropertyPage() {
 									<AddFavoriteButton
 										action={() => {
 											if (route === "authenticated") {
-												addToFavorites();
+												addToFavorites(propertyId);
 											} else {
 												openLoginModal();
 											}
@@ -275,7 +276,8 @@ function PropertyPage() {
 										label={"Bathrooms " + data?.bathrooms}
 									/>
 								</Stack>
-								<Stack
+								<PropertyTags tags={data?.tags} />
+								{/* <Stack
 									direction={"row"}
 									flexWrap={"wrap"}
 									justifyContent={"flex-start"}
@@ -306,7 +308,7 @@ function PropertyPage() {
 											fontWeight: 600,
 										}}
 									/>
-								</Stack>
+								</Stack> */}
 							</Stack>
 						</Stack>
 						<Box //PAGE SECTIONS
@@ -526,7 +528,7 @@ function PropertyPage() {
 											<RemoveFavoriteButton
 												down={down}
 												action={() => {
-													removeFromFavorites();
+													removeFromFavorites(propertyId);
 												}}
 											/>
 										) : (
@@ -534,7 +536,7 @@ function PropertyPage() {
 												down={down}
 												action={() => {
 													if (route === "authenticated") {
-														addToFavorites();
+														addToFavorites(propertyId);
 													} else {
 														openLoginModal();
 													}

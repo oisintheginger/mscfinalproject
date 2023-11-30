@@ -7,6 +7,7 @@ import {
 	Grid,
 	Drawer,
 	SwipeableDrawer,
+	useMediaQuery,
 } from "@mui/material";
 import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
@@ -24,8 +25,11 @@ import { API } from "aws-amplify";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 import ListMapToggle from "../components/ListMapToggle/ListMapToggle";
 import MapBrowsing from "../components/MapComponent/MapBrowsing";
+import { useTheme } from "@emotion/react";
 
 function Browse() {
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("sm"));
 	const methods = useForm({
 		defaultValues: { ...DEFAULT_FIELD_VALUES },
 	});
@@ -140,6 +144,7 @@ function Browse() {
 	useEffect(() => {
 		setPageNum(parseInt(searchParameters.get("page")));
 		refetch();
+		return () => [];
 	}, [searchParameters]);
 
 	return (
@@ -183,13 +188,14 @@ function Browse() {
 						/>
 						{isSuccess && (
 							<Pagination
-								count={totalPages - 1}
+								count={totalPages - 1 || 1}
 								boundaryCount={1}
-								siblingCount={1}
+								siblingCount={down ? 1 : 3}
 								variant="outlined"
 								sx={{ alignSelf: "center" }}
 								page={pageNum}
 								onChange={handlePageChange}
+								size={down ? "small" : "medium"}
 							/>
 						)}
 					</>
