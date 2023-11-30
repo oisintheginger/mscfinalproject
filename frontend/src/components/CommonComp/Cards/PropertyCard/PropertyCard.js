@@ -15,6 +15,7 @@ import {
 	Box,
 	Tooltip,
 	Divider,
+	CardActions,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Stack, Chip, Typography, CardActionArea } from "@mui/material";
@@ -27,6 +28,8 @@ import {
 	RemoveFromFavoritesMutation,
 } from "../../../../Utils/Mutations/FavoriteMutation/FavoritesMutation";
 import { PropertyTags } from "../../PropertyTags/PropertyTags";
+import ButtonOutlined from "../../Button/ButtonOutlined";
+import ChevronRight from "@mui/icons-material/ChevronRight";
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
 	return <IconButton {...other} />;
@@ -96,44 +99,28 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 					image={data?.images ? data.images[0] : null}
 					alt="Property Image"
 				/>
-			</CardActionArea>
-			<CardContent>
-				<Grid container>
-					<Grid item xs={9}>
-						<Stack overflow={"clip"}>
-							<Typography variant="cardHeader">{"$" + data?.price}</Typography>
-							<Typography variant="subtitle1" noWrap>
-								{data?.streetAddress}
-							</Typography>
-							<Typography variant="subtitle1" noWrap>
-								{"Zip Code: " + data?.zipcode}
-							</Typography>
-						</Stack>
+
+				<CardContent>
+					<Grid container>
+						<Grid item xs={9}>
+							<Stack overflow={"clip"} width={"100%"}>
+								<Stack direction={"row"} justifyContent={"space-between"}>
+									<Typography variant="cardHeader">
+										{"$" + data?.price}
+									</Typography>
+								</Stack>
+								<Typography variant="subtitle1" noWrap>
+									{data?.streetAddress}
+								</Typography>
+								<Typography variant="subtitle1" noWrap>
+									{"Zip Code: " + data?.zipcode}
+								</Typography>
+							</Stack>
+						</Grid>
 					</Grid>
-					{/* <Grid item>
-						{isFavorited ? (
-							<IconButton
-								onClick={(e) => {
-									e.stopPropagation();
-									addToFavorites(data.propertyId.toString());
-								}}
-							>
-								<FavoriteIcon fontSize="large" />
-							</IconButton>
-						) : (
-							<IconButton
-								onClick={async (e) => {
-									e.stopPropagation();
-									await removeFromFavorites(data.propertyId.toString());
-								}}
-							>
-								<FavoriteBorderIcon fontSize="large" />
-							</IconButton>
-						)}
-					</Grid> */}
-				</Grid>
-				<PropertyTags tags={data?.tags} />
-			</CardContent>
+					<PropertyTags tags={data?.tags} />
+				</CardContent>
+			</CardActionArea>
 		</Card>
 	);
 }

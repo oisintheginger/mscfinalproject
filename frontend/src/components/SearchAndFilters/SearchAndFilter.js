@@ -7,6 +7,7 @@ import {
 	Snackbar,
 	Slide,
 	Tooltip,
+	InputAdornment,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -26,6 +27,7 @@ import { API } from "aws-amplify";
 import { UserContext } from "../../Utils/UserContext/UserContext";
 import SnackbarAlertMap from "../../Utils/AlertMap";
 import { useSearchParams } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
 
 function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const theme = useTheme();
@@ -133,7 +135,14 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 							placeholder="Enter Search Terms Here, e.g. Baltimore"
 							sx={{ width: "100%", height: "fit-content" }}
 							color="darkTeal"
-							InputProps={{ height: "40px" }}
+							InputProps={{
+								height: "40px",
+								endAdornment: (
+									<InputAdornment position="end">
+										<SearchIcon fontSize="large" />
+									</InputAdornment>
+								),
+							}}
 							{...methods.register(SEARCH_TERM, {})}
 						/>
 					</Grid>

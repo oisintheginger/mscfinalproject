@@ -27,6 +27,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react-core";
 import { UpdateWeightsMutation } from "../../Utils/Mutations/ProfileMutation/ProfileMutation";
 import ButtonStyled from "../CommonComp/Button/ButtonStyled";
 import { UserContext } from "../../Utils/UserContext/UserContext";
+import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
 
 const OptionDict = {
 	finance: {
@@ -195,7 +196,12 @@ function UserWeights({
 
 	const { getAccessToken } = useContext(UserContext);
 
-	const { refetch: weightsRefetch, data: weightsData } = useQuery(
+	const {
+		refetch: weightsRefetch,
+		data: weightsData,
+		isLoading,
+		isError,
+	} = useQuery(
 		["UserWeights"],
 		async () => {
 			const accessToken = await getAccessToken();
@@ -267,81 +273,90 @@ function UserWeights({
 	}
 
 	return (
-		<Stack alignItems={"center"} spacing={2}>
-			<ButtonStyled
-				onClick={() => {
-					updateWeights({
-						leisure:
-							7 -
-							state.options.findIndex((el) => {
-								return el.key == "leisure";
-							}),
-						personal_care:
-							7 -
-							state.options.findIndex((el) => {
-								return el.key == "personal_care";
-							}),
-						retail:
-							7 -
-							state.options.findIndex((el) => {
-								return el.key == "retail";
-							}),
-						finance:
-							7 -
-							state.options.findIndex((el) => {
-								return el.key == "finance";
-							}),
-						transportation:
-							7 -
-							state.options.findIndex((el) => {
-								return el.key == "transportation";
-							}),
-						fitness:
-							7 -
-							state.options.findIndex((el) => {
-								return el.key == "fitness";
-							}),
-						emergency:
-							7 -
-							state.options.findIndex((el) => {
-								return el.key == "emergency";
-							}),
-					});
-				}}
-				disabled={!submitEnabled}
-			>
-				SUBMIT Changes
-			</ButtonStyled>
-			<Box mt={2} width={300}>
-				<Paper elevation={4}>
-					<Stack p={1} justifyContent={"center"} spacing={1}>
-						<Typography textAlign={"center"} variant="weightsIndicator">
-							{"Most Important".toUpperCase()}
-						</Typography>
-						<DragDropContext onDragEnd={onDragEnd}>
-							<Droppable droppableId="droppable">
-								{(provided) => (
-									<Stack
-										component={"div"}
-										spacing={1}
-										justifyContent={"center"}
-										alignItems={"center"}
-										ref={provided.innerRef}
-										{...provided.droppableProps}
-									>
-										<OptionList options={state.options} />
-										{provided.placeholder}
-									</Stack>
-								)}
-							</Droppable>
-						</DragDropContext>
-						<Typography textAlign={"center"} variant="weightsIndicator">
-							{"Least Important".toUpperCase()}
-						</Typography>
-					</Stack>
-				</Paper>
-			</Box>
-		</Stack>
+		<>
+			{isLoading ? (
+				<LoadingSpinner />
+			) : isError ? (
+				<Typography>Error Getting Weights</Typography>
+			) : (
+				<Stack alignItems={"center"} spacing={2}>
+					<Box mt={2} width={300}>
+						<Paper elevation={4}>
+							<Stack p={1} justifyContent={"center"} spacing={1}>
+								<Typography textAlign={"center"} variant="weightsIndicator">
+									{"Most Important".toUpperCase()}
+								</Typography>
+
+								<DragDropContext onDragEnd={onDragEnd}>
+									<Droppable droppableId="droppable">
+										{(provided) => (
+											<Stack
+												component={"div"}
+												spacing={1}
+												justifyContent={"center"}
+												alignItems={"center"}
+												ref={provided.innerRef}
+												{...provided.droppableProps}
+											>
+												<OptionList options={state.options} />
+												{provided.placeholder}
+											</Stack>
+										)}
+									</Droppable>
+								</DragDropContext>
+								<Typography textAlign={"center"} variant="weightsIndicator">
+									{"Least Important".toUpperCase()}
+								</Typography>
+							</Stack>
+						</Paper>
+					</Box>
+					<ButtonStyled
+						onClick={() => {
+							updateWeights({
+								leisure:
+									7 -
+									state.options.findIndex((el) => {
+										return el.key == "leisure";
+									}),
+								personal_care:
+									7 -
+									state.options.findIndex((el) => {
+										return el.key == "personal_care";
+									}),
+								retail:
+									7 -
+									state.options.findIndex((el) => {
+										return el.key == "retail";
+									}),
+								finance:
+									7 -
+									state.options.findIndex((el) => {
+										return el.key == "finance";
+									}),
+								transportation:
+									7 -
+									state.options.findIndex((el) => {
+										return el.key == "transportation";
+									}),
+								fitness:
+									7 -
+									state.options.findIndex((el) => {
+										return el.key == "fitness";
+									}),
+								emergency:
+									7 -
+									state.options.findIndex((el) => {
+										return el.key == "emergency";
+									}),
+							});
+						}}
+						disabled={!submitEnabled}
+					>
+						SUBMIT Changes
+					</ButtonStyled>
+				</Stack>
+			)}
+		</>
 	);
 }
 export default UserWeights;

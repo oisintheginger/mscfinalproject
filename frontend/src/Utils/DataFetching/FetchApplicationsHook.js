@@ -54,7 +54,7 @@ export function FetchApplicationsHook() {
 		isSuccess: detailsSuccess,
 		isError: detailsIsError,
 	} = useQuery(
-		["propertyQuickViews"],
+		["applicationQuickViews"],
 		async () => {
 			const accessToken = await getAccessToken();
 

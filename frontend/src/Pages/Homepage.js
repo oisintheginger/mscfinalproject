@@ -7,6 +7,7 @@ import {
 	Typography,
 	TextField,
 	Button,
+	InputAdornment,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled.js";
@@ -26,7 +27,9 @@ import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner.js";
 import { RecommendationCard } from "../components/CommonComp/Cards/RecommendationCard/RecommendationCard.js";
 import { UserContext } from "../Utils/UserContext/UserContext.js";
-
+import { FetchRecommendedHook } from "../Utils/DataFetching/FetchRecommendedHook.js";
+import { RecommendedCarousel } from "../components/RecommendedCarousel/RecommendedCarousel.js";
+import SearchIcon from "@mui/icons-material/Search";
 const mockRec = {
 	propertyId: 36428890,
 	longitude: -76.585495,
@@ -76,7 +79,6 @@ function Homepage() {
 		}
 	}, [user]);
 
-	
 	return (
 		<>
 			<Stack direction={"column"} spacing={1} mt={10} alignItems={"center"}>
@@ -117,6 +119,13 @@ function Homepage() {
 						}}
 						color="darkTeal"
 						placeholder="Search here for your new home"
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position="end">
+									<SearchIcon fontSize="large" />
+								</InputAdornment>
+							),
+						}}
 						{...register("searchString", { required: true })}
 					/>
 				</Box>
@@ -133,7 +142,6 @@ function Homepage() {
 				<Typography variant={"h2"} textAlign="center">
 					Your Recommendations
 				</Typography>
-				<RecommendationCard data={mockRec} />
 				<Stack
 					minHeight={"35vh"}
 					width={"100%"}
@@ -141,21 +149,7 @@ function Homepage() {
 					alignItems={"center"}
 				>
 					{route === "authenticated" ? (
-						<>
-							{/* isLoading ? (
-							<LoadingSpinner message={"Getting your recommendations"} />
-						) : isError ? (
-							<p>Error</p>
-						) : (
-							<Container>
-								{data?.data > 0 ? (
-									<CardCarousel propData={propertyData} />
-								) : (
-									<Typography>No Recommendations</Typography>
-								)}
-							</Container>
-						) */}
-						</>
+						<RecommendedCarousel />
 					) : (
 						<ButtonStyled
 							onClick={() => {

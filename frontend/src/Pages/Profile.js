@@ -41,8 +41,9 @@ import { DeleteAccountMutation } from "../Utils/Mutations/DeleteAccountMutation/
 import SnackbarAlertMap from "../Utils/AlertMap";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
-import { API } from "aws-amplify";
+import { API, Auth } from "aws-amplify";
 import { DeleteHandlerConstructor } from "../Utils/Mutations/SearchMutation/SearchMutation";
+import { RecommendedCarousel } from "../components/RecommendedCarousel/RecommendedCarousel";
 
 function Profile() {
 	const navigator = useNavigate();
@@ -137,10 +138,10 @@ function Profile() {
 		<>
 			<PageTemplate pageTitle="My Profile" currPageBreadcrumb={"Profile"}>
 				<Stack width={"100%"} spacing={8}>
-					<PageSection sectionTitle="My Weights" background={false}>
-						<Typography>
+					<PageSection sectionTitle="My Preferences" background={false}>
+						<Typography variant="body1">
 							{
-								"With HME, you can specify and tune what services are the most important for you. We use this information to recommend more relevant properties."
+								"With HME, you can specify and tune what property services and features are the most important for you. We use this information to present personalized scores while you browse properties."
 							}
 						</Typography>
 						<Box display={"flex"} justifyContent={"center"}>
@@ -151,9 +152,7 @@ function Profile() {
 						</Box>
 					</PageSection>
 					<PageSection background={false} sectionTitle="Recommended for Me">
-						<Container>
-							<CardCarousel propData={propertyData} />
-						</Container>
+						<RecommendedCarousel />
 					</PageSection>
 					<PageSection background={false} sectionTitle="My Favorites">
 						{favoritesDetailsIsLoading ? (
@@ -314,7 +313,7 @@ function Profile() {
 						)}
 					</PageSection>
 					<PageSection sectionTitle="My Account" background={false}>
-						<DeleteButton onClick={OpenConfirmDeleteModal} disabled>
+						<DeleteButton onClick={OpenConfirmDeleteModal}>
 							DELETE ACCOUNT
 						</DeleteButton>
 					</PageSection>
@@ -398,7 +397,8 @@ function Profile() {
 									variant="outlined"
 									fullWidth
 									onClick={async () => {
-										deleteAccount();
+										await deleteAccount();
+										await Auth.deleteUser();
 									}}
 								>
 									CONFIRM ACCOUNT DELETION
