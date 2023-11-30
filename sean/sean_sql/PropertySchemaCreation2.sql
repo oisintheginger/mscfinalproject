@@ -919,7 +919,7 @@ SELECT * FROM MainInformation mi;
 
 SELECT * FROM Addresses a;
 
-SELECT * FROM crime_z_scores czs
+SELECT * FROM user czs
 
 SELECT * FROM service_scores ss 
 
