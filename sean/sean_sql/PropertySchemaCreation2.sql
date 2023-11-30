@@ -804,7 +804,7 @@ SELECT * FROM crime_z_scores czs
 
 ALTER TABLE crime_z_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
-UPDATE crime_z_scores AS a JOIN Neighbourhoods AS n ON a.crime_neighbourhood = n.crime_neighbourhood SET a.neighbourhoodID = n.neighbourhoodID;
+UPDATE crime_z_scores SET neighbourhoodID = crime_scoreID;
 
 ALTER TABLE crime_z_scores DROP COLUMN crime_neighbourhood
 
@@ -857,6 +857,8 @@ CREATE TABLE service_scores (
     
     PRIMARY KEY (service_score_ID)
 );
+
+ALTER TABLE service_scores CHANGE COLUMN overall_score mapped_values_sigmoid FLOAT;
 
 DESCRIBE service_scores
 
@@ -913,8 +915,54 @@ CROSS JOIN
 ORDER BY
     u.id;  -- Order by user ID
 
-SELECT * FROM user_interactions;
+SELECT * FROM MainInformation mi;
+
+SELECT * FROM Addresses a;
+
+SELECT * FROM crime_z_scores czs
+
+SELECT * FROM service_scores ss 
 
 DESCRIBE user_interactions
 
-SELECT COUNT(*) AS row_count FROM user_interactions;
+SELECT COUNT(*) AS row_count FROM PropertyDetails pd ;
+
+SELECT 
+    mi.bathrooms, 
+    mi.bathroomsFull, mi.bathroomsHalf, mi.bedrooms,
+    mi.price,
+    mi.propertyID,
+    pd.CableAvailable, pd.Clubhouse, pd.Cooling, pd.Deck, pd.Dishwasher, 
+    pd.DoublePaneWindows, pd.Dryer, pd.FitnessCenter, pd.Freezer, 
+    pd.garbageDisposal, pd.Gas, pd.Gated, pd.HasGarbageBin, pd.Heating, 
+    pd.LaundryFeaturesHookups, pd.LaundryFeaturesInUnit, pd.LaundryFeaturesNone, 
+    pd.LaundryFeaturesShared, pd.Microwave, pd.NearPublicTransit, 
+    pd.OnSiteLaundryAvailable, pd.Oven, pd.Parking, pd.Patio, pd.Pets, 
+    pd.Playground, pd.Pool, pd.Porch, pd.Refrigerator, 
+    pd.Sauna, pd.Sewage, pd.Skylights, pd.Stove, pd.TrashCompactor, 
+    pd.Washer, pd.Water, pd.WindowCoverings,
+    cz.AGG_ASSAULT_Count, cz.ARSON_Count, cz.AUTO_THEFT_Count, 
+    cz.BURGLARY_Count, cz.COMMON_ASSAULT_Count,
+    cz.HOMICIDE_Count, cz.LARCENY_Count, cz.LARCENY_FROM_AUTO_Count, 
+    cz.RAPE_Count, cz.ROBBERY_CARJACKING_Count, cz.ROBBERY_COMMERCIAL_Count, 
+    cz.ROBBERY_Count, cz.SHOOTING_Count,
+    ss.bankCount, ss.barCount, ss.beauty_salonCount, ss.bus_stationCount,
+    ss.cafeCount, ss.fire_stationCount, ss.gymCount, ss.hospitalCount,
+    ss.night_clubCount, ss.parkCount, ss.pharmacyCount, ss.police_stationCount,
+    ss.restaurantCount, ss.supermarketCount, ss.train_stationCount,
+    ss.transit_stationCount
+FROM 
+    Addresses a
+JOIN 
+    MainInformation mi ON a.addressID = mi.addressID
+JOIN 
+    Neighbourhoods n ON a.neighbourhoodID = n.neighbourhoodID
+JOIN 
+    PropertyDetails pd ON mi.propertyDetailsID = pd.propertyDetailsID
+JOIN 
+    crime_z_scores cz ON n.neighbourhoodID = cz.neighbourhoodID
+JOIN 
+    service_scores ss ON n.neighbourhoodID = ss.neighbourhoodID
+
+   
+   
