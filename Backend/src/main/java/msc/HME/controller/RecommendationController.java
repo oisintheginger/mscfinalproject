@@ -42,11 +42,10 @@ public class RecommendationController {
             for (int i = 0; i < list.size(); i++) {
                 propertyId.add(Integer.valueOf(list.get(i).getFavourite()));
             }
-            System.out.println(propertyId);
-            JsonNode result = recommendationService.getKnn(propertyId);
-            return ResponseEntity.status(HttpStatus.OK).body(result);
-        } catch (JsonProcessingException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON format");
+//            JsonNode result = recommendationService.getKnn(propertyId);
+            return ResponseEntity.status(HttpStatus.OK).body(propertyId);
+//        } catch (JsonProcessingException e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON format");
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getMessage());
         } catch (ResourceAccessException e) {
@@ -54,23 +53,14 @@ public class RecommendationController {
         }
     }
 
-    @GetMapping("/2")
-    ResponseEntity<Object> getCosineSimilarity(HttpServletRequest request) {
-        String id = userService.validateJWT(request);
-        if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
-        }
-        String res = recommendationService.getCosSimilarity(id);
-        return ResponseEntity.status(HttpStatus.OK).body(res);
-    }
-
-//    @GetMapping("/3")
-//    ResponseEntity<Object> getWhatever(HttpServletRequest request) {
+//    @GetMapping("/2")
+//    ResponseEntity<Object> getCosineSimilarity(HttpServletRequest request) {
 //        String id = userService.validateJWT(request);
 //        if (id==null) {
 //            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
 //        }
-//        //call recommendations service method ...
-//        return null;
+//        String res = recommendationService.getCosSimilarity(id);
+//        return ResponseEntity.status(HttpStatus.OK).body(res);
 //    }
+
 }
