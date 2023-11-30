@@ -42,7 +42,9 @@ function ApplicationCard({
 			<CardActionArea
 				onClick={(event) => {
 					event.preventDefault();
-					openApplicationDetails(data.message);
+					navigate("/property/" + data.propertyId, {
+						state: { previousUrl: location.pathname },
+					});
 				}}
 			>
 				<CardMedia
@@ -76,7 +78,7 @@ function ApplicationCard({
 			</CardActionArea>
 			<CardActions>
 				<Grid container justifyContent={"center"} spacing={1}>
-					<Grid item xs={4} sm={4} md={4} lg={4}>
+					<Grid item xs={12} sm={12} md={12} lg={12}>
 						<ButtonOutlined
 							fullWidth
 							endIcon={
@@ -89,15 +91,13 @@ function ApplicationCard({
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();
-								navigate("/property/" + data.propertyId, {
-									state: { previousUrl: location.pathname },
-								});
+								openApplicationDetails(data.message);
 							}}
 						>
-							VIEW
+							VIEW APPLICATION
 						</ButtonOutlined>
 					</Grid>
-					<Grid item xs={4} sm={4} md={4} lg={4}>
+					<Grid item xs={6} sm={6} md={6} lg={6}>
 						<ButtonOutlined
 							disabled
 							fullWidth
@@ -113,7 +113,7 @@ function ApplicationCard({
 							Edit
 						</ButtonOutlined>
 					</Grid>
-					<Grid item xs={4} sm={4} md={4} lg={4}>
+					<Grid item xs={6} sm={6} md={6} lg={6}>
 						<DeleteButton
 							fullWidth
 							disabled

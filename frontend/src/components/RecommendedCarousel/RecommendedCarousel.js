@@ -3,6 +3,7 @@ import { RecommendationCard } from "../CommonComp/Cards/RecommendationCard/Recom
 import { FetchRecommendedHook } from "../../Utils/DataFetching/FetchRecommendedHook";
 import Carousel from "react-material-ui-carousel";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
 
 export function RecommendedCarousel() {
 	const { data, error, isLoading, isError, isSuccess } = FetchRecommendedHook();
@@ -27,7 +28,7 @@ export function RecommendedCarousel() {
 	return (
 		<>
 			{isLoading ? (
-				<Typography>Loading</Typography>
+				<LoadingSpinner />
 			) : isError ? (
 				<Typography>Error</Typography>
 			) : (
