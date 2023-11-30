@@ -145,6 +145,12 @@ paths:
           required: true
           schema:
             type: integer
+        - in: query
+          name: feedback
+          required: true
+          schema:
+            type: integer
+            example: 0, 1, 2
       responses:
         "200":
           description: returns 200 Ok response with a message
@@ -397,6 +403,20 @@ paths:
           description: returns 404 not found with message
         "500":
           description: returns 500 internal server error with specific error in the body
+  /api/recs/1:
+    get:
+      summary: returns kNN recs
+      responses:
+        "200":
+          description: A list of recommend property ids
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+        "400":
+        "500":
 
 components:
   schemas:
