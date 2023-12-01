@@ -238,7 +238,7 @@ public class PropertyService {
     public void registerClick(String userId, Integer propertyId) {
         String sql = """
             
-                UPDATE user_interactions
+            UPDATE user_interactions
             SET click_count = click_count + 1
             WHERE propertyID = ? AND id = ?;
                 """;
