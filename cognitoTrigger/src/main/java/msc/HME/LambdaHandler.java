@@ -39,7 +39,7 @@ public class LambdaHandler implements RequestHandler<Object, Object> {
             insertStatement.setString(2, data.get(1));
             insertStatement.setString(3, "[{\"search\":\"1\"}]");
             insertStatement.setString(4, "[{\"favourite\": \"1\"}]");
-            insertStatement.setString(5, "[{\"leisure\": \"null\"}, {\"personal_care\": \"null\"}, {\"retail\": \"null\"}, {\"fitness\": \"null\"}, {\"finance\": \"null\"}, {\"transportation\": \"null\"}, {\"emergency\": \"null\"}]");
+            insertStatement.setString(5, "[{\"leisure\": \"1\"}, {\"personal_care\": \"1\"}, {\"retail\": \"1\"}, {\"fitness\": \"1\"}, {\"finance\": \"1\"}, {\"transportation\": \"1\"}, {\"emergency\": \"1\"}]");
             insertStatement.setString(6, "[{\"propertyId\": \"1\", \"message\": \"1\"}]");
             int result = insertStatement.executeUpdate();
 
