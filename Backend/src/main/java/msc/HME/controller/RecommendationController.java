@@ -43,7 +43,7 @@ public class RecommendationController {
                 propertyId.add(Integer.valueOf(favourite.getFavourite()));
             }
             JsonNode result = recommendationService.getKnn(propertyId);
-            return ResponseEntity.status(HttpStatus.OK).body(propertyId);
+            return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (JsonProcessingException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON format");
         } catch (HttpClientErrorException | HttpServerErrorException e) {
