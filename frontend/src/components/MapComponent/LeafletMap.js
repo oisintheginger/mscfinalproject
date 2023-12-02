@@ -37,9 +37,8 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import { renderToString } from "react-dom/server";
 
 const markerIcon = new Leaflet.Icon({
-	iconUrl: require("../../Icons/mapmarkericon.png"),
+	iconUrl: require("../../Icons/MapPointIcon.png"),
 	iconAnchor: [14, 28],
-	popupAnchor: [0, -28],
 });
 const gridPointIcon = new Leaflet.Icon({
 	iconUrl: require("../../Icons/GridPointIcon.png"),
