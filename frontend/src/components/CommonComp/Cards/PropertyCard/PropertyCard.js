@@ -93,6 +93,7 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 						"&:hover": {
 							cursor: "pointer",
 						},
+						
 					}}
 					component="img"
 					height="194"
@@ -101,12 +102,12 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 				/>
 
 				<CardContent>
-					<Grid container>
+					<Grid container minWidth={"fit-content"}>
 						<Grid item xs={9}>
 							<Stack overflow={"clip"} width={"100%"}>
 								<Stack direction={"row"} justifyContent={"space-between"}>
 									<Typography variant="cardHeader">
-										{"$" + data?.price}
+										{"$" + data?.price + "/mon"}
 									</Typography>
 								</Stack>
 								<Typography variant="subtitle1" noWrap>

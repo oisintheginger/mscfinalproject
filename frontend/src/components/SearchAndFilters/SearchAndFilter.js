@@ -8,6 +8,7 @@ import {
 	Slide,
 	Tooltip,
 	InputAdornment,
+	IconButton,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -139,7 +140,21 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 								height: "40px",
 								endAdornment: (
 									<InputAdornment position="end">
-										<SearchIcon fontSize="large" />
+										<IconButton
+											onClick={(event) => {
+												methods.handleSubmit(
+													methods.customSubmitBehavior
+														? methods.customSubmitBehavior
+														: () => {
+																console.log(
+																	"NO CUSTOM SUBMIT BEHAVIOR DEFINED"
+																);
+														  }
+												)(event);
+											}}
+										>
+											<SearchIcon fontSize="large" />
+										</IconButton>
 									</InputAdornment>
 								),
 							}}

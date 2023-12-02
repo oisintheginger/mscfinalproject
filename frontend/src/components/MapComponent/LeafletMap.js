@@ -6,8 +6,9 @@ import {
 	Popup,
 	useMap,
 	useMapEvents,
+	Tooltip,
 } from "react-leaflet";
-import Leaflet, { point, LatLng } from "leaflet";
+import Leaflet, { point, LatLng, latLngBounds, LatLngBounds } from "leaflet";
 
 import {
 	Box,
@@ -20,7 +21,10 @@ import {
 	Grid,
 	Pagination,
 	IconButton,
+	useTheme,
+	useMediaQuery,
 } from "@mui/material";
+import CircleIcon from "@mui/icons-material/Circle";
 import SkeletonCard from "../CommonComp/Cards/SkeletonCard/SkeletonCard";
 import { darkTeal } from "../../Styling/styleConstants";
 
@@ -30,6 +34,99 @@ import ResultGrid from "../ResultsGrid/ResultsGrid";
 import { API } from "aws-amplify";
 import { useQuery } from "react-query";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { renderToString } from "react-dom/server";
+
+const markerIcon = new Leaflet.Icon({
+	iconUrl: require("../../Icons/mapmarkericon.png"),
+	iconAnchor: [14, 28],
+	popupAnchor: [0, -28],
+});
+const gridPointIcon = new Leaflet.Icon({
+	iconUrl: require("../../Icons/GridPointIcon.png"),
+	iconAnchor: [0, 0],
+	popupAnchor: [0, 0],
+});
+
+function RenderPoints({
+	pointsArray,
+	markerClickHandler = () => {
+		console.log("no click handler supplied");
+	},
+}) {
+	return (
+		<>
+			{pointsArray.map((point) => {
+				return (
+					<Marker
+						position={[point.latitude, point.longitude]}
+						icon={markerIcon}
+						eventHandlers={{
+							click: () => {
+								markerClickHandler(point.propertyId);
+							},
+						}}
+					/>
+				);
+			})}
+		</>
+	);
+}
+
+function MultiPointMarker({
+	count,
+	pointsArray,
+	markerClickHandler,
+	zoomToBounds = () => {
+		console.log("No multi marker click handler given");
+	},
+}) {
+	const [explode, setExplode] = useState(false);
+
+	const centX =
+		pointsArray
+			.map((point) => point.longitude)
+			.reduce((acc, val) => acc + val, 0) / pointsArray.length;
+
+	const centY =
+		pointsArray
+			.map((point) => point.latitude)
+			.reduce((acc, val) => acc + val, 0) / pointsArray.length;
+
+	const center = new LatLng(centY, centX);
+
+	const MultiIcon = new Leaflet.DivIcon({
+		className: "mapBrowsingMultiMarker",
+		html: renderToString(
+			<div className="mapBrowsingMultiMarker">
+				<Typography
+					textAlign={"center"}
+					width={"100%"}
+					className="mapBrowsingMultiPointTypography"
+				>
+					{count}
+				</Typography>
+			</div>
+		),
+	});
+
+	return !explode ? (
+		<Marker
+			position={center}
+			icon={MultiIcon}
+			eventHandlers={{
+				click: () => {
+					zoomToBounds();
+					setExplode(true);
+				},
+			}}
+		/>
+	) : (
+		<RenderPoints
+			pointsArray={pointsArray}
+			markerClickHandler={markerClickHandler}
+		/>
+	);
+}
 
 function HMEMap({
 	marks,
@@ -38,15 +135,18 @@ function HMEMap({
 	resetPage,
 	markerClickHandler = () => {},
 }) {
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("sm"));
+
 	const FilterPoints = (points, map, setPointsState) => {
 		setPointsState(
 			points
-				.sort((a, b) => {
-					return (
-						map.distance([a.latitude, a.longitude], map.getCenter()) -
-						map.distance([b.latitude, b.longitude], map.getCenter())
-					);
-				})
+				// .sort((a, b) => {
+				// 	return (
+				// 		map.distance([a.latitude, a.longitude], map.getCenter()) -
+				// 		map.distance([b.latitude, b.longitude], map.getCenter())
+				// 	);
+				// })
 				?.filter((mark, ind, arr) => {
 					if (ind < 1) return true;
 					return (
@@ -62,15 +162,17 @@ function HMEMap({
 						mark.longitude > map.getBounds()._southWest.lng
 					);
 				})
-				?.filter((_, index, arr) => {
-					if (arr.length < 600) {
-						return true;
-					}
-					return index % 60 < 30;
-				})
-				.slice(0, 600)
+			// ?.filter((_, index, arr) => {
+			// 	if (arr.length < 600) {
+			// 		return true;
+			// 	}
+			// 	return index % 60 < 30;
+			// })
+			// .slice(0, 600)
 		);
 	};
+
+	const [renderPoints, setRenderPoints] = useState([]);
 
 	const map = useMapEvents({
 		zoom: () => {
@@ -83,10 +185,112 @@ function HMEMap({
 		},
 	});
 
+	const generateGrid = () => {
+		const bounds = map.getBounds();
+		const width = bounds._northEast.lng - bounds._southWest.lng;
+		const height = bounds._northEast.lat - bounds._southWest.lat;
+		const gridDivision = down ? 4 : 10;
+		const gridCellWidth = width / gridDivision;
+		const gridCellHeight = height / gridDivision;
+		const gridStartPoint = new LatLng(
+			bounds._southWest.lat,
+			bounds._southWest.lng
+		);
+
+		const grid = [];
+		for (let y = 0; y < gridDivision; y++) {
+			const row = [];
+			for (let x = 0; x < gridDivision; x++) {
+				const bottomLeftLng = gridStartPoint.lng + gridCellWidth * x;
+				const bottomLeftLat = gridStartPoint.lat + gridCellHeight * y;
+				const topRightLng = gridStartPoint.lng + gridCellWidth * (x + 1);
+				const topRightLat = gridStartPoint.lat + gridCellHeight * (y + 1);
+
+				const bottomLeft = new LatLng(bottomLeftLat, bottomLeftLng);
+				const topRight = new LatLng(topRightLat, topRightLng);
+				const cellBounds = new LatLngBounds(bottomLeft, topRight);
+				row.push(cellBounds);
+			}
+			grid.push(row);
+		}
+		return grid;
+	};
+	const grid = generateGrid();
+
+	const CalcRenderPoints = () => {
+		const grid = generateGrid();
+		const renderPoints = [];
+		grid.map((row) => {
+			row.map((cell) => {
+				const cellNorthEast = cell.getNorthEast();
+				const cellSouthWest = cell.getSouthWest();
+
+				const pointsInside = points.filter((mark) => {
+					return (
+						mark.latitude <= cellNorthEast.lat &&
+						mark.longitude <= cellNorthEast.lng &&
+						mark.latitude > cellSouthWest.lat &&
+						mark.longitude > cellSouthWest.lng
+					);
+				});
+
+				if (pointsInside.length > map.getZoom()) {
+					renderPoints.push(
+						<MultiPointMarker
+							center={cell.getCenter()}
+							count={pointsInside.length.toString()}
+							pointsArray={pointsInside}
+							markerClickHandler={markerClickHandler}
+							zoomToBounds={() => {
+								const lats = pointsInside.map((point) => {
+									return point.latitude;
+								});
+								const longs = pointsInside.map((point) => {
+									return point.longitude;
+								});
+								const minLat = Math.min(...lats);
+								const minLng = Math.min(...longs);
+								const maxLat = Math.max(...lats);
+								const maxLng = Math.max(...longs);
+								const newSouth = new Leaflet.LatLng(minLat, minLng);
+								const newNorth = new Leaflet.LatLng(maxLat, maxLng);
+								const newBounds = new Leaflet.LatLngBounds(newSouth, newNorth);
+
+								map.flyToBounds(newBounds);
+								resetPage();
+							}}
+						/>
+					);
+					return;
+				} else {
+					pointsInside.map((point) => {
+						renderPoints.push(
+							<Marker
+								position={[point.latitude, point.longitude]}
+								icon={markerIcon}
+								eventHandlers={{
+									click: () => {
+										markerClickHandler(point.propertyId);
+									},
+								}}
+							/>
+						);
+					});
+					return;
+				}
+			});
+		});
+		setRenderPoints(renderPoints);
+	};
+
 	useEffect(() => {
 		FilterPoints(marks, map, setPoints);
 		return () => {};
 	}, []);
+
+	useEffect(() => {
+		CalcRenderPoints();
+	}, [points]);
 
 	return (
 		<>
@@ -95,13 +299,8 @@ function HMEMap({
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				zIndex={1}
 			/>
-			{points &&
+			{/* {points &&
 				points.map((data, key) => {
-					const markerIcon = new Leaflet.Icon({
-						iconUrl: require("../../Icons/mapmarkericon.png"),
-						iconAnchor: [14, 28],
-						popupAnchor: [0, -28],
-					});
 					{
 						return (
 							<Marker
@@ -114,16 +313,29 @@ function HMEMap({
 										markerClickHandler(data.propertyId);
 									},
 								}}
-							>
-								{/* <MapPropertyPopup
-									propertyId={data.propertyId}
-									position={[data.latitude, data.longitude]}
-								/> */}
-								{/* <PropertyCard data={data} inPopup={true} /> */}
-							</Marker>
+							/>
 						);
 					}
-				})}
+				})} */}
+			{renderPoints && renderPoints.map((point) => point)}
+			{/* {grid.map((row, rInd) => {
+				return row.map((col, cInd) => {
+					return (
+						<>
+							<Marker
+								position={col._southWest}
+								icon={gridPointIcon}
+								key={rInd * cInd + "southWest"}
+							/>
+							<Marker
+								position={col._northEast}
+								icon={gridPointIcon}
+								key={rInd * cInd + "northEast"}
+							/>
+						</>
+					);
+				});
+			})} */}
 		</>
 	);
 }
