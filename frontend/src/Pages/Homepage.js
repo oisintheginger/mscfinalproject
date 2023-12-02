@@ -8,6 +8,7 @@ import {
 	TextField,
 	Button,
 	InputAdornment,
+	IconButton,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled.js";
@@ -122,7 +123,9 @@ function Homepage() {
 						InputProps={{
 							endAdornment: (
 								<InputAdornment position="end">
-									<SearchIcon fontSize="large" />
+									<IconButton onClick={handleSubmit(navigateToBrowse)}>
+										<SearchIcon fontSize="large" />
+									</IconButton>
 								</InputAdornment>
 							),
 						}}
