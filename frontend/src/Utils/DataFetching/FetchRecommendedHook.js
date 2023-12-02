@@ -16,15 +16,12 @@ export function FetchRecommendedHook() {
 				.getJwtToken();
 
 			if (process.env.REACT_APP_RECOMMENDATION_SYSTEM == "KNN") {
-				return API.post("HMEBackend", `/api/recs/1`, {
+				return API.get("HMEBackend", `/api/recs/1`, {
 					...(route == "authenticated" && {
 						headers: {
 							Authorization: "Bearer " + accessToken || null,
 						},
 					}),
-					body: {
-						id: userInfo.username.toString(),
-					},
 				});
 			}
 
