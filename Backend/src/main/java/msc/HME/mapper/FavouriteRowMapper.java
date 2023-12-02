@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 public class FavouriteRowMapper implements RowMapper<List<Favourite>>{
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -20,6 +21,7 @@ public class FavouriteRowMapper implements RowMapper<List<Favourite>>{
             List<Favourite> favesList = objectMapper.readValue(favourites, new TypeReference<>() {
             });
             favesList.removeIf(fave -> fave.getFavourite() == null);
+            favesList.removeIf(fave -> Objects.equals(fave.getFavourite(), "1"));
             return favesList;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e.getMessage());
