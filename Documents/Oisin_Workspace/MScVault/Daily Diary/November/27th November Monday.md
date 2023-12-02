@@ -7,4 +7,4 @@
 
 
 > [!afternoon] Afternoon
-> - Coding and Bugfixes
+> - Coding and Bugfixes (~8 hours)
