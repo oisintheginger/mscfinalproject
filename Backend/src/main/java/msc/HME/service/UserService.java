@@ -199,17 +199,18 @@ public class UserService {
         // delete from cognito
         ResponseEntity<Object> result = cognitoService.deleteUser(id);
         if (result.getStatusCode().is2xxSuccessful()) {
+            System.out.println("hereeee");
             //delete from user table
-            String sql = "DELETE FROM user WHERE id=?";
+            String sql = "DELETE FROM user_interactions WHERE id=?";
             int rows = jdbcTemplate.update(sql, id);
             if (rows == 0) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be removed from user table");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be removed from user interactions table");
             }
             //delete from user_interactions table
             String sql2 = "DELETE FROM user WHERE id=?";
             int rows2 = jdbcTemplate.update(sql2, id);
             if (rows2 == 0) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be removed from user transactions table");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be removed from user table");
             }
         }
         return result;

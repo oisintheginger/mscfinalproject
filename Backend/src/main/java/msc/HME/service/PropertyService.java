@@ -237,11 +237,10 @@ public class PropertyService {
 
     public void registerClick(String userId, Integer propertyId) {
         String sql = """
-            
-                UPDATE user_interactions
+            UPDATE user_interactions
             SET click_count = click_count + 1
             WHERE propertyID = ? AND id = ?;
-                """;
+            """;
         int rows = jdbcTemplate.update(sql, propertyId, userId);
         if (rows == 0) {
             throw new NoSuchElementException();
