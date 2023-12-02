@@ -6,7 +6,7 @@ import { Auth } from "aws-amplify";
 import { useQuery } from "react-query";
 export function FetchRecommendedHook() {
 	const { route, getAccessToken } = useContext(UserContext);
-
+	console.log(process.env.REACT_APP_GOOGLE_MAP_ENABLED);
 	const { data, error, isLoading, isError, isSuccess, refetch } = useQuery(
 		["userRecommended"],
 		async () => {
@@ -14,6 +14,20 @@ export function FetchRecommendedHook() {
 			const accessToken = (await Auth.currentSession())
 				.getIdToken()
 				.getJwtToken();
+
+			if (process.env.REACT_APP_RECOMMENDATION_SYSTEM == "KNN") {
+				return API.post("HMEBackend", `/api/recs/1`, {
+					...(route == "authenticated" && {
+						headers: {
+							Authorization: "Bearer " + accessToken || null,
+						},
+					}),
+					body: {
+						id: userInfo.username.toString(),
+					},
+				});
+			}
+
 			return API.post("RecommendedAPI", `/`, {
 				...(route == "authenticated" && {
 					headers: {
