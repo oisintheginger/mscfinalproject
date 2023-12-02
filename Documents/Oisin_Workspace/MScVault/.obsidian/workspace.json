@@ -54,9 +54,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "b4c4038e942285bf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/November/29th November Wednesday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "2cfe4f8db6d6da78",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/November/30th November 2023.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -130,7 +154,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/November/28th November Tuesday.md",
+                "file": "Daily Diary/November/30th November 2023.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +171,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/November/28th November Tuesday.md",
+                "file": "Daily Diary/November/30th November 2023.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +194,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/November/28th November Tuesday.md"
+                "file": "Daily Diary/November/30th November 2023.md"
               }
             }
           }
@@ -192,10 +216,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c1928e81c0569d93",
+  "active": "2cfe4f8db6d6da78",
   "lastOpenFiles": [
-    "Daily Diary/November/27th November Monday.md",
+    "Daily Diary/November/29th November Wednesday.md",
+    "Daily Diary/November/30th November 2023.md",
     "Daily Diary/November/28th November Tuesday.md",
+    "Daily Diary/November/27th November Monday.md",
     "Daily Diary/November/23rd November Thursday.md",
     "Daily Diary/November/22nd November Wednesday.md",
     "Daily Diary/November/25th November Saturday.md",
@@ -221,8 +247,6 @@
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots/SUSQuestionnaire.png",
     "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
     "Master's Project/UX Work/User Testing/LFP Testing Results Report.md",
-    "Master's Project/UX Work/User Testing/Participants.md",
-    "Master's Project/UX Work/User Testing/Questions to Answer.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Master's Project/UX Work/User Testing/F1C7CC20",
     "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
