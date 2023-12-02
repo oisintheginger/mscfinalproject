@@ -42,10 +42,10 @@ public class RecommendationController {
             for (Favourite favourite : list) {
                 propertyId.add(Integer.valueOf(favourite.getFavourite()));
             }
-//            JsonNode result = recommendationService.getKnn(propertyId);
-            return ResponseEntity.status(HttpStatus.OK).body(propertyId);
-//        } catch (JsonProcessingException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON format");
+            JsonNode result = recommendationService.getKnn(propertyId);
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON format");
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getMessage());
         } catch (ResourceAccessException e) {
