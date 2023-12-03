@@ -42,15 +42,14 @@ public class RecommendationController {
             for (Favourite favourite : list) {
                 propertyId.add(Integer.valueOf(favourite.getFavourite()));
             }
-            return null;
-//            JsonNode result = recommendationService.getKnn(propertyId);
-//            return ResponseEntity.status(HttpStatus.OK).body(result);
-//        } catch (JsonProcessingException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON format");
+            JsonNode result = recommendationService.getKnn(propertyId);
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON format");
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getMessage());
         } catch (ResourceAccessException e) {
-            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Service unavailable or network issue:" + e.getMessage());
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Service unavailable or network issue");
         }
     }
 

@@ -18,14 +18,14 @@ import java.util.Map;
 
 @Service
 public class RecommendationService {
+    
+    private final RestTemplate restTemplate;
+    @Autowired
+    public RecommendationService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
-//    private final RestTemplate restTemplate;
-//    @Autowired
-//    public RecommendationService(RestTemplate restTemplate) {
-//        this.restTemplate = restTemplate;
-//    }
-
-    public void getKnn(List<Integer> ids) throws JsonProcessingException {
+    public JsonNode getKnn(List<Integer> ids) throws JsonProcessingException {
         String apiUrl = "http://34.240.63.53:5000/recommend";
 
         HttpHeaders headers = new HttpHeaders();
@@ -33,9 +33,11 @@ public class RecommendationService {
         ObjectMapper mapper = new ObjectMapper();
         String requestBody = mapper.writeValueAsString(Map.of("property_ids", ids));
         HttpEntity<String> request = new HttpEntity<>(requestBody, headers);
-//        String result = restTemplate.postForObject(apiUrl, request, String.class);
-//        JsonNode jsonObj = mapper.readTree(result);
 
-//        return jsonObj.get("recommended_property_ids");
+        String result = restTemplate.postForObject(apiUrl, request, String.class);
+
+        JsonNode jsonObj = mapper.readTree(result);
+
+        return jsonObj.get("recommended_property_ids");
     }
 }
