@@ -4,8 +4,16 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { UserContext } from "../UserContext/UserContext";
 import { Auth } from "aws-amplify";
 import { useQuery } from "react-query";
+import { FetchFavoritesHook } from "./FetchFavoritesHook";
 export function FetchRecommendedHook() {
-	const { route, getAccessToken, userData } = useContext(UserContext);
+	const { route, getAccessToken } = useContext(UserContext);
+
+	const { favoriteData } = FetchFavoritesHook();
+	const ids =
+		favoriteData?.map((el) => {
+			return parseInt(el.favourite);
+		}) || null;
+
 	const { data, error, isLoading, isError, isSuccess, refetch } = useQuery(
 		["userRecommended"],
 		async () => {
@@ -22,21 +30,21 @@ export function FetchRecommendedHook() {
 					method: "POST",
 					"Content-Type": "application/json",
 					body: JSON.stringify({
-						property_ids: userData?.favourites?.map((el) => parseInt(el)),
+						property_ids: ids,
 					}),
 				}).then((res) => res.json());
-			}
-
-			return API.post("RecommendedAPI", `/`, {
-				...(route == "authenticated" && {
-					headers: {
-						Authorization: "Bearer " + accessToken || null,
+			} else {
+				return API.post("RecommendedAPI", `/`, {
+					...(route == "authenticated" && {
+						headers: {
+							Authorization: "Bearer " + accessToken || null,
+						},
+					}),
+					body: {
+						id: userInfo.username.toString(),
 					},
-				}),
-				body: {
-					id: userInfo.username.toString(),
-				},
-			});
+				});
+			}
 		},
 		{
 			staleTime: 30000,
@@ -51,6 +59,8 @@ export function FetchRecommendedHook() {
 				];
 				return newArr;
 			},
+			refetchOnWindowFocus: false,
+			refetchOnMount: false,
 			enabled: false,
 			onSuccess: (data) => {
 				console.log(data);
@@ -58,7 +68,6 @@ export function FetchRecommendedHook() {
 			onError: (err) => {
 				console.log(err);
 			},
-			refetchOnMount: true,
 		}
 	);
 
@@ -94,10 +103,10 @@ export function FetchRecommendedHook() {
 	);
 
 	useEffect(() => {
-		if (route === "authenticated") {
+		if (route === "authenticated" && favoriteData) {
 			refetch();
 		}
-	}, [route, userData]);
+	}, [route, favoriteData]);
 
 	useEffect(() => {
 		if (isSuccess) {
