@@ -6,8 +6,6 @@ import { Auth } from "aws-amplify";
 import { useQuery } from "react-query";
 export function FetchRecommendedHook() {
 	const { route, getAccessToken, userData } = useContext(UserContext);
-	console.log(userData);
-	console.log(process.env.REACT_APP_GOOGLE_MAP_ENABLED);
 	const { data, error, isLoading, isError, isSuccess, refetch } = useQuery(
 		["userRecommended"],
 		async () => {
@@ -16,14 +14,17 @@ export function FetchRecommendedHook() {
 				.getIdToken()
 				.getJwtToken();
 
-			if (process.env.REACT_APP_RECOMMENDATION_SYSTEM == "KNN") {
-				return API.get("HMEBackend", `/api/recs/1`, {
-					...(route == "authenticated" && {
-						headers: {
-							Authorization: "Bearer " + accessToken || null,
-						},
+			if (
+				process.env.REACT_APP_RECOMMENDATION_SYSTEM == "KNN" &&
+				process.env.REACT_APP_RECOMMENDATION_KNN_URL
+			) {
+				return fetch(process.env.REACT_APP_RECOMMENDATION_KNN_URL, {
+					method: "POST",
+					"Content-Type": "application/json",
+					body: JSON.stringify({
+						property_ids: userData?.favourites?.map((el) => parseInt(el)),
 					}),
-				});
+				}).then((res) => res.json());
 			}
 
 			return API.post("RecommendedAPI", `/`, {
@@ -40,6 +41,9 @@ export function FetchRecommendedHook() {
 		{
 			staleTime: 30000,
 			select: (data) => {
+				if (process.env.REACT_APP_RECOMMENDATION_SYSTEM == "KNN") {
+					return data.recommended_property_ids;
+				}
 				let newArr = [
 					...data.body.map((el) => {
 						return el.property_ID;
@@ -93,7 +97,7 @@ export function FetchRecommendedHook() {
 		if (route === "authenticated") {
 			refetch();
 		}
-	}, [route]);
+	}, [route, userData]);
 
 	useEffect(() => {
 		if (isSuccess) {
