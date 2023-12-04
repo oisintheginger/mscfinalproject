@@ -85,7 +85,7 @@ function Homepage() {
 			<Stack direction={"column"} spacing={1} mt={10} alignItems={"center"}>
 				<Box width={"100%"} display={"flex"} alignItems={"center"}>
 					<Typography textAlign={"center"} variant="landingPage" width={"100%"}>
-						HOUSING MADE EASY
+						RENTING MADE EASY
 					</Typography>
 				</Box>
 				<Box

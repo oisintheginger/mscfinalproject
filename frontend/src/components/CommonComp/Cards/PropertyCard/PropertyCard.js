@@ -71,10 +71,8 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 		}
 	);
 
-	const isFavorited =
-		userData?.favourites.includes(data?.propertyId.toString()) || false;
-
-	console.log(isFavorited);
+	// const isFavorited =
+	// 	userData?.favourites.includes(data?.propertyId.toString()) || false;
 
 	return (
 		<Card elevation={inPopup ? 0 : 6} sx={{ height: "100%" }}>
@@ -93,7 +91,6 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 						"&:hover": {
 							cursor: "pointer",
 						},
-						
 					}}
 					component="img"
 					height="194"

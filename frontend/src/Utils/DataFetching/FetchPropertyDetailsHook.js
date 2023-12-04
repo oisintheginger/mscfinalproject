@@ -76,7 +76,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 					serviceScores: [
 						{
 							id: "transportation_score",
-							displayTitle: "Transportation Score",
+							displayTitle: "Transportation",
 							description: ``,
 							color: "#626d78",
 							score: personalizedIsSuccess
@@ -90,7 +90,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 						},
 						{
 							id: "emergency_score",
-							displayTitle: "Emergency Score",
+							displayTitle: "Emergency",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
 							color: "#3b5880",
@@ -105,7 +105,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 						},
 						{
 							id: "personal_care_score",
-							displayTitle: "Personal Care Score",
+							displayTitle: "Personal Care",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
 							color: "#713e73",
@@ -119,7 +119,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 						},
 						{
 							id: "finance_score",
-							displayTitle: "Finance Score",
+							displayTitle: "Finance",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
 							color: "#5e3b7d",
@@ -132,7 +132,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 						},
 						{
 							id: "retail_score",
-							displayTitle: "Retail Scores",
+							displayTitle: "Retail",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
 							color: "#417a41",
@@ -145,7 +145,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 						},
 						{
 							id: "fitness_score",
-							displayTitle: "Fitness Score",
+							displayTitle: "Fitness",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
 							color: "#8a593a",
@@ -158,7 +158,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 						},
 						{
 							id: "leisure_score",
-							displayTitle: "Leisure Score",
+							displayTitle: "Leisure",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
 							color: "#663031",

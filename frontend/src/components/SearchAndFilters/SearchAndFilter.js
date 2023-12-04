@@ -34,6 +34,8 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
 	const down = useMediaQuery(theme.breakpoints.down("md"));
+
+	const { route } = useContext(UserContext);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 
 	const [saveSearchEnabled, setSaveSearchEnabled] = useState(false);
@@ -67,6 +69,11 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 		setSnackbarAlertOpen(true);
 	};
 	const errorSaveSearch = () => {
+		if (route != "authenticated") {
+			setAlert(SnackbarAlertMap.error_not_logged_in_search);
+			setSnackbarAlertOpen(true);
+			return;
+		}
 		setAlert(SnackbarAlertMap.error_save_search);
 		setSnackbarAlertOpen(true);
 	};
@@ -101,8 +108,6 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 		try {
 			const editedUrl = getEditedURL();
 			const queryParams = new URLSearchParams(editedUrl).toString(); // Convert to a query string
-			// console.log("queryParams:", queryParams);
-			// alert("Search saved!");
 			saveSearchMutation.mutate(queryParams);
 		} catch (error) {
 			console.error("Error preparing search data:", error);
@@ -110,10 +115,15 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	};
 
 	useEffect(() => {
-		if (searchParameters.get("Bathrooms") != null) {
+		if (
+			searchParameters.get("Bathrooms") == null ||
+			route !== "authenticated"
+		) {
+			setSaveSearchEnabled(false);
+		} else {
 			setSaveSearchEnabled(true);
 		}
-	}, [searchParameters]);
+	}, [searchParameters, route]);
 
 	return (
 		<Box sx={{ width: "100%", flexGrow: 1, height: "max-content" }}>

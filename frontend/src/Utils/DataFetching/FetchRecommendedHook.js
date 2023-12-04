@@ -5,7 +5,8 @@ import { UserContext } from "../UserContext/UserContext";
 import { Auth } from "aws-amplify";
 import { useQuery } from "react-query";
 export function FetchRecommendedHook() {
-	const { route, getAccessToken } = useContext(UserContext);
+	const { route, getAccessToken, userData } = useContext(UserContext);
+	console.log(userData);
 	console.log(process.env.REACT_APP_GOOGLE_MAP_ENABLED);
 	const { data, error, isLoading, isError, isSuccess, refetch } = useQuery(
 		["userRecommended"],
