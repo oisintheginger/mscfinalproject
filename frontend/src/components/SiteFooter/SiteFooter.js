@@ -65,7 +65,7 @@ function SiteFooter() {
 				</Link>
 			</Stack>
 			<Typography mt={2} fontSize={12}>
-				© 2023 HousingMadeEasy. All Rights Reserved.
+				© 2023 RentingMadeEasy. All Rights Reserved.
 			</Typography>
 		</Box>
 	);
