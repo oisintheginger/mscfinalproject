@@ -30,15 +30,6 @@ const theme = createTheme({
 		greyDark: {
 			main: "#2E3637",
 		},
-		secureChip: {
-			main: "#3277a8",
-		},
-		nightlifeChip: {
-			main: "#041829",
-		},
-		gymsChip: {
-			main: "#25693c",
-		},
 		fullDark: { main: "#232a2b" },
 	},
 	typography: {
@@ -142,12 +133,18 @@ const theme = createTheme({
 			fontSize: 22,
 			fontWeight: 400,
 		},
+		mapBrowsingMultiPoint: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 24,
+			fontWeight: 600,
+		},
 	},
 	components: {
 		MuiTypography: {
 			defaultProps: {
 				variantMapping: {
 					landingPage: "h1",
+					mapBrowsingMultiPoint: "p",
 				},
 				color: fontDark,
 			},

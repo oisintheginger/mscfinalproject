@@ -32,62 +32,52 @@ function IndividualCount({ count, displayTitle }) {
 
 const countScoreDisplayMap = {
 	transit_stationCount: (count) => {
-		return (
-			<IndividualCount count={count} displayTitle={"Transit Station Count"} />
-		);
+		return <IndividualCount count={count} displayTitle={"Transit Stations"} />;
 	},
 	bus_stationCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Bus Station Count"} />;
+		return <IndividualCount count={count} displayTitle={"Bus Stations"} />;
 	},
 	train_stationCount: (count) => {
-		return (
-			<IndividualCount count={count} displayTitle={"Train Station Count"} />
-		);
+		return <IndividualCount count={count} displayTitle={"Train Stations"} />;
 	},
 	police_stationCount: (count) => {
-		return (
-			<IndividualCount count={count} displayTitle={"Police Station Count"} />
-		);
+		return <IndividualCount count={count} displayTitle={"Police Stations"} />;
 	},
 	fire_stationCount: (count) => {
-		return (
-			<IndividualCount count={count} displayTitle={"Fire Station Count"} />
-		);
+		return <IndividualCount count={count} displayTitle={"Fire Stations"} />;
 	},
 	hospitalCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Hospital Count"} />;
+		return <IndividualCount count={count} displayTitle={"Hospitals"} />;
 	},
 	pharmacyCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Pharmacy Count"} />;
+		return <IndividualCount count={count} displayTitle={"Pharmacies"} />;
 	},
 	beauty_salonCount: (count) => {
-		return (
-			<IndividualCount count={count} displayTitle={"Beauty Salon Count"} />
-		);
+		return <IndividualCount count={count} displayTitle={"Beauty Salons"} />;
 	},
 	bankCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Bank Count"} />;
+		return <IndividualCount count={count} displayTitle={"Banks"} />;
 	},
 	supermarketCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Supermarket Count"} />;
+		return <IndividualCount count={count} displayTitle={"Supermarkets"} />;
 	},
 	gymCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Gym Count"} />;
+		return <IndividualCount count={count} displayTitle={"Gyms"} />;
 	},
 	restaurantCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Restaurant Count"} />;
+		return <IndividualCount count={count} displayTitle={"Restaurants"} />;
 	},
 	night_clubCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Night Club Count"} />;
+		return <IndividualCount count={count} displayTitle={"Night Clubs"} />;
 	},
 	cafeCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Café Count"} />;
+		return <IndividualCount count={count} displayTitle={"Cafés"} />;
 	},
 	parkCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Park Count"} />;
+		return <IndividualCount count={count} displayTitle={"Parks"} />;
 	},
 	barCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Bar Count"} />;
+		return <IndividualCount count={count} displayTitle={"Bars"} />;
 	},
 };
 

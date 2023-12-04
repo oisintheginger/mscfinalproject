@@ -120,6 +120,13 @@ const SnackbarAlertMap = {
 			</Typography>
 		</Alert>
 	),
+	error_not_logged_in_search: (
+		<Alert severity={"error"} variant="filled" sx={{ alignItems: "center" }}>
+			<Typography variant="alertToast" sx={{ color: "white" }}>
+				Must be logged in to save searches
+			</Typography>
+		</Alert>
+	),
 };
 
 export default SnackbarAlertMap;
