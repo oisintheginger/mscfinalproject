@@ -129,7 +129,7 @@ function NavLayout() {
 								flexGrow: 0,
 								alignSelf: "center",
 							}}
-							alt="Housing Made Easy Logo"
+							alt="Renting Made Easy Logo"
 							onClick={() => navigate("/")}
 						></Box>
 						<Tooltip title={"Click here to visit our FAQ page"}>
@@ -236,7 +236,7 @@ function NavLayout() {
 						flexDirection={"column"}
 						justifyContent={"center"}
 					>
-						<Typography variant="h6">My Stuff</Typography>
+						<Typography variant="h6">My Corner</Typography>
 						<Divider />
 						{route !== "authenticated" ? (
 							<Stack mt={3} spacing={1}>
@@ -249,7 +249,7 @@ function NavLayout() {
 									SIGN IN
 								</ButtonStyled>
 								<Typography variant="subtitle1" textAlign={"center"}>
-									Sign in to access your stuff
+									Sign in to access your corner
 								</Typography>
 							</Stack>
 						) : (
@@ -275,7 +275,7 @@ function NavLayout() {
 									onClick={toggleDrawer(false)}
 								>
 									<ListItemText
-										primary="MY SAVED SEARCHES"
+										primary="MY SEARCHES"
 										secondary="View Saved Searches Here"
 									/>
 									<ListItemIcon sx={{ color: fontDark }}>

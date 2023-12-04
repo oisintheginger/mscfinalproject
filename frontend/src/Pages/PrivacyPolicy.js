@@ -11,7 +11,7 @@ function PrivacyPolicy() {
 				<Paper elevation={3} sx={{ padding: 2 }}>
 					<Box>
 						<Typography variant="body2">
-							Housing Made Easy operates the
+							Renting Made Easy operates the
 							https://main.d3k55wy8obq996.amplifyapp.com/ website, which
 							provides the SERVICE.
 						</Typography>

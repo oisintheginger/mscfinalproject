@@ -217,10 +217,10 @@ function UserWeights({
 		{
 			refetchOnWindowFocus: false,
 			onSuccess: (data) => {
-				const nullsPresent = Object.keys(data).some((el) => {
-					return data[el] == null;
+				const isDefault = Object.keys(data).every((el) => {
+					return data[el] == 1;
 				});
-				if (nullsPresent) {
+				if (isDefault) {
 					setState({ options: DefaultOptions });
 					return;
 				}
