@@ -351,3 +351,39 @@ Stephen: Gathering the businesses dataset around the properties
 - Charlotte: [insert hype statement]
 - Fenna: Way toooo go team let’s goooo
 - Oisin: I’m really trying to not have a stroke
+
+---
+
+## Week 11 : 27/11/2023 - 3/12/2023
+
+### What Went Well:
+- Nishant: KNN Model worked locally with results.
+- Sean: We got all the recommendation systems  finished and working with the site 
+- Stephen: Tags have been created and implemented on the frontend
+- Charlotte: Last week of development done, we really pulled together
+- Fenna: We really pulled together for the last week of development
+- Oisin: Pulling everything together (Personalized Scores/Cosine Recommended/KNN recommended)
+
+### What Could Be Improved:
+- Nishant: Faster integration of model KNN with front end
+- Sean: The user testing plan for the recommendation system
+- Stephen: Documenting feedback from casual conversations about RME
+- Charlotte: A bit more clarification on what people want for the recommendation system
+- Fenna: We just gotta keep going for a bit longer
+- Oisin: Just continuing with the User Evaluation
+
+### Action Items for Next Week:
+- Nishant: Integrate model with front end and do user evaluation on model.
+- Sean: Finish up testing, make a backup recommendation system 
+- Stephen: Addressing expert feedback on tags implemented
+- Charlotte: Finish user testing and continue preparation for the final presentation/ report.
+- Fenna: Finishing up by testing and user testing 
+- Oisin: Finish KNN connection / accessibility assessment / feedback implementation
+
+### Additional Comments:
+- Nishant: N/A
+- Sean: Keep on going guys
+- Stephen: N/A
+- Charlotte: N/A
+- Fenna: N/A
+- Oisin: N/A
