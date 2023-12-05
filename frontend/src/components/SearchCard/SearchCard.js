@@ -49,7 +49,7 @@ export function SearchCard({
 					<Grid item xs={5} overflow={"hidden"}>
 						<Box>
 							<Typography
-								variant="h6"
+								variant="cardHeader"
 								sx={{ cursor: "pointer" }}
 								onClick={() => navigator("/browse")}
 								textOverflow={"ellipsis"}
@@ -75,6 +75,7 @@ export function SearchCard({
 									event.stopPropagation(); // Prevents the ButtonBase onClick from being triggered
 									await handleDelete(totalSearch);
 								}}
+								aria-label="Delete Search"
 							>
 								<DeleteIcon />
 							</IconButton>

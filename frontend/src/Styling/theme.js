@@ -58,7 +58,12 @@ const theme = createTheme({
 		cardHeader: {
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 28,
-			fontWeight: 600,
+			fontWeight: 700,
+		},
+		cardSubTitle: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 20,
+			fontWeight: 500,
 		},
 		propertyPrice: {
 			fontFamily: '"Urbanist", sans-serif',

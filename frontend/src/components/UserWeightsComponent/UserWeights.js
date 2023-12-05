@@ -7,6 +7,10 @@ import {
 	Button,
 	IconButton,
 	Grid,
+	ButtonGroup,
+	useMediaQuery,
+	useTheme,
+	Tooltip,
 } from "@mui/material";
 import { useContext, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -28,7 +32,8 @@ import { UpdateWeightsMutation } from "../../Utils/Mutations/ProfileMutation/Pro
 import ButtonStyled from "../CommonComp/Button/ButtonStyled";
 import { UserContext } from "../../Utils/UserContext/UserContext";
 import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
-
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 const OptionDict = {
 	finance: {
 		key: "finance",
@@ -119,8 +124,10 @@ const DefaultOptions = [
 	},
 ];
 
-function Option({ object, provided }) {
+function Option({ object, provided, reorderFunc, ind }) {
 	const [descriptionToggle, setDescriptionToggle] = useState(false);
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("md"));
 
 	return (
 		<Paper
@@ -130,12 +137,12 @@ function Option({ object, provided }) {
 			{...provided.draggableProps}
 			{...provided.dragHandleProps}
 		>
-			<Box width={"250px"} p={1}>
+			<Box width={{ xs: "85vw", md: "30vw" }} p={1}>
 				<Grid container justifyContent={"center"} alignItems={"center"}>
 					<Grid item xs={2}>
 						<DragIndicatorIcon fontSize="medium" />
 					</Grid>
-					<Grid item xs={8}>
+					<Grid item xs={7}>
 						<Box>
 							<Collapse in={!descriptionToggle} orientation="vertical">
 								<Stack
@@ -155,14 +162,59 @@ function Option({ object, provided }) {
 							</Collapse>
 						</Box>
 					</Grid>
-					<Grid item xs={2}>
+					<Grid item xs={1} justifyContent={"center"}>
 						<IconButton
 							onClick={() => {
 								setDescriptionToggle(!descriptionToggle);
 							}}
+							aria-label={`${descriptionToggle ? "Collapse" : "Expand"} ${
+								object.id
+							} Description`}
 						>
-							{descriptionToggle ? <CloseIcon /> : <QuestionMarkIcon />}
+							{descriptionToggle ? (
+								<CloseIcon fontSize="small" />
+							) : (
+								<QuestionMarkIcon fontSize="small" />
+							)}
 						</IconButton>
+					</Grid>
+					<Grid item xs={2} justifyContent={"flex-end"}>
+						<Stack alignItems={"flex-end"}>
+							<Tooltip
+								title={`Move ${object.id} up by 1`}
+								placement={down ? "top" : "right"}
+							>
+								<span>
+									<IconButton
+										sx={{ padding: 0 }}
+										disabled={!(ind > 0)}
+										onClick={() => {
+											ind > 0 && reorderFunc(ind, ind - 1);
+										}}
+										aria-label={`Move ${object.id} up by 1`}
+									>
+										<ArrowDropUpIcon fontSize="large" />
+									</IconButton>
+								</span>
+							</Tooltip>
+							<Tooltip
+								title={`Move ${object.id} down by 1`}
+								placement={down ? "bottom" : "right"}
+							>
+								<span>
+									<IconButton
+										sx={{ padding: 0 }}
+										disabled={!(ind < 6)}
+										onClick={() => {
+											ind < 6 && reorderFunc(ind, ind + 1);
+										}}
+										aria-label={`Move ${object.id} down by 1`}
+									>
+										<ArrowDropDownIcon fontSize="large" />
+									</IconButton>
+								</span>
+							</Tooltip>
+						</Stack>
 					</Grid>
 				</Grid>
 			</Box>
@@ -170,12 +222,19 @@ function Option({ object, provided }) {
 	);
 }
 
-function OptionList(options) {
+function OptionList({ options, reorderFunc }) {
 	return (
 		<>
-			{options.options.map((object, index) => (
+			{options.map((object, index) => (
 				<Draggable draggableId={object.id} index={index} key={object.id}>
-					{(provided) => <Option provided={provided} object={object} />}
+					{(provided) => (
+						<Option
+							provided={provided}
+							object={object}
+							reorderFunc={reorderFunc}
+							ind={index}
+						/>
+					)}
 				</Draggable>
 			))}
 		</>
@@ -269,7 +328,6 @@ function UserWeights({
 
 		setState({ options });
 		setSubmitEnabled(true);
-		console.log(state.options);
 	}
 
 	return (
@@ -280,7 +338,7 @@ function UserWeights({
 				<Typography>Error Getting Weights</Typography>
 			) : (
 				<Stack alignItems={"center"} spacing={2}>
-					<Box mt={2} width={300}>
+					<Box mt={2}>
 						<Paper elevation={4}>
 							<Stack p={1} justifyContent={"center"} spacing={1}>
 								<Typography textAlign={"center"} variant="weightsIndicator">
@@ -298,7 +356,18 @@ function UserWeights({
 												ref={provided.innerRef}
 												{...provided.droppableProps}
 											>
-												<OptionList options={state.options} />
+												<OptionList
+													options={state.options}
+													reorderFunc={(startIndex, endIndex) => {
+														const options = reorder(
+															state.options,
+															startIndex,
+															endIndex
+														);
+														setState({ options });
+														setSubmitEnabled(true);
+													}}
+												/>
 												{provided.placeholder}
 											</Stack>
 										)}

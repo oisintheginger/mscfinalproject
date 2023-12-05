@@ -23,13 +23,14 @@ import {
 	IconButton,
 	useTheme,
 	useMediaQuery,
+	Divider,
 } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import SkeletonCard from "../CommonComp/Cards/SkeletonCard/SkeletonCard";
 import { darkTeal } from "../../Styling/styleConstants";
 
 import { useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ResultGrid from "../ResultsGrid/ResultsGrid";
 import { API } from "aws-amplify";
 import { useQuery } from "react-query";
@@ -342,6 +343,7 @@ function HMEMap({
 function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 	const [points, setPoints] = useState(propertyData ? propertyData : []);
 	const [searchParameters, setSearchParameters] = useSearchParams();
+	const mapResultsGridRef = useRef(null);
 
 	const [pageNum, setPageNum] = useState(
 		searchParameters.get("page") ? parseInt(searchParameters.get("page")) : 1
@@ -447,7 +449,6 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 					</MapContainer>
 				)}
 			</Box>
-
 			{isLoading ? (
 				<Grid container spacing={2} width={"100%"} mt={0.5}>
 					{[1, 1, 1, 1, 1, 1, 1, 1, 1].map((data, key) => {
@@ -468,7 +469,11 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 				</IconButton>
 			) : (
 				<>
-					<ResultGrid id={"results"} propertyData={data} />
+					<ResultGrid
+						id={"results"}
+						propertyData={data}
+						ref={mapResultsGridRef}
+					/>
 					{isSuccess && (
 						<Pagination
 							count={Math.ceil(points?.length / 9) || 10}
@@ -477,7 +482,10 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 							variant="outlined"
 							sx={{ alignSelf: "center" }}
 							page={pageNum}
-							onChange={handlePageChange}
+							onChange={(event, value) => {
+								mapResultsGridRef.current?.scrollIntoView();
+								handlePageChange(event, value);
+							}}
 						/>
 					)}
 				</>

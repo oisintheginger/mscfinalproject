@@ -78,9 +78,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "30eee6d0490b029a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/December/2nd December Saturday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4acc412fc2cb1830",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/December/4th December Monday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -154,7 +178,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/November/30th November Thursday.md",
+                "file": "Daily Diary/December/4th December Monday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -171,7 +195,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/November/30th November Thursday.md",
+                "file": "Daily Diary/December/4th December Monday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -194,7 +218,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/November/30th November Thursday.md"
+                "file": "Daily Diary/December/4th December Monday.md"
               }
             }
           }
@@ -216,13 +240,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2cfe4f8db6d6da78",
+  "active": "4acc412fc2cb1830",
   "lastOpenFiles": [
+    "Daily Diary/December/2nd December Saturday.md",
+    "Daily Diary/December/4th December Monday.md",
+    "Daily Diary/December",
+    "Daily Diary/November/30th November Thursday.md",
     "Daily Diary/November/29th November Wednesday.md",
     "Daily Diary/November/28th November Tuesday.md",
     "Daily Diary/November/27th November Monday.md",
     "Daily Diary/November/25th November Saturday.md",
-    "Daily Diary/November/30th November Thursday.md",
     "Daily Diary/November/23rd November Thursday.md",
     "Daily Diary/November/22nd November Wednesday.md",
     "Daily Diary/November/24th November Friday.md",
@@ -245,8 +272,6 @@
     "Master's Project/UX Work/UX Research/Research Plan.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Questionnaire Strategies.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots/SUSQuestionnaire.png",
-    "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
-    "Master's Project/UX Work/User Testing/LFP Testing Results Report.md",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Master's Project/UX Work/User Testing/F1C7CC20",
     "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
@@ -255,7 +280,6 @@
     "Master's Project/UX Work/User Testing/3BBE3750",
     "Master's Project/UX Work/User Testing/9C6D3750",
     "Master's Project/UX Work/User Testing/080B3750",
-    "Master's Project/UX Work/User Testing/06CA3750",
     "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
     "Master's Project/UX Work/UX Mockups/Tablet Layout.png",
     "Master's Project/UX Work/UX Research/Graphs/PreviousKnowledge.png",

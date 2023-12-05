@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ResultsGrid from "../components/ResultsGrid/ResultsGrid";
 import { useForm, FormProvider } from "react-hook-form";
 import { DEFAULT_FAVORITE_FILTER_VALUES } from "../Utils/filter_constants";
@@ -29,7 +29,8 @@ import { FetchFavoritesHook } from "../Utils/DataFetching/FetchFavoritesHook";
 function Favorites() {
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("sm"));
-	// const [filtersOpen, setFiltersOpen] = useState(false);
+	const resultsRef = useRef(null);
+
 	const [searchParameters, setSearchParameters] = useSearchParams();
 
 	const [pageNum, setPageNum] = useState(
@@ -43,20 +44,6 @@ function Favorites() {
 	const location = useLocation();
 	const [initialBreadcrumbLocation, setInitialBreadcrumbLocation] =
 		useState(null);
-
-	// const methods = useForm({
-	// 	defaultValues: { ...DEFAULT_FAVORITE_FILTER_VALUES },
-	// });
-	// const filterSubmit = (formdata) => {
-	// 	setSearchParameters((params) => {
-	// 		Object.keys(formdata).forEach((key) => {
-	// 			params.set(key, methods.getValues(key));
-	// 		});
-	// 		return params;
-	// 	});
-	// 	methods.reset({}, { keepValues: true });
-	// 	refetch();
-	// };
 
 	const { detailsData, isError, isLoading, refetch } = FetchFavoritesHook();
 
@@ -131,7 +118,7 @@ function Favorites() {
 					setFiltersOpen={setFiltersOpen}
 				/>
 			</FormProvider> */}
-			<Divider />
+			<Divider ref={resultsRef} />
 			<Box
 				minHeight={"55vh"}
 				width={"100%"}
@@ -170,7 +157,10 @@ function Favorites() {
 							variant="outlined"
 							sx={{ alignSelf: "center" }}
 							page={pageNum}
-							onChange={handlePageChange}
+							onChange={(event, val) => {
+								resultsRef.current?.scrollIntoView();
+								handlePageChange(event, val);
+							}}
 							size={down ? "small" : "medium"}
 						/>
 					</>

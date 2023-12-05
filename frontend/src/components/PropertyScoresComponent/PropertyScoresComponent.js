@@ -107,6 +107,7 @@ function Rating({ scoreData }) {
 							onClick={() => {
 								setDescriptionOpen(!descriptionOpen);
 							}}
+							aria-label={`Expand ${scoreData?.displayTitle} Score Details`}
 						>
 							<ExpandLess fontSize="large" />
 						</IconButton>
@@ -188,6 +189,7 @@ function PropertyScoresComponent({ inputData }) {
 						onClick={() => {
 							setDisplayScores(!displayScores);
 						}}
+						aria-label="Property Service Scores"
 					>
 						<ExpandLess fontSize="large" />
 					</IconButton>

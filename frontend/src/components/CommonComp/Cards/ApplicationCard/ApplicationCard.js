@@ -51,7 +51,7 @@ function ApplicationCard({
 					component={"img"}
 					sx={{ height: { xs: "100px", md: "140px" } }}
 					image={data.thumbnail}
-					alt="Image of Rental Listing"
+					alt={`Image of an applied property: ${data?.streetAddress}`}
 				/>
 
 				<CardContent>
