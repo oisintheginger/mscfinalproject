@@ -1,6 +1,6 @@
 import PageTemplate from "./PageTemplate";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import ApplicationCard from "../components/CommonComp/Cards/ApplicationCard/ApplicationCard";
 import {
 	Grid,
@@ -28,6 +28,7 @@ function Applications() {
 	const location = useLocation();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("sm"));
+	const resultsRef = useRef(null);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 	const [pageNum, setPageNum] = useState(
 		searchParameters.get("page") ? parseInt(searchParameters.get("page")) : 1
@@ -110,7 +111,7 @@ function Applications() {
 				currPageBreadcrumb={"My Applications"}
 				prevPage={initialBreadcrumbLocation}
 			>
-				<Divider />
+				<Divider ref={resultsRef} />
 				<Box
 					minHeight={"50vh"}
 					width={"100%"}
@@ -151,7 +152,10 @@ function Applications() {
 								variant="outlined"
 								sx={{ alignSelf: "center" }}
 								page={pageNum}
-								onChange={handlePageChange}
+								onChange={(event, val) => {
+									resultsRef.current?.scrollIntoView();
+									handlePageChange(event, val);
+								}}
 								size={down ? "small" : "medium"}
 							/>
 						</>

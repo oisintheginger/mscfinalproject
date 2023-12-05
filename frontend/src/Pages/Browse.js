@@ -17,7 +17,7 @@ import Pagination from "@mui/material/Pagination";
 import { DEFAULT_FIELD_VALUES, SEARCH_TERM } from "../Utils/filter_constants";
 
 import { useForm, FormProvider } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { useQuery } from "react-query";
@@ -30,6 +30,8 @@ import { useTheme } from "@emotion/react";
 function Browse() {
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("sm"));
+	const resultsGridRef = useRef(null);
+
 	const methods = useForm({
 		defaultValues: { ...DEFAULT_FIELD_VALUES },
 	});
@@ -156,7 +158,7 @@ function Browse() {
 						setFiltersOpen={setFiltersOpen}
 					/>
 				</FormProvider>
-				<Divider />
+				<Divider ref={resultsGridRef} />
 				<ListMapToggle setMapEnabled={setMapEnabled} mapEnabled={mapEnabled} />
 
 				{mapEnabled ? (
@@ -195,7 +197,10 @@ function Browse() {
 								variant="outlined"
 								sx={{ alignSelf: "center" }}
 								page={pageNum}
-								onChange={handlePageChange}
+								onChange={(event, val) => {
+									resultsGridRef.current?.scrollIntoView();
+									handlePageChange(event, val);
+								}}
 								size={down ? "small" : "medium"}
 							/>
 						)}
