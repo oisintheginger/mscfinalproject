@@ -19,10 +19,6 @@ public class DatabaseConfig {
         hikariConfig.setUsername(System.getenv("RDS_USER"));
         hikariConfig.setPassword(System.getenv("RDS_PW"));
         hikariConfig.setMaximumPoolSize(1);
-        hikariConfig.setMinimumIdle(0);
-        hikariConfig.setMaxLifetime(300000); // 5 minutes
-        hikariConfig.setIdleTimeout(60000); // 1 minute
-        hikariConfig.setLeakDetectionThreshold(300000); // Optional: helps detect connection leaks
         return new HikariDataSource(hikariConfig);
     }
 
