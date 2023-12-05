@@ -151,6 +151,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 								endAdornment: (
 									<InputAdornment position="end">
 										<IconButton
+											aria-label="Search Button"
 											onClick={(event) => {
 												methods.handleSubmit(
 													methods.customSubmitBehavior

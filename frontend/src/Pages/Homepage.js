@@ -89,48 +89,65 @@ function Homepage() {
 					</Typography>
 				</Box>
 				<Box
+					component={"label"}
 					width={"100%"}
 					mb={1}
+					form="Search Box"
 					display={"flex"}
 					justifyContent={"center"}
-					component={"form"}
-					onSubmit={handleSubmit(navigateToBrowse)}
 				>
-					<TextField
-						variant="outlined"
-						type="search"
-						sx={{
-							width: { xs: "100%", md: "55%" },
-							"& .MuiInputBase-root": {
-								height: 50,
-								color: "black",
-								"& fieldset": {
-									borderWidth: 1,
-									borderColor: "darkTeal.main",
+					<Box
+						width={"100%"}
+						mb={1}
+						display={"flex"}
+						justifyContent={"center"}
+						component={"form"}
+						onSubmit={handleSubmit(navigateToBrowse)}
+						aria-label="Search Form"
+						aria-labelledby="Searchbox"
+						id="Search Box"
+					>
+						<TextField
+							id="Searchbox"
+							variant="outlined"
+							type="search"
+							sx={{
+								width: { xs: "100%", md: "55%" },
+								"& .MuiInputBase-root": {
+									height: 50,
+									color: "black",
+									"& fieldset": {
+										borderWidth: 1,
+										borderColor: "darkTeal.main",
+									},
+									"&.Mui-focused fieldset": {
+										borderWidth: 2,
+										borderColor: "darkTeal.main",
+									},
+									"&:hover fieldset": {
+										borderWidth: 2,
+										borderColor: "darkTeal.main",
+									},
 								},
-								"&.Mui-focused fieldset": {
-									borderWidth: 2,
-									borderColor: "darkTeal.main",
-								},
-								"&:hover fieldset": {
-									borderWidth: 2,
-									borderColor: "darkTeal.main",
-								},
-							},
-						}}
-						color="darkTeal"
-						placeholder="Search here for your new home"
-						InputProps={{
-							endAdornment: (
-								<InputAdornment position="end">
-									<IconButton onClick={handleSubmit(navigateToBrowse)}>
-										<SearchIcon fontSize="large" />
-									</IconButton>
-								</InputAdornment>
-							),
-						}}
-						{...register("searchString", { required: true })}
-					/>
+							}}
+							aria-label="Searchbox"
+							color="darkTeal"
+							placeholder="Search here for your new home"
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position="end">
+										<IconButton
+											onClick={handleSubmit(navigateToBrowse)}
+											aria-label="Search Button"
+										>
+											<SearchIcon fontSize="large" />
+										</IconButton>
+									</InputAdornment>
+								),
+							}}
+							{...register("searchString", { required: true })}
+						/>
+					</Box>
 				</Box>
 			</Stack>
 
