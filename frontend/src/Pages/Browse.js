@@ -184,6 +184,7 @@ function Browse() {
 					<>
 						<ResultGrid
 							propertyData={data?.data.properties ? data?.data.properties : []}
+							displayTitle="Rentals in this Area"
 							id={"results"}
 						/>
 						{isSuccess && (

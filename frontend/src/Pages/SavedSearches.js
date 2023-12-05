@@ -21,7 +21,7 @@ function SavedSearches() {
 
 	return (
 		<PageTemplate
-			pageTitle="My Saved Searches"
+			pageTitle="My Searches"
 			currPageBreadcrumb={"My Saved Searches"}
 			prevPage={initialBreadcrumbLocation}
 		>

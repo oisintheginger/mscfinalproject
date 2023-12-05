@@ -107,6 +107,7 @@ export function PropertyTags({ tags }) {
 			{tags?.map((el) => {
 				return (
 					<Chip
+						key={el}
 						label={TagMap[el].label}
 						sx={{
 							fontSize: 15,

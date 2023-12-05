@@ -158,6 +158,7 @@ function PropertyPage() {
 			return el.propertyId.toString() == propertyId;
 		}) || false;
 
+	console.log(overallScore);
 	return (
 		<>
 			{isLoading ? (
@@ -335,7 +336,9 @@ function PropertyPage() {
 												maxWidth={"100%"}
 											>
 												<Typography noWrap variant="crimeScoreValue">
-													{overallScore?.toFixed(1) + " / 5"}
+													{(overallScore?.toFixed(0) == 5
+														? overallScore?.toFixed(0)
+														: overallScore?.toFixed(1)) + " / 5"}
 												</Typography>
 												<Box
 													display={"flex"}
@@ -415,7 +418,7 @@ function PropertyPage() {
 														height={"40px"}
 														sx={{
 															background: ColorGradeFunc(
-																5 - data?.overallCrimeScore,
+																data?.overallCrimeScore,
 																5
 															),
 															opacity: "100%",

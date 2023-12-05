@@ -7,7 +7,7 @@ function ContactInformationPage() {
 			<Box width={"100%"} minHeight={"60vh"}>
 				<Paper elevation={3} sx={{ padding: 2 }}>
 					<Typography variant="body1">
-						Housing Made Easy is a small scale student project for a final year
+						Renting Made Easy is a small scale student project for a final year
 						MSc Project for TU059 at TU Dublin. As such, we do not have a
 						dedicated Contact/Support Team. If you want to reach out to us to
 						get involved or otherwise, please reach out to the below contact

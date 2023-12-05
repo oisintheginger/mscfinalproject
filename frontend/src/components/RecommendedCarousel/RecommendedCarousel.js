@@ -31,7 +31,7 @@ export function RecommendedCarousel() {
 				<LoadingSpinner />
 			) : isError ? (
 				<Typography>Error</Typography>
-			) : (
+			) : data?.length > 0 ? (
 				<Carousel
 					sx={{
 						width: "100%",
@@ -67,6 +67,11 @@ export function RecommendedCarousel() {
 						);
 					})}
 				</Carousel>
+			) : (
+				<Typography variant="body1" mt={2}>
+					We have no recommendations for you. Browse the site and add more stuff
+					to your favorites so we can get you some personalized recommendations.
+				</Typography>
 			)}
 		</>
 	);
