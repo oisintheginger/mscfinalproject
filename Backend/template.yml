@@ -23,8 +23,8 @@ Resources:
             Method: any
 
 Outputs:
-  BackendApiDev:
+  BackendApi:
     Description: URL for application
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping'
     Export:
-      Name: BackendApiDev
+      Name: BackendApi
