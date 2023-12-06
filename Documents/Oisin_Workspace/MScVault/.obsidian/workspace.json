@@ -107,9 +107,11 @@
             "id": "97f48d7f81bde844",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf"
+                "file": "Daily Diary/December/6th December Wednesday.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -188,7 +190,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
+                "file": "Daily Diary/December/6th December Wednesday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -205,7 +207,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
+                "file": "Daily Diary/December/6th December Wednesday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -228,7 +230,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf"
+                "file": "Daily Diary/December/6th December Wednesday.md"
               }
             }
           }
@@ -252,6 +254,7 @@
   },
   "active": "97f48d7f81bde844",
   "lastOpenFiles": [
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ProfilePage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/MySearchesPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/MyFavoritesPage.pdf",
@@ -263,7 +266,6 @@
     "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/ProfilePage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/MySearchesPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/MyFavoritesPage.pdf",
-    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/MyApplicationsPage.pdf",
     "Daily Diary/December/6th December Wednesday.md",
     "Daily Diary/December/5th December Tuesday.md",
     "Daily Diary/December/2nd December Saturday.md",

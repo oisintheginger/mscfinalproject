@@ -5,4 +5,6 @@
 
 
 > [!afternoon] Afternoon
-> - Task Here
+> - Performance Evaluation  (~1 hour)
+> - Tableau and Excel Analysis of Results (~2.5 hours)
+> - 
