@@ -40,7 +40,7 @@ class PropertiesControllerTest {
     }
 
     @Test
-    public void findAll_200() {
+    void findAll_200() {
         List<QuickViewProperty> mockProperties = new ArrayList<>();
         mockProperties.add(new QuickViewProperty());
         when(propertyService.getAllQVProperties()).thenReturn(mockProperties);
@@ -54,7 +54,7 @@ class PropertiesControllerTest {
     }
 
     @Test
-    public void batchQVP_200() {
+    void batchQVP_200() {
         List<Long> ids = Arrays.asList(1L, 2L, 3L);
         List<QuickViewProperty> mockProperties = new ArrayList<>();
         mockProperties.add(new QuickViewProperty()); // Add mock QuickViewProperty objects
@@ -69,7 +69,7 @@ class PropertiesControllerTest {
     }
 
     @Test
-    public void findQVProperty_200() {
+    void findQVProperty_200() {
         // Setup
         Long id = 1L;
         QuickViewProperty mockProperty = new QuickViewProperty();
@@ -84,7 +84,7 @@ class PropertiesControllerTest {
     }
 
     @Test
-    public void findPropertyById_200() {
+    void findPropertyById_200() {
         // Setup
         Integer id = 1;
         DetailedProperty mockProperty = new DetailedProperty();
@@ -102,7 +102,7 @@ class PropertiesControllerTest {
     }
 
     @Test
-    public void getAllLocations_200() {
+    void getAllLocations_200() {
         // Setup
         List<GeoLocation> locations = Arrays.asList(new GeoLocation(), new GeoLocation());
         when(propertyService.getGeoLocation()).thenReturn(locations);

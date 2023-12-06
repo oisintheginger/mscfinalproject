@@ -52,7 +52,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void findUser_200() {
+    void findUser_200() {
 
         User mockUser = new User();
         when(request.getHeader(anyString())).thenReturn("validToken");
@@ -69,7 +69,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void findResource_search_200() {
+    void findResource_search_200() {
 
         String resource = "s";
         List<Search> mockResource = new ArrayList<>();
@@ -88,7 +88,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void findResource_fave_200() {
+    void findResource_fave_200() {
 
         String resource = "f";
         List<Favourite> mockResource = new ArrayList<>();
@@ -107,7 +107,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void findResource_application_200() {
+    void findResource_application_200() {
 
         String resource = "a";
         List<Enquiry> mockResource = new ArrayList<>();
@@ -126,7 +126,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void findResource_weights_200() {
+    void findResource_weights_200() {
 
         String resource = "w";
         UserWeights mockResource = new UserWeights();
@@ -144,7 +144,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void addResource_search_200() throws Exception {
+    void addResource_search_200() throws Exception {
 
         String resource = "s";
         String searchString = "exampleSearch";
@@ -163,7 +163,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void addResource_fave_200() throws Exception {
+    void addResource_fave_200() throws Exception {
 
         String resource = "f";
         String propertyId = "exampleId";
@@ -182,7 +182,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void addResource_app_200() throws Exception {
+    void addResource_app_200() throws Exception {
 
         String resource = "a";
         String propertyId = "exampleId";
@@ -203,7 +203,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void addResource_weights_200() throws Exception {
+    void addResource_weights_200() throws Exception {
 
         String resource = "w";
         String leisure = "example";
@@ -235,7 +235,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateEmail_200() throws Exception {
+    void updateEmail_200() throws Exception {
         String email = "exampleEmail";
 
         when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
@@ -251,7 +251,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateResources_weights_200() throws Exception {
+    void updateResources_weights_200() throws Exception {
 
         String resource = "w";
         String leisure = "example";
@@ -282,7 +282,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateResources_search_200() throws Exception {
+    void updateResources_search_200() throws Exception {
 
         String resource = "s";
         String searchString = "exampleSearch";
@@ -304,7 +304,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void removeResource_search_200() throws Exception {
+    void removeResource_search_200() throws Exception {
         String resource = "s";
         String searchString = "exampleSearch";
 
@@ -322,7 +322,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void removeResource_fave_200() throws Exception {
+    void removeResource_fave_200() throws Exception {
         String resource = "f";
         String propertyId = "propertyId";
 
@@ -341,7 +341,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void removeResource_weights_200() throws Exception {
+    void removeResource_weights_200() throws Exception {
         String resource = "w";
         String leisure = "";
         String personal_care = "";
@@ -364,7 +364,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void removeUser_200() throws Exception {
+    void removeUser_200() throws Exception {
         when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
 
         mockMvc.perform(delete("/api/user/remove")

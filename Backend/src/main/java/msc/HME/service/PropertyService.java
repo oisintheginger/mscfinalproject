@@ -1,6 +1,5 @@
 package msc.HME.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import msc.HME.binding.DetailedProperty;
 import msc.HME.binding.GeoLocation;
 import msc.HME.binding.QuickViewProperty;
@@ -8,13 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
-import software.amazon.awssdk.core.SdkBytes;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.lambda.LambdaClient;
-import software.amazon.awssdk.services.lambda.model.InvokeRequest;
-import software.amazon.awssdk.services.lambda.model.InvokeResponse;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -208,31 +201,6 @@ public class PropertyService {
                 
                 """;
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(GeoLocation.class));
-    }
-
-    // access scores lambda function to retrieve personal services score per neighbourhood
-    public List<Double> getPersonalScores(String userId, String propertyId) throws JsonProcessingException {
-
-        LambdaClient lambdaClient = LambdaClient.builder()
-                .region(Region.of("eu-west-1"))
-                .build();
-
-        String functionName = "UpdateUserScores";
-        String payload = "{\"id\": \"" + userId + "\", \"propertyID\": \" " + propertyId + "\"}";
-
-        InvokeRequest request = InvokeRequest.builder()
-                .functionName(functionName)
-                .payload(SdkBytes.fromUtf8String(payload))
-                .build();
-
-        InvokeResponse response = lambdaClient.invoke(request);
-        String responseString = response.payload().asUtf8String();
-        String[] splitResponse = responseString.split("[:,}]");
-        List<Double> result = new ArrayList<>();
-        for(int i = 5; i < splitResponse.length; i += 2) {
-            result.add(Double.valueOf(splitResponse[i].trim()));
-        }
-        return result;
     }
 
     public void registerClick(String userId, Integer propertyId) {
