@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,18 +41,20 @@ public class UserControllerTest {
 
     private MockMvc mockMvc;
 
+    private final String userId = "validUserId";
+
     @BeforeEach
     void setup() {
         //Initialize mocks and inject them into the tested class
         userService = mock(UserService.class);
         userController = new UserController(userService);
-//        request = mock(HttpServletRequest.class);
-//        when(request.getHeader("Authorization")).thenReturn("validJWT");
+        MockitoAnnotations.openMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
     @Test
     public void findUser_200() {
-        String userId = "validUserId";
+
         User mockUser = new User();
         when(request.getHeader(anyString())).thenReturn("validToken");
         when(userService.validateJWT(request)).thenReturn(userId);
@@ -67,7 +71,7 @@ public class UserControllerTest {
 
     @Test
     public void findResource_search_200() {
-        String userId = "validUserId";
+
         String resource = "s";
         List<Search> mockResource = new ArrayList<>();
         mockResource.add(new Search());
@@ -86,7 +90,7 @@ public class UserControllerTest {
 
     @Test
     public void findResource_fave_200() {
-        String userId = "validUserId";
+
         String resource = "f";
         List<Favourite> mockResource = new ArrayList<>();
         mockResource.add(new Favourite());
@@ -105,7 +109,7 @@ public class UserControllerTest {
 
     @Test
     public void findResource_application_200() {
-        String userId = "validUserId";
+
         String resource = "a";
         List<Enquiry> mockResource = new ArrayList<>();
         mockResource.add(new Enquiry());
@@ -124,7 +128,7 @@ public class UserControllerTest {
 
     @Test
     public void findResource_weights_200() {
-        String userId = "validUserId";
+
         String resource = "w";
         UserWeights mockResource = new UserWeights();
         when(request.getHeader(anyString())).thenReturn("validToken");
@@ -142,17 +146,11 @@ public class UserControllerTest {
 
     @Test
     public void addResource_search_200() throws Exception {
-        String userId = "validUserId";
+
         String resource = "s";
         String searchString = "exampleSearch";
 
-        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
-
-        verify(userService).validateJWT(request);
-        verify(userService).addSearch(userId, searchString);
-
-        when(request.getHeader("Authorization")).thenReturn("validJWT");
-        when(userService.validateJWT(request)).thenReturn(userId);
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
 
         mockMvc.perform(post("/api/user/new/" + resource)
                         .param("searchString", searchString)
@@ -161,30 +159,222 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Search was added"));
 
-        verify(userService).validateJWT(request);
+        verify(userService).validateJWT(any(HttpServletRequest.class));
         verify(userService).addSearch(userId, searchString);
+    }
+
+    @Test
+    public void addResource_fave_200() throws Exception {
+
+        String resource = "f";
+        String propertyId = "exampleId";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(post("/api/user/new/" + resource)
+                        .param("propertyId", propertyId)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Favourite was added"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).addFaves(userId, propertyId);
+    }
+
+    @Test
+    public void addResource_app_200() throws Exception {
+
+        String resource = "a";
+        String propertyId = "exampleId";
+        String message = "exampleMsg";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(post("/api/user/new/" + resource)
+                        .param("propertyId", propertyId)
+                        .param("message", message)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Application was added"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).addApplication(userId, propertyId, message);
+    }
+
+    @Test
+    public void addResource_weights_200() throws Exception {
+
+        String resource = "w";
+        String leisure = "example";
+        String personal_care = "example";
+        String retail = "example";
+        String fitness = "example";
+        String finance = "example";
+        String transportation = "example";
+        String emergency = "example";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(post("/api/user/new/" + resource)
+                        .param("leisure", leisure)
+                        .param("personal_care", personal_care)
+                        .param("retail", retail)
+                        .param("fitness", fitness)
+                        .param("finance", finance)
+                        .param("transportation", transportation)
+                        .param("emergency", emergency)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Weights were added"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).updateWeights(userId, leisure, personal_care, retail, fitness, finance, transportation, emergency);
 
     }
 
     @Test
-    public void addResource_fave_200() {
+    public void updateEmail_200() throws Exception {
+        String email = "exampleEmail";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(patch("/api/user/update/email")
+                        .param("email", email)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).updateEmail(userId, email);
+    }
+
+    @Test
+    public void updateResources_weights_200() throws Exception {
+
+        String resource = "w";
+        String leisure = "example";
+        String personal_care = "example";
+        String retail = "example";
+        String fitness = "example";
+        String finance = "example";
+        String transportation = "example";
+        String emergency = "example";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(patch("/api/user/update/" + resource)
+                        .param("leisure", leisure)
+                        .param("personal_care", personal_care)
+                        .param("retail", retail)
+                        .param("fitness", fitness)
+                        .param("finance", finance)
+                        .param("transportation", transportation)
+                        .param("emergency", emergency)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Weights were updated"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).updateWeights(userId, leisure, personal_care, retail, fitness, finance, transportation, emergency);
+    }
+
+    @Test
+    public void updateResources_search_200() throws Exception {
+
+        String resource = "s";
+        String searchString = "exampleSearch";
+        String newSearchString = "exampleNewSearch";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(patch("/api/user/update/" + resource)
+                        .param("searchString", searchString)
+                        .param("newSearchString", newSearchString)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Search was updated"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).addSearch(userId, newSearchString);
+        verify(userService).removeSearch(userId, searchString);
+    }
+
+    @Test
+    public void removeResource_search_200() throws Exception {
+        String resource = "s";
+        String searchString = "exampleSearch";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(delete("/api/user/remove/" + resource)
+                        .param("searchString", searchString)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Search was removed"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).removeSearch(userId, searchString);
+    }
+
+    @Test
+    public void removeResource_fave_200() throws Exception {
+        String resource = "f";
+        String propertyId = "propertyId";
+
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(delete("/api/user/remove/" + resource)
+                        .param("propertyId", propertyId)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Favourite was removed"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).removeFave(userId, propertyId);
 
     }
 
     @Test
-    public void addResource_app_200() {
+    public void removeResource_weights_200() throws Exception {
+        String resource = "w";
+        String leisure = "";
+        String personal_care = "";
+        String retail = "";
+        String fitness = "";
+        String finance = "";
+        String transportation = "";
+        String emergency = "";
 
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
+
+        mockMvc.perform(delete("/api/user/remove/" + resource)
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("User weights were removed"));
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).updateWeights(userId, leisure, personal_care, retail, fitness, finance, transportation, emergency);
     }
 
     @Test
-    public void addResource_weights_200() {
+    public void removeUser_200() throws Exception {
+        when(userService.validateJWT(any(HttpServletRequest.class))).thenReturn(userId);
 
+        mockMvc.perform(delete("/api/user/remove")
+                        .header("Authorization", "validJWT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        verify(userService).validateJWT(any(HttpServletRequest.class));
+        verify(userService).deleteUser(userId);
     }
-
-    // addResource
-    // updateEmail
-    // updateResources
-    // removeResources
-    // removeUser
 
 }
