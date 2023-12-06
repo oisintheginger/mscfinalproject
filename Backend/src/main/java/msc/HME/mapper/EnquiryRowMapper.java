@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import msc.HME.binding.*;
+import msc.HME.exception.RowMapperProcessingException;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -23,8 +24,7 @@ public class EnquiryRowMapper implements RowMapper<List<Enquiry>>{
             enquiryList.removeIf(enquiry -> Objects.equals(enquiry.getMessage(), "1"));
             return enquiryList;
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new RowMapperProcessingException("Error processing JSON data", e);
         }
-
     }
 }

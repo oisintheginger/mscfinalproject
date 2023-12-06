@@ -1,14 +1,12 @@
 package msc.HME.service;
 
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
 import com.amazonaws.services.cognitoidp.model.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-// ...
 
 @Service
 public class CognitoService {
@@ -17,7 +15,7 @@ public class CognitoService {
 
     public CognitoService() {
         this.cognitoClient = AWSCognitoIdentityProviderClientBuilder.standard()
-                .withRegion("eu-west-1") // Specify your Cognito region
+                .withRegion(Regions.EU_WEST_1)
                 .build();
     }
 
@@ -26,7 +24,6 @@ public class CognitoService {
                 .withName("email")
                 .withValue(newEmail);
 
-        // Create an attribute to mark the email as verified OPTION
         AttributeType emailVerifiedAttribute = new AttributeType()
                 .withName("email_verified")
                 .withValue("true");
@@ -34,7 +31,7 @@ public class CognitoService {
         AdminUpdateUserAttributesRequest updateRequest = new AdminUpdateUserAttributesRequest()
                 .withUserPoolId("eu-west-1_VBubqBEr4")
                 .withUsername(username)
-                .withUserAttributes(emailAttribute, emailVerifiedAttribute); // Add both attributes to the request
+                .withUserAttributes(emailAttribute, emailVerifiedAttribute);
 
         try {
             cognitoClient.adminUpdateUserAttributes(updateRequest);
