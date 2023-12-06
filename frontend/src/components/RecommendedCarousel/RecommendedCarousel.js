@@ -4,12 +4,13 @@ import { FetchRecommendedHook } from "../../Utils/DataFetching/FetchRecommendedH
 import Carousel from "react-material-ui-carousel";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
+import CircleIcon from "@mui/icons-material/Circle";
 
 export function RecommendedCarousel() {
 	const { data, error, isLoading, isError, isSuccess } = FetchRecommendedHook();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
-	const perSlide = down ? 1 : 3;
+	const perSlide = down ? 4 : 3;
 	const [slidesCount, setSlidesCount] = useState(0);
 
 	const [slidesArr, setSlideArr] = useState([]);
@@ -43,6 +44,7 @@ export function RecommendedCarousel() {
 					swipe={down}
 					navButtonsAlwaysVisible={!down}
 					navButtonsAlwaysInvisible={down}
+					IndicatorIcon={<CircleIcon fontSize="small" sx={{ m: 0.5 }} />}
 				>
 					{slidesArr?.map((slide, ind) => {
 						return (
@@ -57,7 +59,7 @@ export function RecommendedCarousel() {
 								<Grid container spacing={1} justifyContent={"center"}>
 									{slide.map((el, num) => {
 										return (
-											<Grid item xs={12 / perSlide} key={ind + num}>
+											<Grid item xs={down ? 12 : 4} key={ind + num}>
 												<RecommendationCard data={el} />
 											</Grid>
 										);

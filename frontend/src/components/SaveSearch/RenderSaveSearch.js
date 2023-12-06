@@ -1,8 +1,6 @@
-import Paper from "@mui/material/Paper";
 import {
 	Pagination,
 	Box,
-	ButtonBase,
 	Stack,
 	Slide,
 	Snackbar,
@@ -10,17 +8,14 @@ import {
 	useMediaQuery,
 	Divider,
 } from "@mui/material";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
-import { Grid, Typography, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useQuery, useQueryClient } from "react-query";
-import { API } from "aws-amplify";
+import { Typography } from "@mui/material";
+import { useQueryClient } from "react-query";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { SearchCard } from "../SearchCard/SearchCard";
 import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
-import { UserContext } from "../../Utils/UserContext/UserContext";
 import { DeleteHandlerConstructor } from "../../Utils/Mutations/SearchMutation/SearchMutation";
 import SnackbarAlertMap from "../../Utils/AlertMap";
 
@@ -88,14 +83,14 @@ export default function RenderSaveSearch({
 	};
 
 	const paginatedSearches = savedSearchesData?.slice(
-		(pageNum - 1) * itemsPerPage,
-		pageNum * itemsPerPage
+		((pageNum || 1) - 1) * itemsPerPage,
+		(pageNum || 1) * itemsPerPage
 	);
 
 	useEffect(() => {
 		if (searchParameters.get("page") != null) return;
 		setSearchParameters((params) => {
-			params.set("page", pageNum);
+			params.set("page", pageNum || 1);
 			return params;
 		});
 		savedSearchesRefetch();
@@ -103,11 +98,13 @@ export default function RenderSaveSearch({
 	}, []);
 
 	useEffect(() => {
-		setSearchParameters((params) => {
-			params.set("page", pageNum);
-			return params;
-		});
-		savedSearchesRefetch();
+		if (searchParameters.get("page") != pageNum && pageNum) {
+			setSearchParameters((params) => {
+				params.set("page", pageNum);
+				return params;
+			});
+			savedSearchesRefetch();
+		}
 		return () => {};
 	}, [pageNum]);
 
@@ -148,7 +145,7 @@ export default function RenderSaveSearch({
 											totalSearch={el.search}
 											handleDelete={handleDelete}
 											savedSearchRefresh={(data) => {
-												console.log(data);
+												// console.log(data);
 												savedSearchesRefetch();
 												queryClient.invalidateQueries("userSearches");
 											}}

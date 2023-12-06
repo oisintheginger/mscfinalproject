@@ -61,7 +61,7 @@ import { ExpandRightIcon } from "../../Icons/HMEIcons";
 import GoogleLogo from "./../../Icons/google_on_white.png";
 import Leaflet from "leaflet";
 import { useQueries } from "react-query";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import MapToggles from "./MapToggles";

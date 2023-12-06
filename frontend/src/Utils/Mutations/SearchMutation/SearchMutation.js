@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../UserContext/UserContext";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useMutation } from "react-query";
 
 export function RemoveFromSaveSearchMutation({

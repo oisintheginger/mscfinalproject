@@ -1,17 +1,6 @@
-import {
-	Divider,
-	Stack,
-	Typography,
-	ToggleButtonGroup,
-	Box,
-	Grid,
-	Drawer,
-	SwipeableDrawer,
-	useMediaQuery,
-} from "@mui/material";
+import { Divider, Grid, useMediaQuery } from "@mui/material";
 import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
-import LeafletMap from "../components/MapComponent/LeafletMap";
 import ResultGrid from "../components/ResultsGrid/ResultsGrid";
 import Pagination from "@mui/material/Pagination";
 import { DEFAULT_FIELD_VALUES, SEARCH_TERM } from "../Utils/filter_constants";
@@ -21,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { useQuery } from "react-query";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 import ListMapToggle from "../components/ListMapToggle/ListMapToggle";
 import MapBrowsing from "../components/MapComponent/MapBrowsing";
@@ -123,7 +112,7 @@ function Browse() {
 
 	useEffect(() => {
 		mapRefetch();
-	}, searchParameters);
+	}, [searchParameters]);
 
 	useEffect(() => {
 		if (searchParameters.get("page") != null) return;
@@ -131,22 +120,21 @@ function Browse() {
 			params.set("page", pageNum);
 			return params;
 		});
-		return () => [];
 	}, []);
 
 	useEffect(() => {
-		setSearchParameters((params) => {
-			params.set("page", pageNum);
-			return params;
-		});
+		if (searchParameters.get("page") != pageNum && pageNum) {
+			setSearchParameters((params) => {
+				params.set("page", pageNum);
+				return params;
+			});
+		}
 		refetch();
-		return () => [];
 	}, [pageNum]);
 
 	useEffect(() => {
 		setPageNum(parseInt(searchParameters.get("page")));
 		refetch();
-		return () => [];
 	}, [searchParameters]);
 
 	return (

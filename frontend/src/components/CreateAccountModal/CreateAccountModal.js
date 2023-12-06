@@ -1,13 +1,5 @@
-import {
-	Modal,
-	Box,
-	Typography,
-	Paper,
-	Button,
-	IconButton,
-} from "@mui/material";
+import { Modal, Box, Typography, Paper, IconButton } from "@mui/material";
 import { CloseIcon } from "../../Icons/HMEIcons";
-import { useState } from "react";
 const contentContainerStyle = {
 	position: "absolute",
 	top: "50%",

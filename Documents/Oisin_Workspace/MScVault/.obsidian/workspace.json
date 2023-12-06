@@ -102,9 +102,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "97f48d7f81bde844",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/December/4th December Monday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -240,10 +252,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4acc412fc2cb1830",
+  "active": "97f48d7f81bde844",
   "lastOpenFiles": [
-    "Daily Diary/December/2nd December Saturday.md",
+    "Daily Diary/December/6th December Wednesday.md",
+    "Daily Diary/December/5th December Tuesday.md",
     "Daily Diary/December/4th December Monday.md",
+    "Daily Diary/December/2nd December Saturday.md",
     "Daily Diary/December",
     "Daily Diary/November/30th November Thursday.md",
     "Daily Diary/November/29th November Wednesday.md",
@@ -269,8 +283,6 @@
     "Daily Diary/November",
     "Daily Diary/October",
     "Master's Project/UX Work/UX Research/Survey Results.md",
-    "Master's Project/UX Work/UX Research/Research Plan.md",
-    "Master's Project/UX Work/UX Research/UserTestingMethodologies/Questionnaire Strategies.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots/SUSQuestionnaire.png",
     "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
     "Master's Project/UX Work/User Testing/F1C7CC20",

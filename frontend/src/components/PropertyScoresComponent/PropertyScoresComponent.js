@@ -6,7 +6,6 @@ import { useState } from "react";
 import {
 	Box,
 	Collapse,
-	Container,
 	Divider,
 	IconButton,
 	Paper,
@@ -31,53 +30,87 @@ function IndividualCount({ count, displayTitle }) {
 }
 
 const countScoreDisplayMap = {
-	transit_stationCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Transit Stations"} />;
+	transit_stationCount: (count, key) => {
+		return (
+			<IndividualCount
+				count={count}
+				displayTitle={"Transit Stations"}
+				key={key}
+			/>
+		);
 	},
-	bus_stationCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Bus Stations"} />;
+	bus_stationCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Bus Stations"} key={key} />
+		);
 	},
-	train_stationCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Train Stations"} />;
+	train_stationCount: (count, key) => {
+		return (
+			<IndividualCount
+				count={count}
+				displayTitle={"Train Stations"}
+				key={key}
+			/>
+		);
 	},
-	police_stationCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Police Stations"} />;
+	police_stationCount: (count, key) => {
+		return (
+			<IndividualCount
+				count={count}
+				displayTitle={"Police Stations"}
+				key={key}
+			/>
+		);
 	},
-	fire_stationCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Fire Stations"} />;
+	fire_stationCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Fire Stations"} key={key} />
+		);
 	},
-	hospitalCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Hospitals"} />;
+	hospitalCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Hospitals"} key={key} />
+		);
 	},
-	pharmacyCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Pharmacies"} />;
+	pharmacyCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Pharmacies"} key={key} />
+		);
 	},
-	beauty_salonCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Beauty Salons"} />;
+	beauty_salonCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Beauty Salons"} key={key} />
+		);
 	},
-	bankCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Banks"} />;
+	bankCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Banks"} key={key} />;
 	},
-	supermarketCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Supermarkets"} />;
+	supermarketCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Supermarkets"} key={key} />
+		);
 	},
-	gymCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Gyms"} />;
+	gymCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Gyms"} key={key} />;
 	},
-	restaurantCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Restaurants"} />;
+	restaurantCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Restaurants"} key={key} />
+		);
 	},
-	night_clubCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Night Clubs"} />;
+	night_clubCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Night Clubs"} key={key} />
+		);
 	},
-	cafeCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Cafés"} />;
+	cafeCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Cafés"} key={key} />;
 	},
-	parkCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Parks"} />;
+	parkCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Parks"} key={key} />;
 	},
-	barCount: (count) => {
-		return <IndividualCount count={count} displayTitle={"Bars"} />;
+	barCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Bars"} key={key} />;
 	},
 };
 
@@ -166,7 +199,7 @@ function Rating({ scoreData }) {
 						justifyContent={{ xs: "flex-start", md: "space-evenly" }}
 					>
 						{Object.keys(scoreData?.counts)?.map((el, ind) => {
-							return countScoreDisplayMap[el](scoreData?.counts[el]);
+							return countScoreDisplayMap[el](scoreData?.counts[el], ind);
 						})}
 					</Stack>
 				</Box>

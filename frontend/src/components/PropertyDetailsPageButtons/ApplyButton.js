@@ -3,7 +3,7 @@ import { ApplicationIcon } from "../../Icons/HMEIcons";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 export function ApplyButton({ action = () => {}, down = false }) {
 	return (
-		<Tooltip title="Apply to rent Property">
+		<Tooltip title="Apply Now">
 			<Button
 				onClick={() => {
 					action();
@@ -32,7 +32,7 @@ export function ApplyButton({ action = () => {}, down = false }) {
 
 export function ViewApplication({ action = () => {}, down = false }) {
 	return (
-		<Tooltip title="View Application on My Applications">
+		<Tooltip title="View Application">
 			<Button
 				onClick={() => {
 					action();
@@ -53,6 +53,7 @@ export function ViewApplication({ action = () => {}, down = false }) {
 					marginRight: 2,
 					height: 45,
 				}}
+				aria-label="View Application"
 				endIcon={<ChevronRightIcon fontSize="large" />}
 			>
 				View Application

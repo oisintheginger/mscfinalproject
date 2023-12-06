@@ -4,20 +4,13 @@ import {
 	Box,
 	Stack,
 	Typography,
-	IconButton,
-	Button,
-	capitalize,
-	Chip,
-	Paper,
 	Modal,
 	Snackbar,
-	Alert,
 	Slide,
 	useTheme,
 	useMediaQuery,
-	Tooltip,
 } from "@mui/material";
-import { ApplicationIcon, FavoriteIcon, MapIcon } from "../Icons/HMEIcons";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 import PropertyQuickInfoTag from "../components/PropertyQuickInfoTag/PropertyQuickInfoTag";
 import PageSection from "../components/CommonComp/PageSection/PageSection";
@@ -25,9 +18,6 @@ import PropertyDetailMap from "../components/MapComponent/PropertyDetailMap";
 import Carousel from "../components/Carousel/Carousel";
 import { useContext, useEffect, useRef, useState } from "react";
 import ApplyModal from "../components/CreateApplicationModal/ApplyModal";
-
-import { useQuery } from "react-query";
-import { API } from "aws-amplify";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { Authenticator, View } from "@aws-amplify/ui-react";
@@ -47,9 +37,6 @@ import {
 } from "../components/PropertyDetailsPageButtons/ApplyButton";
 import { CreateApplicationMutation } from "../Utils/Mutations/ApplicationMutation/ApplicationMutation";
 import { ColorGradeFunc } from "../Utils/ColorGradientFunc";
-import StarOutline from "@mui/icons-material/StarOutline";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
 import AlertMap from "../Utils/AlertMap";
 import { FetchPropertyDetailsHook } from "../Utils/DataFetching/FetchPropertyDetailsHook";
@@ -158,7 +145,7 @@ function PropertyPage() {
 			return el.propertyId.toString() == propertyId;
 		}) || false;
 
-	console.log(overallScore);
+	// console.log(overallScore);
 	return (
 		<>
 			{isLoading ? (
@@ -253,7 +240,7 @@ function PropertyPage() {
 										{`${data?.streetAddress}, ${data?.zipcode}`}
 									</Typography>
 									<ButtonStyled
-										endIcon={<MapIcon />}
+										endIcon={<MapOutlinedIcon fontSize="large" />}
 										sx={{ boxShadow: 3 }}
 										onClick={() => {
 											mapRef.current?.scrollIntoView();

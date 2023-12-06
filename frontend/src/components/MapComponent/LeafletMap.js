@@ -1,21 +1,9 @@
-import {
-	MapContainer,
-	TileLayer,
-	useMapEvent,
-	Marker,
-	Popup,
-	useMap,
-	useMapEvents,
-	Tooltip,
-} from "react-leaflet";
-import Leaflet, { point, LatLng, latLngBounds, LatLngBounds } from "leaflet";
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import Leaflet, { LatLng, LatLngBounds } from "leaflet";
 
 import {
 	Box,
 	Button,
-	CardHeader,
-	Container,
-	Link,
 	Stack,
 	Typography,
 	Grid,
@@ -23,16 +11,14 @@ import {
 	IconButton,
 	useTheme,
 	useMediaQuery,
-	Divider,
 } from "@mui/material";
-import CircleIcon from "@mui/icons-material/Circle";
 import SkeletonCard from "../CommonComp/Cards/SkeletonCard/SkeletonCard";
 import { darkTeal } from "../../Styling/styleConstants";
 
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import ResultGrid from "../ResultsGrid/ResultsGrid";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useQuery } from "react-query";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { renderToString } from "react-dom/server";
@@ -41,16 +27,16 @@ const markerIcon = new Leaflet.Icon({
 	iconUrl: require("../../Icons/MapPointIcon.png"),
 	iconAnchor: [14, 28],
 });
-const gridPointIcon = new Leaflet.Icon({
-	iconUrl: require("../../Icons/GridPointIcon.png"),
-	iconAnchor: [0, 0],
-	popupAnchor: [0, 0],
-});
+// const gridPointIcon = new Leaflet.Icon({
+// 	iconUrl: require("../../Icons/GridPointIcon.png"),
+// 	iconAnchor: [0, 0],
+// 	popupAnchor: [0, 0],
+// });
 
 function RenderPoints({
 	pointsArray,
 	markerClickHandler = () => {
-		console.log("no click handler supplied");
+		// console.log("no click handler supplied");
 	},
 }) {
 	return (
@@ -77,7 +63,7 @@ function MultiPointMarker({
 	pointsArray,
 	markerClickHandler,
 	zoomToBounds = () => {
-		console.log("No multi marker click handler given");
+		// console.log("No multi marker click handler given");
 	},
 }) {
 	const [explode, setExplode] = useState(false);
@@ -377,7 +363,7 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 			refetchOnMount: false,
 			refetchOnWindowFocus: false,
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 		}
 	);

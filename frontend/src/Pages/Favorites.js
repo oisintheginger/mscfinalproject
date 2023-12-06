@@ -1,27 +1,10 @@
-import FilterFields from "../components/CommonComp/FilterFields/FilterFields";
 import PageTemplate from "./PageTemplate";
-import { FilterIcon } from "../Icons/HMEIcons";
-import {
-	Button,
-	Typography,
-	Stack,
-	Box,
-	Divider,
-	Pagination,
-	Grid,
-} from "@mui/material";
+import { Typography, Box, Divider, Pagination, Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useRef, useState } from "react";
-import ResultsGrid from "../components/ResultsGrid/ResultsGrid";
-import { useForm, FormProvider } from "react-hook-form";
-import { DEFAULT_FAVORITE_FILTER_VALUES } from "../Utils/filter_constants";
-import { API } from "aws-amplify";
-import { useAuthenticator } from "@aws-amplify/ui-react";
-import { useQuery } from "react-query";
 import { useSearchParams, useLocation } from "react-router-dom";
-import { useEffect, useContext } from "react";
-import { UserContext } from "../Utils/UserContext/UserContext";
+import { useEffect } from "react";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
 import { FetchFavoritesHook } from "../Utils/DataFetching/FetchFavoritesHook";
@@ -65,11 +48,13 @@ function Favorites() {
 		return () => {};
 	}, []);
 	useEffect(() => {
-		setSearchParameters((params) => {
-			params.set("page", pageNum);
-			return params;
-		});
-		refetch();
+		if (searchParameters.get("page") != pageNum && pageNum) {
+			setSearchParameters((params) => {
+				params.set("page", pageNum);
+				return params;
+			});
+			refetch();
+		}
 		return () => {};
 	}, [pageNum]);
 
@@ -78,7 +63,10 @@ function Favorites() {
 		refetch();
 	}, [searchParameters]);
 
-	const paginatedResults = detailsData?.slice(9 * (pageNum - 1), 9 * pageNum);
+	const paginatedResults = detailsData?.slice(
+		9 * ((pageNum || 1) - 1),
+		9 * (pageNum || 1)
+	);
 
 	return (
 		<PageTemplate

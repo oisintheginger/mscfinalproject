@@ -107,7 +107,7 @@ function NavLayout() {
 					>
 						<Button
 							size="large"
-							aria-label="menu"
+							aria-label="Main Menu"
 							onClick={toggleDrawer(true)}
 							sx={{ color: fontDark, height: "100%" }}
 							startIcon={<MenuIcon sx={{ color: fontDark }} />}

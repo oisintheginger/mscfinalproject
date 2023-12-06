@@ -1,6 +1,5 @@
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useMutation } from "react-query";
-import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useContext } from "react";
 import { UserContext } from "../../UserContext/UserContext";
 
@@ -23,7 +22,7 @@ export function SendRecommendationFeedback(
 			});
 		},
 		onMutate: (val) => {
-			console.log(val);
+			// console.log(val);
 		},
 		onError: (err) => {
 			errorCallback(err);

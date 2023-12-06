@@ -1,6 +1,6 @@
 import PageTemplate from "./PageTemplate";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import ApplicationCard from "../components/CommonComp/Cards/ApplicationCard/ApplicationCard";
 import {
 	Grid,
@@ -13,15 +13,10 @@ import {
 	useTheme,
 	useMediaQuery,
 } from "@mui/material";
-import { useQuery } from "react-query";
-import { useAuthenticator } from "@aws-amplify/ui-react";
-import { API } from "aws-amplify";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
 import ButtonOutlined from "../components/CommonComp/Button/ButtonOutlined";
 import DeleteButton from "../components/CommonComp/Button/DeleteButton";
 import { useSearchParams } from "react-router-dom";
-import usePagination from "../Utils/usePagination/usePagination";
-import { UserContext } from "../Utils/UserContext/UserContext";
 import { FetchApplicationsHook } from "../Utils/DataFetching/FetchApplicationsHook";
 
 function Applications() {
@@ -69,11 +64,13 @@ function Applications() {
 	}, []);
 
 	useEffect(() => {
-		setSearchParameters((params) => {
-			params.set("page", pageNum);
-			return params;
-		});
-		refetch();
+		if (searchParameters.get("page") != pageNum && pageNum) {
+			setSearchParameters((params) => {
+				params.set("page", pageNum);
+				return params;
+			});
+			refetch();
+		}
 		return () => {};
 	}, [pageNum]);
 
@@ -101,8 +98,8 @@ function Applications() {
 	};
 
 	const paginatedResults = detailsData?.slice(
-		0 + 9 * (pageNum - 1),
-		9 + 9 * (pageNum - 1)
+		0 + 9 * ((pageNum || 1) - 1),
+		9 + 9 * ((pageNum || 1) - 1)
 	);
 	return (
 		<>

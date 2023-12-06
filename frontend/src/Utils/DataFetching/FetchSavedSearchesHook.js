@@ -1,8 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../UserContext/UserContext";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useQuery } from "react-query";
-import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export function useFetchSavedSearchesHook() {
 	const { getAccessToken } = useContext(UserContext);
@@ -19,7 +18,7 @@ export function useFetchSavedSearchesHook() {
 		},
 		{
 			onSuccess: (data) => {
-				console.log("success", data);
+				// console.log("success", data);
 			},
 			select: (data) => {
 				return data;

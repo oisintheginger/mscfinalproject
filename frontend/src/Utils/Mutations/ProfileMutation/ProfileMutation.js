@@ -1,5 +1,4 @@
-import { useAuthenticator } from "@aws-amplify/ui-react";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useContext } from "react";
 import { useMutation } from "react-query";
 import { UserContext } from "../../UserContext/UserContext";
@@ -36,11 +35,11 @@ export function UpdateWeightsMutation(
 			});
 		},
 		onSuccess: (data) => {
-			console.log("success updating weights");
+			// console.log("success updating weights");
 			successCallback(data);
 		},
 		onMutate: (d) => {
-			console.log(d);
+			// console.log(d);
 		},
 	});
 }

@@ -1,50 +1,30 @@
-import React, { useState, useContext, useRef } from "react";
-import { styled } from "@mui/material/styles";
+import React, { useState, useContext } from "react";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import {
-	Grid,
-	ListItemIcon,
-	ListItemText,
-	Menu,
-	MenuItem,
-	MenuList,
-	Popover,
-	Box,
-	Tooltip,
-	Divider,
-	CardActions,
-} from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import { Stack, Chip, Typography, CardActionArea } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography, CardActionArea } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
-import { UserContext } from "../../../../Utils/UserContext/UserContext";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import {
-	AddToFavoritesMutation,
-	RemoveFromFavoritesMutation,
-} from "../../../../Utils/Mutations/FavoriteMutation/FavoritesMutation";
+// import {
+// 	AddToFavoritesMutation,
+// 	RemoveFromFavoritesMutation,
+// } from "../../../../Utils/Mutations/FavoriteMutation/FavoritesMutation";
 import { PropertyTags } from "../../PropertyTags/PropertyTags";
-import ButtonOutlined from "../../Button/ButtonOutlined";
-import ChevronRight from "@mui/icons-material/ChevronRight";
-const ExpandMore = styled((props) => {
-	const { expand, ...other } = props;
-	return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-	marginLeft: "auto",
-	transition: theme.transitions.create("transform", {
-		duration: theme.transitions.duration.shortest,
-	}),
-}));
+// const ExpandMore = styled((props) => {
+// 	const { expand, ...other } = props;
+// 	return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+// 	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+// 	marginLeft: "auto",
+// 	transition: theme.transitions.create("transform", {
+// 		duration: theme.transitions.duration.shortest,
+// 	}),
+// }));
 
 function PropertyCard({ data, key, inPopup = false, children }) {
-	const { userData, handleRefresh, route } = useContext(UserContext);
 	const [expanded, setExpanded] = useState(false);
-
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("md"));
 	const navigator = useNavigate();
 	const location = useLocation();
 
@@ -52,24 +32,24 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 		setExpanded(!expanded);
 	};
 
-	const { mutate: addToFavorites } = AddToFavoritesMutation(
-		data?.propertyId,
-		() => {
-			handleRefresh();
-		},
-		(err) => {
-			console.log(err);
-		}
-	);
-	const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
-		data?.propertyId,
-		() => {
-			handleRefresh();
-		},
-		(err) => {
-			console.log(err);
-		}
-	);
+	// const { mutate: addToFavorites } = AddToFavoritesMutation(
+	// 	data?.propertyId,
+	// 	() => {
+	// 		handleRefresh();
+	// 	},
+	// 	(err) => {
+	// 		console.log(err);
+	// 	}
+	// );
+	// const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+	// 	data?.propertyId,
+	// 	() => {
+	// 		handleRefresh();
+	// 	},
+	// 	(err) => {
+	// 		console.log(err);
+	// 	}
+	// );
 
 	// const isFavorited =
 	// 	userData?.favourites.includes(data?.propertyId.toString()) || false;
@@ -91,11 +71,16 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 						"&:hover": {
 							cursor: "pointer",
 						},
+						width: {
+							xs: "100%",
+						},
 					}}
 					component="img"
-					height="194"
+					height={down ? "120" : "194"}
 					image={data?.images ? data.images[0] : null}
 					alt={`Image of Property: ${data?.streetAddress}`}
+					loading="lazy"
+					placeholder="/CardImagePlaceholder.png"
 				/>
 
 				<CardContent>

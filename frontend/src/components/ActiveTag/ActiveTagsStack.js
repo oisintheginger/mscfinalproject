@@ -3,7 +3,6 @@ import { Stack } from "@mui/material";
 import ActiveTag from "./ActiveTag";
 
 import {
-	SEARCH_TERM,
 	BATHROOM_COUNT,
 	BEDROOM_COUNT,
 	MAX_PRICE,

@@ -1,11 +1,11 @@
-import { Button, Box, Tooltip } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useState } from "react";
 export function AddFavoriteButton({ action = () => {}, down = false }) {
 	return (
-		<Tooltip title={"Add to your Favorites"}>
+		<Tooltip title={"Add to Favorites"}>
 			<Button
 				variant="outlined"
 				sx={{
@@ -30,7 +30,7 @@ export function AddFavoriteButton({ action = () => {}, down = false }) {
 					action();
 				}}
 			>
-				Favorite
+				Add to Favorite
 			</Button>
 		</Tooltip>
 	);

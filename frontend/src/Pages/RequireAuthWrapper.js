@@ -1,9 +1,6 @@
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
-import { Auth } from "aws-amplify";
-import { useEffect } from "react";
-
 function RequireAuthWrapper({ children }) {
 	const location = useLocation();
 	const auth = useAuthenticator((context) => [context.route]);

@@ -1,5 +1,5 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useMutation } from "react-query";
 import { useContext } from "react";
 import { UserContext } from "../../UserContext/UserContext";
@@ -19,7 +19,7 @@ export function DeleteAccountMutation() {
 			});
 		},
 		onError: (err) => {
-			console.log(err);
+			// console.log(err);
 		},
 		onMutate: (inp) => {
 			// signOut();

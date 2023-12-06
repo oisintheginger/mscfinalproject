@@ -1,8 +1,7 @@
-import { API } from "aws-amplify";
-import { useContext, useEffect, useState } from "react";
-import { useAuthenticator } from "@aws-amplify/ui-react";
+import { API } from "@aws-amplify/api";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../UserContext/UserContext";
-import { Auth } from "aws-amplify";
+import { Auth } from "@aws-amplify/auth";
 import { useQuery } from "react-query";
 import { FetchFavoritesHook } from "./FetchFavoritesHook";
 export function FetchRecommendedHook() {
@@ -63,10 +62,10 @@ export function FetchRecommendedHook() {
 			refetchOnMount: false,
 			enabled: false,
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 			onError: (err) => {
-				console.log(err);
+				// console.log(err);
 			},
 		}
 	);
@@ -94,10 +93,10 @@ export function FetchRecommendedHook() {
 		{
 			enabled: false,
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 			onError: (err) => {
-				console.log(err);
+				// console.log(err);
 			},
 		}
 	);

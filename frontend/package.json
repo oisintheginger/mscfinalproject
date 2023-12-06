@@ -28,6 +28,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-leaflet": "^4.2.1",
     "react-material-ui-carousel": "^3.4.2",
     "react-query": "^3.39.3",

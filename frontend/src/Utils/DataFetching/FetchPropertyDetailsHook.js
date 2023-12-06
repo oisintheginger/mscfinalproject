@@ -1,9 +1,8 @@
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../UserContext/UserContext";
 import { useQuery } from "react-query";
-import { Auth } from "aws-amplify";
-import { json } from "react-router-dom";
+import { Auth } from "@aws-amplify/auth";
 
 export function FetchPropertyDetailsHook({ propertyId }) {
 	const { getAccessToken, route } = useContext(UserContext);
@@ -41,7 +40,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 				return formatted;
 			},
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 			staleTime: 0,
 		}
@@ -180,7 +179,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 				return addedScores;
 			},
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 		}
 	);

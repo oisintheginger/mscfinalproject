@@ -1,17 +1,11 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../UserContext/UserContext";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useQuery } from "react-query";
-import { useAuthenticator } from "@aws-amplify/ui-react";
 import { FETCH_FAVORITES_QUERY_KEY } from "../QueryConstants/QueryKeyConstants";
 
 export function FetchFavoritesHook() {
 	const { getAccessToken } = useContext(UserContext);
-
-	const { route, user } = useAuthenticator((context) => [
-		context.route,
-		context.user,
-	]);
 
 	const {
 		isSuccess,

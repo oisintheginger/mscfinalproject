@@ -1,14 +1,6 @@
 import Grid from "@mui/material/Grid";
 import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
-import {
-	Box,
-	Stack,
-	Typography,
-	Divider,
-	Button,
-	useTheme,
-} from "@mui/material";
-import { SortIcon } from "../../Icons/HMEIcons";
+import { Box, Typography, Divider, useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { forwardRef } from "react";
 
