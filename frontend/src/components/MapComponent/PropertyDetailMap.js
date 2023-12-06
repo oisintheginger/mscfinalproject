@@ -469,6 +469,9 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 								onClick={() => {
 									setTogglesOpen(!togglesOpen);
 								}}
+								aria-label={
+									togglesOpen ? "Close Map Toggles" : "Open Map Toggles"
+								}
 							>
 								<ExpandLessIcon fontSize="large" />
 							</IconButton>
