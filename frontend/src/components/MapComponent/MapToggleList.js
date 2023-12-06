@@ -25,7 +25,9 @@ function MapToggleList({ features, displayTitle }) {
 					setCollapse(!collapse);
 				}}
 				sx={{ cursor: "pointer" }}
-				aria-label={"Expand " + displayTitle + " Map Toggles"}
+				aria-label={
+					(collapse ? "Collapse " : "Expand ") + displayTitle + " Map Toggles"
+				}
 			>
 				<Typography component="div" id={displayTitle} variant="menuSubCategory">
 					{displayTitle}
@@ -34,7 +36,13 @@ function MapToggleList({ features, displayTitle }) {
 					animate={{ x: 0, y: 0, rotate: collapse ? 180 : 90 }}
 					transition={{ type: "spring" }}
 				>
-					<IconButton>
+					<IconButton
+						aria-label={
+							(collapse ? "Collapse " : "Expand ") +
+							displayTitle +
+							" Map Toggles"
+						}
+					>
 						<ExpandLessIcon fontSize="medium" />
 					</IconButton>
 				</motion.div>

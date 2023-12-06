@@ -10,7 +10,7 @@ import {
 	useMediaQuery,
 	Divider,
 } from "@mui/material";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router";
 import { Grid, Typography, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -32,6 +32,7 @@ export default function RenderSaveSearch({
 	savedSearchesError = false,
 }) {
 	const { user } = useAuthenticator((context) => [context.user]);
+	const resultsRef = useRef(null);
 	const [searchParameters, setSearchParameters] = useSearchParams();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
@@ -81,7 +82,7 @@ export default function RenderSaveSearch({
 	});
 
 	//Pagination
-	const itemsPerPage = 5;
+	const itemsPerPage = 6;
 	const handleChangePage = (event, newPage) => {
 		setPageNum(newPage);
 	};
@@ -123,7 +124,7 @@ export default function RenderSaveSearch({
 
 	return (
 		<>
-			<Divider />
+			<Divider ref={resultsRef} />
 			<Box minHeight={"55vh"}>
 				{savedSearchesIsLoading ? (
 					<LoadingSpinner />
@@ -166,7 +167,10 @@ export default function RenderSaveSearch({
 								boundaryCount={1}
 								siblingCount={downPagination ? 1 : 3}
 								page={pageNum}
-								onChange={handleChangePage}
+								onChange={(event, val) => {
+									resultsRef.current?.scrollIntoView();
+									handleChangePage(event, val);
+								}}
 								variant="outlined"
 								size={downPagination ? "small" : "medium"}
 							/>

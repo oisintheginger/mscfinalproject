@@ -95,7 +95,7 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 					component="img"
 					height="194"
 					image={data?.images ? data.images[0] : null}
-					alt="Property Image"
+					alt={`Image of Property: ${data?.streetAddress}`}
 				/>
 
 				<CardContent>
@@ -107,10 +107,10 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 										{"$" + data?.price + "/mon"}
 									</Typography>
 								</Stack>
-								<Typography variant="subtitle1" noWrap>
+								<Typography variant="cardSubTitle" noWrap>
 									{data?.streetAddress}
 								</Typography>
-								<Typography variant="subtitle1" noWrap>
+								<Typography variant="cardSubTitle" noWrap>
 									{"Zip Code: " + data?.zipcode}
 								</Typography>
 							</Stack>
