@@ -29,9 +29,14 @@ public class PropertiesController {
 
     @GetMapping
     public ResponseEntity<Object> findAll(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "50") int size) { // default size hard coded for now
-        List<QuickViewProperty> properties = propertyService.getAllQVProperties();
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "50") Integer size,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) Integer minBed,
+            @RequestParam(required = false) Integer minBath
+    ) {
+        List<QuickViewProperty> properties = propertyService.getAllQVProperties(minPrice, maxPrice, minBed, minBath);
         int startIndex = (page - 1) * size;
         int endIndex = Math.min(startIndex + size, properties.size());
         List<QuickViewProperty> paginatedProperties = properties.subList(startIndex, endIndex);
@@ -42,7 +47,8 @@ public class PropertiesController {
     }
 
     @GetMapping("/batch")
-    public ResponseEntity<Object> batchQVP(@RequestParam List<Long> ids) {
+    public ResponseEntity<Object> batchQVP(
+            @RequestParam List<Long> ids) {
         if (CollectionUtils.isEmpty(ids)) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
