@@ -1,4 +1,4 @@
-import { Divider, Grid, useMediaQuery } from "@mui/material";
+import { Box, Divider, Grid, Typography, useMediaQuery } from "@mui/material";
 import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
 import ResultGrid from "../components/ResultsGrid/ResultsGrid";
@@ -188,15 +188,39 @@ function Browse() {
 						})}
 					</Grid>
 				) : isError ? (
-					<p>error:{error.request.status}</p>
+					<Box
+						display={"flex"}
+						flexDirection={"column"}
+						alignItems={"center"}
+						minHeight={"50vh"}
+						justifyContent={"center"}
+					>
+						<Typography
+							textAlign={"center"}
+							variant="systemState"
+							color={"#414c4d"}
+						>
+							Looks like we are having server trouble.
+						</Typography>
+						<Typography
+							textAlign={"center"}
+							variant="systemState"
+							color={"#414c4d"}
+						>
+							Try refresh the page, or check back later.
+						</Typography>
+					</Box>
 				) : (
-					<>
-						<ResultGrid
-							propertyData={data?.data.properties ? data?.data.properties : []}
-							displayTitle="Rentals in this Area"
-							id={"results"}
-						/>
-						{isSuccess && (
+					isSuccess &&
+					(data?.data.properties.length > 0 ? (
+						<>
+							<ResultGrid
+								propertyData={
+									data?.data.properties ? data?.data.properties : []
+								}
+								displayTitle="Rentals in this Area"
+								id={"results"}
+							/>
 							<Pagination
 								count={totalPages - 1 || 1}
 								boundaryCount={1}
@@ -210,8 +234,31 @@ function Browse() {
 								}}
 								size={down ? "small" : "medium"}
 							/>
-						)}
-					</>
+						</>
+					) : (
+						<Box
+							display={"flex"}
+							flexDirection={"column"}
+							alignItems={"center"}
+							minHeight={"50vh"}
+							justifyContent={"center"}
+						>
+							<Typography
+								textAlign={"center"}
+								variant="systemState"
+								color={"#414c4d"}
+							>
+								Looks like there are no properties that match your criteria.
+							</Typography>
+							<Typography
+								textAlign={"center"}
+								variant="systemState"
+								color={"#414c4d"}
+							>
+								Try broaden your search for more results!
+							</Typography>
+						</Box>
+					))
 				)}
 			</PageTemplate>
 		</>

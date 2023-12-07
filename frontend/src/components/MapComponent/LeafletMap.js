@@ -461,13 +461,27 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 					})}
 				</Grid>
 			) : isError ? (
-				<IconButton
-					onClick={() => {
-						refetch();
-					}}
+				<Box
+					display={"flex"}
+					flexDirection={"column"}
+					alignItems={"center"}
+					justifyContent={"center"}
 				>
-					<RefreshIcon fontSize="large" />
-				</IconButton>
+					<Typography
+						textAlign={"center"}
+						variant="systemState"
+						color={"#414c4d"}
+					>
+						Looks like we are having server trouble.
+					</Typography>
+					<IconButton
+						onClick={() => {
+							refetch();
+						}}
+					>
+						<RefreshIcon fontSize="large" />
+					</IconButton>
+				</Box>
 			) : (
 				<>
 					<ResultGrid

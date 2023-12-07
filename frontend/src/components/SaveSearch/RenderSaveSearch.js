@@ -128,7 +128,28 @@ export default function RenderSaveSearch({
 				{savedSearchesIsLoading ? (
 					<LoadingSpinner />
 				) : savedSearchesIsError ? (
-					<>error</>
+					<Box
+						display={"flex"}
+						flexDirection={"column"}
+						alignItems={"center"}
+						minHeight={"50vh"}
+						justifyContent={"center"}
+					>
+						<Typography
+							textAlign={"center"}
+							variant="systemState"
+							color={"#414c4d"}
+						>
+							Looks like we are having server trouble.
+						</Typography>
+						<Typography
+							textAlign={"center"}
+							variant="systemState"
+							color={"#414c4d"}
+						>
+							Try refresh the page, or check back later.
+						</Typography>
+					</Box>
 				) : savedSearchesData?.length > 0 ? (
 					<>
 						<Box minHeight={"60vh"}>
@@ -177,9 +198,21 @@ export default function RenderSaveSearch({
 						</Box>
 					</>
 				) : (
-					<Typography textAlign={"center"}>
-						No Saved Searches. Start Browsing!
-					</Typography>
+					<Box
+						display={"flex"}
+						flexDirection={"column"}
+						alignItems={"center"}
+						minHeight={"50vh"}
+						justifyContent={"center"}
+					>
+						<Typography
+							textAlign={"center"}
+							variant="systemState"
+							color={"#414c4d"}
+						>
+							No Saved Searches. Start Browsing!
+						</Typography>
+					</Box>
 				)}
 			</Box>
 			<Snackbar
