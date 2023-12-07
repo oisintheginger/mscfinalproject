@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,7 +31,7 @@ public class User {
     public User() {
     }
 
-    public User(String id, String email, ArrayList<Search> searches, ArrayList<Favourite> favourites, UserWeights weights, ArrayList<Enquiry> applications) {
+    public User(String id, String email, List<Search> searches, List<Favourite> favourites, UserWeights weights, List<Enquiry> applications) {
         this.id = id;
         this.email = email;
         this.searches = searches;

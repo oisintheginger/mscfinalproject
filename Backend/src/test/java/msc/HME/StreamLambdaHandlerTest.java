@@ -33,7 +33,7 @@ public class StreamLambdaHandlerTest {
     }
 
     @Test
-    public void ping_streamRequest_respondsWithHello() {
+    void ping_streamRequest_respondsWithHello() {
         InputStream requestStream = new AwsProxyRequestBuilder("/ping", HttpMethod.GET)
                                             .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
                                             .buildStream();
@@ -55,7 +55,7 @@ public class StreamLambdaHandlerTest {
     }
 
     @Test
-    public void invalidResource_streamRequest_responds404() {
+    void invalidResource_streamRequest_responds404() {
         InputStream requestStream = new AwsProxyRequestBuilder("/pong", HttpMethod.GET)
                                             .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
                                             .buildStream();

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import msc.HME.binding.*;
+import msc.HME.exception.RowMapperProcessingException;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class SearchRowMapper implements RowMapper<List<Search>>{
             searchList.removeIf(search -> Objects.equals(search.getSearch(), "1"));
             return searchList;
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new RowMapperProcessingException("Error processing JSON data", e);
         }
 
     }

@@ -7,6 +7,7 @@ import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
 import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
+import msc.HME.exception.SpringBootInitializationException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,22 +16,12 @@ import java.io.OutputStream;
 
 
 public class StreamLambdaHandler implements RequestStreamHandler {
-    private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
+    private static final SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
     static {
         try {
             handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(Application.class);
-            // For applications that take longer than 10 seconds to start, use the async builder:
-            // handler = new SpringBootProxyHandlerBuilder<AwsProxyRequest>()
-            //                    .defaultProxy()
-            //                    .asyncInit()
-            //                    .springBootApplication(Application.class)
-            //                    .buildAndInitialize();
-        } catch (ContainerInitializationException e) {
-            // if we fail here. We re-throw the exception to force another cold start
-            e.printStackTrace();    // refactoring? logger.error("An error occurred during initialization: ", e);
-            throw new RuntimeException("Could not initialize Spring Boot application", e);
-        } catch (ExceptionInInitializerError e) {
-            e.printStackTrace();
+        } catch (ContainerInitializationException | ExceptionInInitializerError e) {
+            throw new SpringBootInitializationException("Could not initialize Spring Boot application", e);
         }
     }
 

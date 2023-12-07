@@ -181,12 +181,12 @@ public class UserService {
         if (result.getStatusCode().is2xxSuccessful()) {
             //update user table
             String sql = """
-                    UPDATE user
-                    SET
-                        email = ?
-                    WHERE
-                            id = ?
-                    """;
+                UPDATE user
+                SET
+                    email = ?
+                WHERE
+                        id = ?
+                """;
             int rows = jdbcTemplate.update(sql, email, id);
             if (rows == 0) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Email could not be completely removed");
@@ -199,7 +199,6 @@ public class UserService {
         // delete from cognito
         ResponseEntity<Object> result = cognitoService.deleteUser(id);
         if (result.getStatusCode().is2xxSuccessful()) {
-            System.out.println("hereeee");
             //delete from user table
             String sql = "DELETE FROM user_interactions WHERE id=?";
             int rows = jdbcTemplate.update(sql, id);

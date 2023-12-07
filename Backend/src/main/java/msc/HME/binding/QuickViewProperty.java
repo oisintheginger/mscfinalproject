@@ -1,7 +1,6 @@
 package msc.HME.binding;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -29,9 +28,6 @@ public class QuickViewProperty {
     @JsonProperty
     private Integer bedrooms;
 
-//    @JsonProperty
-//    private List<String> tags;
-
     @JsonProperty
     private String streetAddress;
 
@@ -42,7 +38,7 @@ public class QuickViewProperty {
     private String overview;
 
     @JsonProperty
-    private ArrayList<String> images;
+    private List<String> images;
 
     @JsonProperty
     private List<String> tags;
@@ -50,7 +46,7 @@ public class QuickViewProperty {
     // Default constructor
     public QuickViewProperty() {}
 
-    public QuickViewProperty(Long propertyId, Double longitude, Double latitude, BigDecimal price, Integer bathrooms, Integer bedrooms, String streetAddress, String zipcode, String overview, ArrayList<String> images, List<String> tags) {
+    public QuickViewProperty(Long propertyId, Double longitude, Double latitude, BigDecimal price, Integer bathrooms, Integer bedrooms, String streetAddress, String zipcode, String overview, List<String> images, List<String> tags) {
         this.propertyId = propertyId;
         this.longitude = longitude;
         this.latitude = latitude;

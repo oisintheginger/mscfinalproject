@@ -22,11 +22,15 @@ public class UserController {
         this.userService = userService;
     }
 
+    private final String unauthenticated = "Unauthorized request";
+    private final String notSpecified = "Resource not correctly specified";
+    private final String notUpdated = "Resource could not be updated";
+
     @GetMapping()
     public ResponseEntity<Object> findUser(HttpServletRequest request) {
         String id = userService.validateJWT(request);
         if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(unauthenticated);
         }
         try {
             User result = userService.getUser(id);
@@ -42,7 +46,7 @@ public class UserController {
     public ResponseEntity<Object> findResource(@PathVariable String resource, HttpServletRequest request) {
         String id = userService.validateJWT(request);
         if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(unauthenticated);
         }
         try {
             if (Objects.equals(resource, "s")) {
@@ -58,7 +62,7 @@ public class UserController {
                 Object result = userService.findWeights(id);
                 return ResponseEntity.status(HttpStatus.OK).body(result);
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(notSpecified);
             }
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not found");
@@ -84,7 +88,7 @@ public class UserController {
     {
         String id = userService.validateJWT(request);
         if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(unauthenticated);
         }
         try {
             if (Objects.equals(resource, "s") && !searchString.isBlank()) {
@@ -100,12 +104,12 @@ public class UserController {
                 userService.updateWeights(id, leisure, personal_care, retail, fitness, finance, transportation, emergency);
                 return ResponseEntity.status(HttpStatus.OK).body("Weights were added");
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(notSpecified);
             }
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
         } catch(NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -115,12 +119,12 @@ public class UserController {
     public ResponseEntity<Object> updateEmail(@RequestParam String email, HttpServletRequest request) {
         String id = userService.validateJWT(request);
         if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(unauthenticated);
         }
         try {
             return userService.updateEmail(id, email);
         } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -139,7 +143,7 @@ public class UserController {
                                                   @RequestParam(required = false ) String emergency) {
         String id = userService.validateJWT(request);
         if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(unauthenticated);
         }
         try {
             if (Objects.equals(resource, "s") && searchString != null && newSearchString != null) {
@@ -150,12 +154,12 @@ public class UserController {
                 userService.updateWeights(id, leisure, personal_care, retail, fitness, finance, transportation, emergency);
                 return ResponseEntity.status(HttpStatus.OK).body("Weights were updated");
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(notSpecified);
             }
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
         } catch(NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -167,7 +171,7 @@ public class UserController {
                                                  @RequestParam(required = false ) String propertyId) {
         String id = userService.validateJWT(request);
         if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(unauthenticated);
         }
         try {
             if (Objects.equals(resource, "s") && !searchString.isBlank()) {
@@ -180,7 +184,7 @@ public class UserController {
                 userService.updateWeights(id, "", "", "", "", "", "", "");
                 return ResponseEntity.status(HttpStatus.OK).body("User weights were removed");
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Resource not correctly specified");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(notSpecified);
             }
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not removed");
@@ -195,12 +199,12 @@ public class UserController {
     public Object removeUser(HttpServletRequest request) {
         String id = userService.validateJWT(request);
         if (id==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized request");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(unauthenticated);
         }
         try {
             return userService.deleteUser(id);
         } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
