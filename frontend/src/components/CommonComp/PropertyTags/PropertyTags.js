@@ -8,6 +8,8 @@ import NightlifeIcon from "@mui/icons-material/Nightlife";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
 import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
 import LocalLaundryServiceIcon from "@mui/icons-material/LocalLaundryService";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+
 const TagMap = {
 	"safe area": {
 		label: "Secure",
@@ -90,6 +92,15 @@ const TagMap = {
 			bgcolor: "#f5e9f4",
 		},
 		icon: <LocalLaundryServiceIcon fontSize="medium" color="#296601" />,
+	},
+	"Multiple Services": {
+		label: "Multiple Services",
+		style: {
+			borderColor: "#014745",
+			color: "#014745",
+			bgcolor: "#c2edec",
+		},
+		icon: <AutoAwesomeIcon fontSize="medium" color="#296601" />,
 	},
 };
 
