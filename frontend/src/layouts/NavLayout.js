@@ -95,6 +95,7 @@ function NavLayout() {
 	};
 
 	const handlePopoverClose = () => {
+		setMenuOpen(false);
 		setAnchorEl(null);
 	};
 
