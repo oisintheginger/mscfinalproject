@@ -1,8 +1,8 @@
-export const MIN_PRICE = "Min Price";
-export const MAX_PRICE = "Max Price";
+export const MIN_PRICE = "minPrice";
+export const MAX_PRICE = "maxPrice";
 export const SEARCH_TERM = "searchString";
-export const BEDROOM_COUNT = "Beds";
-export const BATHROOM_COUNT = "Bathrooms";
+export const BEDROOM_COUNT = "minBed";
+export const BATHROOM_COUNT = "minBath";
 export const SHOW_HOUSES = "Houses";
 export const SHOW_FLAT = "Flats/Apartments/Condos";
 export const SHOW_TOWNHOUSE = "Townhouses";

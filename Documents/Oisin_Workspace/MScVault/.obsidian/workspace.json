@@ -109,14 +109,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Diary/December/6th December Wednesday.md",
+                "file": "Daily Diary/December/7th December Thursday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "de29d5477326ddc2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -190,7 +202,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/December/6th December Wednesday.md",
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -207,7 +219,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/December/6th December Wednesday.md",
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -230,7 +242,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/December/6th December Wednesday.md"
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md"
               }
             }
           }
@@ -252,8 +264,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "97f48d7f81bde844",
+  "active": "de29d5477326ddc2",
   "lastOpenFiles": [
+    "Daily Diary/December/7th December Thursday.md",
+    "Daily Diary/December/6th December Wednesday.md",
+    "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
+    "Master's Project/ExpertAccessibilityEvaluation",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ProfilePage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/MySearchesPage.pdf",
@@ -264,9 +280,6 @@
     "Daily Diary/December/4th December Monday.md",
     "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/PropertyDetailsPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/ProfilePage.pdf",
-    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/MySearchesPage.pdf",
-    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/MyFavoritesPage.pdf",
-    "Daily Diary/December/6th December Wednesday.md",
     "Daily Diary/December/5th December Tuesday.md",
     "Daily Diary/December/2nd December Saturday.md",
     "Daily Diary/November/30th November Thursday.md",
@@ -289,7 +302,6 @@
     "Daily Diary/November/2nd November 2023.md",
     "Daily Diary/November/8th November Wednesday.md",
     "Daily Diary/October/Sunday 1st October.md",
-    "Daily Diary/October/Saturday 14th October.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots/SUSQuestionnaire.png",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",
     "Master's Project/UX Work/UX Mockups/Desktop Layout.png",

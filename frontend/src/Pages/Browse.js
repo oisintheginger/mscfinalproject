@@ -3,7 +3,14 @@ import SearchAndFilters from "../components/SearchAndFilters/SearchAndFilter";
 import PageTemplate from "./PageTemplate";
 import ResultGrid from "../components/ResultsGrid/ResultsGrid";
 import Pagination from "@mui/material/Pagination";
-import { DEFAULT_FIELD_VALUES, SEARCH_TERM } from "../Utils/filter_constants";
+import {
+	BATHROOM_COUNT,
+	BEDROOM_COUNT,
+	DEFAULT_FIELD_VALUES,
+	MAX_PRICE,
+	MIN_PRICE,
+	SEARCH_TERM,
+} from "../Utils/filter_constants";
 
 import { useForm, FormProvider } from "react-hook-form";
 import { useEffect, useRef, useState } from "react";
@@ -37,6 +44,18 @@ function Browse() {
 	useEffect(() => {
 		if (searchParameters.has(SEARCH_TERM)) {
 			methods.setValue(SEARCH_TERM, searchParameters.get(SEARCH_TERM));
+		}
+		if (searchParameters.has(MIN_PRICE)) {
+			methods.setValue(MIN_PRICE, searchParameters.get(MIN_PRICE));
+		}
+		if (searchParameters.has(MAX_PRICE)) {
+			methods.setValue(MAX_PRICE, searchParameters.get(MAX_PRICE));
+		}
+		if (searchParameters.has(BEDROOM_COUNT)) {
+			methods.setValue(BEDROOM_COUNT, searchParameters.get(BEDROOM_COUNT));
+		}
+		if (searchParameters.has(BATHROOM_COUNT)) {
+			methods.setValue(BATHROOM_COUNT, searchParameters.get(BATHROOM_COUNT));
 		}
 	}, []);
 

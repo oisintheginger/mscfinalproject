@@ -8,11 +8,19 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
+import {
+	MAX_PRICE,
+	MIN_PRICE,
+	BEDROOM_COUNT,
+	BATHROOM_COUNT,
+} from "../../Utils/filter_constants";
 
 export function SearchCard({
 	search,
 	minPrice,
 	maxPrice,
+	minBed,
+	minBath,
 	totalSearch,
 	saveSearchRefresh = () => {},
 	handleDelete,
@@ -21,12 +29,14 @@ export function SearchCard({
 	const navigateToSearch = () => {
 		const searchParams = new URLSearchParams({
 			searchString: search,
-			"Min Price": minPrice,
-			"Max Price": maxPrice,
+			[`${MIN_PRICE}`]: minPrice,
+			[`${MAX_PRICE}`]: maxPrice,
+			[`${BEDROOM_COUNT}`]: minBed,
+			[`${BATHROOM_COUNT}`]: minBath,
 		});
 		const searchString = searchParams.toString();
 
-		navigator(`/browse?${searchString}`);
+		navigator(`/browse?${searchString}&page=1`);
 	};
 
 	return (
