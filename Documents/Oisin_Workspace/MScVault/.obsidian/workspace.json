@@ -8,103 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "2121f4dbc27e5041",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/24th November Friday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ed60f723be5e6895",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/23rd November Thursday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bb65df5e980040bb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/27th November Monday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c1928e81c0569d93",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/28th November Tuesday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "b4c4038e942285bf",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/29th November Wednesday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2cfe4f8db6d6da78",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/November/30th November Thursday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "30eee6d0490b029a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/December/2nd December Saturday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4acc412fc2cb1830",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily Diary/December/4th December Monday.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "97f48d7f81bde844",
+            "id": "de29d5477326ddc2",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -114,21 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "de29d5477326ddc2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 9
+        ]
       }
     ],
     "direction": "vertical"
@@ -202,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
+                "file": "Daily Diary/December/7th December Thursday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -219,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
+                "file": "Daily Diary/December/7th December Thursday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -242,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md"
+                "file": "Daily Diary/December/7th December Thursday.md"
               }
             }
           }
@@ -266,9 +157,9 @@
   },
   "active": "de29d5477326ddc2",
   "lastOpenFiles": [
+    "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
     "Daily Diary/December/7th December Thursday.md",
     "Daily Diary/December/6th December Wednesday.md",
-    "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
     "Master's Project/ExpertAccessibilityEvaluation",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ProfilePage.pdf",
