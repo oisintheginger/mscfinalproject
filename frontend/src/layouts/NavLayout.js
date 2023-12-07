@@ -265,7 +265,7 @@ function NavLayout() {
 						</IconButton>
 					</Stack>
 					<Box id="DrawerMenu" sx={{ ml: 2, mr: 2, mt: 0 }}>
-						<Typography variant="h6">MAIN MENU</Typography>
+						<Typography variant="h2">MAIN MENU</Typography>
 					</Box>
 					<Box>
 						<List sx={{ m: 2, mt: 0 }}>
@@ -305,7 +305,7 @@ function NavLayout() {
 						flexDirection={"column"}
 						justifyContent={"center"}
 					>
-						<Typography variant="h6">My Corner</Typography>
+						<Typography variant="h3">MY CORNER</Typography>
 						<Divider />
 						{route !== "authenticated" ? (
 							<Stack mt={3} spacing={1}>

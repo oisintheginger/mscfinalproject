@@ -50,6 +50,11 @@ function RenderPoints({
 							click: () => {
 								markerClickHandler(point.propertyId);
 							},
+							keydown: (e) => {
+								if (e.originalEvent.code === "Enter") {
+									markerClickHandler(point.propertyId);
+								}
+							},
 						}}
 					/>
 				);
@@ -103,6 +108,12 @@ function MultiPointMarker({
 				click: () => {
 					zoomToBounds();
 					setExplode(true);
+				},
+				keydown: (e) => {
+					if (e.originalEvent.code === "Enter") {
+						zoomToBounds();
+						setExplode(true);
+					}
 				},
 			}}
 		/>
@@ -257,6 +268,10 @@ function HMEMap({
 								eventHandlers={{
 									click: () => {
 										markerClickHandler(point.propertyId);
+									},
+									keydown: (e) => {
+										if (e.originalEvent.code === "Enter")
+											markerClickHandler(point.propertyId);
 									},
 								}}
 							/>
