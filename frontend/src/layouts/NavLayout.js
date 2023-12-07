@@ -170,7 +170,7 @@ function NavLayout() {
 								transformOrigin={{ vertical: "top", horizontal: "right" }}
 							>
 								{route === "authenticated" ? (
-									<Stack alignItems={"center"} mt={1} mb={2} p={2}>
+									<Stack alignItems={"center"} mb={2} pl={1} pr={1}>
 										<List>
 											<ListItemButton
 												component={RRDLink}
@@ -212,7 +212,7 @@ function NavLayout() {
 										</ButtonStyled>
 									</Stack>
 								) : (
-									<Stack alignItems={"center"} mt={1} mb={2} p={2}>
+									<Stack alignItems={"center"} mt={1} mb={1} p={1}>
 										<ButtonStyled
 											onClick={() => {
 												setDrawerOpen(false);

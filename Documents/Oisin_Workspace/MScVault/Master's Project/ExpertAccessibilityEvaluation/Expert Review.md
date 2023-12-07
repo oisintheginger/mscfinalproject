@@ -26,17 +26,17 @@ Other suggestions from Damian:
 
 > [!danger] Issues to Fix
 > - Fix Forgot Password Issue
-> - Make the filter titles more accessible
-> - Make the tag colors match the scores + have the secure score color be blue scale rather than green
-> - Make the names of tags + scores match
-> - Change "Neighborhood Crime Safety Rating" to "Safety Rating"
-> - "Overall Match Score" should change to "My Match Score"
-> - Change "/mon" to  "per month" on property details page + property card
-> - Change "{num}/5" to "{num} out of 5" for Overall Match and Safety Score
+> - ~~Make the filter titles more accessible~~
+> - ~~Make the tag colors match the scores + have the secure score color be blue scale rather than green~~
+> - ~~Make the names of tags + scores match~~
+> - ~~Change "Neighborhood Crime Safety Rating" to "Safety Rating"~~
+> - ~~"Overall Match Score" should change to "My Match Score"~~
+> - ~~Change "/mon" to  "per month" on property details page + property card~~
+> - ~~Change "{num}/5" to "{num} out of 5" for Overall Match and Safety Score~~
 > - Remove Housing Made Easy from:
 > 	- FAQ Video Title
-> 	- Privacy Policy
-> 	- My Preferences section of Profile Page
-> - UserWeightsComponent:
-> 	- Most Important should be 2 font sizes larger than Least Important
-> 	- Gradient on background with Green at top and getting darker toward the bottom
+> 	- ~~Privacy Policy~~
+> 	- ~~My Preferences section of Profile Page~~
+> - ~~UserWeightsComponent:~~
+> 	- ~~Most Important should be 2 font sizes larger than Least Important~~
+> 	- ~~Gradient on background with Green at top and getting darker toward the bottom~~

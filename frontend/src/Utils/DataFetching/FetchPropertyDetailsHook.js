@@ -75,9 +75,9 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 					serviceScores: [
 						{
 							id: "transportation_score",
-							displayTitle: "Transportation",
+							displayTitle: "Transport",
 							description: ``,
-							color: "#626d78",
+							color: "#296601",
 							score: personalizedIsSuccess
 								? parseFloat(personalizedData.transportation_score.toFixed(2))
 								: parseFloat(data.data.transportation_score.toFixed(2)),
@@ -89,10 +89,10 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 						},
 						{
 							id: "emergency_score",
-							displayTitle: "Emergency",
+							displayTitle: "Emergency Services",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#3b5880",
+							color: "#780c00",
 							score: personalizedIsSuccess
 								? parseFloat(personalizedData.emergency_score.toFixed(2))
 								: parseFloat(data.data.emergency_score.toFixed(2)),
@@ -107,7 +107,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 							displayTitle: "Personal Care",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#713e73",
+							color: "#666900",
 							score: personalizedIsSuccess
 								? parseFloat(personalizedData.personal_care_score.toFixed(2))
 								: parseFloat(data.data.personal_care_score.toFixed(2)),
@@ -121,7 +121,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 							displayTitle: "Finance",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#5e3b7d",
+							color: "#00572b",
 							score: personalizedIsSuccess
 								? parseFloat(personalizedData.finance_score.toFixed(2))
 								: parseFloat(data.data.finance_score.toFixed(2)),
@@ -134,7 +134,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 							displayTitle: "Retail",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#417a41",
+							color: "#00515c",
 							score: personalizedIsSuccess
 								? parseFloat(personalizedData.retail_score.toFixed(2))
 								: parseFloat(data.data.retail_score.toFixed(2)),
@@ -147,7 +147,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 							displayTitle: "Fitness",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#8a593a",
+							color: "#803301",
 							score: personalizedIsSuccess
 								? parseFloat(personalizedData.fitness_score.toFixed(2))
 								: parseFloat(data.data.fitness_score.toFixed(2)),
@@ -160,7 +160,7 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 							displayTitle: "Leisure",
 							description:
 								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-							color: "#663031",
+							color: "#53387a",
 							score: personalizedIsSuccess
 								? parseFloat(personalizedData.leisure_score.toFixed(2))
 								: parseFloat(data.data.leisure_score.toFixed(2)),
@@ -173,7 +173,6 @@ export function FetchPropertyDetailsHook({ propertyId }) {
 							},
 						},
 					],
-
 					overallScore: personalizedData?.overall_score,
 				};
 				return addedScores;

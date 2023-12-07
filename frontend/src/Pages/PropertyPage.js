@@ -36,7 +36,7 @@ import {
 	ViewApplication,
 } from "../components/PropertyDetailsPageButtons/ApplyButton";
 import { CreateApplicationMutation } from "../Utils/Mutations/ApplicationMutation/ApplicationMutation";
-import { ColorGradeFunc } from "../Utils/ColorGradientFunc";
+import { BlueColorGradeFunc, ColorGradeFunc } from "../Utils/ColorGradientFunc";
 
 import AlertMap from "../Utils/AlertMap";
 import { FetchPropertyDetailsHook } from "../Utils/DataFetching/FetchPropertyDetailsHook";
@@ -228,7 +228,7 @@ function PropertyPage() {
 									alignItems={"flex-end"}
 								>
 									<Typography variant="propertyPrice">
-										{`$ ${data?.price}/mon`}
+										{`$${data?.price} per month`}
 									</Typography>
 								</Stack>
 								<Stack //ADDRESS + VIEW ON MAP BUTTON
@@ -265,38 +265,6 @@ function PropertyPage() {
 									/>
 								</Stack>
 								<PropertyTags tags={data?.tags} />
-								{/* <Stack
-									direction={"row"}
-									flexWrap={"wrap"}
-									justifyContent={"flex-start"}
-									useFlexGap
-									spacing={1}
-								>
-									<Chip
-										label="SECURE"
-										sx={{
-											backgroundColor: "secureChip.main",
-											color: "white",
-											fontWeight: 600,
-										}}
-									/>
-									<Chip
-										label="NIGHTLIFE"
-										sx={{
-											backgroundColor: "nightlifeChip.main",
-											color: "white",
-											fontWeight: 600,
-										}}
-									/>
-									<Chip
-										label="GYMS"
-										sx={{
-											backgroundColor: "gymsChip.main",
-											color: "white",
-											fontWeight: 600,
-										}}
-									/>
-								</Stack> */}
 							</Stack>
 						</Stack>
 						<Box //PAGE SECTIONS
@@ -306,7 +274,7 @@ function PropertyPage() {
 									<Typography variant="body1">{data?.description}</Typography>
 								</PageSection>
 								{overallScore && (
-									<PageSection sectionTitle="Overall Match" background={false}>
+									<PageSection sectionTitle="My Match Score" background={false}>
 										<Stack
 											width={"100%"}
 											justifyContent={"center"}
@@ -322,10 +290,8 @@ function PropertyPage() {
 												spacing={1}
 												maxWidth={"100%"}
 											>
-												<Typography noWrap variant="crimeScoreValue">
-													{(overallScore?.toFixed(0) == 5
-														? overallScore?.toFixed(0)
-														: overallScore?.toFixed(1)) + " / 5"}
+												<Typography noWrap variant="overallMatchScore">
+													{((overallScore / 5) * 100).toFixed(0) + "%"}
 												</Typography>
 												<Box
 													display={"flex"}
@@ -365,10 +331,7 @@ function PropertyPage() {
 									</PageSection>
 								)}
 								<PropertyScoresComponent inputData={data.serviceScores} />
-								<PageSection
-									background={false}
-									sectionTitle="Neighborhood Crime Safety Rating"
-								>
+								<PageSection background={false} sectionTitle="Safety Score">
 									{data?.overallCrimeScore ? (
 										<Stack
 											width={"100%"}
@@ -386,14 +349,14 @@ function PropertyPage() {
 												maxWidth={"100%"}
 											>
 												<Typography noWrap variant="crimeScoreValue">
-													{data?.overallCrimeScore?.toFixed(1) + " / 5"}
+													{((data?.overallCrimeScore / 5) * 100).toFixed(1) +
+														"%"}
 												</Typography>
 												<Box
 													display={"flex"}
 													flexDirection={"row"}
 													justifyContent={"flex-start"}
 													alignItems={"center"}
-													sx={{}}
 													width={"100%"}
 													borderRadius={2}
 													overflow={"clip"}
@@ -404,7 +367,7 @@ function PropertyPage() {
 														width={`${100 * (data?.overallCrimeScore / 5)}%`}
 														height={"40px"}
 														sx={{
-															background: ColorGradeFunc(
+															background: BlueColorGradeFunc(
 																data?.overallCrimeScore,
 																5
 															),

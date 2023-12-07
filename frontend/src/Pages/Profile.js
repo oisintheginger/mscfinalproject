@@ -131,7 +131,7 @@ function Profile() {
 					<PageSection sectionTitle="My Preferences" background={false}>
 						<Typography variant="body1">
 							{
-								"With HME, you can specify and tune what property services and features are the most important for you. We use this information to present personalized scores while you browse properties."
+								"With RME, you can specify and tune what property services and features are the most important for you. We use this information to present personalized scores while you browse properties."
 							}
 						</Typography>
 						<Box display={"flex"} justifyContent={"center"}>

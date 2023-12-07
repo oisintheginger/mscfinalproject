@@ -97,6 +97,11 @@ const theme = createTheme({
 			fontFamily: '"Urbanist", sans-serif',
 			fontWeight: 800,
 		},
+		weightsIndicatorUpper: {
+			fontSize: 26,
+			fontFamily: '"Urbanist", sans-serif',
+			fontWeight: 800,
+		},
 		weightsOption: {
 			fontSize: 16,
 			fontFamily: '"Urbanist", sans-serif',
@@ -121,6 +126,11 @@ const theme = createTheme({
 		individualScoreValue: {
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 30,
+			fontWeight: 800,
+		},
+		overallMatchScore: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 64,
 			fontWeight: 800,
 		},
 		crimeScoreValue: {

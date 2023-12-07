@@ -19,7 +19,7 @@ function PrivacyPolicy() {
 						<Typography variant="body2">
 							This page is used to inform website visitors regarding our
 							policies with the collection, use, and disclosure of Personal
-							Information if anyone decided to use our Service, the Housing Made
+							Information if anyone decided to use our Service, the Renting Made
 							Easy website.
 						</Typography>
 						<br />
