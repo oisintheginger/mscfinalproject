@@ -4,10 +4,8 @@ import {
 	Typography,
 	Stack,
 	Collapse,
-	Button,
 	IconButton,
 	Grid,
-	ButtonGroup,
 	useMediaQuery,
 	useTheme,
 	Tooltip,
@@ -26,7 +24,7 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import CloseIcon from "@mui/icons-material/Close";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { useQuery } from "react-query";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useAuthenticator } from "@aws-amplify/ui-react-core";
 import { UpdateWeightsMutation } from "../../Utils/Mutations/ProfileMutation/ProfileMutation";
 import ButtonStyled from "../CommonComp/Button/ButtonStyled";

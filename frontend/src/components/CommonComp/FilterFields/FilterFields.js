@@ -11,7 +11,6 @@ import {
 	Checkbox,
 	Slider,
 	Stack,
-	Button,
 } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import ButtonStyled from "../Button/ButtonStyled";
@@ -236,7 +235,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 										methods.customSubmitBehavior
 											? methods.customSubmitBehavior
 											: () => {
-													console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+													// console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
 											  }
 									)(event);
 								}}

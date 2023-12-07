@@ -51,11 +51,11 @@ export default function Login() {
 		// }
 
 		const data = new FormData(e.currentTarget);
-		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
-			username: data.get("username"),
-		});
+		// console.log({
+		// 	email: data.get("email"),
+		// 	password: data.get("password"),
+		// 	username: data.get("username"),
+		// });
 	};
 
 	return (

@@ -3,7 +3,6 @@ import {
 	TextField,
 	Typography,
 	ButtonGroup,
-	Stack,
 	Snackbar,
 	Slide,
 	Tooltip,
@@ -15,16 +14,14 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { BookmarkIcon, FilterIcon } from "../../Icons/HMEIcons";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useContext, useEffect, useState } from "react";
-import ActiveTag from "../ActiveTag/ActiveTag";
 import FilterFields from "../CommonComp/FilterFields/FilterFields";
 
 import { useFormContext } from "react-hook-form";
 import { SEARCH_TERM } from "../../Utils/filter_constants";
 import ActiveTagsStack from "../ActiveTag/ActiveTagsStack";
 import { useMutation } from "react-query";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { UserContext } from "../../Utils/UserContext/UserContext";
 import SnackbarAlertMap from "../../Utils/AlertMap";
 import { useSearchParams } from "react-router-dom";
@@ -136,7 +133,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 						methods.customSubmitBehavior
 							? methods.customSubmitBehavior
 							: () => {
-									console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+									// console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
 							  }
 					)}
 				>
@@ -157,9 +154,9 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 													methods.customSubmitBehavior
 														? methods.customSubmitBehavior
 														: () => {
-																console.log(
-																	"NO CUSTOM SUBMIT BEHAVIOR DEFINED"
-																);
+																// console.log(
+																// 	"NO CUSTOM SUBMIT BEHAVIOR DEFINED"
+																// );
 														  }
 												)(event);
 											}}
@@ -189,7 +186,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 												methods.customSubmitBehavior
 													? methods.customSubmitBehavior
 													: () => {
-															console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+															// console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
 													  }
 											)(event);
 										}

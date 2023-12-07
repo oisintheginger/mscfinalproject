@@ -1,7 +1,5 @@
 import {
 	Box,
-	Drawer,
-	SwipeableDrawer,
 	Stack,
 	Typography,
 	Modal,
@@ -12,7 +10,7 @@ import {
 import LeafletMap from "./LeafletMap";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -40,7 +38,7 @@ function MapBrowsing({ mapData }) {
 			refetchOnMount: false,
 			refetchOnWindowFocus: false,
 			onSuccess: (data) => {
-				console.log(data);
+				// console.log(data);
 			},
 		}
 	);

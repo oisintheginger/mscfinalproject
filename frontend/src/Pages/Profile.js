@@ -2,11 +2,7 @@ import PageTemplate from "./PageTemplate";
 import {
 	Typography,
 	Box,
-	TextField,
-	Divider,
 	Stack,
-	Slider,
-	Container,
 	Modal,
 	Grid,
 	Snackbar,
@@ -15,10 +11,7 @@ import {
 	useMediaQuery,
 } from "@mui/material";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import CardCarousel from "../components/Carousel/CardCarousel";
 import PageSection from "../components/CommonComp/PageSection/PageSection";
-import { propertyData } from "../MockData/PropertyDataSample";
-import { NextCarouselIcon } from "../Icons/HMEIcons";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import UserWeights from "../components/UserWeightsComponent/UserWeights";
@@ -29,10 +22,7 @@ import { useContext, useState } from "react";
 import PropertyCard from "../components/CommonComp/Cards/PropertyCard/PropertyCard";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 import SkeletonCard from "../components/CommonComp/Cards/SkeletonCard/SkeletonCard";
-import {
-	FetchSavedSearchesHook,
-	useFetchSavedSearchesHook,
-} from "../Utils/DataFetching/FetchSavedSearchesHook";
+import { useFetchSavedSearchesHook } from "../Utils/DataFetching/FetchSavedSearchesHook";
 import { SearchCard } from "../components/SearchCard/SearchCard";
 import { parseSearchString } from "../Utils/ParseSearchString";
 import DeleteButton from "../components/CommonComp/Button/DeleteButton";
@@ -41,7 +31,7 @@ import { DeleteAccountMutation } from "../Utils/Mutations/DeleteAccountMutation/
 import SnackbarAlertMap from "../Utils/AlertMap";
 import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../Utils/UserContext/UserContext";
-import { API, Auth } from "aws-amplify";
+import { Auth } from "@aws-amplify/auth";
 import { DeleteHandlerConstructor } from "../Utils/Mutations/SearchMutation/SearchMutation";
 import { RecommendedCarousel } from "../components/RecommendedCarousel/RecommendedCarousel";
 
@@ -386,7 +376,7 @@ function Profile() {
 									fullWidth
 									onClick={() => {
 										CloseConfirmDeleteModal();
-										console.log("taken back");
+										// console.log("taken back");
 									}}
 								>
 									No, take me back.

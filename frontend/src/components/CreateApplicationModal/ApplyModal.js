@@ -1,13 +1,9 @@
 import {
-	Modal,
 	Box,
 	Stack,
 	Typography,
-	Paper,
 	Button,
 	IconButton,
-	FormControl,
-	OutlinedInput,
 	TextField,
 } from "@mui/material";
 import { CloseIcon } from "../../Icons/HMEIcons";

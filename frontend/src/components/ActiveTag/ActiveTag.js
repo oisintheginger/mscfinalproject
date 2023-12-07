@@ -1,5 +1,4 @@
-import { Button, Chip } from "@mui/material";
-import { SmallCloseIcon } from "../../Icons/HMEIcons";
+import { Chip } from "@mui/material";
 function ActiveTag({ tagName, tagVal, deactivateFunc = () => {} }) {
 	return (
 		<Chip

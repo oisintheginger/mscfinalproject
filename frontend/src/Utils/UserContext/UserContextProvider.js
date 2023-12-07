@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { UserContext } from "./UserContext";
 import { useQuery } from "react-query";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import cloneDeep from "clone-deep";
-import { Auth } from "aws-amplify";
+import { Auth } from "@aws-amplify/auth";
 
 const getAccessToken = async () => {
 	try {
 		const session = await Auth.currentSession();
-		console.log(session?.getAccessToken().getJwtToken());
+		// console.log(session?.getAccessToken().getJwtToken());
 		return session?.getAccessToken().getJwtToken();
 	} catch (err) {
 		return null;
@@ -48,7 +48,7 @@ function UserContextProvider({ children }) {
 			},
 			enabled: false,
 			onError: (err) => {
-				console.log("Error in user context", err);
+				// console.log("Error in user context", err);
 			},
 			onSuccess: (data) => {
 				// console.log(data);

@@ -17,18 +17,10 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
-import { propertyData } from "../MockData/PropertyDataSample";
-import CardCarousel from "../components/Carousel/CardCarousel";
 import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 
-import { Auth } from "aws-amplify";
-import { useEffect, useState, useContext } from "react";
-import { useQuery } from "react-query";
-import { API } from "aws-amplify";
-import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinner.js";
-import { RecommendationCard } from "../components/CommonComp/Cards/RecommendationCard/RecommendationCard.js";
+import { useEffect, useContext } from "react";
 import { UserContext } from "../Utils/UserContext/UserContext.js";
-import { FetchRecommendedHook } from "../Utils/DataFetching/FetchRecommendedHook.js";
 import { RecommendedCarousel } from "../components/RecommendedCarousel/RecommendedCarousel.js";
 import SearchIcon from "@mui/icons-material/Search";
 const mockRec = {
@@ -70,7 +62,7 @@ function Homepage() {
 	const navigateToBrowse = (data) => {
 		navigator({
 			pathname: "/browse",
-			search: "searchString=" + data.searchString,
+			search: "searchString=" + data.searchString + "&page=1",
 		});
 	};
 

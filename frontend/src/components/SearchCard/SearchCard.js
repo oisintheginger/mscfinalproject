@@ -6,13 +6,7 @@ import {
 	IconButton,
 	Box,
 } from "@mui/material";
-import { parseSearchString } from "../../Utils/ParseSearchString";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { RemoveFromSaveSearchMutation } from "../../Utils/Mutations/SearchMutation/SearchMutation";
-import { useContext } from "react";
-import { UserContext } from "../../Utils/UserContext/UserContext";
-import { useQuery, useQueryClient } from "react-query";
-import { API } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 
 export function SearchCard({

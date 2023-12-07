@@ -1,9 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
-import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
-import { NextCarouselIcon, PrevCarouselIcon } from "../../Icons/HMEIcons";
+import { useMediaQuery, useTheme } from "@mui/material";
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
 

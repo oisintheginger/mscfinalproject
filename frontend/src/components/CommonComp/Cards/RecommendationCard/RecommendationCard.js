@@ -33,10 +33,10 @@ export function RecommendationCard({ data }) {
 	const { mutate: sendFeedback } = SendRecommendationFeedback(
 		data?.propertyId,
 		(data) => {
-			console.log(data);
+			// console.log(data);
 		},
 		(err) => {
-			console.log(err);
+			// console.log(err);
 		}
 	);
 

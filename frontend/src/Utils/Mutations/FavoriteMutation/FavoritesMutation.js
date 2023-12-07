@@ -1,6 +1,5 @@
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useMutation, useQueryClient } from "react-query";
-import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useContext } from "react";
 import { UserContext } from "../../UserContext/UserContext";
 import { FETCH_FAVORITES_QUERY_KEY } from "../../QueryConstants/QueryKeyConstants";
@@ -26,7 +25,7 @@ export function AddToFavoritesMutation(
 			});
 		},
 		onMutate: (mut) => {
-			console.log(mut);
+			// console.log(mut);
 		},
 		onError: (err) => {
 			errorCallback(err);
@@ -59,7 +58,7 @@ export function RemoveFromFavoritesMutation(
 			});
 		},
 		onMutate: (mut) => {
-			console.log(mut);
+			// console.log(mut);
 		},
 		onError: (err) => {
 			errorCallback(err);

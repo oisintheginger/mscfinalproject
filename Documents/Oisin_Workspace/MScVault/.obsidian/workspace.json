@@ -102,9 +102,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "97f48d7f81bde844",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/December/6th December Wednesday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -178,7 +190,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/December/4th December Monday.md",
+                "file": "Daily Diary/December/6th December Wednesday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -195,7 +207,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/December/4th December Monday.md",
+                "file": "Daily Diary/December/6th December Wednesday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -218,7 +230,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/December/4th December Monday.md"
+                "file": "Daily Diary/December/6th December Wednesday.md"
               }
             }
           }
@@ -240,11 +252,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4acc412fc2cb1830",
+  "active": "97f48d7f81bde844",
   "lastOpenFiles": [
-    "Daily Diary/December/2nd December Saturday.md",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ProfilePage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/MySearchesPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/MyFavoritesPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/HomePage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/BrowsingPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ContactPage.pdf",
     "Daily Diary/December/4th December Monday.md",
-    "Daily Diary/December",
+    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/PropertyDetailsPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/ProfilePage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/MySearchesPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/MyFavoritesPage.pdf",
+    "Daily Diary/December/6th December Wednesday.md",
+    "Daily Diary/December/5th December Tuesday.md",
+    "Daily Diary/December/2nd December Saturday.md",
     "Daily Diary/November/30th November Thursday.md",
     "Daily Diary/November/29th November Wednesday.md",
     "Daily Diary/November/28th November Tuesday.md",
@@ -266,20 +290,8 @@
     "Daily Diary/November/8th November Wednesday.md",
     "Daily Diary/October/Sunday 1st October.md",
     "Daily Diary/October/Saturday 14th October.md",
-    "Daily Diary/November",
-    "Daily Diary/October",
-    "Master's Project/UX Work/UX Research/Survey Results.md",
-    "Master's Project/UX Work/UX Research/Research Plan.md",
-    "Master's Project/UX Work/UX Research/UserTestingMethodologies/Questionnaire Strategies.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots/SUSQuestionnaire.png",
-    "Master's Project/UX Work/User Testing/~$UserTestingSlides_HME.pptx",
-    "Master's Project/UX Work/User Testing/F1C7CC20",
-    "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",
-    "Master's Project/UX Work/User Testing/CBD44750",
-    "Master's Project/UX Work/User Testing/3BBE3750",
-    "Master's Project/UX Work/User Testing/9C6D3750",
-    "Master's Project/UX Work/User Testing/080B3750",
     "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
     "Master's Project/UX Work/UX Mockups/Tablet Layout.png",
     "Master's Project/UX Work/UX Research/Graphs/PreviousKnowledge.png",

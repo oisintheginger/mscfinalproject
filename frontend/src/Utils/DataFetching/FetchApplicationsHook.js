@@ -1,8 +1,8 @@
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { useContext, useEffect } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { UserContext } from "../UserContext/UserContext";
-import { isError, useQuery } from "react-query";
+import { useQuery } from "react-query";
 
 export function FetchApplicationsHook() {
 	const { user } = useAuthenticator((context) => [context.user]);
@@ -95,7 +95,7 @@ export function FetchApplicationsHook() {
 				// console.log(data);
 			},
 			onError: (err) => {
-				console.log(err);
+				// console.log(err);
 			},
 		}
 	);

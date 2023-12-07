@@ -2,7 +2,6 @@ import { Button, styled } from "@mui/material";
 import {
 	buttonHover,
 	darkTeal,
-	lightTeal,
 } from "../../../Styling/styleConstants";
 
 const ButtonOutlined = styled(Button)({
