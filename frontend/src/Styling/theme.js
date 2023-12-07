@@ -55,6 +55,11 @@ const theme = createTheme({
 			fontWeight: 200,
 			letterSpacing: 15,
 		},
+		filterTitle: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 20,
+			fontWeight: 600,
+		},
 		cardHeader: {
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 28,
@@ -92,6 +97,11 @@ const theme = createTheme({
 			fontFamily: '"Urbanist", sans-serif',
 			fontWeight: 800,
 		},
+		weightsIndicatorUpper: {
+			fontSize: 26,
+			fontFamily: '"Urbanist", sans-serif',
+			fontWeight: 800,
+		},
 		weightsOption: {
 			fontSize: 16,
 			fontFamily: '"Urbanist", sans-serif',
@@ -118,6 +128,11 @@ const theme = createTheme({
 			fontSize: 30,
 			fontWeight: 800,
 		},
+		overallMatchScore: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 64,
+			fontWeight: 800,
+		},
 		crimeScoreValue: {
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 56,
@@ -142,6 +157,11 @@ const theme = createTheme({
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 24,
 			fontWeight: 600,
+		},
+		systemState: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 22,
+			fontWeight: 300,
 		},
 	},
 	components: {

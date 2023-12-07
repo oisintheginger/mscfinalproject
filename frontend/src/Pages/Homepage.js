@@ -9,6 +9,8 @@ import {
 	Button,
 	InputAdornment,
 	IconButton,
+	useMediaQuery,
+	useTheme,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import ButtonStyled from "../components/CommonComp/Button/ButtonStyled.js";
@@ -23,6 +25,7 @@ import { useEffect, useContext } from "react";
 import { UserContext } from "../Utils/UserContext/UserContext.js";
 import { RecommendedCarousel } from "../components/RecommendedCarousel/RecommendedCarousel.js";
 import SearchIcon from "@mui/icons-material/Search";
+
 const mockRec = {
 	propertyId: 36428890,
 	longitude: -76.585495,
@@ -53,6 +56,8 @@ const mockRec = {
 function Homepage() {
 	const { register, handleSubmit } = useForm();
 	const { getAccessToken } = useContext(UserContext);
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("md"));
 	const navigator = useNavigate();
 	const location = useLocation();
 	const { route, user } = useAuthenticator((context) => [
@@ -104,6 +109,8 @@ function Homepage() {
 							variant="outlined"
 							type="search"
 							sx={{
+								zIndex: 10,
+								backgroundColor: "white",
 								width: { xs: "100%", md: "55%" },
 								"& .MuiInputBase-root": {
 									height: 50,
@@ -141,6 +148,22 @@ function Homepage() {
 						/>
 					</Box>
 				</Box>
+				<Box
+					component={"img"}
+					src="/CityscapeSVG.svg"
+					width={"80%"}
+					display={down ? "none" : "block"}
+					height={"auto"}
+					overflow={"hidden"}
+					sx={{
+						opacity: "20%",
+						position: "absolute",
+						top: "20%",
+						zIndex: 0,
+						pointerEvents: "none",
+					}}
+					aria-label="Background Image"
+				/>
 			</Stack>
 
 			<Box
@@ -151,9 +174,6 @@ function Homepage() {
 				alignItems={"center"}
 				sx={{ mt: { xs: 7, md: "100px" } }}
 			>
-				<Typography variant={"h2"} textAlign="center">
-					Your Recommendations
-				</Typography>
 				<Stack
 					minHeight={"35vh"}
 					width={"100%"}
@@ -173,7 +193,7 @@ function Homepage() {
 					)}
 				</Stack>
 			</Box>
-			<SiteFooter />
+			<SiteFooter positionProps={{ position: "relative", top: "20px" }} />
 		</>
 	);
 }

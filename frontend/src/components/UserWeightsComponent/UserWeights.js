@@ -338,43 +338,54 @@ function UserWeights({
 				<Stack alignItems={"center"} spacing={2}>
 					<Box mt={2}>
 						<Paper elevation={4}>
-							<Stack p={1} justifyContent={"center"} spacing={1}>
-								<Typography textAlign={"center"} variant="weightsIndicator">
-									{"Most Important".toUpperCase()}
-								</Typography>
+							<Box
+								sx={{
+									background: "rgb(0, 90, 90)",
+									background:
+										"linear-gradient(0deg, rgba(205,225,224,0.14319693942029932) 0%, rgba(214,233,232,0.7790512811569941) 44%, rgba(221,239,238,0.9415162671513918) 75%, rgba(221,239,238,1) 100%)",
+								}}
+							>
+								<Stack p={1} justifyContent={"center"} spacing={1}>
+									<Typography
+										textAlign={"center"}
+										variant="weightsIndicatorUpper"
+									>
+										{"Most Important".toUpperCase()}
+									</Typography>
 
-								<DragDropContext onDragEnd={onDragEnd}>
-									<Droppable droppableId="droppable">
-										{(provided) => (
-											<Stack
-												component={"div"}
-												spacing={1}
-												justifyContent={"center"}
-												alignItems={"center"}
-												ref={provided.innerRef}
-												{...provided.droppableProps}
-											>
-												<OptionList
-													options={state.options}
-													reorderFunc={(startIndex, endIndex) => {
-														const options = reorder(
-															state.options,
-															startIndex,
-															endIndex
-														);
-														setState({ options });
-														setSubmitEnabled(true);
-													}}
-												/>
-												{provided.placeholder}
-											</Stack>
-										)}
-									</Droppable>
-								</DragDropContext>
-								<Typography textAlign={"center"} variant="weightsIndicator">
-									{"Least Important".toUpperCase()}
-								</Typography>
-							</Stack>
+									<DragDropContext onDragEnd={onDragEnd}>
+										<Droppable droppableId="droppable">
+											{(provided) => (
+												<Stack
+													component={"div"}
+													spacing={1}
+													justifyContent={"center"}
+													alignItems={"center"}
+													ref={provided.innerRef}
+													{...provided.droppableProps}
+												>
+													<OptionList
+														options={state.options}
+														reorderFunc={(startIndex, endIndex) => {
+															const options = reorder(
+																state.options,
+																startIndex,
+																endIndex
+															);
+															setState({ options });
+															setSubmitEnabled(true);
+														}}
+													/>
+													{provided.placeholder}
+												</Stack>
+											)}
+										</Droppable>
+									</DragDropContext>
+									<Typography textAlign={"center"} variant="weightsIndicator">
+										{"Least Important".toUpperCase()}
+									</Typography>
+								</Stack>
+							</Box>
 						</Paper>
 					</Box>
 					<ButtonStyled

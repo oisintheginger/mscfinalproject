@@ -53,7 +53,6 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 
 	// const isFavorited =
 	// 	userData?.favourites.includes(data?.propertyId.toString()) || false;
-
 	return (
 		<Card elevation={inPopup ? 0 : 6} sx={{ height: "100%" }}>
 			{children}
@@ -85,11 +84,11 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 
 				<CardContent>
 					<Grid container minWidth={"fit-content"}>
-						<Grid item xs={9}>
+						<Grid item xs={12}>
 							<Stack overflow={"clip"} width={"100%"}>
 								<Stack direction={"row"} justifyContent={"space-between"}>
 									<Typography variant="cardHeader">
-										{"$" + data?.price + "/mon"}
+										{"$" + data?.price}
 									</Typography>
 								</Stack>
 								<Typography variant="cardSubTitle" noWrap>

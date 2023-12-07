@@ -50,6 +50,11 @@ function RenderPoints({
 							click: () => {
 								markerClickHandler(point.propertyId);
 							},
+							keydown: (e) => {
+								if (e.originalEvent.code === "Enter") {
+									markerClickHandler(point.propertyId);
+								}
+							},
 						}}
 					/>
 				);
@@ -103,6 +108,12 @@ function MultiPointMarker({
 				click: () => {
 					zoomToBounds();
 					setExplode(true);
+				},
+				keydown: (e) => {
+					if (e.originalEvent.code === "Enter") {
+						zoomToBounds();
+						setExplode(true);
+					}
 				},
 			}}
 		/>
@@ -257,6 +268,10 @@ function HMEMap({
 								eventHandlers={{
 									click: () => {
 										markerClickHandler(point.propertyId);
+									},
+									keydown: (e) => {
+										if (e.originalEvent.code === "Enter")
+											markerClickHandler(point.propertyId);
 									},
 								}}
 							/>
@@ -446,13 +461,27 @@ function LeafletMap({ propertyData, markerClickHandler = () => {} }) {
 					})}
 				</Grid>
 			) : isError ? (
-				<IconButton
-					onClick={() => {
-						refetch();
-					}}
+				<Box
+					display={"flex"}
+					flexDirection={"column"}
+					alignItems={"center"}
+					justifyContent={"center"}
 				>
-					<RefreshIcon fontSize="large" />
-				</IconButton>
+					<Typography
+						textAlign={"center"}
+						variant="systemState"
+						color={"#414c4d"}
+					>
+						Looks like we are having server trouble.
+					</Typography>
+					<IconButton
+						onClick={() => {
+							refetch();
+						}}
+					>
+						<RefreshIcon fontSize="large" />
+					</IconButton>
+				</Box>
 			) : (
 				<>
 					<ResultGrid
