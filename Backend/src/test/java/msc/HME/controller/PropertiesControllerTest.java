@@ -57,7 +57,7 @@ class PropertiesControllerTest {
     void batchQVP_200() {
         List<Long> ids = Arrays.asList(1L, 2L, 3L);
         List<QuickViewProperty> mockProperties = new ArrayList<>();
-        mockProperties.add(new QuickViewProperty()); // Add mock QuickViewProperty objects
+        mockProperties.add(new QuickViewProperty());
         when(propertyService.batchQVProperties(ids)).thenReturn(mockProperties);
 
         ResponseEntity<Object> response = propertiesController.batchQVP(ids);

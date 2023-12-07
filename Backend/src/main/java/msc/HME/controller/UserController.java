@@ -24,6 +24,7 @@ public class UserController {
 
     private final String unauthenticated = "Unauthorized request";
     private final String notSpecified = "Resource not correctly specified";
+    private final String notUpdated = "Resource could not be updated";
 
     @GetMapping()
     public ResponseEntity<Object> findUser(HttpServletRequest request) {
@@ -108,7 +109,7 @@ public class UserController {
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
         } catch(NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -123,7 +124,7 @@ public class UserController {
         try {
             return userService.updateEmail(id, email);
         } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -158,7 +159,7 @@ public class UserController {
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource was not updated");
         } catch(NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -203,7 +204,7 @@ public class UserController {
         try {
             return userService.deleteUser(id);
         } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource could not be updated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notUpdated);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
