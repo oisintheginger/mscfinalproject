@@ -11,7 +11,7 @@ paths:
   /api/properties:
     get:
       summary: returns quickviewproperties
-      description: a list with the first entry the total number of pages and the rest of quick view properties includes pagination as query parameters. you can clarify the page and size of the page, default values are page=0 size=50
+      description: a list with the first entry the total number of pages and the rest of quick view properties includes pagination as query parameters and optional filtering. you can clarify the page and size of the page, default values are page=0 size=50
       parameters:
         - in: query
           name: page
@@ -20,6 +20,26 @@ paths:
             type: integer
         - in: query
           name: size
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: minPrice
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: maxPrice
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: minBed
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: minBath
           required: false
           schema:
             type: integer

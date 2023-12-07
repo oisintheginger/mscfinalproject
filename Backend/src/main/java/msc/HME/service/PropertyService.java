@@ -8,9 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 public class PropertyService {
@@ -22,8 +20,33 @@ public class PropertyService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<QuickViewProperty> getAllQVProperties() {
-        String sql = """
+    public List<QuickViewProperty> getAllQVProperties(
+            Double minPrice, Double maxPrice, Integer minBedrooms, Integer minBathrooms
+    ) {
+        List<Object> parameters = new ArrayList<>();
+        StringBuilder whereClause = new StringBuilder("mi.availableNow = 1");
+
+        if (minPrice != null) {
+            whereClause.append(" AND mi.price >= ?");
+            parameters.add(minPrice);
+        }
+
+        if (maxPrice != null) {
+            whereClause.append(" AND mi.price <= ?");
+            parameters.add(maxPrice);
+        }
+
+        if (minBedrooms != null) {
+            whereClause.append(" AND mi.bedrooms >= ?");
+            parameters.add(minBedrooms);
+        }
+
+        if (minBathrooms != null) {
+            whereClause.append(" AND mi.bathrooms >= ?");
+            parameters.add(minBathrooms);
+        }
+
+        String sql = String.format("""
             SELECT
                 mi.propertyID,
                 ST_X(a.geoLocation) AS latitude,
@@ -45,11 +68,11 @@ public class PropertyService {
                     LEFT JOIN
                 Tagstable ts ON mi.propertyID = ts.propertyID
             WHERE
-                    mi.availableNow = 1
+                    %s
             GROUP BY
                 mi.propertyID;
-                """;
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(QuickViewProperty.class));
+                """, whereClause);
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(QuickViewProperty.class), parameters.toArray());
     }
 
     public List<QuickViewProperty> batchQVProperties(List<Long> ids) {

@@ -43,14 +43,14 @@ class PropertiesControllerTest {
     void findAll_200() {
         List<QuickViewProperty> mockProperties = new ArrayList<>();
         mockProperties.add(new QuickViewProperty());
-        when(propertyService.getAllQVProperties()).thenReturn(mockProperties);
+        when(propertyService.getAllQVProperties(null, null, null, null)).thenReturn(mockProperties);
 
-        ResponseEntity<Object> response = propertiesController.findAll(1, 50);
+        ResponseEntity<Object> response = propertiesController.findAll(1, 50, null, null, null, null);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
 
-        verify(propertyService).getAllQVProperties();
+        verify(propertyService).getAllQVProperties(null, null, null, null);
     }
 
     @Test
