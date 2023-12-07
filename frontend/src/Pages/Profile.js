@@ -142,7 +142,7 @@ function Profile() {
 						</Box>
 					</PageSection>
 					<PageSection background={false} sectionTitle="Recommended for Me">
-						<RecommendedCarousel />
+						<RecommendedCarousel displayTitle={false} />
 					</PageSection>
 					<PageSection background={false} sectionTitle="My Favorites">
 						{favoritesDetailsIsLoading ? (
@@ -161,7 +161,14 @@ function Profile() {
 								</Grid>
 							</Grid>
 						) : favoritesDetailsIsError ? (
-							<>Error</>
+							<Typography
+								textAlign={"center"}
+								variant="systemState"
+								color={"#414c4d"}
+							>
+								Looks like we are having trouble getting your favorites right
+								now.
+							</Typography>
 						) : (
 							<>
 								<Grid container>
@@ -189,7 +196,11 @@ function Profile() {
 										</ButtonStyled>
 									</Box>
 								) : (
-									<Typography textAlign={"center"}>
+									<Typography
+										textAlign={"center"}
+										variant="systemState"
+										color={"#414c4d"}
+									>
 										No Favorites. Start Browsing!
 									</Typography>
 								)}
@@ -213,7 +224,14 @@ function Profile() {
 								</Grid>
 							</Grid>
 						) : applicationDetailsIsError ? (
-							<>Error</>
+							<Typography
+								textAlign={"center"}
+								variant="systemState"
+								color={"#414c4d"}
+							>
+								Looks like we are having trouble getting your applications right
+								now.
+							</Typography>
 						) : (
 							<>
 								<Grid container>
@@ -244,7 +262,11 @@ function Profile() {
 										</ButtonStyled>
 									</Box>
 								) : (
-									<Typography textAlign={"center"}>
+									<Typography
+										textAlign={"center"}
+										variant="systemState"
+										color={"#414c4d"}
+									>
 										No Applications. Start Browsing!
 									</Typography>
 								)}
@@ -255,7 +277,14 @@ function Profile() {
 						{savedSearchesIsLoading ? (
 							<LoadingSpinner />
 						) : savedSearchesIsError ? (
-							<>Error</>
+							<Typography
+								textAlign={"center"}
+								variant="systemState"
+								color={"#414c4d"}
+							>
+								Looks like we are having trouble getting your saved searches
+								right now.
+							</Typography>
 						) : (
 							<>
 								<Stack>
@@ -295,7 +324,11 @@ function Profile() {
 										</ButtonStyled>
 									</Box>
 								) : (
-									<Typography textAlign={"center"}>
+									<Typography
+										textAlign={"center"}
+										variant="systemState"
+										color={"#414c4d"}
+									>
 										No Saved Searches. Start Browsing!
 									</Typography>
 								)}

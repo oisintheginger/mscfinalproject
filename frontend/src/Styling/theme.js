@@ -160,7 +160,7 @@ const theme = createTheme({
 		},
 		systemState: {
 			fontFamily: '"Urbanist", sans-serif',
-			fontSize: 28,
+			fontSize: 22,
 			fontWeight: 300,
 		},
 	},

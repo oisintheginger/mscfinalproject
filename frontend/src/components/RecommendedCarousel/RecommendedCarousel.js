@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
 import CircleIcon from "@mui/icons-material/Circle";
 
-export function RecommendedCarousel() {
+export function RecommendedCarousel({ displayTitle = true }) {
 	const { data, error, isLoading, isError, isSuccess } = FetchRecommendedHook();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
@@ -31,17 +31,26 @@ export function RecommendedCarousel() {
 			{isLoading ? (
 				<LoadingSpinner />
 			) : isError ? (
-				<Typography>Error</Typography>
+				<Typography
+					textAlign={"center"}
+					variant="systemState"
+					color={"#414c4d"}
+				>
+					Looks like we are having trouble getting your recommendations right
+					now.
+				</Typography>
 			) : (
 				data?.length > 0 && (
 					<>
-						<Typography
-							variant={"h2"}
-							textAlign="center"
-							sx={{ opacity: "100%" }}
-						>
-							Your Recommendations
-						</Typography>
+						{displayTitle && (
+							<Typography
+								variant={"h2"}
+								textAlign="center"
+								sx={{ opacity: "100%" }}
+							>
+								{"Your Recommendations"}
+							</Typography>
+						)}
 						<Carousel
 							sx={{
 								width: "100%",
