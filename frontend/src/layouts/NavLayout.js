@@ -158,6 +158,11 @@ function NavLayout() {
 													: "/PlaceholderAvatar.jpg"
 											}
 											sx={{ width: 30, height: 30 }}
+											alt={
+												route === "authenticated"
+													? "User Account Menu"
+													: "Account Menu"
+											}
 										/>
 									</IconButton>
 								</Tooltip>

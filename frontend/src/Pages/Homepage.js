@@ -162,6 +162,7 @@ function Homepage() {
 						zIndex: 0,
 						pointerEvents: "none",
 					}}
+					aria-label="Background Image"
 				/>
 			</Stack>
 
