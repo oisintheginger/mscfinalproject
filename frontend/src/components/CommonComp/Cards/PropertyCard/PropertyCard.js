@@ -2,9 +2,18 @@ import React, { useState, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import {
+	Box,
+	Chip,
+	Divider,
+	Grid,
+	useMediaQuery,
+	useTheme,
+} from "@mui/material";
 import { Stack, Typography, CardActionArea } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
+import SingleBedIcon from "@mui/icons-material/SingleBed";
+import BathtubIcon from "@mui/icons-material/Bathtub";
 // import {
 // 	AddToFavoritesMutation,
 // 	RemoveFromFavoritesMutation,
@@ -53,6 +62,7 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 
 	// const isFavorited =
 	// 	userData?.favourites.includes(data?.propertyId.toString()) || false;
+
 	return (
 		<Card elevation={inPopup ? 0 : 6} sx={{ height: "100%" }}>
 			{children}
@@ -83,24 +93,49 @@ function PropertyCard({ data, key, inPopup = false, children }) {
 				/>
 
 				<CardContent>
-					<Grid container minWidth={"fit-content"}>
-						<Grid item xs={12}>
-							<Stack overflow={"clip"} width={"100%"}>
-								<Stack direction={"row"} justifyContent={"space-between"}>
-									<Typography variant="cardHeader">
-										{"$" + data?.price}
-									</Typography>
-								</Stack>
-								<Typography variant="cardSubTitle" noWrap>
-									{data?.streetAddress}
-								</Typography>
-								<Typography variant="cardSubTitle" noWrap>
-									{"Zip Code: " + data?.zipcode}
-								</Typography>
+					<Stack overflow={"clip"} width={"100%"} spacing={1}>
+						<Stack>
+							<Typography variant="cardHeader">{"$" + data?.price}</Typography>
+							<Stack direction={"row"} spacing={1}>
+								<Chip
+									label={data?.bedrooms + " Bed"}
+									sx={{
+										fontSize: 15,
+										fontWeight: 600,
+										borderWidth: 2,
+										borderColor: "#192623",
+										color: "#192623",
+										bgcolor: "#e9f2f0",
+									}}
+									icon={<SingleBedIcon fontSize="small" color="#192623" />}
+									variant="outlined"
+								/>
+								<Chip
+									label={data?.bathrooms + " Bath"}
+									sx={{
+										fontSize: 15,
+										fontWeight: 600,
+										borderWidth: 2,
+										borderColor: "#192623",
+										color: "#192623",
+										bgcolor: "#e9f2f0",
+									}}
+									icon={<BathtubIcon fontSize="small" color="#192623" />}
+									variant="outlined"
+								/>
 							</Stack>
-						</Grid>
-					</Grid>
-					<PropertyTags tags={data?.tags} />
+						</Stack>
+						<Divider />
+						<Stack>
+							<Typography variant="cardSubTitle" noWrap>
+								{data?.streetAddress}
+							</Typography>
+							<Typography variant="cardSubTitle" noWrap>
+								{"Zip Code: " + data?.zipcode}
+							</Typography>
+						</Stack>
+						<PropertyTags tags={data?.tags} />
+					</Stack>
 				</CardContent>
 			</CardActionArea>
 		</Card>
