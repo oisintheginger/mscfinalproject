@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Diary/December/4th December Monday.md",
+                "file": "Daily Diary/December/7th December Thursday.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "90b3c74897a3064a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily Diary/December/8th December Friday.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -93,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Diary/December/4th December Monday.md",
+                "file": "Daily Diary/December/8th December Friday.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Diary/December/4th December Monday.md",
+                "file": "Daily Diary/December/8th December Friday.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Diary/December/4th December Monday.md"
+                "file": "Daily Diary/December/8th December Friday.md"
               }
             }
           }
@@ -155,11 +168,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "de29d5477326ddc2",
+  "active": "90b3c74897a3064a",
   "lastOpenFiles": [
+    "Daily Diary/December/7th December Thursday.md",
+    "Daily Diary/December/8th December Friday.md",
+    "Daily Diary/December/4th December Monday.md",
     "Daily Diary/December/5th December Tuesday.md",
     "Daily Diary/December/6th December Wednesday.md",
-    "Daily Diary/December/7th December Thursday.md",
     "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
     "Master's Project/ExpertAccessibilityEvaluation",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
@@ -169,7 +184,6 @@
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/HomePage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/BrowsingPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ContactPage.pdf",
-    "Daily Diary/December/4th December Monday.md",
     "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/PropertyDetailsPage.pdf",
     "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/ProfilePage.pdf",
     "Daily Diary/December/2nd December Saturday.md",
@@ -192,7 +206,6 @@
     "Daily Diary/November/6th November Monday.md",
     "Daily Diary/November/2nd November 2023.md",
     "Daily Diary/November/8th November Wednesday.md",
-    "Daily Diary/October/Sunday 1st October.md",
     "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots/SUSQuestionnaire.png",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",
     "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
