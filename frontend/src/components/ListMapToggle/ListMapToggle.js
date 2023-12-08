@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import StyledToggle from "../CommonComp/Button/StyledToggle";
 import { MapIcon, ListIcon } from "../../Icons/HMEIcons";
+import PublicIcon from "@mui/icons-material/Public";
 function ListMapToggle({ mapEnabled, setMapEnabled }) {
 	const MAP = true;
 	const LIST = false;
@@ -41,14 +42,14 @@ function ListMapToggle({ mapEnabled, setMapEnabled }) {
 						</Tooltip>
 						<Tooltip title={"Open Map View"}>
 							<StyledToggle value={MAP} selected={mapEnabled === MAP}>
-								<Stack direction={"row"} spacing={2}>
+								<Stack direction={"row"} spacing={2} alignItems={"center"}>
 									<Typography
 										variant="button"
 										sx={{ color: mapEnabled == MAP ? "white" : "black" }}
 									>
 										Map
 									</Typography>
-									<MapIcon sx={{ marginLeft: 4 }} />
+									<PublicIcon fontSize="medium" />
 								</Stack>
 							</StyledToggle>
 						</Tooltip>

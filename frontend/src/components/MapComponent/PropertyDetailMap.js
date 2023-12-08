@@ -75,7 +75,7 @@ const markerIcon = new Leaflet.Icon({
 const ProcessQueries = (queries) => {
 	return queries.map((el, ind) => {
 		if (el?.isSuccess) {
-			// return el.data;
+			return el.data;
 		}
 	});
 };
@@ -309,7 +309,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 	const nearbyPlaces = useQueries([
 		...Object.values(mapFeatures).map((mapFeature) => {
 			return {
-				queryKey: ["place", mapFeature.type],
+				queryKey: ["place", ...center, mapFeature.type],
 				queryFn: () => {
 					return API.post("GoogleMapApi", "/", {
 						queryStringParameters: {
@@ -319,8 +319,11 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 						},
 					});
 				},
-				enabled: false,
+				enabled: Boolean(
+					process.env.REACT_APP_GOOGLE_MAP_ENABLED === "enabled"
+				),
 				refetchOnWindowFocus: false,
+				staleTime: 100000,
 				select: (data) => {
 					return {
 						locations: JSON.parse(data),

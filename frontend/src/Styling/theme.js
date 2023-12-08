@@ -163,6 +163,11 @@ const theme = createTheme({
 			fontSize: 22,
 			fontWeight: 300,
 		},
+		mapToggleFont: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 18,
+			fontWeight: 600,
+		},
 	},
 	components: {
 		MuiTypography: {

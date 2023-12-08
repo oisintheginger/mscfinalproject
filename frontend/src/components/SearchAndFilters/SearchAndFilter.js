@@ -245,7 +245,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 				onClose={handleSnackbarClose}
 				TransitionComponent={Slide}
 				anchorOrigin={{
-					vertical: down ? "top" : "bottom",
+					vertical: "top",
 					horizontal: "center",
 				}}
 			>
