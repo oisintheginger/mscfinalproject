@@ -6,7 +6,9 @@ function LoadingSpinner({ message = null }) {
 	return (
 		<Stack alignItems={"center"} spacing={4} mt={5}>
 			<CircularProgress color="primary" sx={{ color: "grey.500" }} />
-			<Typography>{text}</Typography>
+			<Typography textAlign={"center"} variant="systemState" color={"#414c4d"}>
+				{text}
+			</Typography>
 		</Stack>
 	);
 }

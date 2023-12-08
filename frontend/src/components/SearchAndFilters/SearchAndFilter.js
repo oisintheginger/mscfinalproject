@@ -26,6 +26,7 @@ import { UserContext } from "../../Utils/UserContext/UserContext";
 import SnackbarAlertMap from "../../Utils/AlertMap";
 import { useSearchParams } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import { MIN_PRICE } from "./../../Utils/filter_constants";
 
 function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const theme = useTheme();
@@ -112,10 +113,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	};
 
 	useEffect(() => {
-		if (
-			searchParameters.get("Bathrooms") == null ||
-			route !== "authenticated"
-		) {
+		if (searchParameters.get(MIN_PRICE) == null || route !== "authenticated") {
 			setSaveSearchEnabled(false);
 		} else {
 			setSaveSearchEnabled(true);

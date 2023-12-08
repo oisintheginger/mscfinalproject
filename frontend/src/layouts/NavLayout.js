@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import HelpIcon from "@mui/icons-material/Help";
 import {
@@ -16,8 +16,14 @@ import {
 	Container,
 	Button,
 	Tooltip,
+	Menu,
+	MenuItem,
+	ListItem,
+	ListSubheader,
+	Avatar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Popover from "@mui/material/Popover";
 
 import Drawer from "@mui/material/Drawer";
@@ -44,6 +50,7 @@ import ButtonStyled from "../components/CommonComp/Button/ButtonStyled";
 function NavLayout() {
 	const theme = useTheme();
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
+	const down = useMediaQuery(theme.breakpoints.down("md"));
 
 	const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -88,10 +95,15 @@ function NavLayout() {
 	};
 
 	const handlePopoverClose = () => {
+		setMenuOpen(false);
 		setAnchorEl(null);
 	};
 
-	const open = Boolean(anchorEl);
+	const [menuOpen, setMenuOpen] = useState(false);
+
+	useEffect(() => {
+		setMenuOpen(anchorEl != null);
+	}, [anchorEl]);
 	return (
 		<>
 			<Box sx={{ flexGrow: 1, width: "100%", backgroundColor: "primary.main" }}>
@@ -132,41 +144,104 @@ function NavLayout() {
 							alt="Renting Made Easy Logo"
 							onClick={() => navigate("/")}
 						></Box>
-						<Tooltip title={"Click here to visit our FAQ page"}>
-							<Button
-								size="large"
-								aria-label="help"
-								onClick={() => navigate("/FAQ")}
-								sx={{ color: fontDark, height: "100%" }}
+						<Box display={"flex"} flexDirection={"row"} alignItems={"center"}>
+							<Box
+								sx={{
+									display: !down ? "block" : "none",
+								}}
 							>
-								<HelpIcon />
-							</Button>
-						</Tooltip>
-						<Popover
-							open={open}
-							anchorEl={anchorEl}
-							onClose={handlePopoverClose}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "left",
-							}}
-						>
-							<Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
-								<Typography
-									sx={{ cursor: "pointer" }}
-									onClick={() => navigate("/FAQ")}
-								>
-									Click HERE for help
-								</Typography>
-								<IconButton
-									aria-label="close"
-									size="small"
-									onClick={handlePopoverClose}
-								>
-									<CloseIcon fontSize="small" />
-								</IconButton>
+								<Tooltip title={"Account Menu"}>
+									<IconButton size="small" onClick={handlePopoverOpen}>
+										<Avatar
+											src={
+												route === "authenticated"
+													? "/Yoda.jpeg"
+													: "/PlaceholderAvatar.jpg"
+											}
+											sx={{ width: 30, height: 30 }}
+											alt={
+												route === "authenticated"
+													? "User Account Menu"
+													: "Account Menu"
+											}
+										/>
+									</IconButton>
+								</Tooltip>
 							</Box>
-						</Popover>
+							<Popover
+								open={menuOpen}
+								onClose={handlePopoverClose}
+								anchorEl={anchorEl}
+								anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+								transformOrigin={{ vertical: "top", horizontal: "right" }}
+							>
+								{route === "authenticated" ? (
+									<Stack alignItems={"center"} mb={2} pl={1} pr={1}>
+										<List>
+											<ListItemButton
+												component={RRDLink}
+												to={"/favorites?page=1"}
+												onClick={handlePopoverClose}
+											>
+												My Favorites
+											</ListItemButton>
+											<ListItemButton
+												component={RRDLink}
+												to={"/savedsearches?page=1"}
+												onClick={handlePopoverClose}
+											>
+												My Searches
+											</ListItemButton>
+											<ListItemButton
+												component={RRDLink}
+												to={"/applications?page=1"}
+												onClick={handlePopoverClose}
+											>
+												My Applications
+											</ListItemButton>
+											<Divider />
+											<ListItemButton
+												component={RRDLink}
+												to={"/profile"}
+												onClick={handlePopoverClose}
+											>
+												My Profile
+											</ListItemButton>
+										</List>
+										<ButtonStyled
+											onClick={() => {
+												handlePopoverClose();
+												LogoutFunc();
+											}}
+										>
+											SIGN OUT
+										</ButtonStyled>
+									</Stack>
+								) : (
+									<Stack alignItems={"center"} mt={1} mb={1} p={1}>
+										<ButtonStyled
+											onClick={() => {
+												setDrawerOpen(false);
+												handlePopoverClose();
+												navigate("/login", { state: { from: location } });
+											}}
+										>
+											SIGN IN TO VIEW ACCOUNT MENU
+										</ButtonStyled>
+									</Stack>
+								)}
+							</Popover>
+							<Tooltip title={"Click here to visit our FAQ page"}>
+								<Button
+									size="large"
+									aria-label="help"
+									onClick={() => navigate("/FAQ")}
+									sx={{ color: fontDark, height: "100%" }}
+								>
+									<HelpIcon />
+								</Button>
+							</Tooltip>
+						</Box>
 					</Toolbar>
 				</AppBar>
 
@@ -196,7 +271,7 @@ function NavLayout() {
 						</IconButton>
 					</Stack>
 					<Box id="DrawerMenu" sx={{ ml: 2, mr: 2, mt: 0 }}>
-						<Typography variant="h6">MAIN MENU</Typography>
+						<Typography variant="h2">MAIN MENU</Typography>
 					</Box>
 					<Box>
 						<List sx={{ m: 2, mt: 0 }}>
@@ -236,7 +311,7 @@ function NavLayout() {
 						flexDirection={"column"}
 						justifyContent={"center"}
 					>
-						<Typography variant="h6">My Corner</Typography>
+						<Typography variant="h3">MY CORNER</Typography>
 						<Divider />
 						{route !== "authenticated" ? (
 							<Stack mt={3} spacing={1}>
@@ -314,7 +389,14 @@ function NavLayout() {
 							</List>
 						)}
 						{route === "authenticated" && (
-							<ButtonStyled onClick={LogoutFunc}>SIGN OUT</ButtonStyled>
+							<ButtonStyled
+								onClick={() => {
+									handlePopoverClose();
+									LogoutFunc();
+								}}
+							>
+								SIGN OUT
+							</ButtonStyled>
 						)}
 					</Box>
 				</Drawer>

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import LoadingSpinner from "../CommonComp/LoadingSpinner/LoadingSpinner";
 import CircleIcon from "@mui/icons-material/Circle";
 
-export function RecommendedCarousel() {
+export function RecommendedCarousel({ displayTitle = true }) {
 	const { data, error, isLoading, isError, isSuccess } = FetchRecommendedHook();
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
@@ -31,49 +31,64 @@ export function RecommendedCarousel() {
 			{isLoading ? (
 				<LoadingSpinner />
 			) : isError ? (
-				<Typography>Error</Typography>
-			) : data?.length > 0 ? (
-				<Carousel
-					sx={{
-						width: "100%",
-						justifyContent: "center",
-						pl: down ? 0 : 10,
-						pr: down ? 0 : 10,
-					}}
-					autoPlay={false}
-					swipe={down}
-					navButtonsAlwaysVisible={!down}
-					navButtonsAlwaysInvisible={down}
-					IndicatorIcon={<CircleIcon fontSize="small" sx={{ m: 0.5 }} />}
+				<Typography
+					textAlign={"center"}
+					variant="systemState"
+					color={"#414c4d"}
 				>
-					{slidesArr?.map((slide, ind) => {
-						return (
-							<Box
-								width={"100%"}
-								pt={3}
-								key={ind}
-								display={"flex"}
-								flexDirection={"row"}
-								justifyContent={"center"}
-							>
-								<Grid container spacing={1} justifyContent={"center"}>
-									{slide.map((el, num) => {
-										return (
-											<Grid item xs={down ? 12 : 4} key={ind + num}>
-												<RecommendationCard data={el} />
-											</Grid>
-										);
-									})}
-								</Grid>
-							</Box>
-						);
-					})}
-				</Carousel>
-			) : (
-				<Typography variant="body1" mt={2}>
-					We have no recommendations for you. Browse the site and add more stuff
-					to your favorites so we can get you some personalized recommendations.
+					Looks like we are having trouble getting your recommendations right
+					now.
 				</Typography>
+			) : (
+				data?.length > 0 && (
+					<>
+						{displayTitle && (
+							<Typography
+								variant={"h2"}
+								textAlign="center"
+								sx={{ opacity: "100%" }}
+							>
+								{"Your Recommendations"}
+							</Typography>
+						)}
+						<Carousel
+							sx={{
+								width: "100%",
+								justifyContent: "center",
+								pl: down ? 0 : 10,
+								pr: down ? 0 : 10,
+							}}
+							autoPlay={false}
+							swipe={down}
+							navButtonsAlwaysVisible={!down}
+							navButtonsAlwaysInvisible={down}
+							IndicatorIcon={<CircleIcon fontSize="small" sx={{ m: 0.5 }} />}
+						>
+							{slidesArr?.map((slide, ind) => {
+								return (
+									<Box
+										width={"100%"}
+										pt={3}
+										key={ind}
+										display={"flex"}
+										flexDirection={"row"}
+										justifyContent={"center"}
+									>
+										<Grid container spacing={1} justifyContent={"center"}>
+											{slide.map((el, num) => {
+												return (
+													<Grid item xs={down ? 12 : 4} key={ind + num}>
+														<RecommendationCard data={el} />
+													</Grid>
+												);
+											})}
+										</Grid>
+									</Box>
+								);
+							})}
+						</Carousel>
+					</>
+				)
 			)}
 		</>
 	);
