@@ -65,6 +65,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const successSaveSearch = () => {
 		setAlert(SnackbarAlertMap.save_search);
 		setSnackbarAlertOpen(true);
+		setSaveSearchEnabled(false);
 	};
 	const errorSaveSearch = () => {
 		if (route != "authenticated") {
