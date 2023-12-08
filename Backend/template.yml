@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: AWS Serverless Spring Boot 2 API - msc.HME::Backend
+Description: AWS Serverless Spring Boot 2 API - msc.rme::Backend
 Globals:
   Api:
     EndpointConfiguration: REGIONAL
@@ -9,7 +9,7 @@ Resources:
   BackendFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: msc.HME.StreamLambdaHandler::handleRequest
+      Handler: msc.rme.StreamLambdaHandler::handleRequest
       Runtime: java17
       CodeUri: .
       MemorySize: 512
