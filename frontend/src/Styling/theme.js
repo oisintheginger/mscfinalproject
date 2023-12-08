@@ -168,6 +168,11 @@ const theme = createTheme({
 			fontSize: 18,
 			fontWeight: 600,
 		},
+		searchSuggestion: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 18,
+			fontWeight: 600,
+		},
 	},
 	components: {
 		MuiTypography: {
