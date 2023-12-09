@@ -14,7 +14,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://main.d3k55wy8obq996.amplifyapp.com")
 public class UserController {
 
     private final UserService userService;
