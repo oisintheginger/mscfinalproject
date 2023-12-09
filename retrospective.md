@@ -1,6 +1,6 @@
 # Weekly Project Retrospective
 
-## Week 2: 25/09/2023
+## Week 2: 25/09/2023 - 01/10/2023
 
 ### Team Members:
 1. Nishant
@@ -48,7 +48,7 @@
 
 ---
 
-## Week 3: 02/10/2023
+## Week 3: 02/10/2023 - 08/10/2023
 
 ### Team Members:
 1. Nishant
@@ -66,8 +66,6 @@
 - Fenna: Because of the project plan everybody’s tasks were clear and we all just kept working. 
 - Oisin: Everyone kinda just did their thing, no real barriers to work.
 
-
-
 ### What Could Be Improved:
 - Nishant: Time management could be improved. As a lot of tasks are awaiting to be completed, there is a gap in research and implementation to be covered.
 - Sean: Managing data requests under the 13,000 limit for cost-saving presented challenges. While I successfully stayed within this threshold, I identified areas for efficiency improvement. Specifically, I encountered null values in certain keys and refined my code to prevent loop interruptions. Additionally, I occasionally had to rerun a for loop due to accidental dataset deletions or post-loop realisations about extracting additional information we initially overlooked.
@@ -75,7 +73,6 @@
 Charlotte: Time management has not been great this week.
 - Fenna: Collaboration especially between the software and data science side. I kinda get what’s going on, but I feel like I only hear about issues after the fact. 
 - Oisin: NA
-
 
 ### Action Items for Next Week:
 - Nishant: Try researching the minimum, and start on implementation.
@@ -98,7 +95,7 @@ Stephen: Gathering the businesses dataset around the properties
 
 ---
 
-## Week 4: 09/10/2023
+## Week 4: 09/10/2023 - 15/10/2023
 
 ### Team Members:
 1. Nishant
@@ -144,7 +141,7 @@ Stephen: Gathering the businesses dataset around the properties
 
 ---
 
-## Week 5: 16/10/2023
+## Week 5: 16/10/2023 - 22/10/2023
 
 ### Team Members:
 1. Nishant
@@ -155,73 +152,238 @@ Stephen: Gathering the businesses dataset around the properties
 6. Oisin
 
 ### What Went Well:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant:We have completely fulfilled what we needed to build the foundation of the project, after this will be mostly implementation of the features we've been talking about for weeks.
+- Sean: We made significant progress on the interim report, filled in most sections with a lot of information that now just needs condensing.
+- Stephen: We discussed and implemented the location data format for the businesses dataset
+- Charlotte: progressing nicely on the interim report and presentation. Taking feedback on presentations into account.
+- Fenna: we all achieved a lot of work this week with development, well done guys!
+- Oisin: We managed to get filters working well with form state, and we got Cognito set up too so that we have the beginning of Auth on the frontend. The team did well presenting on Friday morning too.
 
 ### What Could Be Improved:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: When the interim report is submitted, we will have to work harder, to actually test and try the features.
+- Sean: Creating backups of datasets with progress history to prevent the need for re-cleaning initial datasets in case of errors or discrepancies, ultimately this will save time if future errors occur.
+- Stephen: documenting and sharing the solutions to common challenges
+- Charlotte: communication is still lacking in certain areas but is slowly improving.
+- Fenna: Again, communication but we’re taking steps into the right direction. Also, start earlier with presentations especially for next week.
+- Oisin: Once the interim report is completed, I think that we will need to put the pedal to the metal on the development side of getting things connected (as expected). Cross collaboration between sub-teams has been good so far, but I expect this will need to be ramped up even more. I also need to have a more detailed plan of necessary tasks so that myself and Charlotte have a clear course of progression + objectives. This should help us divide and conquer the challenges facing the frontend.
+
+### Action Items for Next Week:
+- Nishant: Query optimization for database, planing the implementation for the recommendation system, and distributing the algorithms we will be testing before a final implementation.
+- Sean: Creating sql tables, processing crime data and adding it into schema, may need to use Haversine formula as there is neighbourhood mismatching name errors between the google maps and crime dataset neighbourhoods, create user profiles table in schema and a way of retrieving and storing like data from users.
+- Stephen: Working with Sean to add the datasets to the schema
+- Charlotte: Start connecting the frontend and backend, finish up the interim report and presentation
+- Fenna: interim report and presentation!
+- Oisin: interim  report + presentation, dive into the development fully
+
+### Additional Comments:
+- Nishant: N/A
+- Sean: We’ve done a lot of work this week guys, especially collaboratively, well done!
+- Stephen: N/A
+- Charlotte: N/A
+- Fenna: N/A
+- Oisin: N/A
+
+---
+
+## Week 6: 23/10/2023 - 29/10/2023
+
+### What Went Well:
+- Nishant: We presented live demo and project details
+- Sean: Worked really well as a team to pull the report documentation together, made significant progress on the planning of the the scoring and recommendation systems
+- Stephen: Working together to put together our interim report
+- Charlotte: So much presentation and report work but we really pulled together.
+- Fenna: We did a lot of work for the report and presentation. Excellent teamwork guys!
+- Oisin: Interim Report came together well
+
+### What Could Be Improved:
+- Nishant: Research about how recommendation systems can work.
+- Sean: Need to do further research on how to integrate the planned recommendation system into the cloud
+- Stephen: Documentation on our plans and next actions
+- Charlotte: Recommendation system/ scoring system communication - we are improving though.
+- Fenna: Communication. 
+- Oisin: Describe how to test on PR’s so that reviewers can verify they pass.
 
 
 ### Action Items for Next Week:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
-
+- Nishant: Have clear plan for the implementation of the recommendation and scoring engine
+- Sean: Research how to implement the scoring and recommendation system into the project, set up database so backend can query from it
+- Stephen: Loading up business dataset, tableau visualization and working on recommendation system evaluation design
+- Charlotte: Connect everything, start layout for user testing and find test subjects.
+- Fenna: Fully connect all parts and continue on.
+- Oisin: Begin to connect everything
 
 ### Additional Comments:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: N/A
+- Sean: Last week was quite a tough one, so I just want to give a pat on the back to everyone for making it through!
+- Stephen: N/A
+- Charlotte: N/A 
+- Fenna: N/A
+- Oisin: N/A
 
 
 ---
 
-## Week 6: 23/10/2023
+## Week 7: 30/10/2023 - 5/11/2023
 
 ### What Went Well:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Nishant: The connection among systems is now correctly working.
+- Sean: Planning the recommendation system and scoring system architecture using amazon services
+- Stephen: Drawing up the architecture of the recommendation and scoring system
+- Charlotte: Initial setup for the user testing and finally connected with backend.
+- Fenna: Finally got the database connected.
+- Oisin: Finally connected with API Gateway and Amplify and Requesting data
 
 ### What Could Be Improved:
 - Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
-
-
-### Action Items for Next Week:
-- Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Sean: Between 10am and 6pm to try reply to people within 10 mins, since these are the hours we all work together at, they should be our most efficient
+- Stephen: Plan on what task to work on next
+- Charlotte: Some of the work hours differ making it difficult to get in contact at times.
+- Fenna: Team communication and efficiency.
+- Oisin: Not falling to a terrible plague, team comms
 
 ### Additional Comments:
 - Nishant: 
-- Sean: 
-- Stephen: 
-- Charlotte: 
-- Fenna:
-- Oisin
+- Sean: Don’t forget to reward yourselves for your work guys:)
+- Stephen: I am currently thinking of extra contributions to add to the project, though most of them are looking more and more like future works
+- Charlotte: User testing is way harder than I expected.
+- Fenna: We’re getting closer and closer lets gooo guys. 
+- Oisin: 
+
+## Week 8: 06/11/2023 - 12/11/2023
+
+### What Went Well:
+- Nishant: Finished optimized queries for backend team now front end can finally query on real data. 
+- Sean: Finished the scoring system for nearby services, implemented all tables to database, worked on this with nishant, fixed business dataset neighbourhood coordinates issue with stephen
+- Stephen: We have finally settled on an adddiotnal contribution I am currently working on
+- Charlotte: Team communication is improving and frontend connecting is going well.
+- Fenna: Development and team communications are going well 
+- Oisin: Communication improved, development moving as expected
+
+
+### What Could Be Improved:
+- Nishant: data structures in database can be better set up to accept other columns
+- Sean: potentially make the daily standups shorter, they often cut into doing actual work which is good, but the part where we say what we did and what we got done could be done more quickly 
+- Stephen: planning on what work to be done ahead of time
+- Charlotte: n/a
+- Fenna: planning and deciding the work more than a week in advance 
+- Oisin: 
+
+
+### Additional Comments:
+- Nishant: 
+- Sean: let’s go guys
+- Stephen: N/A
+- Charlotte: We got this.
+- Fenna: Well done everyone, things are coming together now :) 
+- Oisin: 
+
+
+## Week 9: 13/11/2023 - 19/11/2023
+
+### What Went Well:
+- Nishant: Received scores as more data this will help recommendation system more robust.
+- Sean: Wrote a lambda return function for the weighted z scores, function ready to be integrated into the backend.
+- Stephen: We started coding for the tagging system locally and connected to the database
+- Charlotte: User Evaluation report/ presentation
+- Fenna: Good productive work done on all fronts. 
+- Oisin: User Eval was good
+
+
+
+### What Could Be Improved:
+- Nishant: Starting to integrate soon all the aspects
+- Sean: The weighted z scores need some qualitative feedback from users. We realised that this is something that needs to be put into the user evaluation report
+- Stephen: Addressing expert feedback from supervisors
+- Charlotte: Should have added everything to the user eval no matter how significant. I think all user evaluation no matter how small needs to be added into the user evaluation folder in the one drive, that way we can track it all and edit it for the final report.
+- Fenna: Probably should have had more people working on the user evaluation submission. 
+- Oisin: Comms and coordination around errors and issues with DB
+
+
+### Action Items for Next Week:
+- Nishant: Integrate all the elements of the scoring an recommendation system to backend.
+- Sean: Finish the property scoring system, will help stephen integrating the tagging system, and Nishant with the KNN recommendation system.
+- Stephen:Working on the tagging system on the database
+- Charlotte: Continue connecting with endpoints.
+- Fenna: Just keep swimming. (hopefully we don’t drown)
+- Oisin: Don’t die before submission/Connecting work
+
+
+### Additional Comments:
+- Nishant: N/A
+- Sean: N/A
+- Stephen: N/A
+- Charlotte: We’re moving along nicely.
+- Fenna: Well done everyone, we got this :)
+- Oisin: N/A
+
+---
+
+## Week 10 : 20/11/2023 - 26/11/2023
+
+### What Went Well:
+- Nishant Knn model is working locally, team is making good progress on the front end and the recommender systems, and backend is ensuring everything is connected.
+- Sean: Finished the user collaborative filtering system, uploaded to lambda and connected to database
+- Stephen: Initial plans for creating the Tag system was explored and presented
+- Charlotte: Team coming together for the final weeks of coding.
+- Fenna: necessary team communication for last features
+- Oisin: Good collaboration between Frontend Team and Backend Team
+
+### What Could Be Improved:
+- Nishant: Speed on the integration and pack everything this week.
+- Sean: Dealing with external packages on aws lambda
+- Stephen: Presentation slide with more images
+- Charlotte: Better communication on recommendation system will be finalised.
+- Fenna: Clarity on recommendation system
+- Oisin: ^^^
+
+### Action Items for Next Week:
+- Nishant: Test all the system together, and correct bits and pieces.
+- Sean: Start and finish one more recommendation system, help with KNN, and user testing. 
+- Stephen: Creating tags for all the properties
+- Charlotte: User testing and minor fixes for the website.
+- Fenna: Implementation of tags, personal_scores, recommendation system and click data. 
+- Oisin: Final connecting stuff
+
+### Additional Comments:
+- Nishant: N/A
+- Sean: we are the dream team
+- Stephen: hopefully the final report is not as tasking as the interim report
+- Charlotte: [insert hype statement]
+- Fenna: Way toooo go team let’s goooo
+- Oisin: I’m really trying to not have a stroke
+
+---
+
+## Week 11 : 27/11/2023 - 3/12/2023
+
+### What Went Well:
+- Nishant: KNN Model worked locally with results.
+- Sean: We got all the recommendation systems  finished and working with the site 
+- Stephen: Tags have been created and implemented on the frontend
+- Charlotte: Last week of development done, we really pulled together
+- Fenna: We really pulled together for the last week of development
+- Oisin: Pulling everything together (Personalized Scores/Cosine Recommended/KNN recommended)
+
+### What Could Be Improved:
+- Nishant: Faster integration of model KNN with front end
+- Sean: The user testing plan for the recommendation system
+- Stephen: Documenting feedback from casual conversations about RME
+- Charlotte: A bit more clarification on what people want for the recommendation system
+- Fenna: We just gotta keep going for a bit longer
+- Oisin: Just continuing with the User Evaluation
+
+### Action Items for Next Week:
+- Nishant: Integrate model with front end and do user evaluation on model.
+- Sean: Finish up testing, make a backup recommendation system 
+- Stephen: Addressing expert feedback on tags implemented
+- Charlotte: Finish user testing and continue preparation for the final presentation/ report.
+- Fenna: Finishing up by testing and user testing 
+- Oisin: Finish KNN connection / accessibility assessment / feedback implementation
+
+### Additional Comments:
+- Nishant: N/A
+- Sean: Keep on going guys
+- Stephen: N/A
+- Charlotte: N/A
+- Fenna: N/A
+- Oisin: N/A

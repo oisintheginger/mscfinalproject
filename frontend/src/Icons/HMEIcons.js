@@ -1,5 +1,7 @@
 import { create } from "@mui/material/styles/createTransitions";
 import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import Leaflet from "leaflet";
+
 const STROKE_WIDTH = 1.5;
 
 export const CloseIcon = createSvgIcon(
@@ -220,45 +222,6 @@ export const ExpandRightIcon = createSvgIcon(
 	"ExpandRight"
 );
 
-export const HospitalIcon = createSvgIcon(
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="28"
-		height="28"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		class="lucide lucide-stethoscope"
-	>
-		<path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
-		<path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
-		<circle cx="20" cy="10" r="2" />
-	</svg>,
-	"Hospital"
-);
-
-export const PoliceIcon = createSvgIcon(
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="28"
-		height="28"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		class="lucide lucide-shield-half"
-	>
-		<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-		<path d="M12 22V2" />
-	</svg>,
-	"Police"
-);
-
 export const SortIcon = createSvgIcon(
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -322,4 +285,79 @@ export const MapIcon = createSvgIcon(
 		<line x1="15" x2="15" y1="6" y2="21" />
 	</svg>,
 	"Map"
+);
+
+export const NextCarouselIcon = createSvgIcon(
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		class="lucide lucide-chevron-right"
+	>
+		<path d="m9 18 6-6-6-6" />
+	</svg>,
+	"Next"
+);
+export const PrevCarouselIcon = createSvgIcon(
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		class="lucide lucide-chevron-left"
+	>
+		<path d="m15 18-6-6 6-6" />
+	</svg>,
+	"Prev"
+);
+
+export const EditApplicationIcon = createSvgIcon(
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.25"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		class="lucide lucide-file-edit"
+	>
+		<path d="M4 13.5V4a2 2 0 0 1 2-2h8.5L20 7.5V20a2 2 0 0 1-2 2h-5.5" />
+		<polyline points="14 2 14 8 20 8" />
+		<path d="M10.42 12.61a2.1 2.1 0 1 1 2.97 2.97L7.95 21 4 22l.99-3.95 5.43-5.44Z" />
+	</svg>,
+	"EditApplication"
+);
+
+export const DeleteIcon = createSvgIcon(
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.25"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		class="lucide lucide-x-circle"
+	>
+		<circle cx="12" cy="12" r="10" />
+		<path d="m15 9-6 6" />
+		<path d="m9 9 6 6" />
+	</svg>,
+	"Delete"
 );

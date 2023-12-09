@@ -24,6 +24,7 @@ function MapFeatureToggle({
 				}
 				label={label}
 				labelPlacement="end"
+				aria-label={`${label} Map Toggle`}
 			/>
 			{icon}
 		</Stack>

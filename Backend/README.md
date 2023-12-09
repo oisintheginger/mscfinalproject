@@ -13,7 +13,7 @@ The project folder also includes a `template.yml` file. You can use this [SAM](h
 ## Building the project
 You can use the SAM CLI to quickly build the project
 ```bash
-$ mvn archetype:generate -DartifactId=Backend -DarchetypeGroupId=com.amazonaws.serverless.archetypes -DarchetypeArtifactId=aws-serverless-jersey-archetype -DarchetypeVersion=2.0.0-M2 -DgroupId=msc.HME -Dversion=1.0-SNAPSHOT -Dinteractive=false
+$ mvn archetype:generate -DartifactId=Backend -DarchetypeGroupId=com.amazonaws.serverless.archetypes -DarchetypeArtifactId=aws-serverless-jersey-archetype -DarchetypeVersion=2.0.0-M2 -DgroupId=msc.rme -Dversion=1.0-SNAPSHOT -Dinteractive=false
 $ cd Backend
 $ sam build
 Building resource 'BackendFunction'

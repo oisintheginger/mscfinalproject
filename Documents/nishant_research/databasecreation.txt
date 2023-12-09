@@ -1,0 +1,36 @@
+Database Creation Issues 
+
+As part of our ongoing efforts to optimize and modernize our infrastructure, our team decided to implement a cloud-based RDS MySQL database using AWS's free tier offerings. This report highlights the steps we took to set up the database and elaborates on the challenges we faced during the process, along with their corresponding solutions. 
+
+1. VPC Connectivity Issues: 
+
+During the initial stages of setting up our database on AWS, we encountered issues related to VPC connectivity. The default VPC configurations provided by AWS did not align with our stringent organizational security policies, potentially exposing our database to vulnerabilities. 
+
+ Recognizing the gravity of the situation, we consulted with our network team. Drawing on their expertise, we tailored the VPC settings to bridge the gap between AWS's default configurations and our organizational needs. By doing so, we managed to maintain the robustness of our security while ensuring seamless connectivity to our database. 
+
+  
+
+2. Lambda Function Triggers: 
+
+Our mission was to drive operational efficiency. Part of this was ensuring that the RDS instance was active only when required, thereby optimizing costs. While this was theoretically sound, the practical implementation, especially the integration of Lambda functions with the API Gateway, proved to be a complex task. 
+
+Our initial attempts were met with partial success, prompting us to delve deeper into AWS's rich documentation. With a few iterations and optimizations, we succeeded in setting up the Lambda functions (StartRDSInstance and StopRDSInstance). Linking them to the API Gateway became a key turning point, as developers now had the power to dynamically start the RDS instance, ensuring we only consumed resources when absolutely necessary. 
+
+  
+
+3. API Deployment: 
+
+As we progressed to deploying our API on the API Gateway, inconsistencies emerged. The Lambda function calls weren't behaving as anticipated, leading to functional bottlenecks. 
+
+Root cause analysis revealed that the issue lay in the IAM roles and permissions. The initial permissions assigned to the API Gateway were insufficient to invoke the Lambda functions. We promptly re-evaluated and adjusted these permissions, ensuring that the API Gateway had the explicit rights to trigger our Lambda functions. This rectification eliminated the discrepancies, making our system more responsive and efficient. 
+
+  
+
+4. Exploration with Aurora: 
+
+In our quest to explore the best database solutions, we had initially set up an Aurora instance. While Aurora offered promising features, we were taken aback when we received a billing of over $500 after just five days of usage. 
+
+ This unexpected expense underscored the importance of vigilant resource monitoring. We swiftly transitioned to the RDS MySQL free tier offering to curtail costs. Additionally, we set up alerts and budget limits on our AWS account, ensuring that we are promptly notified about any abnormal spikes in usage or costs, preventing such financial surprises in the future. 
+
+  
+

@@ -1,0 +1,19 @@
+Initial Architecture: 
+
+The original system was designed with the following workflow: 
+
+  
+
+User Interaction: Users would interact directly with the Amplify frontend. 
+
+Amplify to API: The Amplify platform would relay user requests to an API endpoint. 
+
+API to Lambda: The API would trigger a Lambda function to handle specific database operations. 
+
+Lambda Interaction with DB: This function would communicate with the database to execute CRUD (Create, Read, Update, Delete) operations. 
+
+Data Storage in S3: Processed or retrieved data would be stored in an S3 bucket. 
+
+S3 to SageMaker: Data in S3 would then be used by SageMaker for machine learning or analytics tasks. 
+
+. 

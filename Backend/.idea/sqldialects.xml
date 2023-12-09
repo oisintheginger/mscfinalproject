@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/66fd398c-4760-443c-95d0-7b8bc1de0ca2/console_7.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/msc/rme/service/PropertyService.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/msc/rme/service/UserService.java" dialect="MySQL" />
+  </component>
+</project>

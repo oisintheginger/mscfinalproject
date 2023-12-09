@@ -1,55 +1,40 @@
 import Grid from "@mui/material/Grid";
 import PropertyCard from "../CommonComp/Cards/PropertyCard/PropertyCard";
-import {
-	Box,
-	Stack,
-	Typography,
-	Divider,
-	Button,
-	useTheme,
-} from "@mui/material";
-import { SortIcon } from "../../Icons/HMEIcons";
+import { Box, Typography, Divider, useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { forwardRef } from "react";
 
-function ResultGrid({
-	propertyData,
-	displayTitle = "RESULTS IN THIS AREA",
-	id = null,
-}) {
+function ResultGrid(
+	{ propertyData, displayTitle = "RESULTS IN THIS AREA", id = null },
+	ref
+) {
 	const theme = useTheme();
 
 	const above = useMediaQuery(theme.breakpoints.up("sm"));
-
+	if (!propertyData) return <></>;
 	return (
-		<Box m={0} id={id}>
-			<Stack
-				direction={"row"}
-				alignItems={"flex-end"}
-				justifyContent={"space-between"}
-				mb={1}
-				pl={0}
-				pr={1}
+		<Box
+			id={id}
+			sx={{ minHeight: "55vh" }}
+			display={"flex"}
+			flexDirection={"column"}
+			alignItems={"center"}
+			ref={ref}
+		>
+			<Box
+				direction={"column"}
+				alignItems={"flex-start"}
+				display={"flex"}
+				flexDirection={"column"}
+				width={"100%"}
 			>
-				<Typography variant="h2">{above ? displayTitle : "RESULTS"}</Typography>
-				<Button
-					variant="outlined"
-					color="darkTeal"
-					sx={{
-						justifyContent: { xs: "center", sm: "start" },
-					}}
-					startIcon={<SortIcon />}
-				>
-					{above && (
-						<Typography variant="button" display={"block"}>
-							Sort
-						</Typography>
-					)}
-				</Button>
-			</Stack>
-
-			<Divider />
+				<Typography variant="h2" textAlign={"left"}>
+					{above ? displayTitle : "RESULTS"}
+				</Typography>
+				<Divider sx={{ width: "100%" }} />
+			</Box>
 			<Grid container spacing={2} width={"100%"} mt={0.5}>
-				{propertyData.slice(0, 9).map((data, key) => {
+				{propertyData?.map((data, key) => {
 					return (
 						<Grid item xs={12} sm={6} md={4} lg={4} key={key}>
 							<PropertyCard data={data} />
@@ -60,4 +45,4 @@ function ResultGrid({
 		</Box>
 	);
 }
-export default ResultGrid;
+export default forwardRef(ResultGrid);

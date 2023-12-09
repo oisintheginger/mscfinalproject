@@ -1,0 +1,680 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ""
+  description: Simple API for HME group project
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/fkadir/HMEApi/1.0.0
+paths:
+  /api/properties:
+    get:
+      summary: returns quickviewproperties
+      description: a list with the first entry the total number of pages and the rest of quick view properties includes pagination as query parameters and optional filtering. you can clarify the page and size of the page, default values are page=0 size=50
+      parameters:
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: size
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: minPrice
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: maxPrice
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: minBed
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: minBath
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A list of QuickViewProperty objects
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          description: returns a 400 bad request response code (with a message)
+        "500":
+          description: returns a 500 internal server error. the body contains the specific error exception.
+  /api/properties/batch:
+    get:
+      summary: returns batch quickviewproperties
+      description: batch method that takes a propertyId list and returns the corresponding QVProperties
+      parameters:
+        - in: query
+          name: ids
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+      responses:
+        "200":
+          description: A list of quickviewproperties
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/QuickViewProperty"
+        "400":
+          description: returns a 400 bad request response
+        "404":
+          description: returns a 404 not found response
+        "500":
+          description: returns a 500 internal server error if errors occur with database operations
+  /api/properties/{id}:
+    get:
+      summary: returns quick view property of specific property id
+      description: the method includes (personal) scores and retention of click data
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: returns a quickviewproperty object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuickViewProperty"
+        "404":
+          description: is returned when the property was not found
+        "500":
+          description: is returned when database access error occured
+  /api/properties/details/{id}:
+    get:
+      summary: returns details of a specific property including not personal scores and clickdata
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A DetailedPropery object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DetailedProperty"
+        "404":
+          description: returns a 404 not found response code. The message will detail that the property could not be found.
+        "500":
+          description: returns a 500 internal server error. the body contains the specific error exception.
+  # /api/properties/details/scores/{id}:
+  #   get:
+  #     summary: returns personal scores
+  #     description: returns personal scores for specific propertyId for a user
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         required: true
+  #         schema:
+  #           type: integer
+  #     responses:
+  #       "200":
+  #         description: A Personal scores object
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #       "404":
+  #         description: returns a 404 not found response code. The message will detail that the user could not be found.
+  #       "500":
+  #         description: returns a 500 internal server error. the body contains the specific error exception.
+  /api/properties/locations:
+    get:
+      summary: returns all property ids with longitude and latitude
+      responses:
+        "200":
+          description: returns a list with objects containing property id, longitude and latitude
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        "500":
+          description: returns a list with objects containing property id, longitude and latitude
+  /api/properties/eval/{id}:
+    post:
+      summary: retains the user evaluation
+      description: retains the user evaluation of a property recommendation in the database
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: feedback
+          required: true
+          schema:
+            type: integer
+            example: 0, 1, 2
+      responses:
+        "200":
+          description: returns 200 Ok response with a message
+        "400":
+          description: returns a 400 bad request response
+        "404":
+          description: returns a 404 not found response
+        "500":
+          description: returns a 500 internal server error if errors occur with database operations
+  /api/user:
+    get:
+      summary: returns user info for given user id (authorisation header)
+      responses:
+        "200":
+          description: returns user object with all their info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user"
+        "404":
+          description: returns a 404 user not found response code
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "500":
+          description: returns a 500 internal server error, the body contains the specific error
+  /api/user/{resource}:
+    get:
+      summary: returns specific resource for specific user id
+      parameters:
+        - in: path
+          name: resource
+          required: true
+          schema:
+            type: string
+          example: options are w (weights), f (favourites), s (searches), a (applications)
+      responses:
+        "200":
+          description: returns user resources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        "400":
+          description: returns 400 bad request if the type of resource is not correctly put in
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns a 404 resource not found response code
+        "500":
+          description: returns a 500 internal server error, the body contains the specific error
+  /api/user/new/{resource}:
+    post:
+      summary: creates new specific resource for specific user
+      parameters:
+        - in: path
+          name: resource
+          required: true
+          schema:
+            type: string
+            example: options are w (weights), f (favourites), s (searches), a (applications)
+        - in: query
+          name: searchString
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: propertyId
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: message
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: entertainment
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: pharmacies
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: retail
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fitness
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: financial
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: transportation
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: emergency
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: adds new user resource, returns 200 ok and message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "400":
+          description: returns 400 bad request if the type of resource is not correctly put in
+        "404":
+          description: returns a 404 resource not found response code
+        "500":
+          description: returns a 500 internal server error, the body contains the specific error
+  /api/user/update/email:
+    patch:
+      summary: updates users email address for cognito and user table
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
+  /api/user/update/{resource}:
+    patch:
+      summary: updates a search or weights for a specific user
+      parameters:
+        - in: path
+          name: resource
+          required: true
+          schema:
+            type: string
+            example: options are w (weights), f (favourites), s (searches), a (applications)
+        - in: query
+          name: searchString
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: newSearchString
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: entertainment
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: pharmacies
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: retail
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fitness
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: financial
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: transportation
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: emergency
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
+  /api/user/remove/{resource}:
+    delete:
+      summary: removes user's resource
+      parameters:
+        - in: path
+          name: resource
+          required: true
+          schema:
+            type: string
+            example: options are w (weights), f (favourites), s (searches)
+        - in: query
+          name: searchString
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: propertyId
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
+  /api/user/remove:
+    delete:
+      summary: removes user from cognito, user table and clickdata table
+      responses:
+        "200":
+          description: returns 200 OK response with message
+        "400":
+          description: returns 400 bad request with message
+        "401":
+          description: returns 401 unauthorised request when JWT token can't be decoded or issuer is invalid or token is expired
+        "404":
+          description: returns 404 not found with message
+        "500":
+          description: returns 500 internal server error with specific error in the body
+  /api/recs/1:
+    get:
+      summary: returns kNN recs
+      responses:
+        "200":
+          description: A list of recommended property ids
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+        "400":
+          description: returns different 4xx responses depending on the exception with a message
+        "401":
+          description: returns 401 unauthorised
+        "404":
+          description: returns bad request message
+        "500":
+          description: returns different 5xx responses depending on the exception with a message
+        "503":
+          description: returns service unavailable message if the kNN model can't be accessed
+
+components:
+  schemas:
+    QuickViewProperty:
+      type: object
+      required:
+        - propertyId
+        - longitude
+        - latitude
+        - price
+        - bathrooms
+        - bedrooms
+        - streetAddress
+        - zipcode
+        - overview
+        - images
+        - tags
+      properties:
+        id:
+          type: number
+        longitude:
+          type: number
+        latitude:
+          type: number
+        price:
+          type: number
+        bathrooms:
+          type: integer
+        bedrooms:
+          type: integer
+        streetAddress:
+          type: string
+        zipcode:
+          type: string
+        overview:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+    DetailedProperty:
+      type: object
+      required:
+        - propertyId
+        - price
+        - bedrooms
+        - bathrooms
+        - propertyType
+        - streetAddress
+        - zipcode
+        - longitude
+        - latitude
+        - description
+        - datePosted
+        - images
+        - overallCrimeScore
+        - servicesOverallScore
+        - servicesCount
+        - finance_score
+        - transportation_score
+        - personal_care_score
+        - retail_score
+        - fitness_score
+        - leisure_score
+        - emergency_score
+        - bankCount
+        - barCount
+        - beauty_salonCount
+        - bus_stationCount
+        - cafeCount
+        - fire_stationCount
+        - gymCount
+        - hospitalCount
+        - night_clubCount
+        - parkCount
+        - pharmacyCount
+        - police_stationCount
+        - restaurantCount
+        - supermarketCount
+        - train_stationCount
+        - transit_stationCount
+        - tags
+      properties:
+        id:
+          type: number
+        price:
+          type: number
+        bedrooms:
+          type: integer
+        bathrooms:
+          type: integer
+        propertyType:
+          type: string
+          example: apartment
+        streetAddress:
+          type: string
+        zipcode:
+          type: string
+        longitude:
+          type: number
+        latitude:
+          type: number
+        description_:
+          type: string
+        petsAllowed:
+          type: array
+          items:
+            type: string
+        datePosted:
+          type: object
+        images:
+          type: array
+          items:
+            type: string
+        overallCrimeScore:
+          type: number
+        servicesOverallScore:
+          type: number
+        servicesCount:
+          type: integer
+        finance_score:
+          type: number
+        transportation_score:
+          type: number
+        personal_care_score:
+          type: number
+        retail_score:
+          type: number
+        fitness_score:
+          type: number
+        leisure_score:
+          type: number
+        emergency_score:
+          type: number
+        bankCount:
+          type: integer
+        barCount:
+          type: integer
+        beauty_salonCount:
+          type: integer
+        bus_stationCount:
+          type: integer
+        cafeCount:
+          type: integer
+        fire_stationCount:
+          type: integer
+        gymCount:
+          type: integer
+        hospitalCount:
+          type: integer
+        night_clubCount:
+          type: integer
+        parkCount:
+          type: integer
+        pharmacyCount:
+          type: integer
+        police_stationCount:
+          type: integer
+        restaurantCount:
+          type: integer
+        supermarketCount:
+          type: integer
+        train_stationCount:
+          type: integer
+        transit_stationCount:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+    user:
+      description: user details available in user table
+      type: object
+      required:
+        - id
+        - email
+        - searches
+        - favourites
+        - weights
+        - applications
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        searches:
+          type: array
+          items:
+            type: object
+        favourites:
+          type: array
+          items:
+            type: object
+        weights:
+          $ref: "#/components/schemas/userWeights"
+        applications:
+          type: array
+          items:
+            type: object
+    userWeights:
+      description: the personal user weights for the scoring system
+      type: object
+      required:
+        - leisure
+        - personal_care
+        - retail
+        - fitness
+        - finance
+        - transportation
+        - emergency
+      properties:
+        leisure:
+          type: integer
+        personal_care:
+          type: integer
+        retail:
+          type: integer
+        fitness:
+          type: integer
+        finance:
+          type: integer
+        transportation:
+          type: integer
+        emergency:
+          type: integer

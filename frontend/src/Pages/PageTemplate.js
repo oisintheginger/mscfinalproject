@@ -1,16 +1,10 @@
-import {
-	Typography,
-	Stack,
-	Breadcrumbs,
-	Link,
-	Container,
-	Button,
-	Box,
-} from "@mui/material";
+import { Typography, Stack, Breadcrumbs, Link } from "@mui/material";
 import { Link as RRDLink } from "react-router-dom";
 import { fontDark } from "../Styling/styleConstants";
 
 import { URLToBreadcrumbMapper } from "./BreadCrumbMapper";
+import SiteFooter from "../components/SiteFooter/SiteFooter";
+import { useEffect } from "react";
 
 function PageTemplate({
 	children,
@@ -18,49 +12,39 @@ function PageTemplate({
 	prevPage = null,
 	currPageBreadcrumb = null,
 }) {
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, []);
 	return (
-		<Stack direction={"column"} spacing={2} mt={2} mr={0} ml={0}>
-			<Breadcrumbs aria-label="Breadcrumb">
-				<Link component={RRDLink} to={"/"} color={fontDark} underline="hover">
-					Home
-				</Link>
-				{prevPage &&
-					URLToBreadcrumbMapper({ inputString: prevPage }) !== "Home" && (
-						<Link
-							component={RRDLink}
-							to={prevPage}
-							color={fontDark}
-							underline="hover"
-						>
-							{URLToBreadcrumbMapper({ inputString: prevPage })}
-						</Link>
+		<>
+			<Stack direction={"column"} spacing={2} mt={2} mr={0} ml={0}>
+				<Breadcrumbs aria-label="Breadcrumb">
+					<Link component={RRDLink} to={"/"} color={fontDark} underline="hover">
+						Home
+					</Link>
+					{prevPage &&
+						URLToBreadcrumbMapper({ inputString: prevPage }) !== "Home" && (
+							<Link
+								component={RRDLink}
+								to={prevPage}
+								color={fontDark}
+								underline="hover"
+							>
+								{URLToBreadcrumbMapper({ inputString: prevPage })}
+							</Link>
+						)}
+					{currPageBreadcrumb && (
+						<Typography color={fontDark} fontWeight={"bold"}>
+							{currPageBreadcrumb}
+						</Typography>
 					)}
-				{currPageBreadcrumb && (
-					<Typography color={fontDark} fontWeight={"bold"}>
-						{currPageBreadcrumb}
-					</Typography>
-				)}
-			</Breadcrumbs>
+				</Breadcrumbs>
 
-			<Typography variant="h1">{pageTitle}</Typography>
-			{children}
-			<Box
-				height={"100px"}
-				alignItems={"flex-end"}
-				display={"flex"}
-				width={"100%"}
-			>
-				<Stack
-					direction={"row"}
-					justifyContent={"space-between"}
-					width={"100%"}
-				>
-					<Typography textAlign={"center"}>Footer information</Typography>
-					<Typography textAlign={"center"}>Footer information</Typography>
-					<Typography textAlign={"center"}>Footer information</Typography>
-				</Stack>
-			</Box>
-		</Stack>
+				<Typography variant="h1">{pageTitle}</Typography>
+				{children}
+			</Stack>
+			<SiteFooter />
+		</>
 	);
 }
 export default PageTemplate;

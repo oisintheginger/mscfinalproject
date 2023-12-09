@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "e90ccd6311c7e51d",
+        "id": "c30b7ea464aa2f6f",
         "type": "tabs",
         "children": [
           {
-            "id": "719d7bcf6b49ba51",
+            "id": "de29d5477326ddc2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Diary/Friday 6th October.md",
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
                 "mode": "source",
                 "source": false
               }
             }
-          },
-          {
-            "id": "8eb90d077a01ad45",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md",
-                "mode": "preview",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 388.5
+    "width": 284.51078033447266
   },
   "right": {
     "id": "12ad3551ae72289f",
@@ -106,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md",
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md",
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md"
+                "file": "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md"
               }
             }
           }
@@ -168,33 +155,46 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8eb90d077a01ad45",
+  "active": "de29d5477326ddc2",
   "lastOpenFiles": [
-    "WeeklyDiaries/Week 4 Diary (Oct 9th - Oct 15th).md",
-    "WeeklyDiaries/Week 1 + 2 Diary (18th Sep - 1st Oct).md",
-    "WeeklyDiaries/Week 3 Diary (Oct 2nd - Oct 8th).md",
+    "Daily Diary/December/7th December Thursday.md",
+    "Master's Project/ExpertAccessibilityEvaluation/Expert Review.md",
+    "Daily Diary/December/6th December Wednesday.md",
+    "Master's Project/ExpertAccessibilityEvaluation",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/PropertyDetailsPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ProfilePage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/MySearchesPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/MyFavoritesPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/HomePage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/BrowsingPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Post-Optimization/Desktop/ContactPage.pdf",
+    "Daily Diary/December/4th December Monday.md",
+    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/PropertyDetailsPage.pdf",
+    "Master's Project/PerformanceEvaluation/Build-Pre-Optimization/Mobile/ProfilePage.pdf",
+    "Daily Diary/December/5th December Tuesday.md",
+    "Daily Diary/December/2nd December Saturday.md",
+    "Daily Diary/November/30th November Thursday.md",
+    "Daily Diary/November/29th November Wednesday.md",
+    "Daily Diary/November/28th November Tuesday.md",
+    "Daily Diary/November/27th November Monday.md",
+    "Daily Diary/November/25th November Saturday.md",
+    "Daily Diary/November/23rd November Thursday.md",
+    "Daily Diary/November/22nd November Wednesday.md",
+    "Daily Diary/November/24th November Friday.md",
+    "Daily Diary/November/21st November Tuesday.md",
+    "Daily Diary/November/20th November Monday.md",
+    "Daily Diary/November/16th November Thursday.md",
+    "Daily Diary/November/14th November Tuesday.md",
+    "Daily Diary/November/13th November Monday.md",
+    "Daily Diary/November/18th November Saturday.md",
+    "Daily Diary/Saturday 30th September.md",
+    "Daily Diary/November/Wednesday 8th November 1.md",
+    "Daily Diary/November/6th November Monday.md",
+    "Daily Diary/November/2nd November 2023.md",
+    "Daily Diary/November/8th November Wednesday.md",
+    "Daily Diary/October/Sunday 1st October.md",
+    "Master's Project/UX Work/UX Research/UserTestingMethodologies/Screenshots/SUSQuestionnaire.png",
     "Master's Project/Diagrams/RecommendationSystemDiagram.png",
-    "Templates/Weekly Diary Template.md",
-    "Master's Project/UX Work/User Testing/LFP Testing Results Report.md",
-    "Master's Project/UX Work/User Testing/Testing Sequence Script.md",
-    "Master's Project/Market Analysis/Zillow Demo Presentation Plan.md",
-    "Master's Project/Market Analysis/Existing Apps & Zillow Analysis.md",
-    "Master's Project/UX Work/User Testing/Questions to Answer.md",
-    "Daily Diary/Friday 6th October.md",
-    "Daily Diary/Monday 9th October.md",
-    "Master's Project/UX Work/User Testing/~$UserTestingSpreadsheet.xlsx",
-    "Master's Project/UX Work/User Testing/Participants.md",
-    "Daily Diary/Tuesday 10th October.md",
-    "Master's Project/UX Work/User Testing/CBD44750",
-    "Master's Project/UX Work/User Testing/3BBE3750",
-    "Master's Project/UX Work/User Testing/9C6D3750",
-    "Master's Project/UX Work/User Testing/080B3750",
-    "Master's Project/UX Work/User Testing/06CA3750",
-    "Master's Project/UX Work/User Testing/DC6A3750",
-    "Master's Project/UX Work/User Testing/B6193750",
-    "Master's Project/UX Work/User Testing/29F83750",
-    "Master's Project/UX Work/User Testing/2E683750",
-    "Daily Diary/Weekend Saturday + Sunday October 7th-8th.md",
     "Master's Project/UX Work/UX Mockups/Desktop Layout.png",
     "Master's Project/UX Work/UX Mockups/Tablet Layout.png",
     "Master's Project/UX Work/UX Research/Graphs/PreviousKnowledge.png",
@@ -202,18 +202,6 @@
     "Master's Project/UX Work/UX Mockups/ApplyModal/Desktop.png",
     "Master's Project/UX Work/UX Mockups/ApplyModal/Mobile.png",
     "Master's Project/UX Work/UX Mockups/OpenMenu/Desktop.png",
-    "Master's Project/UX Work/UX Mockups/OpenMenu/Mobile.png",
-    "Master's Project/UX Work/UX Mockups/MyFavoritesPage/Tablet.png",
-    "Master's Project/UX Work/UX Research/Survey Results.md",
-    "Templates/Daily Work Diary.md",
-    "Master's Project/UX Work/UX Research/Research Plan.md",
-    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (List View).md",
-    "Daily Diary/Friday 29th September.md",
-    "Master's Project/UX Work/Core User Flows/Browsing/Browsing + Search Flow (Map View).md",
-    "Master's Project/UX Work/Core User Flows/Applying/Applying.md",
-    "Daily Diary/Wednesday 4th October.md",
-    "Daily Diary/Thursday 5th October.md",
-    "Master's Project/UX Work/UX Frameworks/Design Thinking Framework.md",
-    "Master's Project/UX Work/UX Week 1 Work.md"
+    "Master's Project/UX Work/UX Mockups/OpenMenu/Mobile.png"
   ]
 }
