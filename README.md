@@ -4,3 +4,8 @@ Team: Nishant Kapur, Sean Lynch, Fenna Kadir, Stephen Anokye, Charlotte Martin, 
 ## Interim Demo:
 
 [![Interim Demo Video Link](https://img.youtube.com/vi/TqAfdgxFfIg/0.jpg)](https://www.youtube.com/watch?v=TqAfdgxFfIg)
+
+## Renting Made Easy Demo:
+
+[![Renting Made Easy Demo Video Link](https://img.youtube.com/vi/ZIx3Ce-LA8g/0.jpg)](https://youtu.be/ZIx3Ce-LA8g)
+
