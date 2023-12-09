@@ -37,7 +37,7 @@ function Homepage() {
 	const { register, formState, getValues } = useForm();
 	const { getAccessToken } = useContext(UserContext);
 	const theme = useTheme();
-	const down = useMediaQuery(theme.breakpoints.down("md"));
+	const down = useMediaQuery(theme.breakpoints.down("lg"));
 	const navigator = useNavigate();
 	const location = useLocation();
 	const { route, user } = useAuthenticator((context) => [
@@ -258,14 +258,14 @@ function Homepage() {
 				<Box
 					component={"img"}
 					src="/CityscapeSVG.svg"
-					width={"80%"}
+					width={"60%"}
 					display={down ? "none" : "block"}
 					height={"auto"}
 					overflow={"hidden"}
 					sx={{
 						opacity: "20%",
 						position: "absolute",
-						top: "20%",
+						top: "20px",
 						zIndex: 0,
 						pointerEvents: "none",
 					}}
@@ -300,7 +300,7 @@ function Homepage() {
 					)}
 				</Stack>
 			</Box>
-			<SiteFooter positionProps={{ position: "relative", top: "20px" }} />
+			<SiteFooter positionProps={{ position: "relative", bottom: "20px" }} />
 		</>
 	);
 }
