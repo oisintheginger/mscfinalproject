@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@CrossOrigin(origins = "https://main.d3k55wy8obq996.amplifyapp.com/")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/properties")
 public class PropertiesController {
 
