@@ -2,7 +2,6 @@ import { Button, styled } from "@mui/material";
 import {
 	buttonHover,
 	darkTeal,
-	lightTeal,
 } from "../../../Styling/styleConstants";
 
 const ButtonStyled = styled(Button)({
@@ -12,6 +11,10 @@ const ButtonStyled = styled(Button)({
 	"&:hover": {
 		color: "white",
 		backgroundColor: buttonHover,
+	},
+	"&:disabled": {
+		color: "greyDark",
+		backgroundColor: "#d3deda",
 	},
 });
 

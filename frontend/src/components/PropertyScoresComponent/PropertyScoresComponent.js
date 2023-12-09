@@ -6,7 +6,6 @@ import { useState } from "react";
 import {
 	Box,
 	Collapse,
-	Container,
 	Divider,
 	IconButton,
 	Paper,
@@ -14,53 +13,104 @@ import {
 	Typography,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { ExpandRightIcon } from "../../Icons/HMEIcons";
 
-const ScoreRenderMap = {
-	retail: {
-		displayTitle: "Retail Scores",
-		description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-		color: "#417a41",
+function IndividualCount({ count, displayTitle }) {
+	return (
+		<Stack flexDirection={"column"} spacing={1}>
+			<Typography variant="individualScoreLabel" textAlign={"center"} noWrap>
+				{displayTitle}
+			</Typography>
+			<Typography variant="individualScoreValue" textAlign={"center"}>
+				{count}
+			</Typography>
+		</Stack>
+	);
+}
+
+const countScoreDisplayMap = {
+	transit_stationCount: (count, key) => {
+		return (
+			<IndividualCount
+				count={count}
+				displayTitle={"Transit Stations"}
+				key={key}
+			/>
+		);
 	},
-	transportation: {
-		displayTitle: "Transportation Score",
-		description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-		color: "#626d78",
+	bus_stationCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Bus Stations"} key={key} />
+		);
 	},
-	emergency: {
-		displayTitle: "Emergency Score",
-		description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-		color: "#3b5880",
+	train_stationCount: (count, key) => {
+		return (
+			<IndividualCount
+				count={count}
+				displayTitle={"Train Stations"}
+				key={key}
+			/>
+		);
 	},
-	pharmacies: {
-		displayTitle: "Pharmacies Score",
-		description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-		color: "#713e73",
+	police_stationCount: (count, key) => {
+		return (
+			<IndividualCount
+				count={count}
+				displayTitle={"Police Stations"}
+				key={key}
+			/>
+		);
 	},
-	financial: {
-		displayTitle: "Financial Score",
-		description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-		color: "#5e3b7d",
+	fire_stationCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Fire Stations"} key={key} />
+		);
 	},
-	fitness: {
-		displayTitle: "Fitness Score",
-		description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-		color: "#8a593a",
+	hospitalCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Hospitals"} key={key} />
+		);
 	},
-	entertainment: {
-		displayTitle: "Entertainment Score",
-		description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet vestibulum eros. Aenean scelerisque sapien quis turpis suscipit, sit amet congue quam pellentesque. Maecenas auctor tortor a tortor sagittis gravida. In nec sagittis est. Nam bibendum neque augue, ac semper elit posuere rutrum. Fusce cursus in nisl sit amet elementum. Nam ut felis vitae arcu consequat finibus vel ut nulla. Integer ligula metus, tempor a dolor sit amet, fringilla consequat lectus. In imperdiet dui eu neque facilisis maximus at at turpis.",
-		color: "#663031",
+	pharmacyCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Pharmacies"} key={key} />
+		);
+	},
+	beauty_salonCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Beauty Salons"} key={key} />
+		);
+	},
+	bankCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Banks"} key={key} />;
+	},
+	supermarketCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Supermarkets"} key={key} />
+		);
+	},
+	gymCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Gyms"} key={key} />;
+	},
+	restaurantCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Restaurants"} key={key} />
+		);
+	},
+	night_clubCount: (count, key) => {
+		return (
+			<IndividualCount count={count} displayTitle={"Night Clubs"} key={key} />
+		);
+	},
+	cafeCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Cafés"} key={key} />;
+	},
+	parkCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Parks"} key={key} />;
+	},
+	barCount: (count, key) => {
+		return <IndividualCount count={count} displayTitle={"Bars"} key={key} />;
 	},
 };
 
@@ -75,9 +125,7 @@ function Rating({ scoreData }) {
 				alignItems={"center"}
 				justifyContent={"space-between"}
 			>
-				<Typography variant="h3">
-					{ScoreRenderMap[scoreData?.id]?.displayTitle}
-				</Typography>
+				<Typography variant="h3">{scoreData?.displayTitle}</Typography>
 				<Stack
 					direction={"row"}
 					alignItems={"center"}
@@ -92,6 +140,7 @@ function Rating({ scoreData }) {
 							onClick={() => {
 								setDescriptionOpen(!descriptionOpen);
 							}}
+							aria-label={`Expand ${scoreData?.displayTitle} Score Details`}
 						>
 							<ExpandLess fontSize="large" />
 						</IconButton>
@@ -113,8 +162,8 @@ function Rating({ scoreData }) {
 			>
 				{scoreData?.score > 0 ? (
 					<Box
-						bgcolor={ScoreRenderMap[scoreData?.id]?.color || "green"}
-						width={`${100 * (scoreData.score / 5)}%`}
+						bgcolor={scoreData?.color || "green"}
+						width={`${100 * (scoreData?.score / 5)}%`}
 						height={"100%"}
 						sx={{ opacity: "100%" }}
 						display={"flex"}
@@ -143,11 +192,16 @@ function Rating({ scoreData }) {
 				)}
 			</Box>
 			<Collapse in={descriptionOpen}>
-				<Box mt={2} pl={2} pr={2}>
-					<Typography variant="body1">
-						{ScoreRenderMap[scoreData?.id]?.description ||
-							"MISSING DESCRIPTION"}
-					</Typography>
+				<Box mt={2} mb={1} pl={2} pr={2} overflow={"auto"}>
+					<Stack
+						direction={"row"}
+						spacing={2}
+						justifyContent={{ xs: "flex-start", md: "space-evenly" }}
+					>
+						{Object.keys(scoreData?.counts)?.map((el, ind) => {
+							return countScoreDisplayMap[el](scoreData?.counts[el], ind);
+						})}
+					</Stack>
 				</Box>
 				<Divider />
 			</Collapse>
@@ -159,7 +213,7 @@ function PropertyScoresComponent({ inputData }) {
 	return (
 		<Box>
 			<Stack direction={"row"} spacing={2} alignItems={"center"}>
-				<Typography variant="h2">Services Scores</Typography>
+				<Typography variant="h2">Neighborhood Service Scores</Typography>
 				<motion.div
 					animate={{ x: 0, y: 0, rotate: displayScores ? 180 : 90 }}
 					transition={{ type: "spring" }}
@@ -168,6 +222,7 @@ function PropertyScoresComponent({ inputData }) {
 						onClick={() => {
 							setDisplayScores(!displayScores);
 						}}
+						aria-label="Property Service Scores"
 					>
 						<ExpandLess fontSize="large" />
 					</IconButton>
@@ -179,7 +234,7 @@ function PropertyScoresComponent({ inputData }) {
 					<Box
 						pb={2}
 						pt={2}
-						maxHeight={"45vh"}
+						maxHeight={{ xs: "45vh", md: "60vh" }}
 						sx={{
 							overflowX: "hidden",
 							overflowY: "scroll",

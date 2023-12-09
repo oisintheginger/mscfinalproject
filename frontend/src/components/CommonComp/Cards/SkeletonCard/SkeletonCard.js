@@ -1,4 +1,4 @@
-import { Card, Skeleton, Typography, Box } from "@mui/material";
+import { Card, Skeleton } from "@mui/material";
 function SkeletonCard() {
 	return (
 		<Card variant="outlined" sx={{ display: "flex", gap: 2 }}>

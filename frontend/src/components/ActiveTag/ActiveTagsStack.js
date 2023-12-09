@@ -3,7 +3,6 @@ import { Stack } from "@mui/material";
 import ActiveTag from "./ActiveTag";
 
 import {
-	SEARCH_TERM,
 	BATHROOM_COUNT,
 	BEDROOM_COUNT,
 	MAX_PRICE,
@@ -31,7 +30,7 @@ function ActiveTagsStack({ filtersOpen = true }) {
 						methods.formState.defaultValues[MIN_PRICE] &&
 						!Object.keys(methods.formState.dirtyFields).includes(MIN_PRICE) && (
 							<ActiveTag
-								tagName={MIN_PRICE}
+								tagName={"Min. Price"}
 								tagVal={methods.getValues(MIN_PRICE)}
 							/>
 						)}
@@ -39,7 +38,7 @@ function ActiveTagsStack({ filtersOpen = true }) {
 						methods.formState.defaultValues[MAX_PRICE] &&
 						!Object.keys(methods.formState.dirtyFields).includes(MAX_PRICE) && (
 							<ActiveTag
-								tagName={MAX_PRICE}
+								tagName={"Max. Price"}
 								tagVal={methods.getValues(MAX_PRICE)}
 							/>
 						)}
@@ -49,7 +48,7 @@ function ActiveTagsStack({ filtersOpen = true }) {
 							BEDROOM_COUNT
 						) && (
 							<ActiveTag
-								tagName={BEDROOM_COUNT}
+								tagName={"Bed Count"}
 								tagVal={"+" + methods.getValues(BEDROOM_COUNT)}
 							/>
 						)}
@@ -59,11 +58,11 @@ function ActiveTagsStack({ filtersOpen = true }) {
 							BATHROOM_COUNT
 						) && (
 							<ActiveTag
-								tagName={BATHROOM_COUNT}
+								tagName={"Bath Count"}
 								tagVal={"+" + methods.getValues(BATHROOM_COUNT)}
 							/>
 						)}
-					{methods.getValues(SHOW_HOUSES) &&
+					{/* {methods.getValues(SHOW_HOUSES) &&
 						!Object.keys(methods.formState.dirtyFields).includes(
 							SHOW_HOUSES
 						) && <ActiveTag tagName={"Houses"} />}
@@ -74,7 +73,7 @@ function ActiveTagsStack({ filtersOpen = true }) {
 					{methods.getValues(SHOW_TOWNHOUSE) &&
 						!Object.keys(methods.formState.dirtyFields).includes(
 							SHOW_TOWNHOUSE
-						) && <ActiveTag tagName={"Townhouse"} />}
+						) && <ActiveTag tagName={"Townhouse"} />} */}
 				</Stack>
 			)}
 		</>

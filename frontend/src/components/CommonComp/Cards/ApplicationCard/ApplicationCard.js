@@ -12,14 +12,16 @@ import {
 	useTheme,
 	useMediaQuery,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import ButtonOutlined from "../../Button/ButtonOutlined";
 import {
-	DeleteIcon,
 	EditApplicationIcon,
 	NextCarouselIcon,
 } from "../../../../Icons/HMEIcons";
 import DeleteButton from "../../Button/DeleteButton";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 function ApplicationCard({
 	data,
@@ -28,6 +30,7 @@ function ApplicationCard({
 }) {
 	const theme = useTheme();
 	const down = useMediaQuery(theme.breakpoints.down("md"));
+	const ref = useRef(null);
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -35,27 +38,23 @@ function ApplicationCard({
 	return !data ? (
 		<></>
 	) : (
-		<Card elevation={4}>
+		<Card elevation={4} ref={ref}>
 			<CardActionArea
 				onClick={(event) => {
 					event.preventDefault();
-					openApplicationDetails(data.applicationId);
+					navigate("/property/" + data.propertyId, {
+						state: { previousUrl: location.pathname },
+					});
 				}}
 			>
 				<CardMedia
 					component={"img"}
 					sx={{ height: { xs: "100px", md: "140px" } }}
-					image={data.image}
-					alt="Image of Rental Listing"
+					image={data.thumbnail}
+					alt={`Image of an applied property: ${data?.streetAddress}`}
 				/>
-			</CardActionArea>
-			<CardContent>
-				<CardActionArea
-					onClick={(event) => {
-						event.preventDefault();
-						openApplicationDetails(data.applicationId);
-					}}
-				>
+
+				<CardContent>
 					<Stack>
 						<Stack
 							direction={"row"}
@@ -69,44 +68,62 @@ function ApplicationCard({
 							{data.address}
 						</Typography>
 					</Stack>
-				</CardActionArea>
-				<Divider />
-				<Box mt={2}>
-					<Stack justifyContent={"center"} alignItems={"center"}>
-						<Typography>{data.status.toUpperCase()}</Typography>
-					</Stack>
-				</Box>
-			</CardContent>
+					<Divider />
+					<Box mt={2}>
+						<Stack justifyContent={"center"} alignItems={"center"}>
+							<Typography>{data.status?.toUpperCase()}</Typography>
+						</Stack>
+					</Box>
+				</CardContent>
+			</CardActionArea>
 			<CardActions>
 				<Grid container justifyContent={"center"} spacing={1}>
-					<Grid item xs={4} sm={4} md={4} lg={4}>
+					<Grid item xs={12} sm={12} md={12} lg={12}>
 						<ButtonOutlined
 							fullWidth
-							endIcon={down ? <></> : <NextCarouselIcon />}
+							endIcon={
+								down || ref.current?.clientWidth < 300 ? (
+									<></>
+								) : (
+									<NextCarouselIcon />
+								)
+							}
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();
-								navigate("/property/" + data.applicationId, {
-									state: { previousUrl: location.pathname },
-								});
+								openApplicationDetails(data.message);
 							}}
 						>
-							VIEW
+							VIEW APPLICATION
 						</ButtonOutlined>
 					</Grid>
-					<Grid item xs={4} sm={4} md={4} lg={4}>
+					<Grid item xs={6} sm={6} md={6} lg={6}>
 						<ButtonOutlined
+							disabled
 							fullWidth
-							endIcon={down ? <></> : <EditApplicationIcon />}
+							endIcon={
+								down || ref.current?.clientWidth < 300 ? (
+									<></>
+								) : (
+									<EditApplicationIcon />
+								)
+							}
 							variant="outlined"
 						>
 							Edit
 						</ButtonOutlined>
 					</Grid>
-					<Grid item xs={4} sm={4} md={4} lg={4}>
+					<Grid item xs={6} sm={6} md={6} lg={6}>
 						<DeleteButton
 							fullWidth
-							endIcon={down ? <></> : <DeleteIcon />}
+							disabled
+							endIcon={
+								down || ref.current?.clientWidth < 300 ? (
+									<></>
+								) : (
+									<DeleteIcon fontSize="large" />
+								)
+							}
 							variant="outlined"
 							onClick={(event) => {
 								event.preventDefault();

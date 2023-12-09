@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { Amplify, API } from "aws-amplify";
+import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 Amplify.configure({
 	...awsExports,
@@ -19,6 +19,18 @@ Amplify.configure({
 			{
 				name: "HMEBackend",
 				endpoint: "https://xbqk5zhumf.execute-api.eu-west-1.amazonaws.com/Prod",
+				service: "lambda",
+				region: "eu-west-1",
+			},
+			{
+				name: "PersonalScoresAPI",
+				endpoint: "https://jt3mygqld8.execute-api.eu-west-1.amazonaws.com/Prod",
+				service: "lambda",
+				region: "eu-west-1",
+			},
+			{
+				name: "RecommendedAPI",
+				endpoint: "https://kcxecfvcyg.execute-api.eu-west-1.amazonaws.com/Prod",
 				service: "lambda",
 				region: "eu-west-1",
 			},

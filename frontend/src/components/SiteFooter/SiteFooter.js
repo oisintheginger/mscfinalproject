@@ -9,7 +9,7 @@ import {
 import { Link as RRDLink } from "react-router-dom";
 import { fontDark } from "../../Styling/styleConstants";
 
-function SiteFooter() {
+function SiteFooter({ positionProps = null }) {
 	const theme = useTheme();
 	const below = useMediaQuery(theme.breakpoints.down("sm"));
 	return (
@@ -21,6 +21,7 @@ function SiteFooter() {
 			alignItems={"center"}
 			width={"100%"}
 			pt={10}
+			sx={{ ...positionProps }}
 		>
 			<Stack
 				direction={below ? "column" : "row"}
@@ -58,14 +59,19 @@ function SiteFooter() {
 						Terms and Conditions
 					</Typography>
 				</Link>
-				<Link component={RRDLink} to={"/"} color={fontDark} underline="hover">
+				<Link
+					component={RRDLink}
+					to={"/FAQ"}
+					color={fontDark}
+					underline="hover"
+				>
 					<Typography textAlign={"center"} fontSize={15}>
 						FAQ
 					</Typography>
 				</Link>
 			</Stack>
 			<Typography mt={2} fontSize={12}>
-				© 2023 HousingMadeEasy. All Rights Reserved.
+				© 2023 RentingMadeEasy. All Rights Reserved.
 			</Typography>
 		</Box>
 	);

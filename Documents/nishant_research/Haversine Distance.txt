@@ -1,0 +1,32 @@
+Haversine Distance
+
+By default, the NearestNeighbors model in scikit-learn uses the Euclidean distance metric, which is not ideal for geographical coordinates like latitude and longitude.
+
+The Haversine distance is specifically designed to calculate the great-circle distance between two points on the Earth's surface, given their latitude and longitude. This makes it a more appropriate choice for datasets where geographic proximity is an important factor.
+
+Implementing Haversine Distance in KNN
+
+Custom Distance Metric: Define a function that computes the Haversine distance between two points.
+
+Use the Metric in NearestNeighbors: Pass this function as the metric parameter to NearestNeighbors.
+
+from sklearn.neighbors import NearestNeighbors
+import numpy as np
+
+# Haversine Distance Function
+def haversine_distance(point1, point2):
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1 = np.radians(point1[:, :1]), np.radians(point1[:, 1:2])
+    lat2, lon2 = np.radians(point2[:, :1]), np.radians(point2[:, 1:2])
+
+    # Haversine formula
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
+    c = 2 * np.arcsin(np.sqrt(a))
+    r = 6371  # Radius of Earth in kilometers
+    return c * r
+
+# Assuming df_final_encoded contains only latitude and longitude columns for simplicity
+knn = NearestNeighbors(metric=haversine_distance)
+knn.fit(df_final_encoded)

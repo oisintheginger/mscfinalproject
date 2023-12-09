@@ -11,7 +11,6 @@ import {
 	Checkbox,
 	Slider,
 	Stack,
-	Button,
 } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import ButtonStyled from "../Button/ButtonStyled";
@@ -46,7 +45,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 						overflowY: "scroll",
 					}}
 				>
-					<Stack justifyContent={"center"} pl={4} pr={4}>
+					<Stack justifyContent={"center"} pl={4} pr={4} pt={4}>
 						<FormControl
 							component={"div"}
 							variant="standard"
@@ -56,7 +55,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 							}}
 							margin="dense"
 						>
-							<Typography variant="overline">Price</Typography>
+							<Typography variant="filterTitle">Price</Typography>
 							<Divider sx={{ mb: 2 }} />
 							<Stack
 								direction={"row"}
@@ -67,9 +66,14 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 								<FormControlLabel
 									sx={{
 										width: "100%",
-										"&.MuiFormControlLabel-label": {
+										"& MuiFormControlLabel-label": {
 											color: "black",
 											fontWeight: 700,
+										},
+										"& label": {
+											fontWeight: 700,
+											backgroundColor: "white",
+											fontSize: 20,
 										},
 									}}
 									control={
@@ -81,27 +85,19 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 											InputProps={{ height: "40px" }}
 											{...methods.register(MIN_PRICE, {
 												min: 1,
-												// onChange: () => {
-												// 	methods.trigger();
-												// 	// if (methods.getValues(MIN_PRICE) < 1) {
-												// 	// 	methods.setValue(MIN_PRICE, 1);
-												// 	// }
-												// 	// if (
-												// 	// 	methods.getValues(MIN_PRICE) >
-												// 	// 	methods.getValues(MAX_PRICE)
-												// 	// ) {
-												// 	// 	methods.setValue(
-												// 	// 		MIN_PRICE,
-												// 	// 		methods.getValues(MAX_PRICE)
-												// 	// 	);
-												// 	// }
-												// },
 											})}
 										/>
 									}
 								/>
 								<FormControlLabel
-									sx={{ width: "100%" }}
+									sx={{
+										width: "100%",
+										"& label": {
+											fontWeight: 700,
+											backgroundColor: "white",
+											fontSize: 20,
+										},
+									}}
 									control={
 										<TextField
 											fullWidth
@@ -111,20 +107,13 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 											InputProps={{ height: "40px" }}
 											{...methods.register(MAX_PRICE, {
 												min: 1,
-												// onChange: () => {
-												// 	methods.trigger();
-												// 	if (methods.getValues(MAX_PRICE) < 0) {
-												// 		methods.setValue(MAX_PRICE, 0);
-												// 		return;
-												// 	}
-												// },
 											})}
 										/>
 									}
 								/>
 							</Stack>
-							<Typography variant="overline" mt={2}>
-								Min. Bedroom Count
+							<Typography variant="filterTitle" mt={7}>
+								Bedroom Count
 							</Typography>
 							<Divider sx={{ mb: 5 }} />
 							<Slider
@@ -138,8 +127,8 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 								defaultValue={1}
 								{...methods.register(BEDROOM_COUNT, { min: 1, max: 10 })}
 							/>
-							<Typography variant="overline" mt={3}>
-								Min. Bathroom Count
+							<Typography variant="filterTitle" mt={2}>
+								Bathroom Count
 							</Typography>
 							<Divider sx={{ mb: 5 }} />
 							<Slider
@@ -153,7 +142,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 								sx={{ color: "darkTeal.main" }}
 								{...methods.register(BATHROOM_COUNT, { min: 1, max: 10 })}
 							/>
-							<Typography variant="overline" mt={4}>
+							<Typography variant="filterTitle" mt={6}>
 								Home Type
 							</Typography>
 							<Divider sx={{ mb: 2 }} />
@@ -172,7 +161,6 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 									}
 									label="House"
 									labelPlacement="start"
-									{...methods.register(SHOW_HOUSES)}
 								/>
 								<FormControlLabel
 									control={
@@ -188,7 +176,6 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 									}
 									label="Flat/Apartment/Condo"
 									labelPlacement="start"
-									{...methods.register(SHOW_FLAT)}
 								/>
 								<FormControlLabel
 									control={
@@ -204,7 +191,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 									}
 									label="Townhouse"
 									labelPlacement="start"
-									{...methods.register(SHOW_TOWNHOUSE)}
+									// {...methods.register(SHOW_TOWNHOUSE)}
 								/>
 							</FormGroup>
 						</FormControl>
@@ -236,7 +223,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 										methods.customSubmitBehavior
 											? methods.customSubmitBehavior
 											: () => {
-													console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
+													// console.log("NO CUSTOM SUBMIT BEHAVIOR DEFINED");
 											  }
 									)(event);
 								}}

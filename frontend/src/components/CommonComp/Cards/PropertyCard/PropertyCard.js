@@ -1,27 +1,30 @@
-import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
+import React, { useState, useContext } from "react";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import IconButton from "@mui/material/IconButton";
-import { Stack, Chip, Typography, CardActionArea } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography, CardActionArea } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
+// import {
+// 	AddToFavoritesMutation,
+// 	RemoveFromFavoritesMutation,
+// } from "../../../../Utils/Mutations/FavoriteMutation/FavoritesMutation";
+import { PropertyTags } from "../../PropertyTags/PropertyTags";
+// const ExpandMore = styled((props) => {
+// 	const { expand, ...other } = props;
+// 	return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+// 	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+// 	marginLeft: "auto",
+// 	transition: theme.transitions.create("transform", {
+// 		duration: theme.transitions.duration.shortest,
+// 	}),
+// }));
 
-const ExpandMore = styled((props) => {
-	const { expand, ...other } = props;
-	return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-	marginLeft: "auto",
-	transition: theme.transitions.create("transform", {
-		duration: theme.transitions.duration.shortest,
-	}),
-}));
-
-export default function PropertyCard({ data, key, inPopup = false }) {
+function PropertyCard({ data, key, inPopup = false, children }) {
 	const [expanded, setExpanded] = useState(false);
-
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("md"));
 	const navigator = useNavigate();
 	const location = useLocation();
 
@@ -29,8 +32,30 @@ export default function PropertyCard({ data, key, inPopup = false }) {
 		setExpanded(!expanded);
 	};
 
+	// const { mutate: addToFavorites } = AddToFavoritesMutation(
+	// 	data?.propertyId,
+	// 	() => {
+	// 		handleRefresh();
+	// 	},
+	// 	(err) => {
+	// 		console.log(err);
+	// 	}
+	// );
+	// const { mutate: removeFromFavorites } = RemoveFromFavoritesMutation(
+	// 	data?.propertyId,
+	// 	() => {
+	// 		handleRefresh();
+	// 	},
+	// 	(err) => {
+	// 		console.log(err);
+	// 	}
+	// );
+
+	// const isFavorited =
+	// 	userData?.favourites.includes(data?.propertyId.toString()) || false;
 	return (
 		<Card elevation={inPopup ? 0 : 6} sx={{ height: "100%" }}>
+			{children}
 			<CardActionArea
 				onClick={() =>
 					navigator("/property/" + data.propertyId, {
@@ -45,65 +70,40 @@ export default function PropertyCard({ data, key, inPopup = false }) {
 						"&:hover": {
 							cursor: "pointer",
 						},
+						width: {
+							xs: "100%",
+						},
 					}}
 					component="img"
-					height="194"
-					image={data.images ? data.images[0] : null}
-					alt="Property Image"
+					height={down ? "120" : "194"}
+					image={data?.images ? data.images[0] : null}
+					alt={`Image of Property: ${data?.streetAddress}`}
+					loading="lazy"
+					placeholder="/CardImagePlaceholder.png"
 				/>
-				<CardHeader
-					title={
-						<Typography variant="cardHeader">{"$" + data.price}</Typography>
-					}
-					sx={{ textOverflow: "ellipsis" }}
-					subheader={
-						<>
-							<Typography variant="subtitle1" noWrap>
-								{data.streetAddress}
-							</Typography>
-							<Typography variant="subtitle1" noWrap>
-								{"Zip Code: " + data.zipcode}
-							</Typography>
-						</>
-					}
-				/>
+
+				<CardContent>
+					<Grid container minWidth={"fit-content"}>
+						<Grid item xs={12}>
+							<Stack overflow={"clip"} width={"100%"}>
+								<Stack direction={"row"} justifyContent={"space-between"}>
+									<Typography variant="cardHeader">
+										{"$" + data?.price}
+									</Typography>
+								</Stack>
+								<Typography variant="cardSubTitle" noWrap>
+									{data?.streetAddress}
+								</Typography>
+								<Typography variant="cardSubTitle" noWrap>
+									{"Zip Code: " + data?.zipcode}
+								</Typography>
+							</Stack>
+						</Grid>
+					</Grid>
+					<PropertyTags tags={data?.tags} />
+				</CardContent>
 			</CardActionArea>
-			<CardContent>
-				<Stack
-					direction="row"
-					spacing={1}
-					sx={{
-						overflowX: "auto",
-						whiteSpace: "nowrap",
-						"&::-webkit-scrollbar": { display: "none" },
-					}}
-				>
-					<Chip
-						label="SECURE"
-						sx={{
-							backgroundColor: "secureChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-					<Chip
-						label="NIGHTLIFE"
-						sx={{
-							backgroundColor: "nightlifeChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-					<Chip
-						label="GYMS"
-						sx={{
-							backgroundColor: "gymsChip.main",
-							color: "white",
-							fontWeight: 600,
-						}}
-					/>
-				</Stack>
-			</CardContent>
 		</Card>
 	);
 }
+export default PropertyCard;

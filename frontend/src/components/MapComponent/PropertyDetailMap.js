@@ -10,6 +10,7 @@ import {
 	useTheme,
 	useMediaQuery,
 	Link,
+	Tooltip,
 } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { forwardRef } from "react";
@@ -60,7 +61,7 @@ import { ExpandRightIcon } from "../../Icons/HMEIcons";
 import GoogleLogo from "./../../Icons/google_on_white.png";
 import Leaflet from "leaflet";
 import { useQueries } from "react-query";
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import MapToggles from "./MapToggles";
@@ -74,7 +75,7 @@ const markerIcon = new Leaflet.Icon({
 const ProcessQueries = (queries) => {
 	return queries.map((el, ind) => {
 		if (el?.isSuccess) {
-			return el.data;
+			// return el.data;
 		}
 	});
 };
@@ -146,23 +147,25 @@ function MapTile({ location, services }) {
 function RecenterButton({ center }) {
 	const map = useMap();
 	return (
-		<IconButton
-			sx={{
-				zIndex: 900,
-				backgroundColor: "darkTeal.main",
-				color: "white",
-				mt: 1,
-				mr: 1,
-				"&:hover": { backgroundColor: "buttonHover.main" },
-				width: "max-content",
-			}}
-			onClick={(e) => {
-				e.preventDefault();
-				map?.flyTo(center);
-			}}
-		>
-			<MyLocationIcon fontSize="large" />
-		</IconButton>
+		<Tooltip title="Recenter Map on Property Location">
+			<IconButton
+				sx={{
+					zIndex: 900,
+					backgroundColor: "darkTeal.main",
+					color: "white",
+					mt: 1,
+					mr: 1,
+					"&:hover": { backgroundColor: "buttonHover.main" },
+					width: "max-content",
+				}}
+				onClick={(e) => {
+					e.preventDefault();
+					map?.flyTo(center);
+				}}
+			>
+				<MyLocationIcon fontSize="large" />
+			</IconButton>
+		</Tooltip>
 	);
 }
 
@@ -171,7 +174,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 
 	const mapFeatures = {
 		hospital: {
-			type: "hopsital",
+			type: "hospital",
 			state: useState(true),
 			icon: LeafletHospital,
 			menuIcon: <HospitalIcon fontSize="medium" />,
@@ -316,7 +319,7 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 						},
 					});
 				},
-				enabled: process.env.REACT_APP_GOOGLE_MAP_ENABLED === "enabled",
+				enabled: false,
 				refetchOnWindowFocus: false,
 				select: (data) => {
 					return {
@@ -466,6 +469,9 @@ function PropertyDetailMap({ center = [39.2904, -76.6122] }, ref) {
 								onClick={() => {
 									setTogglesOpen(!togglesOpen);
 								}}
+								aria-label={
+									togglesOpen ? "Close Map Toggles" : "Open Map Toggles"
+								}
 							>
 								<ExpandLessIcon fontSize="large" />
 							</IconButton>

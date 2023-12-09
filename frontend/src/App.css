@@ -4,12 +4,13 @@
     
 }
 a {
-    color: #F3FCFF;
+    color: #fafcfc;
 }
 
 body{
     padding: 0px;
     margin: 0px;
+    background-color: #fafcfc;
 }
 
 .leaflet-container{
@@ -20,3 +21,30 @@ body{
 
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;400;500;600;700;900&display=swap');
 @import url('https://unpkg.com/leaflet@1.5.1/dist/leaflet.css');
+
+
+.mapBrowsingTooltip{
+    font-size: medium;
+    background-color: aquamarine;
+    color: black;
+    font-weight: 700;
+}
+
+
+.mapBrowsingMultiMarker{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    border-width: 2px;
+    border-color: rgb(20, 0, 0);
+}
+
+.mapBrowsingMultiPointTypography{
+    padding: 2px;
+    background-color: #CEEAEA;
+    border-radius: 4px;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 800;
+    font-size: large;
+}

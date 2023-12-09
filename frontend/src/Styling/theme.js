@@ -9,6 +9,12 @@ const theme = createTheme({
 		darkTeal: {
 			main: "#05363D",
 		},
+		darkRed: {
+			main: "#3d0507",
+		},
+		lightRed: {
+			main: "#f0e4e4",
+		},
 		buttonHover: {
 			main: "#034b54",
 		},
@@ -18,17 +24,11 @@ const theme = createTheme({
 		darkWhite: {
 			main: "#e4f0ec",
 		},
+		lightGrey: {
+			main: "#d3deda",
+		},
 		greyDark: {
 			main: "#2E3637",
-		},
-		secureChip: {
-			main: "#3277a8",
-		},
-		nightlifeChip: {
-			main: "#041829",
-		},
-		gymsChip: {
-			main: "#25693c",
 		},
 		fullDark: { main: "#232a2b" },
 	},
@@ -47,6 +47,7 @@ const theme = createTheme({
 			fontSize: 24,
 			fontFamily: '"Urbanist", sans-serif',
 		},
+		alertToast: { fontSize: 18, fontFamily: '"Urbanist", sans-serif' },
 		button: { fontWeight: 700 },
 		landingPage: {
 			fontFamily: '"Urbanist", sans-serif',
@@ -54,10 +55,20 @@ const theme = createTheme({
 			fontWeight: 200,
 			letterSpacing: 15,
 		},
+		filterTitle: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 20,
+			fontWeight: 600,
+		},
 		cardHeader: {
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 28,
-			fontWeight: 600,
+			fontWeight: 700,
+		},
+		cardSubTitle: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 20,
+			fontWeight: 500,
 		},
 		propertyPrice: {
 			fontFamily: '"Urbanist", sans-serif',
@@ -86,6 +97,11 @@ const theme = createTheme({
 			fontFamily: '"Urbanist", sans-serif',
 			fontWeight: 800,
 		},
+		weightsIndicatorUpper: {
+			fontSize: 26,
+			fontFamily: '"Urbanist", sans-serif',
+			fontWeight: 800,
+		},
 		weightsOption: {
 			fontSize: 16,
 			fontFamily: '"Urbanist", sans-serif',
@@ -102,6 +118,31 @@ const theme = createTheme({
 			fontSize: 30,
 			fontWeight: 600,
 		},
+		individualScoreLabel: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 20,
+			fontWeight: 500,
+		},
+		individualScoreValue: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 30,
+			fontWeight: 800,
+		},
+		overallMatchScore: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 64,
+			fontWeight: 800,
+		},
+		crimeScoreValue: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 56,
+			fontWeight: 800,
+		},
+		crimeScoreDescription: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 22,
+			fontWeight: 400,
+		},
 		mapPopupName: {
 			fontFamily: '"Urbanist", sans-serif',
 			fontSize: 18,
@@ -112,12 +153,23 @@ const theme = createTheme({
 			fontSize: 22,
 			fontWeight: 400,
 		},
+		mapBrowsingMultiPoint: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 24,
+			fontWeight: 600,
+		},
+		systemState: {
+			fontFamily: '"Urbanist", sans-serif',
+			fontSize: 22,
+			fontWeight: 300,
+		},
 	},
 	components: {
 		MuiTypography: {
 			defaultProps: {
 				variantMapping: {
 					landingPage: "h1",
+					mapBrowsingMultiPoint: "p",
 				},
 				color: fontDark,
 			},
