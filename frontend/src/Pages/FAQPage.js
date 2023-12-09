@@ -17,7 +17,7 @@ function FAQPage() {
 							<YouTubeVideo videoId="ghaVrwo1_ok" />
 						</Typography>
 					</Box>
-					<Box mt={5}>
+					{/* <Box mt={5}>
 						<Typography variant="h2">
 							Information about Scoring System
 						</Typography>
@@ -25,7 +25,7 @@ function FAQPage() {
 						<Typography variant="body2">
 							SEAN GIMME THE DETAILS BUT STOOPIDIFIED PLEEEEEAAAAASE!!!!!!
 						</Typography>
-					</Box>
+					</Box> */}
 					<Box mt={5}>
 						<Typography variant="h2">
 							Information about the Tagging System
