@@ -14,7 +14,7 @@ function FAQPage() {
 						<Typography variant="h2">Using the website</Typography>
 						<Divider />
 						<Typography variant="body2">
-							<YouTubeVideo videoId="ghaVrwo1_ok" />
+							<YouTubeVideo videoId="ZIx3Ce-LA8g" />
 						</Typography>
 					</Box>
 					{/* <Box mt={5}>
