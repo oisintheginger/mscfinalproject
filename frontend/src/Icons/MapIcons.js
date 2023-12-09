@@ -59,22 +59,19 @@ export const LeafletPolice = new Leaflet.Icon({
 export const BankIcon = createSvgIcon(
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		width="20"
+		height="20"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor"
 		stroke-width="2"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="lucide lucide-landmark"
+		class="lucide lucide-circle-dollar-sign"
 	>
-		<line x1="3" x2="21" y1="22" y2="22" />
-		<line x1="6" x2="6" y1="18" y2="11" />
-		<line x1="10" x2="10" y1="18" y2="11" />
-		<line x1="14" x2="14" y1="18" y2="11" />
-		<line x1="18" x2="18" y1="18" y2="11" />
-		<polygon points="12 2 20 7 4 7" />
+		<circle cx="12" cy="12" r="10" />
+		<path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+		<path d="M12 18V6" />
 	</svg>,
 	"BankIcon"
 );
@@ -383,18 +380,29 @@ export const LeafletAmusementPark = new Leaflet.Icon({
 
 export const BowlingIcon = createSvgIcon(
 	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
-		viewBox="0 0 24 24"
+		width="20"
+		height="20"
+		viewBox="0 0 20 20"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		class="lucide lucide-circle"
+		xmlns="http://www.w3.org/2000/svg"
 	>
-		<circle cx="12" cy="12" r="10" />
+		<g clip-path="url(#clip0_688_66)">
+			<path
+				d="M10 18.3333C14.6024 18.3333 18.3333 14.6024 18.3333 10C18.3333 5.39763 14.6024 1.66667 10 1.66667C5.39763 1.66667 1.66667 5.39763 1.66667 10C1.66667 14.6024 5.39763 18.3333 10 18.3333Z"
+				stroke="black"
+				stroke-width="1.66667"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+			<circle cx="6" cy="7" r="1" fill="black" />
+			<circle cx="9" cy="8" r="1" fill="black" />
+			<circle cx="6" cy="10" r="1" fill="black" />
+		</g>
+		<defs>
+			<clipPath id="clip0_688_66">
+				<rect width="20" height="20" fill="white" />
+			</clipPath>
+		</defs>
 	</svg>,
 	"BowlingIcon"
 );

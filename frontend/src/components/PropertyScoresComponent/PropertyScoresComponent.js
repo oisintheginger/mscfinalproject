@@ -16,6 +16,15 @@ import { motion } from "framer-motion";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import { useMediaQuery, useTheme } from "@mui/material";
 
+// import CommuteIcon from "@mui/icons-material/Commute";
+// import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+// import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+// import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+// import NightlifeIcon from "@mui/icons-material/Nightlife";
+// import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
+// import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+// import { fontDark } from "../../Styling/styleConstants";
+
 function IndividualCount({ count, displayTitle }) {
 	return (
 		<Stack flexDirection={"column"} spacing={1}>
@@ -114,6 +123,16 @@ const countScoreDisplayMap = {
 	},
 };
 
+// const iconMap = {
+// 	transportation_score: <CommuteIcon fontSize="large" color={fontDark} />,
+// 	emergency_score: <LocalPoliceIcon fontSize="large" color={fontDark} />,
+// 	personal_care_score: <LocalPharmacyIcon fontSize="large" color={fontDark} />,
+// 	finance_score: <AccountBalanceIcon fontSize="large" color={fontDark} />,
+// 	retail_score: <PointOfSaleIcon fontSize="large" color={fontDark} />,
+// 	fitness_score: <FitnessCenterIcon fontSize="large" color={fontDark} />,
+// 	leisure_score: <NightlifeIcon fontSize="large" color={fontDark} />,
+// };
+
 function Rating({ scoreData }) {
 	const [descriptionOpen, setDescriptionOpen] = useState(false);
 	const theme = useTheme();
@@ -125,7 +144,14 @@ function Rating({ scoreData }) {
 				alignItems={"center"}
 				justifyContent={"space-between"}
 			>
-				<Typography variant="h3">{scoreData?.displayTitle}</Typography>
+				<Stack
+					display={"flex"}
+					direction={"row"}
+					alignItems={"center"}
+					spacing={2}
+				>
+					<Typography variant="h3">{scoreData?.displayTitle}</Typography>
+				</Stack>
 				<Stack
 					direction={"row"}
 					alignItems={"center"}

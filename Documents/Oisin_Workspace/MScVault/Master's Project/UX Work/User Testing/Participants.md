@@ -1,4 +1,0 @@
-- Victor
-- Grainne 
-- Cormac
-- Damian

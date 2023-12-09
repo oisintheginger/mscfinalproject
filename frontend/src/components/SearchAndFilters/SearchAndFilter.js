@@ -65,6 +65,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 	const successSaveSearch = () => {
 		setAlert(SnackbarAlertMap.save_search);
 		setSnackbarAlertOpen(true);
+		setSaveSearchEnabled(false);
 	};
 	const errorSaveSearch = () => {
 		if (route != "authenticated") {
@@ -245,7 +246,7 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 				onClose={handleSnackbarClose}
 				TransitionComponent={Slide}
 				anchorOrigin={{
-					vertical: down ? "top" : "bottom",
+					vertical: "top",
 					horizontal: "center",
 				}}
 			>

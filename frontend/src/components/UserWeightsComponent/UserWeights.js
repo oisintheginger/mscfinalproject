@@ -149,8 +149,8 @@ function Option({ object, provided, reorderFunc, ind }) {
 									spacing={1}
 									alignItems={"center"}
 								>
-									<Typography variant="weightsOption">{object.id}</Typography>
 									{object.icon}
+									<Typography variant="weightsOption">{object.id}</Typography>
 								</Stack>
 							</Collapse>
 							<Collapse in={descriptionToggle} orientation="vertical">

@@ -22,6 +22,7 @@ import LoadingSpinner from "../components/CommonComp/LoadingSpinner/LoadingSpinn
 import { UserContext } from "../Utils/UserContext/UserContext";
 import { Authenticator, View } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import PublicIcon from "@mui/icons-material/Public";
 import PropertyScoresComponent from "../components/PropertyScoresComponent/PropertyScoresComponent";
 import {
 	AddToFavoritesMutation,
@@ -240,7 +241,7 @@ function PropertyPage() {
 										{`${data?.streetAddress}, ${data?.zipcode}`}
 									</Typography>
 									<ButtonStyled
-										endIcon={<MapOutlinedIcon fontSize="large" />}
+										endIcon={<PublicIcon fontSize="large" />}
 										sx={{ boxShadow: 3 }}
 										onClick={() => {
 											mapRef.current?.scrollIntoView();
@@ -509,7 +510,7 @@ function PropertyPage() {
 				onClose={handleSnackbarClose}
 				TransitionComponent={Slide}
 				anchorOrigin={{
-					vertical: down ? "top" : "bottom",
+					vertical: "top",
 					horizontal: "center",
 				}}
 			>

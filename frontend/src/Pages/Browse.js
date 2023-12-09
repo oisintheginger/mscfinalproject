@@ -46,16 +46,22 @@ function Browse() {
 			methods.setValue(SEARCH_TERM, searchParameters.get(SEARCH_TERM));
 		}
 		if (searchParameters.has(MIN_PRICE)) {
-			methods.setValue(MIN_PRICE, searchParameters.get(MIN_PRICE));
+			methods.setValue(MIN_PRICE, parseInt(searchParameters.get(MIN_PRICE)));
 		}
 		if (searchParameters.has(MAX_PRICE)) {
-			methods.setValue(MAX_PRICE, searchParameters.get(MAX_PRICE));
+			methods.setValue(MAX_PRICE, parseInt(searchParameters.get(MAX_PRICE)));
 		}
 		if (searchParameters.has(BEDROOM_COUNT)) {
-			methods.setValue(BEDROOM_COUNT, searchParameters.get(BEDROOM_COUNT));
+			methods.setValue(
+				BEDROOM_COUNT,
+				parseInt(searchParameters.get(BEDROOM_COUNT))
+			);
 		}
 		if (searchParameters.has(BATHROOM_COUNT)) {
-			methods.setValue(BATHROOM_COUNT, searchParameters.get(BATHROOM_COUNT));
+			methods.setValue(
+				BATHROOM_COUNT,
+				parseInt(searchParameters.get(BATHROOM_COUNT))
+			);
 		}
 	}, []);
 

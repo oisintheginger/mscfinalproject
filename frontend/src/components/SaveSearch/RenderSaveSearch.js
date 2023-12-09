@@ -221,7 +221,7 @@ export default function RenderSaveSearch({
 				onClose={handleSnackbarClose}
 				TransitionComponent={Slide}
 				anchorOrigin={{
-					vertical: down ? "top" : "bottom",
+					vertical: "top",
 					horizontal: "center",
 				}}
 			>

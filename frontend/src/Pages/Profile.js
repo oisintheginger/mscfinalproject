@@ -342,7 +342,6 @@ function Profile() {
 					</PageSection>
 				</Stack>
 			</PageTemplate>
-			<Snackbar></Snackbar>
 			<Modal
 				open={applicationDetailsModalOpen}
 				onClose={CloseApplicationDetailsModal}
@@ -437,7 +436,7 @@ function Profile() {
 				onClose={handleSnackbarClose}
 				TransitionComponent={Slide}
 				anchorOrigin={{
-					vertical: down ? "top" : "bottom",
+					vertical: "top",
 					horizontal: "center",
 				}}
 			>

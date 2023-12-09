@@ -45,7 +45,7 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 						overflowY: "scroll",
 					}}
 				>
-					<Stack justifyContent={"center"} pl={4} pr={4} pt={4}>
+					<Stack justifyContent={"center"} pl={2} pr={2} pt={4}>
 						<FormControl
 							component={"div"}
 							variant="standard"
@@ -113,35 +113,39 @@ function FilterFields({ filtersOpen, setFiltersOpen = (_) => {} }) {
 								/>
 							</Stack>
 							<Typography variant="filterTitle" mt={7}>
-								Bedroom Count
+								{"Bedrooms"}
 							</Typography>
 							<Divider sx={{ mb: 5 }} />
-							<Slider
-								aria-label="Bedroom Count"
-								valueLabelDisplay="on"
-								step={1}
-								marks
-								sx={{ color: "darkTeal.main" }}
-								min={1}
-								max={10}
-								defaultValue={1}
-								{...methods.register(BEDROOM_COUNT, { min: 1, max: 10 })}
-							/>
+							<Box pl={2}>
+								<Slider
+									aria-label="Bedroom Count"
+									valueLabelDisplay="on"
+									step={1}
+									marks
+									sx={{ color: "darkTeal.main" }}
+									min={1}
+									max={10}
+									defaultValue={1}
+									{...methods.register(BEDROOM_COUNT, { min: 1, max: 10 })}
+								/>
+							</Box>
 							<Typography variant="filterTitle" mt={2}>
-								Bathroom Count
+								{"Bathrooms"}
 							</Typography>
 							<Divider sx={{ mb: 5 }} />
-							<Slider
-								aria-label="Bathroom Count"
-								valueLabelDisplay="on"
-								step={1}
-								min={1}
-								max={10}
-								defaultValue={1}
-								marks
-								sx={{ color: "darkTeal.main" }}
-								{...methods.register(BATHROOM_COUNT, { min: 1, max: 10 })}
-							/>
+							<Box pl={2}>
+								<Slider
+									aria-label="Bathroom Count"
+									valueLabelDisplay="on"
+									step={1}
+									min={1}
+									max={10}
+									defaultValue={1}
+									marks
+									sx={{ color: "darkTeal.main" }}
+									{...methods.register(BATHROOM_COUNT, { min: 1, max: 10 })}
+								/>
+							</Box>
 							<Typography variant="filterTitle" mt={6}>
 								Home Type
 							</Typography>

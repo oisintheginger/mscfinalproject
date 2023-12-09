@@ -1,4 +1,4 @@
-import { Stack, FormControlLabel, Checkbox } from "@mui/material";
+import { Stack, FormControlLabel, Checkbox, Typography } from "@mui/material";
 function MapFeatureToggle({
 	checkedState = false,
 	changeStateFunc = () => {},
@@ -8,6 +8,7 @@ function MapFeatureToggle({
 	return (
 		<Stack direction={"row"} alignItems={"center"}>
 			<FormControlLabel
+				aria-label={`${label} Map Toggle`}
 				control={
 					<Checkbox
 						sx={{
@@ -16,17 +17,19 @@ function MapFeatureToggle({
 								color: "darkTeal.main",
 							},
 						}}
+						size="medium"
 						checked={checkedState}
 						onChange={(event) => {
 							changeStateFunc(event.target.checked);
 						}}
+						aria-label={`${label} Map Toggle`}
 					/>
 				}
-				label={label}
-				labelPlacement="end"
-				aria-label={`${label} Map Toggle`}
 			/>
 			{icon}
+			<Typography variant="mapToggleFont" pl={1}>
+				{label}
+			</Typography>
 		</Stack>
 	);
 }
