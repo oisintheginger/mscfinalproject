@@ -99,6 +99,10 @@ function Browse() {
 			});
 			return params;
 		});
+		setSearchParameters((params) => {
+			setPageNum(1);
+			return params;
+		});
 		methods.reset({}, { keepValues: true });
 		refetch();
 	};
@@ -148,14 +152,14 @@ function Browse() {
 	}, []);
 
 	useEffect(() => {
-		if (searchParameters.get("page") != pageNum && pageNum) {
+		if (searchParameters.get("page") != pageNum) {
 			setSearchParameters((params) => {
-				params.set("page", pageNum);
+				params.set("page", pageNum || 1);
 				return params;
 			});
 		}
 		refetch();
-	}, [pageNum]);
+	}, [pageNum, searchParameters]);
 
 	useEffect(() => {
 		setPageNum(parseInt(searchParameters.get("page")));
@@ -228,7 +232,7 @@ function Browse() {
 								id={"results"}
 							/>
 							<Pagination
-								count={totalPages - 1 || 1}
+								count={totalPages - 1 || 10}
 								boundaryCount={1}
 								siblingCount={down ? 1 : 3}
 								variant="outlined"
