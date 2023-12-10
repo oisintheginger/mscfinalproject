@@ -12,12 +12,15 @@ import {
 	SHOW_TOWNHOUSE,
 } from "../../Utils/filter_constants";
 
-function ActiveTagsStack({ filtersOpen = true }) {
-	const methods = useFormContext();
+function ActiveTagsStack({ filtersOpen = true, searchParameters = null }) {
+	const minPriceParam = searchParameters?.get("minPrice");
+	const maxPriceParam = searchParameters?.get("maxPrice");
+	const minBedParam = searchParameters?.get("minBed");
+	const minBathParam = searchParameters?.get("minBath");
 
 	return (
 		<>
-			{methods.formState.isSubmitted && !filtersOpen && (
+			{!filtersOpen && (
 				<Stack
 					direction={"row"}
 					flexWrap={"wrap"}
@@ -26,15 +29,18 @@ function ActiveTagsStack({ filtersOpen = true }) {
 					spacing={1}
 					mt={1}
 				>
-					{methods.getValues(MIN_PRICE) !=
-						methods.formState.defaultValues[MIN_PRICE] &&
-						!Object.keys(methods.formState.dirtyFields).includes(MIN_PRICE) && (
-							<ActiveTag
-								tagName={"Min. Price"}
-								tagVal={methods.getValues(MIN_PRICE)}
-							/>
-						)}
-					{methods.getValues(MAX_PRICE) !=
+					{minPriceParam && (
+						<ActiveTag tagName={"Min. Price"} tagVal={minPriceParam} />
+					)}
+					{maxPriceParam && (
+						<ActiveTag tagName={"Max. Price"} tagVal={maxPriceParam} />
+					)}
+					{minBedParam && <ActiveTag tagName={"Beds"} tagVal={minBedParam} />}
+					{minBathParam && (
+						<ActiveTag tagName={"Baths"} tagVal={minBathParam} />
+					)}
+
+					{/* {methods.getValues(MAX_PRICE) !=
 						methods.formState.defaultValues[MAX_PRICE] &&
 						!Object.keys(methods.formState.dirtyFields).includes(MAX_PRICE) && (
 							<ActiveTag
@@ -61,7 +67,7 @@ function ActiveTagsStack({ filtersOpen = true }) {
 								tagName={"Bath Count"}
 								tagVal={"+" + methods.getValues(BATHROOM_COUNT)}
 							/>
-						)}
+						)} */}
 					{/* {methods.getValues(SHOW_HOUSES) &&
 						!Object.keys(methods.formState.dirtyFields).includes(
 							SHOW_HOUSES
