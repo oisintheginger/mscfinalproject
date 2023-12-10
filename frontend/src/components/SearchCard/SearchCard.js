@@ -7,8 +7,6 @@ import {
 	Box,
 	Stack,
 	Divider,
-	useTheme,
-	useMediaQuery,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
@@ -42,9 +40,6 @@ export function SearchCard({
 
 		navigator(`/browse?${searchString}&page=1`);
 	};
-
-	const theme = useTheme();
-	const down = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
 		<ButtonBase
