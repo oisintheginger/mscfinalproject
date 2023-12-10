@@ -239,7 +239,10 @@ function SearchAndFilters({ filtersOpen = false, setFiltersOpen = () => {} }) {
 					setFiltersOpen={setFiltersOpen}
 				/>
 			</Box>
-			<ActiveTagsStack filtersOpen={filtersOpen} />
+			<ActiveTagsStack
+				filtersOpen={filtersOpen}
+				searchParameters={searchParameters}
+			/>
 			<Snackbar
 				open={snackbarAlertOpen}
 				autoHideDuration={3000}

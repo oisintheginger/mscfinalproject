@@ -66,7 +66,7 @@ function Browse() {
 	}, []);
 
 	const { isLoading, isError, isSuccess, data, error, refetch } = useQuery(
-		["browsing-results", pageNum],
+		["browsing-results", searchParameters.toString()],
 		() => {
 			return API.get("HMEBackend", "/api/properties", {
 				headers: {},
@@ -79,7 +79,7 @@ function Browse() {
 			});
 		},
 		{
-			staleTime: 30000,
+			staleTime: 0,
 			refetchOnMount: true,
 			onSuccess: (res) => {
 				setTotalPages(res.data.totalPages);
@@ -97,6 +97,10 @@ function Browse() {
 			Object.keys(formdata).forEach((key) => {
 				params.set(key, methods.getValues(key));
 			});
+			return params;
+		});
+		setSearchParameters((params) => {
+			setPageNum(1);
 			return params;
 		});
 		methods.reset({}, { keepValues: true });
@@ -148,14 +152,14 @@ function Browse() {
 	}, []);
 
 	useEffect(() => {
-		if (searchParameters.get("page") != pageNum && pageNum) {
+		if (searchParameters.get("page") != pageNum) {
 			setSearchParameters((params) => {
-				params.set("page", pageNum);
+				params.set("page", pageNum || 1);
 				return params;
 			});
 		}
 		refetch();
-	}, [pageNum]);
+	}, [pageNum, searchParameters]);
 
 	useEffect(() => {
 		setPageNum(parseInt(searchParameters.get("page")));
@@ -228,7 +232,7 @@ function Browse() {
 								id={"results"}
 							/>
 							<Pagination
-								count={totalPages - 1 || 1}
+								count={totalPages - 1 || 10}
 								boundaryCount={1}
 								siblingCount={down ? 1 : 3}
 								variant="outlined"
