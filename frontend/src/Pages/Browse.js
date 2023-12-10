@@ -66,7 +66,7 @@ function Browse() {
 	}, []);
 
 	const { isLoading, isError, isSuccess, data, error, refetch } = useQuery(
-		["browsing-results", pageNum],
+		["browsing-results", searchParameters.toString()],
 		() => {
 			return API.get("HMEBackend", "/api/properties", {
 				headers: {},
@@ -79,7 +79,7 @@ function Browse() {
 			});
 		},
 		{
-			staleTime: 30000,
+			staleTime: 0,
 			refetchOnMount: true,
 			onSuccess: (res) => {
 				setTotalPages(res.data.totalPages);
