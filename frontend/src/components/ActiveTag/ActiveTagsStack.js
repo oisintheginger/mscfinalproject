@@ -2,16 +2,6 @@ import { useFormContext } from "react-hook-form";
 import { Stack } from "@mui/material";
 import ActiveTag from "./ActiveTag";
 
-import {
-	BATHROOM_COUNT,
-	BEDROOM_COUNT,
-	MAX_PRICE,
-	MIN_PRICE,
-	SHOW_FLAT,
-	SHOW_HOUSES,
-	SHOW_TOWNHOUSE,
-} from "../../Utils/filter_constants";
-
 function ActiveTagsStack({ filtersOpen = true, searchParameters = null }) {
 	const minPriceParam = searchParameters?.get("minPrice");
 	const maxPriceParam = searchParameters?.get("maxPrice");
