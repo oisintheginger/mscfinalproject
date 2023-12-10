@@ -59,9 +59,14 @@ export function SearchCard({
 				<Grid container spacing={2} alignItems="center">
 					<Grid
 						item
-						xs={10}
+						xs={11}
 						justifyContent={"center"}
-						sx={{ overflowX: down ? "scroll" : "clip" }}
+						sx={{
+							overflowX: "scroll",
+							"::-webkit-scrollbar": { display: "none" },
+							"-ms-overflow-style": "none",
+							scrollbarWidth: "none",
+						}}
 					>
 						<Stack direction={"row"} spacing={3}>
 							<Box display={"flex"} flexDirection={"row"} alignItems={"center"}>
