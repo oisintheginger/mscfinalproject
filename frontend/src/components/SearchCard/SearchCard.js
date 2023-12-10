@@ -5,6 +5,10 @@ import {
 	Typography,
 	IconButton,
 	Box,
+	Stack,
+	Divider,
+	useTheme,
+	useMediaQuery,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
@@ -39,6 +43,9 @@ export function SearchCard({
 		navigator(`/browse?${searchString}&page=1`);
 	};
 
+	const theme = useTheme();
+	const down = useMediaQuery(theme.breakpoints.down("sm"));
+
 	return (
 		<ButtonBase
 			component="div"
@@ -47,28 +54,74 @@ export function SearchCard({
 		>
 			<Paper
 				elevation={2}
-				sx={{ width: "100%", border: 1, borderColor: "divider", p: 2, my: 1 }}
+				sx={{ width: "100%", border: 1, borderColor: "divider", p: 2, mt: 1 }}
 			>
 				<Grid container spacing={2} alignItems="center">
-					<Grid item xs={5} overflow={"hidden"}>
-						<Box>
-							<Typography
-								variant="cardHeader"
-								sx={{ cursor: "pointer" }}
-								onClick={() => navigator("/browse")}
-								textOverflow={"ellipsis"}
+					<Grid
+						item
+						xs={10}
+						justifyContent={"center"}
+						sx={{ overflowX: down ? "scroll" : "clip" }}
+					>
+						<Stack direction={"row"} spacing={3}>
+							<Box display={"flex"} flexDirection={"row"} alignItems={"center"}>
+								<Typography
+									noWrap
+									variant="cardHeader"
+									sx={{ cursor: "pointer" }}
+									onClick={() => navigator("/browse")}
+									textOverflow={"ellipsis"}
+								>
+									{search}
+								</Typography>
+							</Box>
+							<Divider orientation="vertical" />
+							<Stack
+								direction={"row"}
+								alignItems={"center"}
+								spacing={2}
+								width={"100%"}
 							>
-								{search}
-							</Typography>
-						</Box>
+								<Stack>
+									<Typography textAlign={"center"} variant="searchFilterOption">
+										Min. Price
+									</Typography>
+									<Typography textAlign={"center"} variant="searchFilterValue">
+										{minPrice}
+									</Typography>
+								</Stack>
+								<Divider orientation="vertical" />
+								<Stack>
+									<Typography textAlign={"center"} variant="searchFilterOption">
+										Max. Price
+									</Typography>
+									<Typography textAlign={"center"} variant="searchFilterValue">
+										{maxPrice}
+									</Typography>
+								</Stack>
+								<Divider orientation="vertical" />
+								<Stack>
+									<Typography textAlign={"center"} variant="searchFilterOption">
+										Beds
+									</Typography>
+									<Typography textAlign={"center"} variant="searchFilterValue">
+										{minBed}
+									</Typography>
+								</Stack>
+								<Divider orientation="vertical" />
+
+								<Stack>
+									<Typography textAlign={"center"} variant="searchFilterOption">
+										Baths
+									</Typography>
+									<Typography textAlign={"center"} variant="searchFilterValue">
+										{minBath}
+									</Typography>
+								</Stack>
+							</Stack>
+						</Stack>
 					</Grid>
-					<Grid item xs={2}>
-						<Typography textAlign={"center"}>Min Price: {minPrice}</Typography>
-					</Grid>
-					<Grid item xs={2}>
-						<Typography textAlign={"center"}>Max Price: {maxPrice}</Typography>
-					</Grid>
-					<Grid item xs={2} justifyContent={"flex-end"}>
+					<Grid item xs={1}>
 						<Box
 							display={"flex"}
 							flexDirection={"row"}
