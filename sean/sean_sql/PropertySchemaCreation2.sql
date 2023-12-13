@@ -966,7 +966,11 @@ JOIN
 JOIN 
     crime_z_scores cz ON n.neighbourhoodID = cz.neighbourhoodID
 JOIN 
-    service_scores ss ON n.neighbourhoodID = ss.neighbourhoodID
+    service_scores ss ON n.neighbourhoodID = ss.neighbourhoodID;
 
-   
+ 
+ DROP TABLE temp_table;
+
+ SELECT * FROM temp_table;
+
    
