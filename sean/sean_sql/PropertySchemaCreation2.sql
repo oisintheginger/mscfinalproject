@@ -256,7 +256,7 @@ CREATE TABLE PriceHistory (
     PRIMARY KEY (priceHistoryID)
 );
 
-# CHECK TABLE COLUMNS AND KEYS
+--CHECK TABLE COLUMNS AND KEYS
 
 DESCRIBE property_details_extra;
 DESCRIBE images;
@@ -380,7 +380,7 @@ SELECT * FROM Schools ;
 
 DESCRIBE Addresses ;
 
-#need to create a neighbourhood mapping table
+--need to create a neighbourhood mapping table
 
 SELECT * FROM Addresses a ;
 
@@ -397,12 +397,12 @@ SELECT * FROM Neighbourhoods n ;
 
 DESCRIBE Neighbourhoods; 
 
-# now need to alter addresses table so that it has a foreign key that references the neighbourhoodID
+--now need to alter addresses table so that it has a foreign key that references the neighbourhoodID
 ALTER TABLE Addresses ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 SELECT * FROM Addresses a;
 
-# now update both of these tables so that their neighbourhoodID columns have the correct values in them
+--now update both of these tables so that their neighbourhoodID columns have the correct values in them
 UPDATE Addresses AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
 DESCRIBE Neighbourhoods;  
@@ -421,16 +421,16 @@ CREATE TABLE Banks (
     PRIMARY KEY (bankID)
 );
 
-# add neighbourhoodID column to banks
+--add neighbourhoodID column to banks
 ALTER TABLE Banks ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 SELECT * FROM Banks;
 
-# update the column 
+--update the column 
 
 UPDATE Banks AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-# NIGHT CLUBS
+--NIGHT CLUBS
 
 DROP TABLE NightClubs ;
 
@@ -455,7 +455,7 @@ ALTER TABLE NightClubs DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM NightClubs;
 
-# BARS
+--BARS
 
 DROP TABLE Bars ;
 
@@ -476,7 +476,7 @@ ALTER TABLE Bars DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Bars;
 
-# BEAUTY
+--BEAUTY
 
 DROP TABLE BeautySalons ;
 
@@ -497,7 +497,7 @@ ALTER TABLE BeautySalons DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM BeautySalons;
 
-# BUS STATIONS
+--BUS STATIONS
 
 DROP TABLE BusStations ;
 
@@ -518,7 +518,7 @@ ALTER TABLE BusStations DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM BusStations;
 
-# CAFES
+--CAFES
 
 DROP TABLE Cafes ;
 
@@ -539,7 +539,7 @@ ALTER TABLE Cafes DROP COLUMN neighbourhoodGeoLocation]
 
 SELECT * FROM Cafes;
 
-# FIRE STATIONS
+--FIRE STATIONS
 
 DROP TABLE FireStations ;
 
@@ -560,7 +560,7 @@ ALTER TABLE FireStations DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM FireStations;
 
-# GYMS
+--GYMS
 
 DROP TABLE Gyms ;
 
@@ -581,7 +581,7 @@ ALTER TABLE Gyms DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Gyms;
 
-# HOSPITALS
+-- HOSPITALS
 
 DROP TABLE Hospitals;
 
@@ -602,7 +602,7 @@ ALTER TABLE Hospitals DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Hospitals;
 
-# PARKS
+-- PARKS
 
 DROP TABLE Parks;
 
@@ -623,7 +623,7 @@ ALTER TABLE Parks DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Parks;
 
-# PHARMACIES
+--PHARMACIES
 
 DROP TABLE Pharmacies ;
 
@@ -644,7 +644,7 @@ ALTER TABLE Pharmacies DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Pharmacies;
 
-# POLICE STATION
+--POLICE STATION
 
 Drop Table PoliceStations ;
 
@@ -665,7 +665,7 @@ ALTER TABLE PoliceStations DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM PoliceStations;
 
-# RESTAURANTS
+--RESTAURANTS
 
 DROP table Restaurants ;
 
@@ -686,7 +686,7 @@ ALTER TABLE Restaurants DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Restaurants;
 
-# SUPERMARKETS
+--SUPERMARKETS
 
 Drop Table Supermarkets ;
 
@@ -707,7 +707,7 @@ ALTER TABLE Supermarkets DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Supermarkets;
 
-# TRAIN STATIONS
+--TRAIN STATIONS
 
 Drop table Trainstations ;
 
@@ -728,7 +728,7 @@ ALTER TABLE Trainstations DROP COLUMN neighbourhoodGeoLocation;
 
 SELECT * FROM Trainstations;
 
-# TRANSIT STATIONS
+--TRANSIT STATIONS
 
 Drop table TransitStations ;
 
@@ -747,7 +747,7 @@ UPDATE TransitStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocati
 
 ALTER TABLE TransitStations DROP COLUMN neighbourhoodGeoLocation;
 
-#Update neighbourhoods table so crime information can be linked to it
+--Update neighbourhoods table so crime information can be linked to it
 ALTER TABLE Neighbourhoods ADD COLUMN crime_neighbourhood VARCHAR(255);
 
 DROP TABLE temp_table ;
@@ -761,7 +761,7 @@ DESCRIBE temp_table ;
 UPDATE Neighbourhoods JOIN temp_table ON Neighbourhoods.neighbourhoodID = temp_table.neighbourhoodID  
 SET Neighbourhoods.crime_neighbourhood = temp_table.crime_neighbourhood;
 
-# Now upload the scoring datasets, begin with crime
+--Now upload the scoring datasets, begin with crime
 
 DROP TABLE crime_z_scores ;
 
@@ -872,8 +872,7 @@ ALTER TABLE service_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neig
 
 UPDATE service_scores AS a JOIN Neighbourhoods AS n ON a.service_score_ID = n.neighbourhoodID  SET a.neighbourhoodID = n.neighbourhoodID;
 
-SELECT * FROM MainInformation mi ;
-#####
+SELECT * FROM MainInformation mi;
 
 DESCRIBE user;
 
@@ -892,7 +891,7 @@ WHERE mi.propertyID = '36428890';
 
 SELECT a.neighbourhoodID FROM MainInformation mi JOIN Addresses a ON mi.addressID = a.addressID WHERE mi.propertyID = 36429513;
 
-DROP TABLE user_interactions ;
+DROP TABLE user_interactions;
 
 CREATE TABLE user_interactions (
     user_interaction_id INT AUTO_INCREMENT, 
@@ -908,6 +907,7 @@ ADD CONSTRAINT fk_user_interactions_user;
 FOREIGN KEY (id) REFERENCES user(id);
 
 INSERT INTO user_interactions (propertyID, id, click_count)
+
 SELECT
     mi.propertyID,
     u.id AS id,  -- Assuming 'id' is the column in the users table that you want to use as user_id
@@ -969,8 +969,8 @@ JOIN
     service_scores ss ON n.neighbourhoodID = ss.neighbourhoodID;
 
  
- DROP TABLE temp_table;
+DROP TABLE temp_table;
 
- SELECT * FROM temp_table;
+SELECT * FROM temp_table;
 
    
