@@ -443,6 +443,10 @@ CREATE TABLE NightClubs (
     PRIMARY KEY (nightClubID)
 );
 
+SELECT ST_AsText(geoLocation) AS geoLocationString FROM Addresses a;
+
+DESCRIBE Addresses 
+
 ALTER TABLE NightClubs ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE NightClubs AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
