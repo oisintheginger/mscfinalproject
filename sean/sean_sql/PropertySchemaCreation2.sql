@@ -408,7 +408,7 @@ UPDATE Addresses AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n
 DESCRIBE Neighbourhoods  
 DESCRIBE Addresses 
 
-# Next lets create a table for banks
+# Next lets create a table for banks!
 
 DROP TABLE Banks 
 
