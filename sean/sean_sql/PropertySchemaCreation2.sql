@@ -968,9 +968,5 @@ JOIN
 JOIN 
     service_scores ss ON n.neighbourhoodID = ss.neighbourhoodID;
 
- 
-DROP TABLE temp_table;
-
-SELECT * FROM temp_table;
 
    
