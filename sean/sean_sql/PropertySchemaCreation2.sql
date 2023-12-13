@@ -9,7 +9,7 @@ AND TABLE_SCHEMA = 'hmedbmain';
 
 ALTER TABLE MainInformation DROP FOREIGN KEY FK_MainInformation_PropertyDetails;
 
-DROP TABLE ApartmentBuildings 
+DROP TABLE ApartmentBuildings ;
 
 CREATE TABLE ApartmentBuildings (
     buildingID INT UNSIGNED,
@@ -307,9 +307,9 @@ CREATE TABLE MainInformation (
     FOREIGN KEY (buildingID) REFERENCES ApartmentBuildings(buildingID)
 );
 
-DESCRIBE MainInformation 
+DESCRIBE MainInformation ;
 
-SELECT * FROM MainInformation u 
+SELECT * FROM MainInformation u ;
 
 ALTER TABLE MainInformation DROP FOREIGN KEY MainInformation_ibfk_4;
 ALTER TABLE MainInformation DROP FOREIGN KEY MainInformation_ibfk_5;
@@ -335,9 +335,9 @@ CREATE TABLE Addresses (
     PRIMARY KEY (addressID)
 );
 
-DESCRIBE Addresses
+DESCRIBE Addresses;
 
-SELECT * FROM Addresses a 
+SELECT * FROM Addresses a ;
 
 # delete row that is messing everything up, due to missing point information 
 DELETE FROM MainInformation WHERE propertyID = 2092929664;
@@ -365,26 +365,26 @@ DELETE FROM property_details_extra  WHERE propertyID = 2092929664;
 DELETE FROM property_details_extra  WHERE propertyID = 2057533173;
 DELETE FROM property_details_extra  WHERE propertyID = 36439421;
 
-DESCRIBE fees
-DESCRIBE Addresses 
-DESCRIBE ApartmentBuildings 
-DESCRIBE MainInformation 
-DESCRIBE PriceHistory 
-DESCRIBE PropertyDetails 
-DESCRIBE Schools 
-DESCRIBE Unit 
-DESCRIBE images 
-DESCRIBE property_details_extra 
+DESCRIBE fees;
+DESCRIBE Addresses ;
+DESCRIBE ApartmentBuildings ;
+DESCRIBE MainInformation ;
+DESCRIBE PriceHistory ;
+DESCRIBE PropertyDetails ;
+DESCRIBE Schools ;
+DESCRIBE Unit ;
+DESCRIBE images ;
+DESCRIBE property_details_extra; 
 
-SELECT * FROM Schools 
+SELECT * FROM Schools ;
 
-DESCRIBE Addresses 
+DESCRIBE Addresses ;
 
 #need to create a neighbourhood mapping table
 
-SELECT * FROM Addresses a 
+SELECT * FROM Addresses a ;
 
-DROP TABLE Neighbourhoods
+DROP TABLE Neighbourhoods;
 
 CREATE TABLE Neighbourhoods (
     neighbourhoodID INT,
@@ -393,24 +393,24 @@ CREATE TABLE Neighbourhoods (
     PRIMARY KEY (neighbourhoodID)
 );
 
-SELECT * FROM Neighbourhoods n 
+SELECT * FROM Neighbourhoods n ;
 
-DESCRIBE Neighbourhoods 
+DESCRIBE Neighbourhoods; 
 
 # now need to alter addresses table so that it has a foreign key that references the neighbourhoodID
 ALTER TABLE Addresses ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
-SELECT * FROM Addresses a 
+SELECT * FROM Addresses a;
 
 # now update both of these tables so that their neighbourhoodID columns have the correct values in them
 UPDATE Addresses AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-DESCRIBE Neighbourhoods  
-DESCRIBE Addresses 
+DESCRIBE Neighbourhoods;  
+DESCRIBE Addresses;
 
 # Next lets create a table for banks!
 
-DROP TABLE Banks 
+DROP TABLE Banks; 
 
 CREATE TABLE Banks (
 	bankID INT AUTO_INCREMENT,
@@ -424,7 +424,7 @@ CREATE TABLE Banks (
 # add neighbourhoodID column to banks
 ALTER TABLE Banks ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
-SELECT * FROM Banks
+SELECT * FROM Banks;
 
 # update the column 
 
@@ -432,7 +432,7 @@ UPDATE Banks AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.nei
 
 # NIGHT CLUBS
 
-DROP TABLE NightClubs 
+DROP TABLE NightClubs ;
 
 CREATE TABLE NightClubs (
 	nightClubID INT AUTO_INCREMENT,
@@ -445,19 +445,19 @@ CREATE TABLE NightClubs (
 
 SELECT ST_AsText(geoLocation) AS geoLocationString FROM Addresses a;
 
-DESCRIBE Addresses 
+DESCRIBE Addresses ;
 
 ALTER TABLE NightClubs ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE NightClubs AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE NightClubs DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE NightClubs DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM NightClubs
+SELECT * FROM NightClubs;
 
 # BARS
 
-DROP TABLE Bars 
+DROP TABLE Bars ;
 
 CREATE TABLE Bars (
 	barID INT AUTO_INCREMENT,
@@ -472,13 +472,13 @@ ALTER TABLE Bars ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodI
 
 UPDATE Bars AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Bars DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Bars DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Bars
+SELECT * FROM Bars;
 
 # BEAUTY
 
-DROP TABLE BeautySalons 
+DROP TABLE BeautySalons ;
 
 CREATE TABLE BeautySalons (
 	beautyID INT AUTO_INCREMENT,
@@ -493,13 +493,13 @@ ALTER TABLE BeautySalons ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighb
 
 UPDATE BeautySalons AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE BeautySalons DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE BeautySalons DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM BeautySalons
+SELECT * FROM BeautySalons;
 
 # BUS STATIONS
 
-DROP TABLE BusStations 
+DROP TABLE BusStations ;
 
 CREATE TABLE BusStations (
 	busStationID INT AUTO_INCREMENT,
@@ -514,13 +514,13 @@ ALTER TABLE BusStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbo
 
 UPDATE BusStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE BusStations DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE BusStations DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM BusStations
+SELECT * FROM BusStations;
 
 # CAFES
 
-DROP TABLE Cafes 
+DROP TABLE Cafes ;
 
 CREATE TABLE Cafes (
 	cafeID INT AUTO_INCREMENT,
@@ -537,11 +537,11 @@ UPDATE Cafes AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.nei
 
 ALTER TABLE Cafes DROP COLUMN neighbourhoodGeoLocation]
 
-SELECT * FROM Cafes
+SELECT * FROM Cafes;
 
 # FIRE STATIONS
 
-DROP TABLE FireStations 
+DROP TABLE FireStations ;
 
 CREATE TABLE FireStations (
 	fireStationID INT AUTO_INCREMENT,
@@ -556,13 +556,13 @@ ALTER TABLE FireStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighb
 
 UPDATE FireStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE FireStations DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE FireStations DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM FireStations
+SELECT * FROM FireStations;
 
 # GYMS
 
-DROP TABLE Gyms 
+DROP TABLE Gyms ;
 
 CREATE TABLE Gyms (
 	gymID INT AUTO_INCREMENT,
@@ -577,13 +577,13 @@ ALTER TABLE Gyms ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodI
 
 UPDATE Gyms AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Gyms DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Gyms DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Gyms
+SELECT * FROM Gyms;
 
 # HOSPITALS
 
-DROP TABLE Hospitals
+DROP TABLE Hospitals;
 
 CREATE TABLE Hospitals (
 	hospitalID INT AUTO_INCREMENT,
@@ -598,13 +598,13 @@ ALTER TABLE Hospitals ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbour
 
 UPDATE Hospitals AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Hospitals DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Hospitals DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Hospitals
+SELECT * FROM Hospitals;
 
 # PARKS
 
-DROP TABLE Parks
+DROP TABLE Parks;
 
 CREATE TABLE Parks (
 	parkID INT AUTO_INCREMENT,
@@ -619,13 +619,13 @@ ALTER TABLE Parks ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhood
 
 UPDATE Parks AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Parks DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Parks DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Parks
+SELECT * FROM Parks;
 
 # PHARMACIES
 
-DROP TABLE Pharmacies 
+DROP TABLE Pharmacies ;
 
 CREATE TABLE Pharmacies (
 	pharmacyID INT AUTO_INCREMENT,
@@ -640,13 +640,13 @@ ALTER TABLE Pharmacies ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbou
 
 UPDATE Pharmacies AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Pharmacies DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Pharmacies DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Pharmacies
+SELECT * FROM Pharmacies;
 
 # POLICE STATION
 
-Drop Table PoliceStations 
+Drop Table PoliceStations ;
 
 CREATE TABLE PoliceStations (
 	policeStationID INT AUTO_INCREMENT,
@@ -661,13 +661,13 @@ ALTER TABLE PoliceStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neig
 
 UPDATE PoliceStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE PoliceStations DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE PoliceStations DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM PoliceStations
+SELECT * FROM PoliceStations;
 
 # RESTAURANTS
 
-DROP table Restaurants 
+DROP table Restaurants ;
 
 CREATE TABLE Restaurants (
 	restaurantID INT AUTO_INCREMENT,
@@ -682,13 +682,13 @@ ALTER TABLE Restaurants ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbo
 
 UPDATE Restaurants AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Restaurants DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Restaurants DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Restaurants
+SELECT * FROM Restaurants;
 
 # SUPERMARKETS
 
-Drop Table Supermarkets 
+Drop Table Supermarkets ;
 
 CREATE TABLE Supermarkets (
 	supermarketID INT AUTO_INCREMENT,
@@ -703,13 +703,13 @@ ALTER TABLE Supermarkets ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighb
 
 UPDATE Supermarkets AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Supermarkets DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Supermarkets DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Supermarkets
+SELECT * FROM Supermarkets;
 
 # TRAIN STATIONS
 
-Drop table Trainstations 
+Drop table Trainstations ;
 
 CREATE TABLE Trainstations (
 	trainStationID INT AUTO_INCREMENT,
@@ -724,13 +724,13 @@ ALTER TABLE Trainstations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neigh
 
 UPDATE Trainstations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE Trainstations DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE Trainstations DROP COLUMN neighbourhoodGeoLocation;
 
-SELECT * FROM Trainstations
+SELECT * FROM Trainstations;
 
 # TRANSIT STATIONS
 
-Drop table TransitStations 
+Drop table TransitStations ;
 
 CREATE TABLE TransitStations (
 	transitStationID INT AUTO_INCREMENT,
@@ -745,25 +745,25 @@ ALTER TABLE TransitStations ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (nei
 
 UPDATE TransitStations AS a JOIN Neighbourhoods AS n ON a.neighbourhoodGeoLocation = n.neighbourhoodGeoLocation SET a.neighbourhoodID = n.neighbourhoodID;
 
-ALTER TABLE TransitStations DROP COLUMN neighbourhoodGeoLocation
+ALTER TABLE TransitStations DROP COLUMN neighbourhoodGeoLocation;
 
 #Update neighbourhoods table so crime information can be linked to it
 ALTER TABLE Neighbourhoods ADD COLUMN crime_neighbourhood VARCHAR(255);
 
-DROP TABLE temp_table 
+DROP TABLE temp_table ;
 
 CREATE TABLE temp_table (neighbourhoodID INT, crime_neighbourhood VARCHAR(255));
 
-SELECT * FROM temp_table 
+SELECT * FROM temp_table ;
 
-DESCRIBE temp_table 
+DESCRIBE temp_table ;
 
 UPDATE Neighbourhoods JOIN temp_table ON Neighbourhoods.neighbourhoodID = temp_table.neighbourhoodID  
 SET Neighbourhoods.crime_neighbourhood = temp_table.crime_neighbourhood;
 
 # Now upload the scoring datasets, begin with crime
 
-DROP TABLE crime_z_scores 
+DROP TABLE crime_z_scores ;
 
 CREATE TABLE crime_z_scores (
     crime_scoreID INT,
@@ -810,9 +810,9 @@ ALTER TABLE crime_z_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neig
 
 UPDATE crime_z_scores SET neighbourhoodID = crime_scoreID;
 
-ALTER TABLE crime_z_scores DROP COLUMN crime_neighbourhood
+ALTER TABLE crime_z_scores DROP COLUMN crime_neighbourhood;
 
-DROP TABLE service_scores 
+DROP TABLE service_scores ;
 
 CREATE TABLE service_scores (
     service_score_ID INT,
@@ -864,25 +864,25 @@ CREATE TABLE service_scores (
 
 ALTER TABLE service_scores CHANGE COLUMN overall_score mapped_values_sigmoid FLOAT;
 
-DESCRIBE service_scores
+DESCRIBE service_scores;
 
-SELECT * FROM service_scores szs 
+SELECT * FROM service_scores szs ;
 
 ALTER TABLE service_scores ADD COLUMN neighbourhoodID INT, ADD FOREIGN KEY (neighbourhoodID) REFERENCES Neighbourhoods(neighbourhoodID);
 
 UPDATE service_scores AS a JOIN Neighbourhoods AS n ON a.service_score_ID = n.neighbourhoodID  SET a.neighbourhoodID = n.neighbourhoodID;
 
-SELECT * FROM MainInformation mi 
+SELECT * FROM MainInformation mi ;
 #####
 
-DESCRIBE user
+DESCRIBE user;
 
-SELECT * FROM user u
+SELECT * FROM user u;
 
 SELECT GROUP_CONCAT(column_name) 
     FROM information_schema.columns 
     WHERE table_name = 'service_scores' 
-        AND LOWER(column_name) NOT LIKE '%count%'
+        AND LOWER(column_name) NOT LIKE '%count%';
 
 SELECT a.neighbourhoodID
 FROM MainInformation mi
@@ -890,9 +890,9 @@ JOIN Addresses a ON mi.addressID = a.addressID
 WHERE mi.propertyID = '36428890';
 
 
-SELECT a.neighbourhoodID FROM MainInformation mi JOIN Addresses a ON mi.addressID = a.addressID WHERE mi.propertyID = 36429513
+SELECT a.neighbourhoodID FROM MainInformation mi JOIN Addresses a ON mi.addressID = a.addressID WHERE mi.propertyID = 36429513;
 
-DROP TABLE user_interactions 
+DROP TABLE user_interactions ;
 
 CREATE TABLE user_interactions (
     user_interaction_id INT AUTO_INCREMENT, 
@@ -903,8 +903,8 @@ CREATE TABLE user_interactions (
     PRIMARY KEY (user_interaction_id)
 );
 
-ALTER TABLE user_interactions
-ADD CONSTRAINT fk_user_interactions_user
+ALTER TABLE user_interactions;
+ADD CONSTRAINT fk_user_interactions_user;
 FOREIGN KEY (id) REFERENCES user(id);
 
 INSERT INTO user_interactions (propertyID, id, click_count)
@@ -923,11 +923,11 @@ SELECT * FROM MainInformation mi;
 
 SELECT * FROM Addresses a;
 
-SELECT * FROM user czs
+SELECT * FROM user czs;
 
-SELECT * FROM service_scores ss 
+SELECT * FROM service_scores ss ;
 
-DESCRIBE user_interactions
+DESCRIBE user_interactions;
 
 SELECT COUNT(*) AS row_count FROM PropertyDetails pd ;
 
